@@ -1,7 +1,7 @@
 import React from 'react';
 import { addFlag } from 'web-text-adventure';
 
-addFlag("counter", 0);
+addFlag("money", 100);
 
 export default {
     // Start. Level 1.
@@ -37,7 +37,7 @@ export default {
             <p class="credit">Designed by: Colyderp.</p>
         </div>,
         options: [
-            { text: "Pancakes.", to: "" },
+            { text: "Pancakes.", to: "pancakes" },
             { text: "Waffles.", to: "" },
             { text: "Hashbrowns.", to: "" },
             { text: "Omlete.", to: "" }
@@ -55,5 +55,30 @@ export default {
         { text: "...you're hungry and want to eat something.", to: "breakfast" },
         { text: "...you have plans to go outside and go on an adventure.", to: "" }
     ]
+    },
+
+    // Pancakes. Level 3.
+    pancakes: {
+        prompt: () => <div>
+            <p>You want to make pancakes, but you have a few types to choose from.</p>
+            <p class="credit">Designed by: dave.</p>
+        </div>,
+        options: [
+            { text: "Regular.", to: "regularPancakes" },
+            { text: "McDonalds™ brand.", to: "mcdPancakes" },
+            { text: "Chocolate.", to: "chocolatePancakes" },
+            { text: "Peanut butter.", to: "pbPancakes" }
+        ]
+    },
+
+    pbPancakes: {
+        prompt: () => <div>
+            <p>Turns out you are allergic to peanut butter. Now you have to play a hospital and ambulance bill of <b>$4313</b>. Do you pay it?</p>
+            <p class="credit">Designed by: Hunter Parcells.</p>
+        </div>,
+        options: [
+            { text: "Yes (-$4313)", to: "yesPayBill" },
+            { text: "No", to: "noPayBill" }
+        ]
     }
 }
