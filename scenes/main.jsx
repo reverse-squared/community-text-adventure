@@ -1,9 +1,9 @@
 import React from 'react';
-import { addFlag } from 'web-text-adventure';
+import { addFlag, addScenes } from 'web-text-adventure';
 
 addFlag("money", 100);
 
-export default {
+addScenes({
     // Start. Level 1.
     start: {
         prompt: () => <div>
@@ -47,14 +47,14 @@ export default {
     // Check time. Level 2.
     checkTime: {
         prompt: () => <div>
-        <p>You look at your clock to check the time and realize...</p>
-        <p class="credit">Contributed by: Anonymous.</p>
-    </div>,
-    options: [
-        { text: "...you are still sleepy and need more rest.", to: "start" },
-        { text: "...you're hungry and want to eat something.", to: "breakfast" },
-        { text: "...you have plans to go outside and go on an adventure.", to: "" }
-    ]
+            <p>You look at your clock to check the time and realize...</p>
+            <p class="credit">Contributed by: Anonymous.</p>
+        </div>,
+        options: [
+            { text: "...you are still sleepy and need more rest.", to: "start" },
+            { text: "...you're hungry and want to eat something.", to: "breakfast" },
+            { text: "...you have plans to go outside and go on an adventure.", to: "" }
+        ]
     },
 
     // Pancakes. Level 3.
@@ -81,7 +81,7 @@ export default {
             { text: "Yes (-$4313)", to: "yesPayBill" },
             { text: "No", to: "noPayBill" }
         ]
-    },  
+    },
 
     // Don't pay hospital bill. Level 5.
     noPayBill: {
@@ -105,4 +105,4 @@ export default {
             { text: "Play again.", to: "start" }
         ]
     }
-}
+});
