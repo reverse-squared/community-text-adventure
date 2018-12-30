@@ -38,9 +38,9 @@ export default {
         </div>,
         options: [
             { text: "Pancakes.", to: "pancakes" },
-            { text: "Waffles.", to: "" },
-            { text: "Hashbrowns.", to: "" },
-            { text: "Omlete.", to: "" }
+            { text: "Waffles.", to: "waffles" },
+            { text: "Hashbrowns.", to: "hashbrowns" },
+            { text: "Omlette.", to: "omelette" }
         ]
     },
 
@@ -53,7 +53,7 @@ export default {
     options: [
         { text: "...you are still sleepy and need more rest.", to: "start" },
         { text: "...you're hungry and want to eat something.", to: "breakfast" },
-        { text: "...you have plans to go outside and go on an adventure.", to: "" }
+        { text: "...you have plans to go outside and go on an adventure.", to: "goAdventure" }
     ]
     },
 
@@ -90,19 +90,32 @@ export default {
             <p class="credit">Contributed by: <a href="https://filipkin.com/">Filip96</a>.</p>
         </div>,
         options: [
-            { text: "Run for it.", to: "" },
+            { text: "Run for it.", to: "runFromHospital" },
             { text: "Take out a loan.", to: "" },
-            { text: "Jump out a window.", to: "" },
+            { text: "Jump out a window.", to: "dead" },
         ]
     },
 
+    // Dead. Level 0.
     dead: {
         prompt: () => <div>
-            <p>Uh oh how unfortunate. <b>You died.</b></p>
+            <p>Uh oh how unfortunate. <b>You died.</b> Luckily this is a game where you can just play again. <s>You can also see credits here so thats nifty.</s></p>
             <p class="credit">Contributed by: Hunter Parcells.</p>
+            
+            <h1>Credits</h1>
+            <h3>Head Team</h3>
+                <li>Hunter Parcells</li>
+                <li>dave</li>
+            <h3>Contributers</h3>
+            <ul>
+                <li>Hunter Parcells</li>
+                <li>dave</li>
+                <li><a href="https://filipkin.com/">Filip96</a></li>
+                <li>Colyderp</li>
+            </ul>
         </div>,
         options: [
-            { text: "Play again.", to: "start" }
+            { text: () => <div><h1><b><u>Play Again</u></b></h1></div>, to: "start" }
         ]
     }
 }
