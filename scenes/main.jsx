@@ -2,6 +2,8 @@ import React from "react";
 import Credits from "../credits.jsx";
 import { addFlag, addScenes } from "web-text-adventure";
 
+addFlag("sleepTime", 0);
+
 addScenes({
     // Introduction Paragraph
     start: {
@@ -42,7 +44,7 @@ addScenes({
             { text: "Touch the spider.", to: "spiderTouch" },
             { text: "Touch the human.", to: "humanTouch" }
         ],
-        contributor: "Hunter Parcells"
+        contributor: "Hunter"
     },
 
     // Eat breakfast. Level 2.
@@ -81,15 +83,28 @@ addScenes({
             { text: "Sleep more.", to: "sleepmore" },
             { text: "Wake up.", to: "wakeup" }
         ],
+        contributor: "Dave"
     },
     sleepmore: {
         prompt: () => <div>
             <p>You continue to sleep.</p>
         </div>,
         options: [
-            { text: "Sleep more.", to: "sleepmore" },
-            { text: "Wake up.", to: "wakeup" }
+            { text: "Sleep more.", to: "sleepmore", if: () => sleepTime < 26 },
+            { text: "Wake up.", to: "sleep_ending", if: () => sleepTime >= 26 },
+            { text: "Wake up.", to: "wakeup", if: () => sleepTime <= 20,  }
         ],
+        action: () => sleepTime++,
+        contributor: "Dave"
+    },
+    sleep_ending: {
+        prompt: <div>
+            you fucking died
+        </div>,
+        options: [
+
+        ],
+        contributor: "Hunter"
     },
 
     // Pancakes. Level 3.
@@ -115,7 +130,7 @@ addScenes({
             { text: "Yes (-$4313)", to: "yesPayBill" },
             { text: "No", to: "noPayBill" }
         ],
-        contributor: "Hunter Parcells"
+        contributor: "Hunter"
     },
 
     // Don't pay hospital bill. Level 5.

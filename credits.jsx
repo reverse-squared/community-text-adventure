@@ -6,7 +6,7 @@ export default hot(() => <div>
     <h3>Head Team</h3>
     <ul>
         <li>Hunter Parcells</li>
-        <li>dave</li>
+        <li>Dave</li>
     </ul>
     <h3>Contributers</h3>
     <ul>

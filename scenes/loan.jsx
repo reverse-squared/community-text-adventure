@@ -91,7 +91,7 @@ addScenes({
             },
         ],
         action: decreaseTurn,
-        contributor: "Hunter Parcells"
+        contributor: "Hunter"
     },
     loan_paybills2: {
         prompt: () => <div>
@@ -118,7 +118,7 @@ addScenes({
             { text: "Pay Shipping (-$0.99)", to: "loan_paybills4", if: () => loanMoney < -30000, action: () => loanMoney -= .99 },
         ],
         action: decreaseTurn,
-        contributor: "Hunter Parcells"
+        contributor: "Hunter"
     },
     loan_paybills4: {
         prompt: () => <div>
@@ -133,7 +133,7 @@ addScenes({
             { text: "Pay Handling (-$0.98)", to: "loan_paybills5", action: () => loanMoney -= .98 },
         ],
         action: decreaseTurn,
-        contributor: "Hunter Parcells"
+        contributor: "Hunter"
     },
     loan_paybills5: {
         prompt: () => <div>
@@ -146,7 +146,7 @@ addScenes({
             { text: "Buy another house (-$159,839)", to: "loan_paybills6", action: () => loanMoney -= 156839 },
         ],
         action: decreaseTurn,
-        contributor: "Hunter Parcells"
+        contributor: "Hunter"
     },
     loan_paybills6: {
         prompt: () => <div>
@@ -161,7 +161,7 @@ addScenes({
             // { text: "Pay Handling (-$0.45)", to: "loan_paybills5", action: () => loanMoney -= 98 },
         ],
         action: decreaseTurn,
-        contributor: "Hunter Parcells"
+        contributor: "Hunter"
     },
     loan_paybills7: {
         prompt: () => <div>
@@ -176,7 +176,7 @@ addScenes({
             { text: "Pay More Handling (-$0.45)", to: "loan_paybills8", action: () => loanMoney -= 98 },
         ],
         action: decreaseTurn,
-        contributor: "Hunter Parcells"
+        contributor: "Hunter"
     },
     loan_paybills8: {
         prompt: () => <div>
@@ -193,7 +193,7 @@ addScenes({
             { text: "Buy an iPhone (-$4000)", to: "loan_paybills_iphone", action: () => loanMoney -= 500 },
         ],
         action: decreaseTurn,
-        contributor: "Hunter Parcells"
+        contributor: "Hunter"
     },
     loan_paybills_iphone: {
         prompt: () => <div>
@@ -205,7 +205,7 @@ addScenes({
         options: [
         ],
         action: decreaseTurn,
-        contributor: "Hunter Parcells"
+        contributor: "Hunter"
     }
 });
 
@@ -225,5 +225,6 @@ Buy the charger,    -$55                                                - Dave
 Buy the charger brick that should be included with the charger,    -$60 - Dave
 Buy the air pods,    -$235                                              - Dave
 Sell the useless headphone dongle,    +$10                              - Dave
+Buy the Bluetooth adapter
 
 */
