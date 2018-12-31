@@ -26,8 +26,8 @@
   "scripts": {
     "start": "webpack-dev-server",
     "build": "node src/build.js",
-    "lint": "./lint.bat",
-    "lint-fix": "./lint.bat --fix"
+    "lint": "lint.bat",
+    "lint-fix": "lint.bat --fix"
   },
   "license": "MIT",
   "output_directory": "dist"
