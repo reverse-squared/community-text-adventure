@@ -1,6 +1,6 @@
-import React from 'react';
-import { addFlag, addScenes } from 'web-text-adventure';
-import { RainbowCircleText } from '../styles.jsx';
+import React from "react";
+import { addFlag, addScenes } from "web-text-adventure";
+import { RainbowCircleText } from "../styles.jsx";
 
 addFlag("loanMoney", -4313);
 addFlag("loanTurns", 31);
@@ -10,13 +10,13 @@ addFlag("loanBills2", [false,false]);
 const displayMoney = (num) => {
     if(num < 0) return "-$" + (-num);
     return "$" + num;
-}
+};
 
 const LoanHeader = () => <div>
     <p className={"loan-header " + (loanTurns < 10 ? "loan-heder-low" : "")}>
         Money: <strong>{displayMoney(loanMoney)}</strong>. You have <strong>{loanTurns}</strong> turns left to pay it off.
     </p>
-</div>
+</div>;
 
 const decreaseTurn = () => loanTurns--;
 
@@ -186,8 +186,8 @@ addScenes({
             </p>
         </div>,
         options: [
-            { text: "Repaint the walls (-$500)", disabledText: "Repaint the walls (Purchased)", to: "loan_paybills8", if: () => !loanBills2[0], action: () => { loanBills2[0] = true; loanMoney -= 500 } },
-            { text: "Fix the wood floors (-$1700)", disabledText: "Fix the wood floors (Purchased)", to: "loan_paybills8", if: () => !loanBills2[1], action: () => { loanBills2[1] = true; loanMoney -= 1700 } },
+            { text: "Repaint the walls (-$500)", disabledText: "Repaint the walls (Purchased)", to: "loan_paybills8", if: () => !loanBills2[0], action: () => { loanBills2[0] = true; loanMoney -= 500; } },
+            { text: "Fix the wood floors (-$1700)", disabledText: "Fix the wood floors (Purchased)", to: "loan_paybills8", if: () => !loanBills2[1], action: () => { loanBills2[1] = true; loanMoney -= 1700; } },
             { text: "Replace the windows (-$1500)", to: "loan_paybills_windows", action: () => loanMoney -= 1500 },
             { text: "Go buy groceries", to: "loan_paybills_groceries", action: () => loanMoney -= 500 },
             { text: "Buy an iPhone (-$4000)", to: "loan_paybills_iphone", action: () => loanMoney -= 500 },

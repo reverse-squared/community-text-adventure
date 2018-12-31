@@ -1,5 +1,5 @@
-import React from 'react';
-import { hot } from 'react-hot-loader/root'
+import React from "react";
+import { hot } from "react-hot-loader/root";
 
 export default hot(() => <div>
     <h1>Credits</h1>
