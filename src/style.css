@@ -5,6 +5,8 @@ body {
     font-size: 18px;
     margin: auto;
     max-width: 500px;
+    padding-left: 25px;
+    padding-right: 25px;
 }
 
 a {
@@ -26,4 +28,11 @@ a:not(:hover) {
 .credit {
     color: grey;
     font-size: 75%;
+}
+
+.playAgain {
+    position: relative;
+    top: 8px;
+    font-weight: bold;
+    font-size: 36px
 }

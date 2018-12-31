@@ -1,4 +1,5 @@
 import React from 'react';
+import Credits from '../credits.jsx';
 import { addFlag, addScenes } from 'web-text-adventure';
 
 addScenes({
@@ -14,7 +15,7 @@ addScenes({
             { text: "Check the time", to: "checkTime" }
         ],
         
-        contributor: "dave"
+        contributor: "Dave"
     },
 
     // Go outside. Level 2.
@@ -37,9 +38,9 @@ addScenes({
         </div>,
         options: [
             { text: "Pancakes.", to: "pancakes" },
-            { text: "Waffles.", to: "" },
-            { text: "Hashbrowns.", to: "" },
-            { text: "Omlete.", to: "" }
+            { text: "Waffles.", to: "waffles" },
+            { text: "Hashbrowns.", to: "hashbrowns" },
+            { text: "Omlette.", to: "omelette" }
         ],
         contributor: "Colyderp"
     },
@@ -53,7 +54,8 @@ addScenes({
             { text: "...you are still sleepy and need more rest.", to: "start" },
             { text: "...you're hungry and want to eat something.", to: "breakfast" },
             { text: "...you have plans to go outside and go on an adventure.", to: "" }
-        ]
+        ],
+        // anonymous
     },
 
     // Pancakes. Level 3.
@@ -67,7 +69,7 @@ addScenes({
             { text: "Chocolate.", to: "chocolatePancakes" },
             { text: "Peanut butter.", to: "pbPancakes" }
         ],
-        contributor: "dave"
+        contributor: "Dave"
     },
 
     // Peanut butter pancakes. Level 4.
@@ -88,23 +90,27 @@ addScenes({
             <p>You decide not to pay the bill and...</p>
         </div>,
         options: [
-            { text: "Run for it.", to: "" },
+            { text: "Run for it.", to: "runFromHospital" },
             { text: "Take out a loan.", to: "" },
-            { text: "Jump out a window.", to: "" },
+            { text: "Jump out a window.", to: "dead" },
         ],
-
-        contributor: <a href="https://filipkin.com/">Filip96</a>
+        contributor: "Filip96"
     },
 
+    // Dead. Level 0.
     dead: {
         prompt: () => <div>
-            <p>Uh oh how unfortunate. <b>You died.</b></p>
-            <p class="credit">Contributed by: .</p>
+            <p>
+                How unfortunate, You died... Good thing in this world you can always go back to the beginning.
+            </p>
+            
+            <Credits />
+
+            <br/><br/>
         </div>,
         options: [
-            { text: "Play again.", to: "start" }
+            { text: () => <span className="playAgain">Play Again</span>, to: "start" }
         ],
-
-        contributor: "Hunter Parcells"
+        contributor: null
     }
 });
