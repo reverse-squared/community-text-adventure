@@ -1,49 +1,44 @@
 // builds the game
 const fs = require("fs-extra");
 const path = require("path");
-const webpack = require("webpack");
-const minifier = require("html-minifier");
+const webpack = require('webpack');
+const minifier = require('html-minifier');
 
 const p_output_directory = JSON.parse(fs.readFileSync(path.join(__dirname, "../package.json")).toString()).output_directory;
 
 // make `dist` folder
 const dist_folder = path.join(__dirname, "../", p_output_directory);
 if (fs.pathExistsSync(dist_folder)) {
-    fs.removeSync(dist_folder);
+    fs.removeSync(dist_folder)
 }
 fs.mkdirsSync(dist_folder);
 
 // run `webpack --mode production`
-const config = require("../webpack.config.js");
+const config = require("../webpack.config.js")({ production: true });
 config.output = {
     path: dist_folder,
-    filename: "adventure.js"
+    filename: 'adventure.js'
 };
-config.mode = "production";
 
 webpack(config, (err, stats) => {
     // errors
     if (err) {
-        // eslint-disable-next-line no-console
         console.error(err.stack || err);
         if (err.details) {
-        // eslint-disable-next-line no-console
             console.error(err.details);
         }
         return;
     }
-    
+
     const info = stats.toJson();
-    
+
     // errors
     if (stats.hasErrors()) {
-        // eslint-disable-next-line no-console
         console.error(info.errors);
     }
-    
+
     // warnings
     if (stats.hasWarnings()) {
-        // eslint-disable-next-line no-console
         console.warn(info.warnings);
     }
 
@@ -61,7 +56,7 @@ webpack(config, (err, stats) => {
                 toplevel: true,
                 keep_fnames: false
             },
-            
+
         },
         removeComments: true,
         removeAttributeQuotes: true,
@@ -72,10 +67,8 @@ webpack(config, (err, stats) => {
         removeTagWhitespace: true,
         useShortDoctype: true
     });
-    fs.writeFileSync(path.join(dist_folder, "index.html"),output_html);
-        
-    
-    // eslint-disable-next-line no-console
-    console.log("Build completed!");
-});
+    fs.writeFileSync(path.join(dist_folder, "index.html"), output_html);
 
+
+    console.log("build completed!");
+});

@@ -1,5 +1,5 @@
 import React from "react";
-import { Prompt, Options, setCustomHTML } from "web-text-adventure";
+import { Prompt, Options, DebugPanel, setCustomHTML } from "web-text-adventure";
 import "./style.css";
 
 setCustomHTML((scene) => <div>
@@ -21,4 +21,6 @@ setCustomHTML((scene) => <div>
             )
             : null
     }
+
+    <DebugPanel />
 </div>);

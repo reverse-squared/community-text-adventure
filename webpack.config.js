@@ -1,7 +1,7 @@
 const path = require("path");
 const webpack = require("webpack");
 
-module.exports = {
+module.exports = (env = {production: false}, argv) => ({
     entry: "./src/loader.jsx",
     output: {
         path: path.resolve(__dirname),
@@ -12,7 +12,10 @@ module.exports = {
         contentBase: path.join(__dirname, "src")
     },
     plugins: [
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.DefinePlugin({
+            $hideDebug: env.production
+        })
     ],
     module: {
         rules: [
@@ -36,5 +39,5 @@ module.exports = {
         "react-dom": "ReactDOM",
         "react": "React",
     },
-    mode: "development"
-};
+    mode: env.production ? "production" : "development",
+});
