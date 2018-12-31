@@ -1,9 +1,11 @@
 import React from 'react';
 import { addFlag, addScenes } from 'web-text-adventure';
+import { RainbowCircleText } from '../styles.jsx';
 
 addFlag("loanMoney", -4313);
-addFlag("loanTurns", 30);
+addFlag("loanTurns", 31);
 addFlag("loanBills1", [false,false,false]);
+addFlag("loanBills2", [false,false]);
 
 const displayMoney = (num) => {
     if(num < 0) return "-$" + (-num);
@@ -11,10 +13,12 @@ const displayMoney = (num) => {
 }
 
 const LoanHeader = () => <div>
-    <p className="loan-header">
+    <p className={"loan-header " + (loanTurns < 10 ? "loan-heder-low" : "")}>
         Money: <strong>{displayMoney(loanMoney)}</strong>. You have <strong>{loanTurns}</strong> turns left to pay it off.
     </p>
 </div>
+
+const decreaseTurn = () => loanTurns--;
 
 addScenes({
     loan_start: {
@@ -36,6 +40,7 @@ addScenes({
         options: [
             { text: "Pay your bills", to: "loan_paybills" }
         ],
+        action: decreaseTurn,
         contributor: "Dave and Hunter"
     },
     loan_paybills: {
@@ -85,6 +90,7 @@ addScenes({
                 }
             },
         ],
+        action: decreaseTurn,
         contributor: "Hunter Parcells"
     },
     loan_paybills2: {
@@ -97,6 +103,7 @@ addScenes({
         options: [
             { text: "Buy Car (-$17,000)", to: "loan_paybills3", action: () => loanMoney-=17000 }
         ],
+        action: decreaseTurn,
         contributor: "Dave"
     },
     loan_paybills3: {
@@ -110,6 +117,7 @@ addScenes({
             { text: "Buy a new house (-$319,679)", disabledText: true, to: "loan_paybills3", if: () => loanMoney > -30000, action: () => loanMoney -= 319679 },
             { text: "Pay Shipping (-$0.99)", to: "loan_paybills4", if: () => loanMoney < -30000, action: () => loanMoney -= .99 },
         ],
+        action: decreaseTurn,
         contributor: "Hunter Parcells"
     },
     loan_paybills4: {
@@ -124,6 +132,7 @@ addScenes({
             { text: "Pay Shipping (-$0.99)", disabledText: true, to: "", if: () => false },
             { text: "Pay Handling (-$0.98)", to: "loan_paybills5", action: () => loanMoney -= .98 },
         ],
+        action: decreaseTurn,
         contributor: "Hunter Parcells"
     },
     loan_paybills5: {
@@ -135,9 +144,67 @@ addScenes({
         </div>,
         options: [
             { text: "Buy another house (-$159,839)", to: "loan_paybills6", action: () => loanMoney -= 156839 },
-            // { text: "Pay More Shipping (-$0.50)", disabledText: true, to: "", if: () => false },
+        ],
+        action: decreaseTurn,
+        contributor: "Hunter Parcells"
+    },
+    loan_paybills6: {
+        prompt: () => <div>
+            <LoanHeader />
+            <p>
+                Hey, it looks like its also on sale! Buy one, get another half off!
+            </p>
+        </div>,
+        options: [
+            { text: "Buy another house (-$159,839)", to: "", disabledText: true, if: () => false },
+            { text: "Pay More Shipping (-$0.50)", to: "loan_paybills7", action: () => loanMoney-=0.50},
             // { text: "Pay Handling (-$0.45)", to: "loan_paybills5", action: () => loanMoney -= 98 },
         ],
+        action: decreaseTurn,
+        contributor: "Hunter Parcells"
+    },
+    loan_paybills7: {
+        prompt: () => <div>
+            <LoanHeader />
+            <p>
+                Hey, it looks like its also on sale! Buy one, get another half off!
+            </p>
+        </div>,
+        options: [
+            { text: "Buy another house (-$159,839)", to: "", disabledText: true, if: () => false },
+            { text: "Pay More Shipping (-$0.50)", to: "", disabledText: true, if: () => false },
+            { text: "Pay More Handling (-$0.45)", to: "loan_paybills8", action: () => loanMoney -= 98 },
+        ],
+        action: decreaseTurn,
+        contributor: "Hunter Parcells"
+    },
+    loan_paybills8: {
+        prompt: () => <div>
+            <LoanHeader />
+            <p>
+                You are now at your amazing new house, and realize how ugly it is.
+            </p>
+        </div>,
+        options: [
+            { text: "Repaint the walls (-$500)", disabledText: "Repaint the walls (Purchased)", to: "loan_paybills8", if: () => !loanBills2[0], action: () => { loanBills2[0] = true; loanMoney -= 500 } },
+            { text: "Fix the wood floors (-$1700)", disabledText: "Fix the wood floors (Purchased)", to: "loan_paybills8", if: () => !loanBills2[1], action: () => { loanBills2[1] = true; loanMoney -= 1700 } },
+            { text: "Replace the windows (-$1500)", to: "loan_paybills_windows", action: () => loanMoney -= 1500 },
+            { text: "Go buy groceries", to: "loan_paybills_groceries", action: () => loanMoney -= 500 },
+            { text: "Buy an iPhone (-$4000)", to: "loan_paybills_iphone", action: () => loanMoney -= 500 },
+        ],
+        action: decreaseTurn,
+        contributor: "Hunter Parcells"
+    },
+    loan_paybills_iphone: {
+        prompt: () => <div>
+            <LoanHeader />
+            <p>
+                It looks like the <RainbowCircleText string="iPhone XSR Max Plus Deluxe Pro"/> just came out, so you bought the first in stock.
+            </p>
+        </div>,
+        options: [
+        ],
+        action: decreaseTurn,
         contributor: "Hunter Parcells"
     }
 });
@@ -145,14 +212,10 @@ addScenes({
 // todo
 /*
 
-half off  - Hunter
-
 Also you might wanna repaint the place -$500   - Hunter
 And fix the wood floors -$1700  - Hunter
 
-Turns into a renovation simulator - Hunter
-
-You got so focused on having the best house that you went a million dollars in debt - Dave
+used on having the best house that you went a million dollars in debt - Dave
 
 and then at the end of it all, all of your stuff gets stolen from you - SinkingSailor
 
