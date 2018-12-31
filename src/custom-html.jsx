@@ -4,7 +4,6 @@ import './style.css';
 
 setCustomHTML((scene) => <div>
     <h1>Community Text Adventure</h1>
-    <p>All paths and options are made by different people.</p>
     
     <br></br>
     

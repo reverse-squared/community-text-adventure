@@ -36,3 +36,10 @@ a:not(:hover) {
     font-weight: bold;
     font-size: 36px
 }
+
+.loan-header {
+    color: coral;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 2em;
+}

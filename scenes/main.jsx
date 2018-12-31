@@ -3,8 +3,22 @@ import Credits from '../credits.jsx';
 import { addFlag, addScenes } from 'web-text-adventure';
 
 addScenes({
-    // Start. Level 1.
+    // Introduction Paragraph
     start: {
+        prompt: <div>
+            <p>
+                Welcome to the Community Text Adventure. All paths and options are
+                made by different people, collaborating to create a full game.
+            </p>
+        </div>,
+        options: [
+            { text: "Begin", to: "wakeup" }
+        ],
+        contributor: null
+    },
+
+    // Start. Level 1.
+    wakeup: {
         prompt: () => <div>
             <p>You wake up in a room. <b>What do you do?</b></p>
         </div>,
@@ -51,11 +65,31 @@ addScenes({
             <p>You look at your clock to check the time and realize...</p>
         </div>,
         options: [
-            { text: "...you are still sleepy and need more rest.", to: "start" },
+            { text: "...you are still sleepy and need more rest.", to: "sleep" },
             { text: "...you're hungry and want to eat something.", to: "breakfast" },
             { text: "...you have plans to go outside and go on an adventure.", to: "" }
         ],
         // anonymous
+    },
+
+    // Sleep. Level 3.
+    sleep: {
+        prompt: () => <div>
+            <p>You go to bed and get more rest.</p>
+        </div>,
+        options: [
+            { text: "Sleep more.", to: "sleepmore" },
+            { text: "Wake up.", to: "wakeup" }
+        ],
+    },
+    sleepmore: {
+        prompt: () => <div>
+            <p>You continue to sleep.</p>
+        </div>,
+        options: [
+            { text: "Sleep more.", to: "sleepmore" },
+            { text: "Wake up.", to: "wakeup" }
+        ],
     },
 
     // Pancakes. Level 3.
@@ -91,7 +125,7 @@ addScenes({
         </div>,
         options: [
             { text: "Run for it.", to: "runFromHospital" },
-            { text: "Take out a loan.", to: "" },
+            { text: "Take out a loan.", to: "loan_start" },
             { text: "Jump out a window.", to: "dead" },
         ],
         contributor: "Filip96"
@@ -109,7 +143,7 @@ addScenes({
             <br/><br/>
         </div>,
         options: [
-            { text: () => <span className="playAgain">Play Again</span>, to: "start" }
+            { text: () => <span className="playAgain">Play Again</span>, to: "wakeup" }
         ],
         contributor: null
     }
