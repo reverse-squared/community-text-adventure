@@ -1,6 +1,6 @@
-import React from 'react';
-import Credits from '../credits.jsx';
-import { addFlag, addScenes } from 'web-text-adventure';
+import React from "react";
+import Credits from "../credits.jsx";
+import { addFlag, addScenes } from "web-text-adventure";
 
 addScenes({
     // Introduction Paragraph

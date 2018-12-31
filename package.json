@@ -10,8 +10,11 @@
     "@babel/core": "^7.2.2",
     "@babel/preset-env": "^7.2.0",
     "@babel/preset-react": "^7.0.0",
+    "babel-eslint": "^8.2.6",
     "babel-loader": "^8.0.4",
     "css-loader": "^2.0.1",
+    "eslint": "^4.19.1",
+    "eslint-plugin-react": "^7.12.0",
     "fs-extra": "^7.0.1",
     "html-minifier": "^3.5.21",
     "style-loader": "^0.23.1",
@@ -22,7 +25,9 @@
   },
   "scripts": {
     "start": "webpack-dev-server",
-    "build": "node src/build.js"
+    "build": "node src/build.js",
+    "lint": "./lint.bat",
+    "lint-fix": "./lint.bat --fix"
   },
   "license": "MIT",
   "output_directory": "dist"
