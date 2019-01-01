@@ -6,11 +6,12 @@ addFlag("loanMoney", -4313);
 addFlag("loanTurns", 31);
 addFlag("loanBills1", [false,false,false]);
 addFlag("loanBills2", [false,false]);
-addFlag("loanGroceries", [false,false,false,false,false,false,false,false,false,false,false,false])
+addFlag("loanGroceries", [false,false,false,false,false,false,false])
 addFlag("loanBills3", [false,false,false,false,false]);
 addFlag("loanIPhone", false);
 addFlag("loanWindows", false);
 addFlag("loanWindowsSoldOut", false);
+addFlag("loan_visitedStore", false);
 
 const displayMoney = (num) => {
     if(num < 0) return "-$" + (-num);
@@ -189,12 +190,12 @@ addScenes({
         options: [
             { text: "Buy another house (-$159,839)", to: "", disabledText: true, if: () => false },
             { text: "Pay More Shipping (-$0.50)", to: "", disabledText: true, if: () => false },
-            { text: "Pay More Handling (-$0.45)", to: "loan_paybills8", action: () => loanMoney -= 98 },
+            { text: "Pay More Handling (-$0.45)", to: "loan_paybills_house", action: () => loanMoney -= 98 },
         ],
         action: decreaseTurn,
         contributor: "Hunter"
     },
-    loan_paybills8: {
+    loan_paybills_house: {
         prompt: () => <div>
             <LoanHeader />
             <p>
@@ -202,10 +203,10 @@ addScenes({
             </p>
         </div>,
         options: [
-            { text: "Repaint the walls (-$500)", disabledText: "Repaint the walls (Purchased)", to: "loan_paybills8", if: () => !loanBills2[0], action: () => { loanBills2[0] = true; loanMoney -= 500; } },
-            { text: "Fix the wood floors (-$1700)", disabledText: "Fix the wood floors (Purchased)", to: "loan_paybills8", if: () => !loanBills2[1], action: () => { loanBills2[1] = true; loanMoney -= 1700; } },
-            { text: "Replace the windows (-$1500)", to: "loan_paybills_windows", action: () => loanMoney -= 1500 },
-            { text: "Go buy groceries", to: "loan_paybills_groceries", action: () => loanMoney -= 500 },
+            { text: "Repaint the walls (-$500)", disabledText: "Repaint the walls (Purchased)", to: "loan_paybills_house", if: () => !loanBills2[0], action: () => { loanBills2[0] = true; loanMoney -= 500; } },
+            { text: "Fix the wood floors (-$1700)", disabledText: "Fix the wood floors (Purchased)", to: "loan_paybills_house", if: () => !loanBills2[1], action: () => { loanBills2[1] = true; loanMoney -= 1700; } },
+            { text: "Replace the windows (-$1500)", disabledText: "Replace the windows (Purchased)", to: "loan_paybills_windows", if: () => !loanWindows,action: () => loanMoney -= 1500 },
+            { text: "Go buy groceries", disabledText: "Go buy groceries (Purchased)", to: "loan_paybills_groceries", if: ()=> !loan_visitedStore,action: () => loanMoney -= 500 },
             { text: "Buy an iPhone (-$4000)", disabledText: "Buy an iPhone (Purchased)", if: () => !loanIPhone, to: "loan_paybills_iphone", action: () => loanMoney -= 4000 },
         ],
         action: decreaseTurn,
@@ -225,42 +226,47 @@ addScenes({
             { text: "Buy the new AirPods (-$235)", to: "loan_paybills_iphone", if: () => !loanBills3[3] && loanBills3[0], action: () => { loanMoney -= 235; loanBills3[3] = true; } },
             { text: "Sell the useless headphone jack adapter (+$2)", to: "loan_paybills_iphone", if: () => !loanBills3[4] && loanBills3[0] && loanBills3[3], action: () => { loanMoney += 2; loanBills3[4] = true; } },
             "seperator",
-            { text: () => <span>Leave Apple Store <span style={{opacity: "0.5"}}>(without buying all the stuff)</span></span>, to: "loan_paybills8", if: () => !loanBills1.reduce((x,y) => x && y, true) },
-            { text: () => <span>Leave Apple Store</span>, to: "loan_paybills8", if: () => loanBills1.reduce((x, y) => x && y, true) },
+            { text: () => "Leave Apple Store", disabledText: true, to: "loan_paybills_house", if: () => loanBills3.reduce((x, y) => x && y, true) },
         ],
-        action: decreaseTurn,
-        contributor: "Hunter"
-    },
-    loan_paybills_groceries: {
-        prompt: () => <div>
-            <LoanHeader />
-            <p>
-                You will take the entire stock of the store.
-            </p>
-        </div>,
-        options: [
-            { text: "Buy All The Eggs (-$5543)", to: "loan_paybills_groceries", action: () => { loanMoney -= 5543; loanGroceries[0] = true; } , if: () => !loanGroceries[0] },
-            { text: "Buy All The Salad (-$4234)", to: "loan_paybills_groceries", action: () => { loanMoney -= 4234; loanGroceries[1] = true; }, if: () => !loanGroceries[1] },
-            { text: "Buy All The Cookies (-$2445)", to: "loan_paybills_groceries", action: () => { loanMoney -= 2445; loanGroceries[2] = true; }, if: () => !loanGroceries[2] },
-            { text: "Buy All The Bleach (-$12137)", to: "loan_paybills_groceries", action: () => { loanMoney -= 12137; loanGroceries[3] = true; }, if: () => !loanGroceries[3] },
-            { text: "Buy All The Pepsi (-$1245)", to: "loan_paybills_groceries", action: () => { loanMoney -= 1245; loanGroceries[4] = true; }, if: () => !loanGroceries[4] },
-            { text: "Buy All The TVs (-$74633583)", to: "loan_paybills_groceries", action: () => { loanMoney -= 74633583; loanGroceries[5] = true; }, if: () => !loanGroceries[5] },
-            { text: "Buy All The Candy (-$23585)", to: "loan_paybills_groceries", action: () => { loanMoney -= 23585; loanGroceries[6] = true; }, if: () => !loanGroceries[6] },
-            { text: "Buy All The Poptarts (-$854)", to: "loan_paybills_groceries", action: () => { loanMoney -= 854; loanGroceries[7] = true; }, if: () => !loanGroceries[7] },
-            { text: "Buy All The Milk (-$482)", to: "loan_paybills_groceries", action: () => { loanMoney -= 482; loanGroceries[8] = true; }, if: () => !loanGroceries[8] },
-            { text: "Buy All The Bouncy Balls (-$474034)", to: "loan_paybills_groceries", action: () => { loanMoney -= 474034; loanGroceries[9] = true; }, if: () => !loanGroceries[9] },
-            { text: "Buy All The Thing Inventor (-$89347598759832754093740923759027359834)", to: "loan_paybills_groceries", action: () => { loanMoney -= 89347598759832754093740923759027359834; loanGroceries[10] = true; }, if: () => !loanGroceries[10] },
-            { text: "Buy All The Dog Toys (-$1)", to: "loan_paybills_groceries  ", action: () => { loanMoney -= 1; loanGroceries[11] = true; }, if: () => !loanGroceries[11] },
-            { text: "Leave", to: "leaveStore", if: () => loanGroceries },
-            
-        ],
-        action: decreaseTurn,
-        contributor: "Hunter",
         action: () => {
             loanIPhone = true;
             decreaseTurn();
         },
         contributor: "Dave"
+    },
+    loan_paybills_groceries: {
+        prompt: () => <div>
+            <LoanHeader />
+            <p>
+                {
+                    loanGroceries.reduce((x, y) => x && y, true) 
+                        ? <span>
+                            You have <a href="">taken the entire stock</a> of the store.
+                        </span>
+                        : <span>
+                            You enter the grocery store, and you decide to buy everything inside the shop, as your
+                            new house is currently empty.
+                        </span>
+                }
+            </p>
+        </div>,
+        options: [
+            { text: "Buy all the Eggs (-$5543)", disabledText: "Buy all the Eggs (Purchased)", to: "loan_paybills_groceries", action: () => { loanMoney -= 5543; loanGroceries[0] = true; } , if: () => !loanGroceries[0] },
+            { text: "Buy all the Salad (-$4234)", disabledText: "Buy all the Salad (Purchased)", to: "loan_paybills_groceries", action: () => { loanMoney -= 4234; loanGroceries[1] = true; }, if: () => !loanGroceries[1] },
+            { text: "Buy all the Cookies (-$2445)", disabledText: "Buy all the Cookies (Purchased)", to: "loan_paybills_groceries", action: () => { loanMoney -= 2445; loanGroceries[2] = true; }, if: () => !loanGroceries[2] },
+            { text: "Buy all the Candy (-$23585)", disabledText: "Buy all the Candy (Purchased)", to: "loan_paybills_groceries", action: () => { loanMoney -= 23585; loanGroceries[3] = true; }, if: () => !loanGroceries[3] },
+            { text: "Buy all the Poptarts (-$854)", disabledText: "Buy all the Poptarts (Purchased)", to: "loan_paybills_groceries", action: () => { loanMoney -= 854; loanGroceries[4] = true; }, if: () => !loanGroceries[4] },
+            { text: "Buy all the Milk (-$482)", disabledText: "Buy all the Milk (Purchased)", to: "loan_paybills_groceries", action: () => { loanMoney -= 482; loanGroceries[5] = true; }, if: () => !loanGroceries[5] },
+            { text: "Buy all the Dog Toys (-$1)", disabledText: "Buy all the Dog Toys (Purchased)", to: "loan_paybills_groceries", action: () => { loanMoney -= 1; loanGroceries[6] = true; }, if: () => !loanGroceries[6] },
+            "seperator",
+            { text: "Leave", disabledText: true, to: "loan_paybills_house", if: () => loanGroceries.reduce((x,y) => x&&y, true) },
+            
+        ],
+        action: () => {
+            loan_visitedStore = true;
+            decreaseTurn();
+        },
+        contributor: "Hunter",
     },
     loan_paybills_windows: {
         prompt: () => <div>
@@ -270,8 +276,8 @@ addScenes({
             </p>
         </div>,
         options: [
-            { text: "Oh hell yeah. (-$1500)", to: "loan_paybills_windows_buymore", action: () => loanMoney -= 1500 },
-            { text: "No.", to: "" },
+            { text: "Oh, hell yeah. (-$1500)", to: "loan_paybills_windows_buymore", action: () => loanMoney -= 1500 },
+            { text: "No.", to: "loan_paybills_house" },
             { text: "Smash neighbour's windows.", to: "loan_paybills_smashwindow" },
         ],
         action: () => {
@@ -288,19 +294,19 @@ addScenes({
         </div>,
         options: [
             { text: "More Windows (-$1500)", to: "loan_paybills_windows_buymore2", action: () => loanMoney -= 1500 },
-            { text: "Return Home", to: "loan_paybills8" }
+            { text: "Return Home", to: "loan_paybills_house" }
         ]
     },
     loan_paybills_windows_buymore2: {
         prompt: () => <div>
             <LoanHeader />
             <p>
-                You buy another set of windows... There is a shortage of windows so the price has been marked up.
+                You buy another set of windows... there is a shortage of windows so the price of windows has been marked up.
             </p>
         </div>,
         options: [
             { text: "More Windows (-$3500)", to: "loan_paybills_windows_buymore3", action: () => loanMoney -= 3500 },
-            { text: "Return Home", to: "loan_paybills8" }
+            { text: "Return Home", to: "loan_paybills_house" }
         ],
         action: decreaseTurn
     },
@@ -308,11 +314,11 @@ addScenes({
         prompt: () => <div>
             <LoanHeader />
             <p>
-                You buy another set of windows... The Window Store has run out of windows.
+                You buy another set of windows... the Window Store has run out of windows.
             </p>
         </div>,
         options: [
-            { text: "Return Home", to: "loan_paybills8" }
+            { text: "Return Home", to: "loan_paybills_house" }
         ],
         action: () => {
             loanWindowsSoldOut = true;
