@@ -134,6 +134,29 @@ addScenes({
         contributor: "Hunter"
     },
 
+    // Pay the hospital bill.
+    yesPayBill: {
+        prompt: () => <div>
+            <p>You wanna pay your bill, so you have two options, pay with cash and risk getting arrested with counterfeit cash, or pay with one of your 23 credit cards which probably are all maxed out.</p>
+        </div>,
+        options: [
+            { text: "Pay with Cash", to: "payCash" },
+            { text: "Pay with Credit", to: "payCredit" }
+        ],
+        contributor: "Hunter"
+    },
+
+    payCash: {
+        prompt: () => <div>
+            <p>You paid with your cash. Even though it was counterfeit, nobody noticed. <s>That won't come back up later.</s> You continue with your day and go outside. What do you do?</p>
+        </div>,
+        options: [
+            { text: "Fake your death", to: "fakeDeath" },
+            { text: "Go skydiving.", to: "skydive" }
+        ],
+        contributor: "Hunter"
+    },
+
     // Don't pay hospital bill. Level 5.
     noPayBill: {
         prompt: () => <div>
