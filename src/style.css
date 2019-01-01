@@ -46,8 +46,14 @@ a:not(:hover) {
     margin-top: 0;
     margin-bottom: 2em;
 }
+@keyframes loan-header-blink {
+	0% { color: coral; }
+	49.9% { color: coral; }
+	50% { color: red; }
+	100% { color: red; }
+}
 .loan-header-low {
-    color: red;
+    animation: loan-header-blink 0.8s linear 0s infinite;
 }
 
 @keyframes rainbow {
@@ -182,6 +188,11 @@ a:not(:hover) {
 	98% {top: -0.627px; left: 4.961px}
 	99% {top: -0.314px; left: 4.990px}
 	100% {top: -0.000px; left: 5.000px}
+}
+
+.circley-container {
+	margin-left: 5px;
+	margin-right: 5px;
 }
 
 .rainbow {

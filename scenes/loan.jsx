@@ -6,6 +6,10 @@ addFlag("loanMoney", -4313);
 addFlag("loanTurns", 31);
 addFlag("loanBills1", [false,false,false]);
 addFlag("loanBills2", [false,false]);
+addFlag("loanBills3", [false,false,false,false,false]);
+addFlag("loanIPhone", false);
+addFlag("loanWindows", false);
+addFlag("loanWindowsSoldOut", false);
 
 const displayMoney = (num) => {
     if(num < 0) return "-$" + (-num);
@@ -13,7 +17,7 @@ const displayMoney = (num) => {
 };
 
 const LoanHeader = () => <div>
-    <p className={"loan-header " + (loanTurns < 10 ? "loan-heder-low" : "")}>
+    <p className={"loan-header " + (loanTurns < 10 ? "loan-header-low" : "")}>
         Money: <strong>{displayMoney(loanMoney)}</strong>. You have <strong>{loanTurns}</strong> turns left to pay it off.
     </p>
 </div>;
@@ -38,7 +42,9 @@ addScenes({
             </div>
         </div>,
         options: [
-            { text: "Pay your bills", to: "loan_paybills" }
+            { text: "Pay your bills", to: "loan_paybills" },
+            { text: "Invest in some BitCoin", to: "loan_bitcoin" },
+            { text: "Invest in some something else", to: "" },
         ],
         action: decreaseTurn,
         contributor: "Dave and Hunter"
@@ -190,22 +196,89 @@ addScenes({
             { text: "Fix the wood floors (-$1700)", disabledText: "Fix the wood floors (Purchased)", to: "loan_paybills8", if: () => !loanBills2[1], action: () => { loanBills2[1] = true; loanMoney -= 1700; } },
             { text: "Replace the windows (-$1500)", to: "loan_paybills_windows", action: () => loanMoney -= 1500 },
             { text: "Go buy groceries", to: "loan_paybills_groceries", action: () => loanMoney -= 500 },
-            { text: "Buy an iPhone (-$4000)", to: "loan_paybills_iphone", action: () => loanMoney -= 500 },
+            { text: "Buy an iPhone (-$4000)", disabledText: "Buy an iPhone (Purchased)", if: () => !loanIPhone, to: "loan_paybills_iphone", action: () => loanMoney -= 4000 },
         ],
         action: decreaseTurn,
-        contributor: "Hunter"
+        contributor: "many people"
     },
     loan_paybills_iphone: {
         prompt: () => <div>
             <LoanHeader />
             <p>
-                It looks like the <RainbowCircleText string="iPhone XSR Max Plus Deluxe Pro"/> just came out, so you bought the first in stock.
+                It looks like the <RainbowCircleText string="iPhone XSR Max Plus Deluxe Pro" /> just came out, so you bought the first in stock.
             </p>
         </div>,
         options: [
+            { text: "Buy the headphone jack adapter (-$10)", to: "loan_paybills_iphone", if: () => !loanBills3[0], action: () => { loanMoney -= 10; loanBills3[0] = true; } },
+            { text: "Buy the charger (-$55)", to: "loan_paybills_iphone", if: () => !loanBills3[1], action: () => { loanMoney -= 55; loanBills3[1] = true; } },
+            { text: "Buy the charger brick (-$60)", to: "loan_paybills_iphone", if: () => !loanBills3[2] && loanBills3[1], action: () => { loanMoney -= 60; loanBills3[2] = true; } },
+            { text: "Buy the new AirPods (-$235)", to: "loan_paybills_iphone", if: () => !loanBills3[3] && loanBills3[1] && loanBills3[0], action: () => { loanMoney -= 235; loanBills3[3] = true; } },
+            { text: "Sell the useless headphone jack adapter (+$2)", to: "loan_paybills_iphone", if: () => !loanBills3[4] && loanBills3[0] && loanBills3[3], action: () => { loanMoney += 2; loanBills3[4] = true; } },
+            "seperator",
+            { text: "Leave Apple Store", disabledText: true, to: "loan_paybills8" }
         ],
-        action: decreaseTurn,
-        contributor: "Hunter"
+        action: () => {
+            loanIPhone = true;
+            decreaseTurn();
+        },
+        contributor: "Dave"
+    },
+    loan_paybills_windows: {
+        prompt: () => <div>
+            <LoanHeader />
+            <p>
+                After replacing the windows on your house, you notice your neighbour has more windows than you. <strong>Do you buy more windows?</strong>
+            </p>
+        </div>,
+        options: [
+            { text: "Oh hell yeah. (-$1500)", to: "loan_paybills_windows_buymore", action: () => loanMoney -= 1500 },
+            { text: "No.", to: "" },
+            { text: "Smash neighbour's windows.", to: "loan_paybills_smashwindow" },
+        ],
+        action: () => {
+            loanWindows = true;
+            decreaseTurn();
+        }
+    },
+    loan_paybills_windows_buymore: {
+        prompt: () => <div>
+            <LoanHeader />
+            <p>
+                You buy another set of windows...
+            </p>
+        </div>,
+        options: [
+            { text: "More Windows (-$1500)", to: "loan_paybills_windows_buymore2", action: () => loanMoney -= 1500 },
+            { text: "Return Home", to: "loan_paybills8" }
+        ]
+    },
+    loan_paybills_windows_buymore2: {
+        prompt: () => <div>
+            <LoanHeader />
+            <p>
+                You buy another set of windows... There is a shortage of windows so the price has been marked up.
+            </p>
+        </div>,
+        options: [
+            { text: "More Windows (-$3500)", to: "loan_paybills_windows_buymore3", action: () => loanMoney -= 3500 },
+            { text: "Return Home", to: "loan_paybills8" }
+        ],
+        action: decreaseTurn
+    },
+    loan_paybills_windows_buymore3: {
+        prompt: () => <div>
+            <LoanHeader />
+            <p>
+                You buy another set of windows... The Window Store has run out of windows.
+            </p>
+        </div>,
+        options: [
+            { text: "Return Home", to: "loan_paybills8" }
+        ],
+        action: () => {
+            loanWindowsSoldOut = true;
+            decreaseTurn();
+        }
     }
 });
 
@@ -218,13 +291,5 @@ And fix the wood floors -$1700  - Hunter
 used on having the best house that you went a million dollars in debt - Dave
 
 and then at the end of it all, all of your stuff gets stolen from you - SinkingSailor
-
-Buy iPhone XR MAX PLUS PRO 2tb,    -$4000                               - Dave
-Buy the headphone dongle,    -$45                                       - Dave
-Buy the charger,    -$55                                                - Dave
-Buy the charger brick that should be included with the charger,    -$60 - Dave
-Buy the air pods,    -$235                                              - Dave
-Sell the useless headphone dongle,    +$10                              - Dave
-Buy the Bluetooth adapter
 
 */
