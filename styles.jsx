@@ -8,7 +8,7 @@ export const RainbowText = (props) => {
     </span>;
 };
 export const RainbowCircleText = (props) => {
-    return <span>
+    return <span className="circley-container">
         {(props.string || "").split("").map((char, index) => {
             return <span className="rainbow circly" style={{ animationDelay: "-" + (10 * index) + "ms" }} key={index.toString()}>{char}</span>;
         })}
@@ -16,7 +16,7 @@ export const RainbowCircleText = (props) => {
 };
 
 export const CircleText = (props) => {
-    return <span>
+    return <span className="circley-container">
         {(props.string || "").split("").map((char, index) => {
             return <span className="circly" style={{ animationDelay: "-" + (10 * index) + "ms" }} key={index.toString()}>{char}</span>;
         })}
