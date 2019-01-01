@@ -14,12 +14,11 @@ if (fs.pathExistsSync(dist_folder)) {
 fs.mkdirsSync(dist_folder);
 
 // run `webpack --mode production`
-const config = require("../webpack.config.js");
+const config = require("../webpack.config.js")({ production: true });
 config.output = {
     path: dist_folder,
     filename: 'adventure.js'
 };
-config.mode = 'production';
 
 webpack(config, (err, stats) => {
     // errors
@@ -30,14 +29,14 @@ webpack(config, (err, stats) => {
         }
         return;
     }
-    
+
     const info = stats.toJson();
-    
+
     // errors
     if (stats.hasErrors()) {
         console.error(info.errors);
     }
-    
+
     // warnings
     if (stats.hasWarnings()) {
         console.warn(info.warnings);
@@ -57,7 +56,7 @@ webpack(config, (err, stats) => {
                 toplevel: true,
                 keep_fnames: false
             },
-            
+
         },
         removeComments: true,
         removeAttributeQuotes: true,
@@ -68,9 +67,8 @@ webpack(config, (err, stats) => {
         removeTagWhitespace: true,
         useShortDoctype: true
     });
-    fs.writeFileSync(path.join(dist_folder, "index.html"),output_html);
-        
-    
+    fs.writeFileSync(path.join(dist_folder, "index.html"), output_html);
+
+
     console.log("build completed!");
 });
-

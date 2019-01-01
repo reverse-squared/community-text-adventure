@@ -1,12 +1,12 @@
-import React from 'react';
-import { hot } from 'react-hot-loader/root'
+import React from "react";
+import { hot } from "react-hot-loader/root";
 
 export default hot(() => <div>
     <h1>Credits</h1>
     <h3>Head Team</h3>
     <ul>
         <li>Hunter Parcells</li>
-        <li>dave</li>
+        <li>Dave</li>
     </ul>
     <h3>Contributers</h3>
     <ul>

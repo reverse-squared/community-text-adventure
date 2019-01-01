@@ -1,18 +1,21 @@
-const path = require('path');
-const webpack = require('webpack');
+const path = require("path");
+const webpack = require("webpack");
 
-module.exports = {
-    entry: './src/loader.jsx',
+module.exports = (env = {production: false}, argv) => ({
+    entry: "./src/loader.jsx",
     output: {
         path: path.resolve(__dirname),
-        filename: 'adventure.js'
+        filename: "adventure.js"
     },
     devServer: {
         hot: true,
-	contentBase: path.join(__dirname, 'src')
+        contentBase: path.join(__dirname, "src")
     },
     plugins: [
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.DefinePlugin({
+            $hideDebug: env.production
+        })
     ],
     module: {
         rules: [
@@ -20,21 +23,21 @@ module.exports = {
                 test: /\.jsx?$/,
                 exclude: /(node_modules|bower_components)/,
                 use: {
-                    loader: 'babel-loader',
+                    loader: "babel-loader",
                     options: {
-                        presets: ['@babel/preset-env', '@babel/preset-react'],
+                        presets: ["@babel/preset-env", "@babel/preset-react"],
                     }
                 }
             },
             {
                 test: /\.css$/,
-                use: ['style-loader', 'css-loader'],
+                use: ["style-loader", "css-loader"],
             },
         ]
     },
     externals: {
-        'react-dom': "ReactDOM",
-        'react': "React",
+        "react-dom": "ReactDOM",
+        "react": "React",
     },
-    mode: 'development'
-};
+    mode: env.production ? "production" : "development",
+});

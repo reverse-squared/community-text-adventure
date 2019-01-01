@@ -1,6 +1,6 @@
-import React from 'react';
-import { addFlag, addScenes } from 'web-text-adventure';
-import { RainbowCircleText } from '../styles.jsx';
+import React from "react";
+import { addFlag, addScenes } from "web-text-adventure";
+import { RainbowCircleText } from "../styles.jsx";
 
 addFlag("loanMoney", -4313);
 addFlag("loanTurns", 31);
@@ -10,13 +10,13 @@ addFlag("loanBills2", [false,false]);
 const displayMoney = (num) => {
     if(num < 0) return "-$" + (-num);
     return "$" + num;
-}
+};
 
 const LoanHeader = () => <div>
     <p className={"loan-header " + (loanTurns < 10 ? "loan-heder-low" : "")}>
         Money: <strong>{displayMoney(loanMoney)}</strong>. You have <strong>{loanTurns}</strong> turns left to pay it off.
     </p>
-</div>
+</div>;
 
 const decreaseTurn = () => loanTurns--;
 
@@ -91,7 +91,7 @@ addScenes({
             },
         ],
         action: decreaseTurn,
-        contributor: "Hunter Parcells"
+        contributor: "Hunter"
     },
     loan_paybills2: {
         prompt: () => <div>
@@ -118,7 +118,7 @@ addScenes({
             { text: "Pay Shipping (-$0.99)", to: "loan_paybills4", if: () => loanMoney < -30000, action: () => loanMoney -= .99 },
         ],
         action: decreaseTurn,
-        contributor: "Hunter Parcells"
+        contributor: "Hunter"
     },
     loan_paybills4: {
         prompt: () => <div>
@@ -133,7 +133,7 @@ addScenes({
             { text: "Pay Handling (-$0.98)", to: "loan_paybills5", action: () => loanMoney -= .98 },
         ],
         action: decreaseTurn,
-        contributor: "Hunter Parcells"
+        contributor: "Hunter"
     },
     loan_paybills5: {
         prompt: () => <div>
@@ -146,7 +146,7 @@ addScenes({
             { text: "Buy another house (-$159,839)", to: "loan_paybills6", action: () => loanMoney -= 156839 },
         ],
         action: decreaseTurn,
-        contributor: "Hunter Parcells"
+        contributor: "Hunter"
     },
     loan_paybills6: {
         prompt: () => <div>
@@ -161,7 +161,7 @@ addScenes({
             // { text: "Pay Handling (-$0.45)", to: "loan_paybills5", action: () => loanMoney -= 98 },
         ],
         action: decreaseTurn,
-        contributor: "Hunter Parcells"
+        contributor: "Hunter"
     },
     loan_paybills7: {
         prompt: () => <div>
@@ -176,7 +176,7 @@ addScenes({
             { text: "Pay More Handling (-$0.45)", to: "loan_paybills8", action: () => loanMoney -= 98 },
         ],
         action: decreaseTurn,
-        contributor: "Hunter Parcells"
+        contributor: "Hunter"
     },
     loan_paybills8: {
         prompt: () => <div>
@@ -186,14 +186,14 @@ addScenes({
             </p>
         </div>,
         options: [
-            { text: "Repaint the walls (-$500)", disabledText: "Repaint the walls (Purchased)", to: "loan_paybills8", if: () => !loanBills2[0], action: () => { loanBills2[0] = true; loanMoney -= 500 } },
-            { text: "Fix the wood floors (-$1700)", disabledText: "Fix the wood floors (Purchased)", to: "loan_paybills8", if: () => !loanBills2[1], action: () => { loanBills2[1] = true; loanMoney -= 1700 } },
+            { text: "Repaint the walls (-$500)", disabledText: "Repaint the walls (Purchased)", to: "loan_paybills8", if: () => !loanBills2[0], action: () => { loanBills2[0] = true; loanMoney -= 500; } },
+            { text: "Fix the wood floors (-$1700)", disabledText: "Fix the wood floors (Purchased)", to: "loan_paybills8", if: () => !loanBills2[1], action: () => { loanBills2[1] = true; loanMoney -= 1700; } },
             { text: "Replace the windows (-$1500)", to: "loan_paybills_windows", action: () => loanMoney -= 1500 },
             { text: "Go buy groceries", to: "loan_paybills_groceries", action: () => loanMoney -= 500 },
             { text: "Buy an iPhone (-$4000)", to: "loan_paybills_iphone", action: () => loanMoney -= 500 },
         ],
         action: decreaseTurn,
-        contributor: "Hunter Parcells"
+        contributor: "Hunter"
     },
     loan_paybills_iphone: {
         prompt: () => <div>
@@ -205,7 +205,7 @@ addScenes({
         options: [
         ],
         action: decreaseTurn,
-        contributor: "Hunter Parcells"
+        contributor: "Hunter"
     }
 });
 
@@ -225,5 +225,6 @@ Buy the charger,    -$55                                                - Dave
 Buy the charger brick that should be included with the charger,    -$60 - Dave
 Buy the air pods,    -$235                                              - Dave
 Sell the useless headphone dongle,    +$10                              - Dave
+Buy the Bluetooth adapter
 
 */
