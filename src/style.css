@@ -20,6 +20,9 @@ a:not(:hover) {
 .option-disabled {
     color: #444;
 }
+.option-broken-link {
+    color: #f53838;
+}
 
 .option-seperator {
     height: 20px;
