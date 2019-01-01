@@ -1,12 +1,12 @@
 import React from "react";
 import { addFlag, addScenes } from "web-text-adventure";
-import { RainbowCircleText } from "../styles.jsx";
+import { RainbowCircleText } from "../templates/font-styles.jsx";
 
 addFlag("loanMoney", -4313);
 addFlag("loanTurns", 31);
 addFlag("loanBills1", [false,false,false]);
 addFlag("loanBills2", [false,false]);
-addFlag("loanGroceries", [false,false,false,false,false,false,false])
+addFlag("loanGroceries", [false,false,false,false,false,false,false]);
 addFlag("loanBills3", [false,false,false,false,false]);
 addFlag("loanIPhone", false);
 addFlag("loanWindows", false);

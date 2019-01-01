@@ -1,7 +1,7 @@
 import React from "react";
-import { hot } from "react-hot-loader/root";
+import { hot } from "react-hot-loader";
 
-export default hot(() => <div>
+export default hot(module)(() => <div>
     <h1>Credits</h1>
     <h3>Head Team</h3>
     <ul>
