@@ -6,6 +6,7 @@ addFlag("loanMoney", -4313);
 addFlag("loanTurns", 31);
 addFlag("loanBills1", [false,false,false]);
 addFlag("loanBills2", [false,false]);
+addFlag("loanGroceries", [false,false,false,false,false,false,false,false,false,false,false,false])
 
 const displayMoney = (num) => {
     if(num < 0) return "-$" + (-num);
@@ -19,6 +20,15 @@ const LoanHeader = () => <div>
 </div>;
 
 const decreaseTurn = () => loanTurns--;
+
+function checkAllBought(array)  {
+    for(i = 0; i < array.length; i++) {
+        if(!array[i]) {
+            return false;
+        }
+    }
+    return true;
+}
 
 addScenes({
     loan_start: {
@@ -203,6 +213,32 @@ addScenes({
             </p>
         </div>,
         options: [
+        ],
+        action: decreaseTurn,
+        contributor: "Hunter"
+    },
+    loan_paybills_groceries: {
+        prompt: () => <div>
+            <LoanHeader />
+            <p>
+                You will take the entire stock of the store.
+            </p>
+        </div>,
+        options: [
+            { text: "Buy All The Eggs (-$5543)", to: "loan_paybills_groceries", action: () => { loanMoney -= 5543; loanGroceries[0] = true; } , if: () => !loanGroceries[0] },
+            { text: "Buy All The Salad (-$4234)", to: "loan_paybills_groceries", action: () => { loanMoney -= 4234; loanGroceries[1] = true; }, if: () => !loanGroceries[1] },
+            { text: "Buy All The Cookies (-$2445)", to: "loan_paybills_groceries", action: () => { loanMoney -= 2445; loanGroceries[2] = true; }, if: () => !loanGroceries[2] },
+            { text: "Buy All The Bleach (-$12137)", to: "loan_paybills_groceries", action: () => { loanMoney -= 12137; loanGroceries[3] = true; }, if: () => !loanGroceries[3] },
+            { text: "Buy All The Pepsi (-$1245)", to: "loan_paybills_groceries", action: () => { loanMoney -= 1245; loanGroceries[4] = true; }, if: () => !loanGroceries[4] },
+            { text: "Buy All The TVs (-$74633583)", to: "loan_paybills_groceries", action: () => { loanMoney -= 74633583; loanGroceries[5] = true; }, if: () => !loanGroceries[5] },
+            { text: "Buy All The Candy (-$23585)", to: "loan_paybills_groceries", action: () => { loanMoney -= 23585; loanGroceries[6] = true; }, if: () => !loanGroceries[6] },
+            { text: "Buy All The Poptarts (-$854)", to: "loan_paybills_groceries", action: () => { loanMoney -= 854; loanGroceries[7] = true; }, if: () => !loanGroceries[7] },
+            { text: "Buy All The Milk (-$482)", to: "loan_paybills_groceries", action: () => { loanMoney -= 482; loanGroceries[8] = true; }, if: () => !loanGroceries[8] },
+            { text: "Buy All The Bouncy Balls (-$474034)", to: "loan_paybills_groceries", action: () => { loanMoney -= 474034; loanGroceries[9] = true; }, if: () => !loanGroceries[9] },
+            { text: "Buy All The Thing Inventor (-$89347598759832754093740923759027359834)", to: "loan_paybills_groceries", action: () => { loanMoney -= 89347598759832754093740923759027359834; loanGroceries[10] = true; }, if: () => !loanGroceries[10] },
+            { text: "Buy All The Dog Toys (-$1)", to: "loan_paybills_groceries  ", action: () => { loanMoney -= 1; loanGroceries[11] = true; }, if: () => !loanGroceries[11] },
+            { text: "Leave", to: "leaveStore", if: () => loanGroceries },
+            
         ],
         action: decreaseTurn,
         contributor: "Hunter"
