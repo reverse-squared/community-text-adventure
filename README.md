@@ -13,7 +13,7 @@
 A text adventure game decided by the people.
 
 ## Contributors
-- Hunter Parcells (me)
+- Hunter Parcells
 - [dave](https://github.com/imdaveead/)
 - [Filip96](https://github.com/filip9696/)
 - Colyderp
