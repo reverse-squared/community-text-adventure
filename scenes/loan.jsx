@@ -212,10 +212,11 @@ addScenes({
             { text: "Buy the headphone jack adapter (-$10)", to: "loan_paybills_iphone", if: () => !loanBills3[0], action: () => { loanMoney -= 10; loanBills3[0] = true; } },
             { text: "Buy the charger (-$55)", to: "loan_paybills_iphone", if: () => !loanBills3[1], action: () => { loanMoney -= 55; loanBills3[1] = true; } },
             { text: "Buy the charger brick (-$60)", to: "loan_paybills_iphone", if: () => !loanBills3[2] && loanBills3[1], action: () => { loanMoney -= 60; loanBills3[2] = true; } },
-            { text: "Buy the new AirPods (-$235)", to: "loan_paybills_iphone", if: () => !loanBills3[3] && loanBills3[1] && loanBills3[0], action: () => { loanMoney -= 235; loanBills3[3] = true; } },
+            { text: "Buy the new AirPods (-$235)", to: "loan_paybills_iphone", if: () => !loanBills3[3] && loanBills3[0], action: () => { loanMoney -= 235; loanBills3[3] = true; } },
             { text: "Sell the useless headphone jack adapter (+$2)", to: "loan_paybills_iphone", if: () => !loanBills3[4] && loanBills3[0] && loanBills3[3], action: () => { loanMoney += 2; loanBills3[4] = true; } },
             "seperator",
-            { text: "Leave Apple Store", disabledText: true, to: "loan_paybills8" }
+            { text: () => <span>Leave Apple Store <span style={{opacity: "0.5"}}>(without buying all the stuff)</span></span>, to: "loan_paybills8", if: () => !loanBills1.reduce((x,y) => x && y, true) },
+            { text: () => <span>Leave Apple Store</span>, to: "loan_paybills8", if: () => loanBills1.reduce((x, y) => x && y, true) },
         ],
         action: () => {
             loanIPhone = true;
@@ -284,9 +285,6 @@ addScenes({
 
 // todo
 /*
-
-Also you might wanna repaint the place -$500   - Hunter
-And fix the wood floors -$1700  - Hunter
 
 used on having the best house that you went a million dollars in debt - Dave
 
