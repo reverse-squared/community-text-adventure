@@ -1,6 +1,7 @@
 import React from "react";
-import { addFlag, addScenes } from "web-text-adventure";
+import { addFlag } from "web-text-adventure";
 import { RainbowCircleText } from "../templates/font-styles.jsx";
+import { addEnding, addScenes } from "../src/ending.jsx";
 
 addFlag("loanMoney", -4313);
 addFlag("loanTurns", 31);
@@ -13,27 +14,18 @@ addFlag("loanWindows", false);
 addFlag("loanWindowsSoldOut", false);
 addFlag("loan_visitedStore", false);
 
-const displayMoney = (num) => {
+const formatMoney = (num) => {
     if(num < 0) return "-$" + (-num);
     return "$" + num;
 };
 
 const LoanHeader = () => <div>
     <p className={"loan-header " + (loanTurns < 10 ? "loan-header-low" : "")}>
-        Money: <strong>{displayMoney(loanMoney)}</strong>. You have <strong>{loanTurns}</strong> turns left to pay it off.
+        Money: <strong>{formatMoney(loanMoney)}</strong>. You have <strong>{loanTurns}</strong> turns left to pay it off.
     </p>
 </div>;
 
 const decreaseTurn = () => loanTurns--;
-
-function checkAllBought(array)  {
-    for(i = 0; i < array.length; i++) {
-        if(!array[i]) {
-            return false;
-        }
-    }
-    return true;
-}
 
 addScenes({
     loan_start: {

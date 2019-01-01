@@ -10,8 +10,6 @@ sceneCtx.keys().forEach(file => {
     sceneCtx(file);
 });
 
-// Custom HTML
-
 // Hot Reloading
 if (module.hot) {
     module.hot.accept("./custom-html.jsx", () => {});

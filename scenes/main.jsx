@@ -1,6 +1,7 @@
 import React from "react";
-import Credits from "../credits.jsx";
-import { addFlag, addScenes } from "web-text-adventure";
+import Credits from "../templates/credits.jsx";
+import { addFlag } from "web-text-adventure";
+import { addScenes } from "../src/ending.jsx";
 
 addFlag("sleepTime", 0);
 
@@ -160,6 +161,11 @@ addScenes({
         options: [
             { text: () => <span className="playAgain">Play Again</span>, to: "wakeup" }
         ],
+        ending: {
+            id: "dead-generic",
+            name: "Dead",
+            description: "Die somehow. This ending should not really exist, and there should be specific ways to die."
+        },
         contributor: null
     }
 });
