@@ -13,7 +13,4 @@
 A text adventure game decided by the people.
 
 ## Contributors
-- Hunter Parcells
-- [dave](https://github.com/imdaveead/)
-- [Filip96](https://github.com/filip9696/)
-- Colyderp
+[View Here](http://text-adventure.netlify.com/#credits)

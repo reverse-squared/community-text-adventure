@@ -8,8 +8,8 @@ const contributors = [
     ["Filip96",                 "https://filipkin.com/"],
     ["Colyderp"],
     // People below this still need to say exactly how they want credit.
-    ["Adr's Alt", ""],
-    ["Alchemyking", ""],
+    ["Adr's Alt",               ""],
+    ["Alchemyking",             ""],
     // ["", ""],
 ];
 
@@ -22,11 +22,20 @@ export default hot(module)(() => <div>
     </ul>
     <h3>Contributers</h3>
     <ul>
-        <li><a href="https://hparcells.netlify.com/"></a></li>
-        <li><a href="https://davecode.me/">Dave</a></li>
-        <li><a href="https://filipkin.com/">Filip96</a></li>
-        <li>Colyderp</li>
-        <li><a href="">Alchemyking</a></li>
-        <li>... and 43281 anonamous contributors</li>
+        {
+            contributors.sort().map((contributor, i) => {
+                if(contributor.length === 1) {
+                    return <li key={i}>{contributor[0]}</li>;
+                } else {
+                    return <li key={i}><a rel="noopener" target="_blank" href={contributor[1]}>{contributor[0]}</a></li>;
+                }
+            })
+        }
+    </ul>
+    <h3>Made With</h3>
+    <ul>
+        <li><a href="https://davecode.me/text-adventure">Text Adventure Engine</a></li>
+        <li><a href="https://reactjs.org/">React</a></li>
+        <li><a href="http://netlify.com">Netlify</a></li>
     </ul>
 </div>);

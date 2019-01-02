@@ -1,7 +1,8 @@
 import { setScene } from "web-text-adventure";
 import { addScenes, getGameProgress, getAllEndings } from "../src/ending.jsx";
 import Credits from "../templates/credits.jsx";
-import EndingCard from "../templates/endingCard.jsx";
+import SceneLink from "../templates/SceneLink.jsx";
+import EndingCard from "../templates/EndingCard.jsx";
 import { resetGame } from "../src/ending.jsx";
 
 addScenes({
@@ -32,23 +33,26 @@ addScenes({
             "seperator",
             { text: "Ending List", to: "endings", if: () => getGameProgress().achievedEndings > 0 },
             { text: "Credits", to: "credits", if: ()=> getGameProgress().achievedEndings > 0 },
-        ],
-        contributor: null
+            "seperator",
+            { text: "Help Contribute", to: "start", action: () => {
+                const win = window.open("https://discord.gg/qzH9wsY", "_blank");
+                win.opener = null;
+            }, if: ()=> getGameProgress().achievedEndings > 0 },
+        ]
     },
     credits: {
         prompt: <div>
-            <a href="#" onClick={() => setScene("start")}>Back</a>
+            <SceneLink to="start">Back</SceneLink>
             <Credits />
         </div>,
-        options: [],
-        contributor: null
+        options: []
     },
     endings: {
         prompt: () => {
             const progress = getGameProgress();
             const endings = getAllEndings();
             return <div>
-                <a href="#" onClick={() => setScene("start")}>Back</a>
+                <SceneLink to="start">Back</SceneLink>
                 <p className="ending-status">
                     You have gotten {progress.achievedEndings} of {progress.totalEndings} endings ({(progress.percentage * 100).toFixed(0)}% Completion)
                 </p>
@@ -61,8 +65,7 @@ addScenes({
                 }
             </div>;
         },
-        options: [],
-        contributor: null
+        options: []
     },
     reset: {
         prompt: <div>

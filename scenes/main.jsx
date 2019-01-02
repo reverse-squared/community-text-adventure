@@ -50,17 +50,6 @@ addScenes({
         ],
         contributor: "Adr's Alt"
     },
-    touch_lizard: {
-        prompt: <div>
-            sfpoagasdoijdfsoaj, <strong>what do you do?</strong>
-        </div>,
-        options: [
-            { text: "Get it treated", to: "" },
-            { text: "Punch that lizard", to: "" },
-            { text: "Don't do anything", to: "" }
-        ],
-        contributor: "Alchemyking"
-    },
 
     // Eat breakfast. Level 2.
     wakeup_breakfast: {
@@ -86,7 +75,7 @@ addScenes({
             { text: "...you're hungry and want to eat something.", to: "wakeup_breakfast" },
             { text: "...you have plans to go outside and go on an adventure.", to: "" }
         ],
-        // anonymous
+        contributor: null
     },
 
     // Sleep. Level 3.
