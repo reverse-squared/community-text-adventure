@@ -195,18 +195,6 @@ addScenes({
             name: "Jump out a Window",
             description: "Why would anyone want to jump out of a window?",
         }
-    },
-
-    touch_lizard: {
-        prompt: () => <div>
-            <p>You touch the first lizard you see outside and it bites you in the arm. <strong>What do you do?</strong></p>
-        </div>,
-        options: [
-            { text: "Get it treated.", to: "lizard_treat" },
-            { text: "Punch the lizard.", to: "lizard_punch" },
-            { text: "Don't do anything.", to: "lizard_dont" },
-        ],
-        contributor: "Alchemyking"
     }
     // Dead. Level 0.
     // dead: {
