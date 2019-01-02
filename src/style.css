@@ -88,6 +88,16 @@ a:not(:hover) {
     color: red;
 }
 
+@keyframes ending-header-blink {
+	0% { color: aquamarine; }
+	49.9% { color: aquamarine; }
+	50% { color: skyblue; }
+	100% { color: skyblue; }
+}
+.ending-header {
+	animation: ending-header-blink 0.8s linear 0s infinite;
+}
+
 .resetgame {
     z-index: 100;
     position: fixed;

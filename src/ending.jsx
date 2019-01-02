@@ -55,7 +55,7 @@ addScenesReal({
             if(endingFlag === null) return null;
 
             return <div>
-                <p style={{ color: "aquamarine", textAlign: "center" }}>You discovered a new ending!</p>
+                <p style={{ textAlign: "center" }} className="ending-header">You discovered a new ending!</p>
                 <EndingCard ending={sceneStorage[endingFlag].ending} hideAchievedState />
             </div>;
         },
