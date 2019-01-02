@@ -1,6 +1,6 @@
 import React from "react";
 import { addFlag, setScene } from "web-text-adventure";
-import { addScenes } from "../src/ending.jsx";
+import { addScenes } from "./../src/ending.jsx";
 
 addFlag("skydiveTurns", 11);
 

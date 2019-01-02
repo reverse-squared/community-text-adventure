@@ -1,6 +1,6 @@
 // Controls ending save progress
 import { addScenes as addScenesReal, setScene } from "web-text-adventure";
-import EndingCard from "../templates/EndingCard.jsx";
+import EndingCard from "./../templates/EndingCard.jsx";
 
 const endings = {};
 const sceneStorage = {};

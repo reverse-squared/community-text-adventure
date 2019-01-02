@@ -1,9 +1,9 @@
 import { setScene } from "web-text-adventure";
-import { addScenes, getGameProgress, getAllEndings } from "../src/ending.jsx";
-import Credits from "../templates/credits.jsx";
-import SceneLink from "../templates/SceneLink.jsx";
-import EndingCard from "../templates/EndingCard.jsx";
-import { resetGame } from "../src/ending.jsx";
+import { addScenes, getGameProgress, getAllEndings } from "./../src/ending.jsx";
+import Credits from "./../templates/credits.jsx";
+import SceneLink from "./../templates/SceneLink.jsx";
+import EndingCard from "./../templates/EndingCard.jsx";
+import { resetGame } from "./../src/ending.jsx";
 
 addScenes({
     // Introduction Paragraph
