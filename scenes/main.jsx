@@ -1,5 +1,4 @@
 import React from "react";
-import Credits from "../templates/credits.jsx";
 import { addFlag, resetFlags } from "web-text-adventure";
 import { addScenes } from "../src/ending.jsx";
 
@@ -60,7 +59,7 @@ addScenes({
             { text: "Pancakes.", to: "make_pancakes" },
             { text: "Waffles.", to: "make_waffles" },
             { text: "Hashbrowns.", to: "make_hashbrowns" },
-            { text: "Omlette.", to: "make_omelette" }
+            { text: "Omlette.", to: "omlette_ending" }
         ],
         contributor: "Colyderp"
     },
