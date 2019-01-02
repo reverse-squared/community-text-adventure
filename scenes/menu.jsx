@@ -2,6 +2,7 @@ import { setScene } from "web-text-adventure";
 import { addScenes, getGameProgress, getAllEndings } from "../src/ending.jsx";
 import Credits from "../templates/credits.jsx";
 import EndingCard from "../templates/endingCard.jsx";
+import { resetGame } from "../src/ending.jsx";
 
 addScenes({
     // Introduction Paragraph
@@ -16,9 +17,12 @@ addScenes({
                 </p>
                 {
                     progress.percentage > 0
-                        ? <p className="ending-status">
-                            You have gotten {progress.achievedEndings} of {progress.totalEndings} endings ({(progress.percentage*100).toFixed(0)}% Completion)
-                        </p>
+                        ?<div>
+                            <p className="ending-status">
+                                You have gotten {progress.achievedEndings} of {progress.totalEndings} endings ({(progress.percentage*100).toFixed(0)}% Completion)
+                            </p>
+                            <a href="#" className="resetgame" onClick={() => setScene("reset")}>Reset</a>
+                        </div>
                         : null
                 }
             </div>;
@@ -26,8 +30,8 @@ addScenes({
         options: [
             { text: "Begin", to: "wakeup" },
             "seperator",
-            { text: "Credits", to: "credits", if: ()=> getGameProgress().achievedEndings > 0 },
             { text: "Ending List", to: "endings", if: () => getGameProgress().achievedEndings > 0 },
+            { text: "Credits", to: "credits", if: ()=> getGameProgress().achievedEndings > 0 },
         ],
         contributor: null
     },
@@ -59,5 +63,21 @@ addScenes({
         },
         options: [],
         contributor: null
+    },
+    reset: {
+        prompt: <div>
+            Are you sure you want to reset all game progress?
+        </div>,
+        options: [
+            { text: "Yes, Reset.", action: () => resetGame(), to: "BLANKSCENE"},
+            "seperator",
+            { text: "No, do not.", to: "start"}
+        ]
+    },
+
+    BLANKSCENE: {
+        prompt: "<blank>",
+        options:[],
+        isBlank:true
     }
 });

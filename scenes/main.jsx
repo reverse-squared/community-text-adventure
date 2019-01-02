@@ -1,6 +1,6 @@
 import React from "react";
 import Credits from "../templates/credits.jsx";
-import { addFlag } from "web-text-adventure";
+import { addFlag, resetFlags } from "web-text-adventure";
 import { addScenes } from "../src/ending.jsx";
 
 addFlag("sleepTime", 0);
@@ -17,7 +17,11 @@ addScenes({
             { text: "Make some breakfast.", to: "breakfast" },
             { text: "Check the time", to: "checkTime" }
         ],
-        
+
+        action: () => {
+            resetFlags();
+        },
+
         contributor: "Dave"
     },
 

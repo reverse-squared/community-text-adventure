@@ -1,5 +1,5 @@
 import React from "react";
-import { addFlag } from "web-text-adventure";
+import { addFlag, setScene } from "web-text-adventure";
 import { RainbowCircleText } from "../templates/font-styles.jsx";
 import { addEnding, addScenes } from "../src/ending.jsx";
 
@@ -25,7 +25,22 @@ const LoanHeader = () => <div>
     </p>
 </div>;
 
-const decreaseTurn = () => loanTurns--;
+const decreaseTurn = () => {
+    loanTurns--;
+    if(loanTurns <= 0) {
+        if(loanMoney >= 0) {
+            // Win
+        } else {
+            // Lose
+            if(loanBills1[0]) {
+                // spend more money, go 500k in debt.
+                setScene("loan_debt_house_ending");
+            } else {
+                // figure out Bitcoin path and etc how they lost.
+            }
+        }
+    }
+};
 
 addScenes({
     loan_start: {
@@ -316,6 +331,24 @@ addScenes({
             loanWindowsSoldOut = true;
             decreaseTurn();
         }
+    },
+    loan_debt_house_ending: {
+        prompt: <div>
+            <p>
+                Time's Up!
+            </p>
+            <p>
+                Instead of trying to pay off the loan, you got so focused on having the best house
+                that you went <strong style={{color:"red"}}>{formatMoney(-loanMoney)}</strong> into debt. You have been sent to jail for
+                spending so much money, but at least you had fun in the moment.
+            </p>
+        </div>,
+        ending: {
+            id: "loan-500k debt",
+            name: "500k in Debt",
+            description: "Spend half a million dollars instead of paying your loan."
+        },
+        contributor: "Dave"
     }
 });
 
