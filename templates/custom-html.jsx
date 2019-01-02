@@ -26,5 +26,5 @@ setCustomHTML((scene) => {
         }
 
         <DebugPanel />
-    </div>
+    </div>;
 });
