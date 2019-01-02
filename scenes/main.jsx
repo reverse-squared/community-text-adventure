@@ -4,13 +4,6 @@ import { addFlag, resetFlags } from "web-text-adventure";
 import { addScenes } from "../src/ending.jsx";
 
 addFlag("sleepTime", 0);
-addFlag("skydiveTurns", 10);
-
-const SkydiveHeader = () => <div>
-    <p className={"loan-header " + (skydiveTurns < 3 ? "loan-header-low" : "")}>
-        You have <strong>{skydiveTurns}</strong> turns save yourself.
-    </p>
-</div>;
 
 addScenes({
     // Start. Level 1.
@@ -164,7 +157,7 @@ addScenes({
         </div>,
         options: [
             { text: "Fake your death", to: "fake_your_death" },
-            { text: "Go skydiving.", to: "go_skydiving" }
+            { text: "Go skydiving.", to: "skydive_start" }
         ],
         contributor: "Hunter"
     },
@@ -202,25 +195,6 @@ addScenes({
             name: "Jump out a Window",
             description: "Why would anyone want to jump out of a window?",
         }
-    },
-
-    go_skydiving: {
-        prompt: () => <div>
-            <SkydiveHeader />
-            <p>Skydiving is nice you thought. Right out of the hospital. You board the plane and climb to 12,500 feet. The guy opens the door and tells you to jump.
-                You jump and he tells you to open your parachute when you think it right.
-            </p>
-            <p>Okay, so your parachute just failed.</p>
-            <h6>CALM DOWN</h6>
-            <h3>CALM DOWN</h3>
-            <h1>CALM DOWN</h1>
-            <p>What do you do.</p>
-        </div>,
-        options: [
-            { text: "Fake your death", to: "fake_your_death" },
-            { text: "Go skydiving.", to: "go_skydiving" }
-        ],
-        contributor: "Hunter"
     },
 
     // Dead. Level 0.
