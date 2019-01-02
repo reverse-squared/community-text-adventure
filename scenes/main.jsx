@@ -1,5 +1,4 @@
 import React from "react";
-import Credits from "../templates/credits.jsx";
 import { addFlag, resetFlags } from "web-text-adventure";
 import { addScenes } from "../src/ending.jsx";
 
@@ -48,7 +47,7 @@ addScenes({
             { text: "Stroke it's back", to: "" },
             { text: "Smash it", to: "" }
         ],
-        contributor: "Adr's Alt"
+        contributor: "Alt"
     },
 
     // Eat breakfast. Level 2.
@@ -60,11 +59,7 @@ addScenes({
             { text: "Pancakes.", to: "make_pancakes" },
             { text: "Waffles.", to: "make_waffles" },
             { text: "Hashbrowns.", to: "make_hashbrowns" },
-            { text: "Omelette.", to: "make_omelette" }
         ],
-        contributor: "Colyderp"
-    },
-
     // Check time. Level 2.
     wakeup_check_time: {
         prompt: () => <div>
