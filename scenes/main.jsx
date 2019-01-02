@@ -207,22 +207,4 @@ addScenes({
             description: "Why would anyone want to jump out of a window?",
         }
     },
-
-    // Dead. Level 0.
-    // dead: {
-    //     prompt: () => <div>
-    //         <p>
-    //             How unfortunate, You died... Good thing in this world you can always go back to the beginning.
-    //         </p>
-    //     </div>,
-    //     options: [
-    //         { text: () => <span className="playAgain">Play Again</span>, to: "wakeup" }
-    //     ],
-    //     ending: {
-    //         id: "dead-generic",
-    //         name: "Dead",
-    //         description: "Die somehow. This ending should not really exist, and there should be specific ways to die."
-    //     },
-    //     contributor: null
-    // }
 });
