@@ -9,7 +9,7 @@ addScenes({
     // Start. Level 1.
     wakeup: {
         prompt: () => <div>
-            <p>You wake up in a room. <b>What do you do?</b></p>
+            <p>You wake up in a room. <strong>What do you do?</strong></p>
         </div>,
         
         options: [
@@ -28,14 +28,38 @@ addScenes({
     // Go outside. Level 2.
     outside: {
         prompt: () => <div>
-            <p>You walk outside from sleeping. You spot multiple different animals such as lizards, spiders, and humans. <b>What do you do?</b></p>
+            <p>You walk outside from sleeping. You spot multiple different animals such as lizards, spiders, and humans. <strong>What do you do?</strong></p>
         </div>,
         options: [
-            { text: "Touch the lizard.", to: "lizardTouch" },
-            { text: "Touch the spider.", to: "spiderTouch" },
-            { text: "Touch the human.", to: "humanTouch" }
+            { text: "Touch the lizard.", to: "touch_lizard" },
+            { text: "Touch the spider.", to: "touch_spider" },
+            { text: "Touch the human.", to: "touch_human" }
         ],
         contributor: "Hunter"
+    },
+
+    // Spider
+    touch_spider: {
+        prompt: <div>
+            You touch the spider, it's surprisingly soft, <strong>what do you do?</strong>
+        </div>,
+        options: [
+            { text: "Pocket it", to: "" },
+            { text: "Stroke it's back", to: "" },
+            { text: "Smash it", to: "" }
+        ],
+        contributor: "Adr's Alt"
+    },
+    touch_lizard: {
+        prompt: <div>
+            sfpoagasdoijdfsoaj, <strong>what do you do?</strong>
+        </div>,
+        options: [
+            { text: "Get it treated", to: "" },
+            { text: "Punch that lizard", to: "" },
+            { text: "Don't do anything", to: "" }
+        ],
+        contributor: "Alchemyking"
     },
 
     // Eat breakfast. Level 2.
@@ -117,7 +141,7 @@ addScenes({
     // Peanut butter pancakes. Level 4.
     pbPancakes: {
         prompt: () => <div>
-            <p>Turns out you are allergic to peanut butter. Now you have to play a hospital and ambulance bill of <b>$4313</b>. Do you pay it?</p>
+            <p>Turns out you are allergic to peanut butter. Now you have to play a hospital and ambulance bill of <strong>$4313</strong>. Do you pay it?</p>
         </div>,
         options: [
             { text: "Yes (-$4313)", to: "yesPayBill" },
