@@ -9,7 +9,7 @@ addScenes({
     // Start. Level 1.
     wakeup: {
         prompt: () => <div>
-            <p>You wake up in a room. <b>What do you do?</b></p>
+            <p>You wake up in a room. <strong>What do you do?</strong></p>
         </div>,
         
         options: [
@@ -28,7 +28,7 @@ addScenes({
     // Go outside. Level 2.
     wakeup_outside: {
         prompt: () => <div>
-            <p>You walk outside from sleeping. You spot multiple different animals such as lizards, spiders, and humans. <b>What do you do?</b></p>
+            <p>You walk outside from sleeping. You spot multiple different animals such as lizards, spiders, and humans. <strong>What do you do?</strong></p>
         </div>,
         options: [
             { text: "Touch the lizard.", to: "touch_lizard" },
@@ -117,7 +117,7 @@ addScenes({
     // Peanut butter pancakes. Level 4.
     make_pb_pancakes: {
         prompt: () => <div>
-            <p>Turns out you are allergic to peanut butter. Now you have to play a hospital and ambulance bill of <b>$4313</b>. Do you pay it?</p>
+            <p>Turns out you are allergic to peanut butter. Now you have to play a hospital and ambulance bill of <strong>$4313</strong>. Do you pay it?</p>
         </div>,
         options: [
             { text: "Yes (-$4313)", to: "yes_pay_bill" },
@@ -175,7 +175,7 @@ addScenes({
 
     touch_lizard: {
         prompt: () => <div>
-            <p>You touch the first lizard you see outside and it bites you in the arm. <b>What do you do?</b></p>
+            <p>You touch the first lizard you see outside and it bites you in the arm. <strong>What do you do?</strong></p>
         </div>,
         options: [
             { text: "Get it treated.", to: "lizard_treat" },
