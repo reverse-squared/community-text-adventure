@@ -1,6 +1,7 @@
 import { setScene } from "web-text-adventure";
-import { addScenes, getGameProgress } from "../src/ending.jsx";
+import { addScenes, getGameProgress, getAllEndings } from "../src/ending.jsx";
 import Credits from "../templates/credits.jsx";
+import EndingCard from "../templates/endingCard.jsx";
 
 addScenes({
     // Introduction Paragraph
@@ -35,6 +36,27 @@ addScenes({
             <a href="#" onClick={() => setScene("start")}>Back</a>
             <Credits />
         </div>,
+        options: [],
+        contributor: null
+    },
+    endings: {
+        prompt: () => {
+            const progress = getGameProgress();
+            const endings = getAllEndings();
+            return <div>
+                <a href="#" onClick={() => setScene("start")}>Back</a>
+                <p className="ending-status">
+                    You have gotten {progress.achievedEndings} of {progress.totalEndings} endings ({(progress.percentage * 100).toFixed(0)}% Completion)
+                </p>
+                {
+                    Object.keys(endings).map(id => {
+                        const ending = endings[id];
+
+                        return <EndingCard ending={ending} />;
+                    })
+                }
+            </div>;
+        },
         options: [],
         contributor: null
     }

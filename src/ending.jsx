@@ -1,5 +1,6 @@
 // Controls ending save progress
 import { addScenes as addScenesReal } from "web-text-adventure";
+import EndingCard from "../templates/endingCard.jsx";
 
 const endings = {};
 
@@ -35,6 +36,33 @@ export function addScenes(scenes) {
     Object.keys(scenes).forEach(id => {
         if (scenes[id].ending) {
             addEnding(scenes[id].ending);
+            
+            const scenePrompt = scenes[id].prompt;
+            scenes[id].prompt = () => <div>
+                {
+                    (typeof scenePrompt === "function")
+                        ? scenePrompt()
+                        : scenePrompt
+                }
+                {
+                    !scenes[id].ending.achieved
+                        ? <div>
+                            <br/>
+                            <p style={{ color: "aquamarine", textAlign: "center"}}>You discovered a new ending!</p>
+                            <EndingCard ending={scenes[id].ending} hideAchievedState/>
+                        </div>
+                        : null
+                }
+            </div>;
+
+            if(!scenes[id].options) {
+                scenes[id].options = [
+                    {
+                        text: "End",
+                        to: "start"
+                    }
+                ]
+            }
 
             const sceneAction = scenes[id].action;
             scenes[id].action = () => {

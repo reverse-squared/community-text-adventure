@@ -86,11 +86,13 @@ addScenes({
     },
     sleep_ending: {
         prompt: <div>
-            you fucking died
+            You slept for so long that you were killed by a tornado. Not even the loud tornado sirens, or the tornado itself could wake you up before it killed you.
         </div>,
-        options: [
-
-        ],
+        ending: {
+            id: "sleep-ending",
+            name: "Death by Tornado",
+            description: "Sleep until a tornado kills you."
+        },
         contributor: "Hunter"
     },
 
@@ -151,30 +153,37 @@ addScenes({
         options: [
             { text: "Run for it.", to: "runFromHospital" },
             { text: "Take out a loan.", to: "loan_start" },
-            { text: "Jump out a window.", to: "dead" },
+            { text: "Jump out a window.", to: "jumpOutOfAWindow" },
         ],
         contributor: "Filip96"
     },
 
-    // Dead. Level 0.
-    dead: {
+    jumpOutOfAWindow: {
         prompt: () => <div>
-            <p>
-                How unfortunate, You died... Good thing in this world you can always go back to the beginning.
-            </p>
-            
-            <Credits />
-
-            <br/><br/>
+            You jump out of the window and die, what kind of idea was that supposed to be.
         </div>,
-        options: [
-            { text: () => <span className="playAgain">Play Again</span>, to: "wakeup" }
-        ],
         ending: {
-            id: "dead-generic",
-            name: "Dead",
-            description: "Die somehow. This ending should not really exist, and there should be specific ways to die."
-        },
-        contributor: null
+            id: "jump-out-window",
+            name: "Jump out a Window",
+            description: "Why would anyone want to jump out of a window?",
+        }
     }
+
+    // Dead. Level 0.
+    // dead: {
+    //     prompt: () => <div>
+    //         <p>
+    //             How unfortunate, You died... Good thing in this world you can always go back to the beginning.
+    //         </p>
+    //     </div>,
+    //     options: [
+    //         { text: () => <span className="playAgain">Play Again</span>, to: "wakeup" }
+    //     ],
+    //     ending: {
+    //         id: "dead-generic",
+    //         name: "Dead",
+    //         description: "Die somehow. This ending should not really exist, and there should be specific ways to die."
+    //     },
+    //     contributor: null
+    // }
 });
