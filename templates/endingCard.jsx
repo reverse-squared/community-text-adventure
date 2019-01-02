@@ -1,5 +1,5 @@
 import React from "react";
-import Lock from "./../res/lock.jsx";
+import Lock from "../res/lock.jsx";
 
 export default ({ ending, hideAchievedState }) => <div className="ending-square">
     <div className="ending-square-title">{ending.name}</div>

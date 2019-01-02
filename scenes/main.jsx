@@ -1,6 +1,7 @@
 import React from "react";
+import Credits from "../templates/credits.jsx";
 import { addFlag, resetFlags } from "web-text-adventure";
-import { addScenes } from "./../src/ending.jsx";
+import { addScenes } from "../src/ending.jsx";
 
 addFlag("sleepTime", 0);
 
