@@ -1,7 +1,8 @@
+// This file handles the different paths from the loan of $4313 that you need to pay off
 import React from "react";
 import { addFlag, setScene } from "web-text-adventure";
 import { RainbowCircleText } from "../templates/font-styles.jsx";
-import { addEnding, addScenes } from "../src/ending.jsx";
+import { addScenes } from "../src/ending.jsx";
 
 addFlag("loanMoney", -4313);
 addFlag("loanTurns", 31);
@@ -30,6 +31,8 @@ const decreaseTurn = () => {
     if(loanTurns <= 0) {
         if(loanMoney >= 0) {
             // Win
+
+            // figure out what path they took.
         } else {
             // Lose
             if(loanBills1[0]) {
@@ -62,7 +65,7 @@ addScenes({
         options: [
             { text: "Pay your bills", to: "loan_paybills" },
             { text: "Invest in some BitCoin", to: "loan_bitcoin" },
-            { text: "Invest in some something else", to: "" },
+            { text: "Go back to the hospital", to: "" },
         ],
         action: decreaseTurn,
         contributor: "Dave and Hunter"
@@ -290,7 +293,8 @@ addScenes({
         action: () => {
             loanWindows = true;
             decreaseTurn();
-        }
+        },
+        contributor: null,
     },
     loan_paybills_windows_buymore: {
         prompt: () => <div>
@@ -302,7 +306,8 @@ addScenes({
         options: [
             { text: "More Windows (-$1500)", to: "loan_paybills_windows_buymore2", action: () => loanMoney -= 1500 },
             { text: "Return Home", to: "loan_paybills_house" }
-        ]
+        ],
+        contributor: null,
     },
     loan_paybills_windows_buymore2: {
         prompt: () => <div>
@@ -315,7 +320,8 @@ addScenes({
             { text: "More Windows (-$3500)", to: "loan_paybills_windows_buymore3", action: () => loanMoney -= 3500 },
             { text: "Return Home", to: "loan_paybills_house" }
         ],
-        action: decreaseTurn
+        action: decreaseTurn,
+        contributor: null,
     },
     loan_paybills_windows_buymore3: {
         prompt: () => <div>
@@ -330,7 +336,8 @@ addScenes({
         action: () => {
             loanWindowsSoldOut = true;
             decreaseTurn();
-        }
+        },
+        contributor: null,
     },
     loan_debt_house_ending: {
         prompt: <div>
@@ -349,6 +356,33 @@ addScenes({
             description: "Spend half a million dollars instead of paying your loan."
         },
         contributor: "Dave"
+    },
+    loan_paybills_smashwindow: {
+        prompt: <div>
+            <p>
+                Despite being <strong style={{ color: "red" }}>{formatMoney(-loanMoney)}</strong> into debt, you smashed your neighbour's windows,
+                and now they are suing you for the cost of repairs. Turns out they spent over ten million dollars on their windows, so you are definitely
+                unable to pay off your loan...
+            </p>
+        </div>,
+        options: [
+            { text: "Pay for windows (-$10000000)", to: "loan_paybills_smashwindow_end" }
+        ]
+        
+    },
+    loan_paybills_smashwindow_end: {
+        prompt: <div>
+            <p>
+                Despite being <strong style={{ color: "red" }}>{formatMoney(-loanMoney)}</strong> into debt, you smashed your neighbour's windows,
+                and now they are suing you for the cost of repairs. Turns out they spent over ten million dollars on their windows, so you are definitely
+                unable to pay off your loan. You are now going to jail, forever, but at least you had fun in the moment.
+            </p>
+        </div>,
+        ending: {
+            id: "smash-window",
+            name: "Smash Windows",
+            description: "Smash your neighbour's $10,000,000 window",
+        }
     }
 });
 

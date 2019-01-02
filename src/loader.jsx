@@ -2,6 +2,7 @@
 // startup file, loads all other files
 
 import "../templates/custom-html.jsx";
+import { setScene } from "web-text-adventure";
 
 // Scene Files
 const sceneCtx = require.context("../scenes/", true, /\.jsx$/);
@@ -18,4 +19,8 @@ if (module.hot) {
             sceneCtx(file);
         });
     });
+}
+
+if(location.href.endsWith("#credits")) {
+    setScene("credits");
 }
