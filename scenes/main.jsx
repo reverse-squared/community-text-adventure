@@ -60,7 +60,7 @@ addScenes({
             { text: "Pancakes.", to: "make_pancakes" },
             { text: "Waffles.", to: "make_waffles" },
             { text: "Hashbrowns.", to: "make_hashbrowns" },
-            { text: "Omlette.", to: "make_omelette" }
+            { text: "Omelette.", to: "make_omelette" }
         ],
         contributor: "Colyderp"
     },
