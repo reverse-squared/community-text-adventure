@@ -59,7 +59,11 @@ addScenes({
             { text: "Pancakes.", to: "make_pancakes" },
             { text: "Waffles.", to: "make_waffles" },
             { text: "Hashbrowns.", to: "make_hashbrowns" },
+            { text: "Omelette.", to: "make_omelette" },
         ],
+        contributor: "Colyderp"
+    },
+
     // Check time. Level 2.
     wakeup_check_time: {
         prompt: () => <div>
