@@ -38,6 +38,30 @@ addScenes({
         contributor: "Hunter"
     },
 
+    // Spider
+    touch_spider: {
+        prompt: <div>
+            You touch the spider, it's surprisingly soft, <strong>what do you do?</strong>
+        </div>,
+        options: [
+            { text: "Pocket it", to: "" },
+            { text: "Stroke it's back", to: "" },
+            { text: "Smash it", to: "" }
+        ],
+        contributor: "Adr's Alt"
+    },
+    touch_lizard: {
+        prompt: <div>
+            sfpoagasdoijdfsoaj, <strong>what do you do?</strong>
+        </div>,
+        options: [
+            { text: "Get it treated", to: "" },
+            { text: "Punch that lizard", to: "" },
+            { text: "Don't do anything", to: "" }
+        ],
+        contributor: "Alchemyking"
+    },
+
     // Eat breakfast. Level 2.
     wakeup_breakfast: {
         prompt: () => <div>
