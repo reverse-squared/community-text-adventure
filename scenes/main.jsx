@@ -199,7 +199,7 @@ addScenes({
 
     touch_lizard: {
         prompt: () => <div>
-            <p>You touch the first lizard you see outside and it bites you in the arm. <b>What do you do?</b></p>
+            <p>You touch the first lizard you see outside and it bites you in the arm. <strong>What do you do?</strong></p>
         </div>,
         options: [
             { text: "Get it treated.", to: "lizard_treat" },
