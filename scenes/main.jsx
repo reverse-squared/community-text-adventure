@@ -31,9 +31,9 @@ addScenes({
             <p>You walk outside from sleeping. You spot multiple different animals such as lizards, spiders, and humans. <b>What do you do?</b></p>
         </div>,
         options: [
-            { text: "Touch the lizard.", to: "lizardTouch" },
-            { text: "Touch the spider.", to: "spiderTouch" },
-            { text: "Touch the human.", to: "humanTouch" }
+            { text: "Touch the lizard.", to: "touch_lizard" },
+            { text: "Touch the spider.", to: "touch_spider" },
+            { text: "Touch the human.", to: "touch_human" }
         ],
         contributor: "Hunter"
     },
@@ -171,8 +171,19 @@ addScenes({
             name: "Jump out a Window",
             description: "Why would anyone want to jump out of a window?",
         }
-    }
+    },
 
+    touch_lizard: {
+        prompt: () => <div>
+            <p>You touch the first lizard you see outside and it bites you in the arm. <b>What do you do?</b></p>
+        </div>,
+        options: [
+            { text: "Get it treated.", to: "lizard_treat" },
+            { text: "Punch the lizard.", to: "lizard_punch" },
+            { text: "Don't do anything.", to: "lizard_dont" },
+        ],
+        contributor: "Alchemyking"
+    }
     // Dead. Level 0.
     // dead: {
     //     prompt: () => <div>
