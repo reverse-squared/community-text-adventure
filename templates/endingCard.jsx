@@ -1,11 +1,25 @@
 import React from "react";
+import Lock from "../res/lock.jsx";
 
 export default ({ ending, hideAchievedState }) => <div className="ending-square">
     <div className="ending-square-title">{ending.name}</div>
-    <div className="ending-square-desc">{ending.description}</div>
+   
     {
         !hideAchievedState
-            ? <div className={"ending-square-status status-" + (ending.achieved ? "yes" : "no")}>{ending.achieved ? "Achieved" : "Not Achieved"}</div>
+            ? <div>
+                {
+                    ending.achieved
+                        ? <div>
+                            <div className="ending-square-desc">{ending.description}</div>
+                            <div className={"ending-square-status status-yes"}>Achieved</div>
+                        </div>
+                        : <div>
+                            <br/>
+                            <Lock />
+                        </div>
+                }
+            </div>
             : null
     }
+    
 </div>;

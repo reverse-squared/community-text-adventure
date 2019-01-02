@@ -37,5 +37,6 @@ export default hot(module)(() => <div>
         <li><a href="https://davecode.me/text-adventure">Text Adventure Engine</a></li>
         <li><a href="https://reactjs.org/">React</a></li>
         <li><a href="http://netlify.com">Netlify</a></li>
+        <li><a href="https://google.github.io/material-design-icons/">Material Icons</a></li>
     </ul>
 </div>);
