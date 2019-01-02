@@ -6,20 +6,6 @@ import { addScenes } from "../src/ending.jsx";
 addFlag("sleepTime", 0);
 
 addScenes({
-    // Introduction Paragraph
-    start: {
-        prompt: <div>
-            <p>
-                Welcome to the Community Text Adventure. All paths and options are
-                made by different people, collaborating to create a full game.
-            </p>
-        </div>,
-        options: [
-            { text: "Begin", to: "wakeup" }
-        ],
-        contributor: null
-    },
-
     // Start. Level 1.
     wakeup: {
         prompt: () => <div>
