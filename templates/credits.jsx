@@ -8,7 +8,7 @@ const contributors = [
     ["Filip96",                 "https://filipkin.com/"],
     ["Colyderp"],
     // People below this still need to say exactly how they want credit.
-    ["Adr's Alt",               ""],
+    ["Adr"],
     ["Alchemyking",             ""],
     // ["", ""],
 ];

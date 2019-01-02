@@ -47,7 +47,7 @@ addScenes({
             { text: "Stroke it's back", to: "" },
             { text: "Smash it", to: "" }
         ],
-        contributor: "Adr's Alt"
+        contributor: "Alt"
     },
 
     // Eat breakfast. Level 2.
