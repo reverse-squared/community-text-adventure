@@ -1,9 +1,11 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
+
 * {box-sizing: border-box;}
 
 body {
-    background: #000;
-    color: #fff;
-    font-family: sans-serif;
+    background: rgb(22, 22, 22);
+    color: rgb(254, 254, 254);
+    font-family: Roboto, sans-serif;
     font-size: 18px;
     margin: auto;
     max-width: 500px;
@@ -16,7 +18,11 @@ h1 {
 }
 
 a {
-    color: #6495ed;
+    color: #7d64ed;
+}
+
+.inventory-update {
+	color: lime;
 }
 
 a:not(:hover) {
@@ -24,7 +30,7 @@ a:not(:hover) {
 }
 
 .option-disabled {
-    color: #444;
+    color: rgb(39, 39, 39);
 }
 .option-broken-link {
     color: #f53838;
