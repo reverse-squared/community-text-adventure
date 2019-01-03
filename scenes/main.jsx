@@ -3,6 +3,7 @@ import { addFlag, resetFlags } from "web-text-adventure";
 import { addScenes } from "../src/ending.jsx";
 
 addFlag("sleepTime", 0);
+addFlag("hasTouchedSpider", false);
 
 addScenes({
     // Start. Level 1.
@@ -30,9 +31,9 @@ addScenes({
             <p>You walk outside from sleeping. You spot multiple different animals such as lizards, spiders, and humans. <strong>What do you do?</strong></p>
         </div>,
         options: [
-            { text: "Touch the lizard.", to: "touch_lizard" },
-            { text: "Touch the spider.", to: "touch_spider" },
-            { text: "Touch the human.", to: "touch_human" }
+            { text: "Touch the lizard", to: "touch_lizard" },
+            { text: "Touch the spider", to: "touch_spider" },
+            { text: "Touch the human", to: "touch_human" },
         ],
         contributor: "Hunter"
     },
@@ -61,7 +62,7 @@ addScenes({
             <br/>
         </div>,
         options: [
-            { text: "Go back and touch more things", to: "touch_more_things"}
+            { text: "Go back and touch more things", to: "genocide_main"}
         ]
     },
 
