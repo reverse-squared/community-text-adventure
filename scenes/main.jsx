@@ -47,7 +47,35 @@ addScenes({
             { text: "Stroke it's back", to: "" },
             { text: "Smash it", to: "" }
         ],
-        contributor: "Alt"
+        contributor: "Adr"
+    },
+
+    touch_human: {
+        prompt: <div>
+            <p>
+                You touch the human. You ask them...
+            </p>
+        </div>,
+        options: [
+            { text: "What's the time", to: "" },
+            { text: "Why is there a critical production bug", to: "" },
+            { text: "▖┗▛▄▖▜▚┣", to: "" },
+        ],
+        contributor: "Hunter"
+    },
+    
+    touch_lizard: {
+        prompt: <div>
+            <p>
+                You reach for the lizard but it bites you right in the arm. You need to...
+            </p>
+        </div>,
+        options: [
+            { text: "Get it treated", to: ""},
+            { text: "Punch that lizard", to: ""},
+            { text: "Not care, and dont't do anything", to: ""},
+        ],
+        contributor: "Alchemyking"
     },
 
     // Eat breakfast. Level 2.

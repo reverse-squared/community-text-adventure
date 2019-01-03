@@ -11,6 +11,10 @@ body {
     padding-right: 25px;
 }
 
+h1 {
+	font-size: 34px;
+}
+
 a {
     color: #6495ed;
 }
@@ -101,9 +105,13 @@ a:not(:hover) {
 	animation: ending-header-blink 0.8s linear 0s infinite;
 }
 
+#root {
+	position: relative;
+}
+
 .resetgame {
     z-index: 100;
-    position: fixed;
+    position: absolute;
     bottom: 10px;
     right: 10px;
     color: #555;

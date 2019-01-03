@@ -62,7 +62,7 @@ addScenesReal({
                         : <p style={{ textAlign: "center" }} className="ending-header">You have already discovered this ending.</p>
                 }
                 
-                <EndingCard ending={{ ...sceneStorage[endingFlag].ending, achieved: endingFlagAchieved } />
+                <EndingCard ending={{ ...sceneStorage[endingFlag].ending, achieved: true }} />
             </div>;
         },
         options: [
