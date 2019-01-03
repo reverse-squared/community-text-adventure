@@ -19,17 +19,27 @@ const decreaseSkydiveTurn = () => {
 };
 
 addScenes({
+    skydive_pre: {
+        prompt: () => <div>
+            <SkydiveHeader />
+            <p>
+                Skydiving is nice. Right out of the hospital, you board the plane and climb to 12,500 feet. The guy opens
+                the door and tells you to jump. You jump and he tells you to open your parachute when you think it right.
+            </p>
+        </div>,
+        options: [
+            { text: "Open the parachute...", to: "skydive_start" },
+        ],
+        contributor: "Hunter"
+    },
     skydive_start: {
         prompt: () => <div>
             <SkydiveHeader />
-            <p>Skydiving is nice you thought. Right out of the hospital. You board the plane and climb to 12,500 feet. The guy opens the door and tells you to jump.
-                You jump and he tells you to open your parachute when you think it right.
-            </p>
             <p>Okay, so your parachute just failed.</p>
             <h6>CALM DOWN</h6>
             <h3>CALM DOWN</h3>
             <h1>CALM DOWN</h1>
-            <p>What do you do.</p>
+            <p><strong>What do you do.</strong></p>
         </div>,
         options: [
             { text: "Try the paracute again.", to: "skydive_parachute_try_again" },
@@ -61,7 +71,7 @@ addScenes({
         ending: {
             id: "skydiving-death",
             name: "Skydiving Disaster",
-            description: "Die in the sky.",
+            description: "Fail to find anything on the parachute that could save your fall.",
         },
         contributor: "Hunter"
     }

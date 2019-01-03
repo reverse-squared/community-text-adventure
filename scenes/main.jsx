@@ -45,9 +45,24 @@ addScenes({
         options: [
             { text: "Pocket it", to: "" },
             { text: "Stroke it's back", to: "" },
-            { text: "Smash it", to: "" }
+            { text: "Smash it", to: "smash_spider" }
         ],
         contributor: "Adr"
+    },
+
+    smash_spider: {
+        prompt: <div>
+            <p>
+                You smashed the Spider, you monster.
+            </p>
+            <p className="inventory-update">
+                + Added Spider Corpse to Inventory.
+            </p>
+            <br/>
+        </div>,
+        options: [
+            { text: "Go back and touch more things", to: "touch_more_things"}
+        ]
     },
 
     touch_human: {
@@ -73,7 +88,7 @@ addScenes({
         options: [
             { text: "Get it treated", to: ""},
             { text: "Punch that lizard", to: ""},
-            { text: "Not care, and dont't do anything", to: ""},
+            { text: "Not care, and don't do anything", to: ""},
         ],
         contributor: "Alchemyking"
     },
@@ -196,7 +211,7 @@ addScenes({
         </div>,
         options: [
             { text: "Fake your death", to: "fake_your_death" },
-            { text: "Go skydiving.", to: "skydive_start" }
+            { text: "Go skydiving.", to: "skydive_pre" }
         ],
         contributor: "Hunter"
     },
@@ -227,11 +242,11 @@ addScenes({
 
     jump_out_a_window: {
         prompt: () => <div>
-            You jump out of the window and die, what kind of idea was that supposed to be.
+            You jump out of the window, taking your leap of faith... and die, what kind of idea was that supposed to be.
         </div>,
         ending: {
             id: "jump-out-window",
-            name: "Jump out a Window",
+            name: "Leap of Faith",
             description: "Why would anyone want to jump out of a window?",
         }
     },
