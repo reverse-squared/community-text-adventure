@@ -95,6 +95,9 @@ a:not(:hover) {
 	100% { color: skyblue; }
 }
 .ending-header {
+	color: aquamarine;
+}
+.ending-header.flash {
 	animation: ending-header-blink 0.8s linear 0s infinite;
 }
 
