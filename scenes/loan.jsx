@@ -371,7 +371,7 @@ addScenes({
         
     },
     loan_paybills_smashwindow_end: {
-        prompt: <div>
+        prompt: () => <div>
             <p>
                 Despite being <strong style={{ color: "red" }}>{formatMoney(-loanMoney)}</strong> into debt, you smashed your neighbour's windows,
                 and now they are suing you for the cost of repairs. Turns out they spent over ten million dollars on their windows, so you are definitely
