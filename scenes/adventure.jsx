@@ -2,6 +2,8 @@ import React from "react";
 import { addScenes } from "../src/ending.jsx";
 import { addFlag } from "web-text-adventure";
 
+addFlag("hasEatenTurkey", false)
+
 addScenes({
     adventure_start: {
         prompt: () => <div>
@@ -92,7 +94,7 @@ addScenes({
     adventure_africa_united_sleep: {
         prompt: <div>
             <p>You go to sleep, and realize that you slept so soundly that you never knew the plane crashed on a remote island. Then it burned and exploded due to the leak
-                of engine fuel.
+                of jet fuel.
             </p>
         </div>,
         ending: {
@@ -101,6 +103,53 @@ addScenes({
             description: "You slept in too long because you pulled an all nighter at the airport due to a cancelation. Thanks a lot United Airlines."
         },
         contributor: "Hunter"
+    },
+
+    adventure_africa_crash_start: {
+        prompt: () => <div>
+            <p>Staying awake is fun. You got a sprite cranberry, seven packs of pretzels and even used the bathroom a couple times. The flight is fun until you crashed into
+                an island. Somehow you dropped from 12,500 feet to zero within a milisecond. Don't ask how, the flat earthers will blame the pilots. The crash landing wasn't
+                as bad as some of the landings with Ryanair, but you did feel a <i>little</i> jolt. The plane is now on fire. <strong>What do you do?</strong>
+            </p>
+        </div>,
+        options: [
+            { text: "Wait until rescue comes.", to: "adventure_africa_crash_wait" },
+            { text: "Escape the plane.", to: "advenure_island_start" },
+            { text: "Finish eating that 10 pound turkey you smuggled in your carry-on.", to: "adventure_africa_crash_eat" },
+        ],
+        contributor: "Hunter"
+    },
+
+    adventure_africa_crash_wait: {
+        prompt: () => <div>
+            <p>You waited for rescue to come, but nobody came. Waiting inside a burning plane. The plane later exploded because of the leaking jet fuel.</p>
+        </div>,
+        ending: {
+            id: "boom-roasted",
+            name: "Boom Roasted",
+            description: "You got roasted alive, and the plane went BOOM!"
+        },
+        contributor: "Hunter"
+    },
+
+    adventure_island_start: {
+        prompt: () => <div>
+            <p>You escape the plane without any harm done. With only you as the survivor that you know of, and with the plane about to explode, what do you do?</p>
+        </div>,
+        options: [
+            { text: "Punch some trees.", to: "" },
+            { text: "Find some food.", to: "", if: () => !hasEatenTurkey },
+            { text: "Break open some suitcases.", to: "" },
+        ]
+    },
+
+    adventure_africa_crash_eat: {
+        prompt: () => <div>
+            <p>You carefully take out the uncooked turkey out of your bag and start to eat it. When you eat the turkey, you are satisfied.</p>
+        </div>,
+        options: [
+            { text: "Continue", to: "adventure_island_start", action: () => hasEatenTurkey =  true }
+        ]
     },
 
     // Fortnite
