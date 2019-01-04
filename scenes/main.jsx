@@ -44,9 +44,25 @@ addScenes({
             You touch the spider, it's surprisingly soft, <strong>what do you do?</strong>
         </div>,
         options: [
-            { text: "Pocket it", to: "" },
+            { text: "Pocket it", to: "pocket_spider" },
             { text: "Stroke it's back", to: "" },
             { text: "Smash it", to: "smash_spider" }
+        ],
+        contributor: "Adr"
+    },
+
+    pocket_spider: {
+        prompt: <div>
+            <p>
+                You smashed the Spider, you monster.
+            </p>
+            <p className="inventory-update">
+                + Added Spider Corpse to Inventory.
+            </p>
+            <br />
+        </div>,
+        options: [
+            { text: "Go back and touch more things", to: "" }
         ],
         contributor: "Adr"
     },
