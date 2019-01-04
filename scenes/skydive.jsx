@@ -3,6 +3,7 @@ import { addFlag, setScene } from "web-text-adventure";
 import { addScenes } from "../src/ending.jsx";
 
 addFlag("skydiveTurns", 11);
+addFlag("usingSnapchat", false);
 
 const SkydiveHeader = () => <div>
     <p className={"loan-header " + (skydiveTurns < 3 ? "loan-header-low" : "")}>
@@ -14,7 +15,11 @@ const decreaseSkydiveTurn = () => {
     skydiveTurns--;
 
     if(skydiveTurns <= 0) {
-        setScene("skydive_die");
+        if (usingSnapchat) {
+            setScene("skydive_snapchat_ending");
+        } else {
+            setScene("skydive_die");
+        }
     }
 };
 
@@ -68,9 +73,7 @@ addScenes({
             { text: "Try the backup paracute.", to: "skydive_backup_parachute" },
             { text: "Use your phone to post to Snapchat that you're about to die.", to: "skydive_snapchat" },
         ],
-        action: () => {
-            decreaseSkydiveTurn();
-        },
+        action: decreaseSkydiveTurn,
         contributor: "Hunter"
     },
 
@@ -84,9 +87,7 @@ addScenes({
             { text: "Try the backup paracute.", to: "skydive_backup_parachute" },
             { text: "Use your phone to post to Snapchat that you're about to die.", to: "skydive_snapchat" },
         ],
-        action: () => {
-            decreaseSkydiveTurn();
-        },
+        action: decreaseSkydiveTurn,
         contributor: "Hunter"
     },
 
@@ -100,9 +101,7 @@ addScenes({
             { text: "Try the backup paracute again.", to: "skydive_backup_parachute" },
             { text: "Use your phone to post to Snapchat that you're about to die.", to: "skydive_snapchat" },
         ],
-        action: () => {
-            decreaseSkydiveTurn();
-        },
+        action: decreaseSkydiveTurn,
         contributor: "Hunter"
     },
 
@@ -115,55 +114,43 @@ addScenes({
             { text: "Take another snap.", to: "skydive_snapchat_2" },
             { text: "Wait until your death.", to: "skydive_wait" }
         ],
-        action: () => {
-            decreaseSkydiveTurn();
-        },
+        action: decreaseSkydiveTurn,
         contributor: "Hunter"
     },
 
     skydive_snapchat_2: {
         prompt: () => <div>
+            <SkydiveHeader />
             <p>Nice snap. <strong>Now what?</strong></p>
         </div>,
         options: [
-            { text: "Take another snap.", to: "skydive_snapchat_3" },
+            { text: "Take another snap.", to: "skydive_snapchat_2", action: () => usingSnapchat = true },
         ],
+        action: decreaseSkydiveTurn,
         contributor: "Hunter"
     },
 
-    skydive_snapchat_3: {
-        prompt: () => <div>
-            <p>Nice snap. <strong>Now what?</strong></p>
-        </div>,
-        options: [
-            { text: "Take another snap.", to: "skydive_snapchat_4" },
-        ],
-        contributor: "Hunter"
-    },
-
-    skydive_snapchat_4: {
-        prompt: () => <div>
-            <p>Nice snap. <strong>Now what?</strong></p>
-        </div>,
-        options: [
-            { text: "Take another snap.", to: "skydive_snapchat_ending" },
-        ],
-        contributor: "Hunter"
-    },
 
     skydive_wait: {
         prompt: () => <div>
+            <SkydiveHeader />
             <p>You took that <i>beautiful</i> Snap of yours, and all of your six friends saw it. Surely one of them will do something.</p>
         </div>,
         options: [
-            { text: "Wait more.", to: "skydive_wait_2" },
+            { text: "Wait more.", to: "skydive_wait", action: () => {
+                if (skydiveTurns <= 1) {
+                    setScene("skydive_wait_2");
+                }
+            }},
             { text: "Take another snap.", to: "skydive_snapchat_2" },
         ],
+        action: decreaseSkydiveTurn,
         contributor: "Hunter"
     },
 
     skydive_wait_2: {
         prompt: () => <div>
+            <SkydiveHeader />
             <p>Suddenly, one of your friends you knew last night at the party is at your side. He grabs you and pulls his parachute just in time.</p>
         </div>,
         ending: {
