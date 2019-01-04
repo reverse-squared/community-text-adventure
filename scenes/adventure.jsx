@@ -61,7 +61,7 @@ addScenes({
         options: [
             { text: "Sleep", to: "adventure_africa_sleep" },
             { text: "Stay Woke", to: "adventure_africa_crash_start" },
-            { text: "Jump Out of the Plane", to: "adventure_africa_jump" },
+            { text: "Jump Out of the Plane", to: "skydive_no_parachute" },
         ],
         contributor: "Hunter"
     },

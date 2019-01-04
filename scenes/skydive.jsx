@@ -19,9 +19,33 @@ const decreaseSkydiveTurn = () => {
 };
 
 addScenes({
+    skydive_no_parachute: {
+        prompt: <div>
+            <p>
+                You jump out the plane when you are not supposed to, and you also have no idea how to skydive.
+            </p>
+        </div>,
+        options: [
+            { text: "Open the parachute...", to: "skydive_no_parachute_start" },
+        ]
+    },
+    skydive_no_parachute_start: {
+        prompt: <div>
+            <p>
+                You try to use your parachute, but you don't actually have one
+            </p>
+        </div>,
+        options: [
+            { text: "Try again to use your parachute", to: "skydive_no_parachute_start" },
+            { text: "Use your phone to post to Snapchat that you're about to die", to: "skydive_snapchat" },
+
+        ]
+    },
+
     skydive_pre: {
         prompt: () => <div>
-            <p>Skydiving is nice. Right out of the hospital, you board the plane and climb to 12,500 feet. The guy opens
+            <p>
+                Skydiving is nice. Right out of the hospital, you board the plane and climb to 12,500 feet. The guy opens
                 the door and tells you to jump. You jump and he tells you to open your parachute when you think it right.
             </p>
         </div>,
@@ -129,7 +153,7 @@ addScenes({
 
     skydive_wait: {
         prompt: () => <div>
-            <p>You took that <i>beautiful</i> Snap of yours, and all fo your six friends saw it. Surely one of them will do something.</p>
+            <p>You took that <i>beautiful</i> Snap of yours, and all of your six friends saw it. Surely one of them will do something.</p>
         </div>,
         options: [
             { text: "Wait more.", to: "skydive_wait_2" },
