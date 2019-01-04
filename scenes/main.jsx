@@ -44,9 +44,22 @@ addScenes({
             You touch the spider, it's surprisingly soft, <strong>what do you do?</strong>
         </div>,
         options: [
-            { text: "Pocket it", to: "" },
+            { text: "Pocket it", to: "pocket_spider" },
             { text: "Stroke it's back", to: "" },
             { text: "Smash it", to: "smash_spider" }
+        ],
+        contributor: "Adr"
+    },
+
+    pocket_spider: {
+        prompt: () => <div>
+            <p>You pocketed the spider, it seems to like being in the pocket.</p>
+            <p className="inventory-update">
+                + Added Spider to Inventory.
+            </p>
+        </div>,
+        options: [
+            { text: "Go touch more things.", to: "touch_main" }
         ],
         contributor: "Adr"
     },
@@ -74,7 +87,7 @@ addScenes({
         </div>,
         options: [
             { text: "What's the time", to: "" },
-            { text: "Why is there a critical production bug", to: "" },
+            { text: "Why is there a critical production bug", to: "work_pre" },
             { text: "▖┗▛▄▖▜▚┣", to: "" },
         ],
         contributor: "Hunter"
@@ -116,7 +129,7 @@ addScenes({
         options: [
             { text: "...you are still sleepy and need more rest.", to: "sleep" },
             { text: "...you're hungry and want to eat something.", to: "wakeup_breakfast" },
-            { text: "...you have plans to go outside and go on an adventure.", to: "" }
+            { text: "...you have plans to go outside and go on an adventure.", to: "adventure_start" }
         ],
         contributor: null
     },
