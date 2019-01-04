@@ -87,7 +87,7 @@ addScenes({
         </div>,
         options: [
             { text: "What's the time", to: "" },
-            { text: "Why is there a critical production bug", to: "" },
+            { text: "Why is there a critical production bug", to: "work_pre" },
             { text: "▖┗▛▄▖▜▚┣", to: "" },
         ],
         contributor: "Hunter"
