@@ -9,29 +9,87 @@ addScenes({
                 What do you do first?</b></p>
         </div>,
         options: [
-            { text: "Get on a plane to go to Africa.", to: "adventure_africa_start" },
+            { text: "Get on a plane to go to Africa.", to: "adventure_africa_pre" },
             { text: "Board the bus.", to: "adventure_fortnite_start" },
             { text: "Walk in the tall grass.", to: "adventure_pokemon_start" }
         ],
         contributor: "Hunter"
     },
 
+    adventure_africa_pre: {
+        prompt: () => <div>
+            You decide to take a plane to Africa since planes are "the safest way of travel". But which airline do you take to get there?
+        </div>,
+        options: [
+            { text: "Delta", to: "adventure_africa_delta_start" },
+            { text: "Delta", to: "adventure_africa_delta_start" },
+            { text: "Delta", to: "adventure_africa_delta_start" },
+            { text: "Delta", to: "adventure_africa_delta_start" },
+            { text: "Delta", to: "adventure_africa_delta_start" },
+            { text: "Delta", to: "adventure_africa_delta_start" },
+            { text: "Delta", to: "adventure_africa_delta_start" },
+            { text: "Delta", to: "adventure_africa_delta_start" },
+            { text: "Delta", to: "adventure_africa_delta_start" },
+            { text: "Delta", to: "adventure_africa_delta_start" },
+            { text: "Delta", to: "adventure_africa_delta_start" },
+            { text: "Delta", to: "adventure_africa_delta_start" },
+            { text: "Delta", to: "adventure_africa_delta_start" },
+            { text: "Delta", to: "adventure_africa_delta_start" },
+            { text: "Delta", to: "adventure_africa_delta_start" },
+            { text: "Delta", to: "adventure_africa_delta_start" },
+            { text: "Delta", to: "adventure_africa_delta_start" },
+            { text: "Delta", to: "adventure_africa_delta_start" },
+            { text: "Delta", to: "adventure_africa_delta_start" },
+            { text: "Delta", to: "adventure_africa_delta_start" },
+            { text: "Delta", to: "adventure_africa_delta_start" },
+            { text: "Delta", to: "adventure_africa_delta_start" },
+            { text: "Delta", to: "adventure_africa_delta_start" },
+            { text: "Delta", to: "adventure_africa_delta_start" },
+            { text: "Delta", to: "adventure_africa_delta_start" },
+            { text: "Delta", to: "adventure_africa_delta_start" },
+            { text: "Delta", to: "adventure_africa_delta_start" },
+            { text: "Delta", to: "adventure_africa_delta_start" },
+            { text: "Delta", to: "adventure_africa_delta_start" },
+            { text: "Delta", to: "adventure_africa_delta_start" },
+            { text: "Delta", to: "adventure_africa_delta_start" },
+            { text: "Delta", to: "adventure_africa_delta_start" },
+            { text: "Delta", to: "adventure_africa_delta_start" },
+            { text: "Delta", to: "adventure_africa_delta_start" },
+            { text: "Delta", to: "adventure_africa_delta_start" },
+            { text: "Delta", to: "adventure_africa_delta_start" },
+            { text: "Delta", to: "adventure_africa_delta_start" },
+            { text: "Delta", to: "adventure_africa_delta_start" },
+            { text: "Delta", to: "adventure_africa_delta_start" },
+            { text: "Delta", to: "adventure_africa_delta_start" },
+            { text: "Delta", to: "adventure_africa_delta_start" },
+            { text: "Delta", to: "adventure_africa_delta_start" },
+            { text: "Delta", to: "adventure_africa_delta_start" },
+            { text: "Delta", to: "adventure_africa_delta_start" },
+            { text: "Delta", to: "adventure_africa_delta_start" },
+            { text: "Delta", to: "adventure_africa_delta_start" },
+            { text: "Delta", to: "adventure_africa_delta_start" },
+            { text: "Delta", to: "adventure_africa_delta_start" },
+            { text: "Delta", to: "adventure_africa_delta_start" },
+            { text: "United Airlines", to: "adventure_africa_united_start" },
+        ],
+    },
+    
     // Africa
-    adventure_africa_start: {
+    adventure_africa_united_start: {
         prompt: () => <div>
             <p>You board the plane to go to Africa. It is a long flight so you booked first class seating, but United Airlines pulled a No U and downgraded you to a
                 regular seat with no compensation. OwO. The plane takes off normal, and reaches it cruising altitiude. With another ten hours to go, what do you do?
             </p>
         </div>,
         options: [
-            { text: "Sleep", to: "adventure_africa_sleep" },
+            { text: "Sleep", to: "adventure_africa_united_sleep" },
             { text: "Stay Woke", to: "adventure_africa_crash_start" },
             { text: "Jump Out of the Plane", to: "" },
         ],
         contributor: "Hunter"
     },
 
-    adventure_africa_sleep: {
+    adventure_africa_united_sleep: {
         prompt: <div>
             <p>You go to sleep, and realize that you slept so soundly that you never knew the plane crashed on a remote island. Then it burned and exploded due to the leak
                 of engine fuel.
