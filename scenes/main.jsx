@@ -129,7 +129,7 @@ addScenes({
         options: [
             { text: "...you are still sleepy and need more rest.", to: "sleep" },
             { text: "...you're hungry and want to eat something.", to: "wakeup_breakfast" },
-            { text: "...you have plans to go outside and go on an adventure.", to: "" }
+            { text: "...you have plans to go outside and go on an adventure.", to: "adventure_start" }
         ],
         contributor: null
     },
