@@ -2,7 +2,7 @@ import React from "react";
 import { addScenes } from "../src/ending.jsx";
 import { addFlag } from "web-text-adventure";
 
-addFlag("hasEatenTurkey", false)
+addFlag("hasEatenTurkey", false);
 
 addScenes({
     adventure_start: {
@@ -23,55 +23,7 @@ addScenes({
             You decide to take a plane to Africa since planes are "the safest way of travel". But which airline do you take to get there?
         </div>,
         options: [
-            { text: "Delta", to: "adventure_africa_delta_start" },
-            { text: "Delta", to: "adventure_africa_delta_start" },
-            { text: "Delta", to: "adventure_africa_delta_start" },
-            { text: "Delta", to: "adventure_africa_delta_start" },
-            { text: "Delta", to: "adventure_africa_delta_start" },
-            { text: "Delta", to: "adventure_africa_delta_start" },
-            { text: "Delta", to: "adventure_africa_delta_start" },
-            { text: "Delta", to: "adventure_africa_delta_start" },
-            { text: "Delta", to: "adventure_africa_delta_start" },
-            { text: "Delta", to: "adventure_africa_delta_start" },
-            { text: "Delta", to: "adventure_africa_delta_start" },
-            { text: "Delta", to: "adventure_africa_delta_start" },
-            { text: "Delta", to: "adventure_africa_delta_start" },
-            { text: "Delta", to: "adventure_africa_delta_start" },
-            { text: "Delta", to: "adventure_africa_delta_start" },
-            { text: "Delta", to: "adventure_africa_delta_start" },
-            { text: "Delta", to: "adventure_africa_delta_start" },
-            { text: "Delta", to: "adventure_africa_delta_start" },
-            { text: "Delta", to: "adventure_africa_delta_start" },
-            { text: "Delta", to: "adventure_africa_delta_start" },
-            { text: "Delta", to: "adventure_africa_delta_start" },
-            { text: "Delta", to: "adventure_africa_delta_start" },
-            { text: "Delta", to: "adventure_africa_delta_start" },
-            { text: "Delta", to: "adventure_africa_delta_start" },
-            { text: "Delta", to: "adventure_africa_delta_start" },
-            { text: "Delta", to: "adventure_africa_delta_start" },
-            { text: "Delta", to: "adventure_africa_delta_start" },
-            { text: "Delta", to: "adventure_africa_delta_start" },
-            { text: "Delta", to: "adventure_africa_delta_start" },
-            { text: "Delta", to: "adventure_africa_delta_start" },
-            { text: "Delta", to: "adventure_africa_delta_start" },
-            { text: "Delta", to: "adventure_africa_delta_start" },
-            { text: "Delta", to: "adventure_africa_delta_start" },
-            { text: "Delta", to: "adventure_africa_delta_start" },
-            { text: "Delta", to: "adventure_africa_delta_start" },
-            { text: "Delta", to: "adventure_africa_delta_start" },
-            { text: "Delta", to: "adventure_africa_delta_start" },
-            { text: "Delta", to: "adventure_africa_delta_start" },
-            { text: "Delta", to: "adventure_africa_delta_start" },
-            { text: "Delta", to: "adventure_africa_delta_start" },
-            { text: "Delta", to: "adventure_africa_delta_start" },
-            { text: "Delta", to: "adventure_africa_delta_start" },
-            { text: "Delta", to: "adventure_africa_delta_start" },
-            { text: "Delta", to: "adventure_africa_delta_start" },
-            { text: "Delta", to: "adventure_africa_delta_start" },
-            { text: "Delta", to: "adventure_africa_delta_start" },
-            { text: "Delta", to: "adventure_africa_delta_start" },
-            { text: "Delta", to: "adventure_africa_delta_start" },
-            { text: "Delta", to: "adventure_africa_delta_start" },
+            { text: "Delta", to: "" },
             { text: "United Airlines", to: "adventure_africa_united_start" },
         ],
     },
@@ -86,7 +38,7 @@ addScenes({
         options: [
             { text: "Sleep", to: "adventure_africa_united_sleep" },
             { text: "Stay Woke", to: "adventure_africa_crash_start" },
-            { text: "Jump Out of the Plane", to: "" },
+            { text: "Jump Out of the Plane", to: "adventure_africa_jump" },
         ],
         contributor: "Hunter"
     },
@@ -166,11 +118,25 @@ addScenes({
     // Pokemon
     adventure_pokemon_start: {
         prompt: () => <div>
-            <p></p>
+            <p>You carefully step into the tall grass. Then suddenly a Pokemon appears! You can't run from trainer battles, so you send out your Charmander to fight the 
+                Squirtle.
+            </p>
         </div>,
         options: [
-            { text: "", to: "" },
+            { text: "Continue", to: "adventure_pokemon_main" },
         ],
         contributor: "Hunter"
+    },
+
+    adventure_pokemon_main: {
+        prompt: () => <div>
+            <p>What does Charmander do?</p>
+        </div>,
+        options: [
+            { text: "Fight", to: "" },
+            { text: "Bag", to: "" },
+            { text: "Pokemon", to: "" },
+            { text: "Run", to: "" },
+        ]
     },
 });
