@@ -1,9 +1,11 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
+
 * {box-sizing: border-box;}
 
 body {
-    background: #000;
-    color: #fff;
-    font-family: sans-serif;
+    background: rgb(22, 22, 22);
+    color: rgb(254, 254, 254);
+    font-family: Roboto, sans-serif;
     font-size: 18px;
     margin: auto;
     max-width: 500px;
@@ -11,8 +13,16 @@ body {
     padding-right: 25px;
 }
 
+h1 {
+	font-size: 34px;
+}
+
 a {
-    color: #6495ed;
+    color: #7d64ed;
+}
+
+.inventory-update {
+	color: lime;
 }
 
 a:not(:hover) {
@@ -20,7 +30,7 @@ a:not(:hover) {
 }
 
 .option-disabled {
-    color: #444;
+    color: rgb(83, 83, 83);
 }
 .option-broken-link {
     color: #f53838;
@@ -95,12 +105,19 @@ a:not(:hover) {
 	100% { color: skyblue; }
 }
 .ending-header {
+	color: aquamarine;
+}
+.ending-header.flash {
 	animation: ending-header-blink 0.8s linear 0s infinite;
+}
+
+#root {
+	position: relative;
 }
 
 .resetgame {
     z-index: 100;
-    position: fixed;
+    position: absolute;
     bottom: 10px;
     right: 10px;
     color: #555;

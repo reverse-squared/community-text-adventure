@@ -48,6 +48,7 @@ export function resetGame() {
 }
 
 var endingFlag = null;
+var endingFlagAchieved = false;
 
 addScenesReal({
     check_new_ending: {
@@ -55,20 +56,24 @@ addScenesReal({
             if(endingFlag === null) return null;
 
             return <div>
-                <p style={{ textAlign: "center" }} className="ending-header">You discovered a new ending!</p>
-                <EndingCard ending={sceneStorage[endingFlag].ending} hideAchievedState />
+                {
+                    !endingFlagAchieved
+                        ? <p style={{ textAlign: "center" }} className="ending-header flash">You discovered a new ending!</p>
+                        : <p style={{ textAlign: "center" }} className="ending-header">You have already discovered this ending.</p>
+                }
+                
+                <EndingCard ending={{ ...sceneStorage[endingFlag].ending, achieved: true }} />
             </div>;
         },
         options: [
-            { text: "Continue", to: "start" }
+            { text: "Continue", to: "start", action: () => endingFlag = null }
         ],
         action: () => {
             if(endingFlag === null) {
                 setScene("start");
                 endingFlag = null;
             }
-        },
-        contributor: null
+        }
     }
 });
 
@@ -98,8 +103,9 @@ export function addScenes(scenes) {
 
             const sceneAction = scenes[id].action;
             scenes[id].action = () => {
-                if (!scenes[id].ending.achieved) endingFlag = id;
+                endingFlag = id;
                 
+                endingFlagAchieved = scenes[id].ending.achieved;
                 scenes[id].ending.achieved = true;
                 achieveEnding(scenes[id].ending.id);
                 if (sceneAction) sceneAction();

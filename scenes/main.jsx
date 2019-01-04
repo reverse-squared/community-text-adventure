@@ -3,6 +3,7 @@ import { addFlag, resetFlags } from "web-text-adventure";
 import { addScenes } from "../src/ending.jsx";
 
 addFlag("sleepTime", 0);
+addFlag("hasTouchedSpider", false);
 
 addScenes({
     // Start. Level 1.
@@ -30,9 +31,9 @@ addScenes({
             <p>You walk outside from sleeping. You spot multiple different animals such as lizards, spiders, and humans. <strong>What do you do?</strong></p>
         </div>,
         options: [
-            { text: "Touch the lizard.", to: "touch_lizard" },
-            { text: "Touch the spider.", to: "touch_spider" },
-            { text: "Touch the human.", to: "touch_human" }
+            { text: "Touch the lizard", to: "touch_lizard" },
+            { text: "Touch the spider", to: "touch_spider" },
+            { text: "Touch the human", to: "touch_human" },
         ],
         contributor: "Hunter"
     },
@@ -45,9 +46,52 @@ addScenes({
         options: [
             { text: "Pocket it", to: "" },
             { text: "Stroke it's back", to: "" },
-            { text: "Smash it", to: "" }
+            { text: "Smash it", to: "smash_spider" }
         ],
-        contributor: "Alt"
+        contributor: "Adr"
+    },
+
+    smash_spider: {
+        prompt: <div>
+            <p>
+                You smashed the Spider, you monster.
+            </p>
+            <p className="inventory-update">
+                + Added Spider Corpse to Inventory.
+            </p>
+            <br/>
+        </div>,
+        options: [
+            { text: "Go back and touch more things", to: "genocide_main"}
+        ]
+    },
+
+    touch_human: {
+        prompt: <div>
+            <p>
+                You touch the human. You ask them...
+            </p>
+        </div>,
+        options: [
+            { text: "What's the time", to: "" },
+            { text: "Why is there a critical production bug", to: "" },
+            { text: "▖┗▛▄▖▜▚┣", to: "" },
+        ],
+        contributor: "Hunter"
+    },
+    
+    touch_lizard: {
+        prompt: <div>
+            <p>
+                You reach for the lizard but it bites you right in the arm. You need to...
+            </p>
+        </div>,
+        options: [
+            { text: "Get it treated", to: ""},
+            { text: "Punch that lizard", to: ""},
+            { text: "Not care, and don't do anything", to: ""},
+        ],
+        contributor: "Alchemyking"
     },
 
     // Eat breakfast. Level 2.
@@ -59,7 +103,7 @@ addScenes({
             { text: "Pancakes.", to: "make_pancakes" },
             { text: "Waffles.", to: "make_waffles" },
             { text: "Hashbrowns.", to: "make_hashbrowns" },
-            { text: "Omlette.", to: "omlette_ending" }
+            { text: "Omelette.", to: "make_omelette" },
         ],
         contributor: "Colyderp"
     },
@@ -168,7 +212,7 @@ addScenes({
         </div>,
         options: [
             { text: "Fake your death", to: "fake_your_death" },
-            { text: "Go skydiving.", to: "skydive_start" }
+            { text: "Go skydiving.", to: "skydive_pre" }
         ],
         contributor: "Hunter"
     },
@@ -199,30 +243,12 @@ addScenes({
 
     jump_out_a_window: {
         prompt: () => <div>
-            You jump out of the window and die, what kind of idea was that supposed to be.
+            You jump out of the window, taking your leap of faith... and die, what kind of idea was that supposed to be.
         </div>,
         ending: {
             id: "jump-out-window",
-            name: "Jump out a Window",
+            name: "Leap of Faith",
             description: "Why would anyone want to jump out of a window?",
         }
     },
-
-    // Dead. Level 0.
-    // dead: {
-    //     prompt: () => <div>
-    //         <p>
-    //             How unfortunate, You died... Good thing in this world you can always go back to the beginning.
-    //         </p>
-    //     </div>,
-    //     options: [
-    //         { text: () => <span className="playAgain">Play Again</span>, to: "wakeup" }
-    //     ],
-    //     ending: {
-    //         id: "dead-generic",
-    //         name: "Dead",
-    //         description: "Die somehow. This ending should not really exist, and there should be specific ways to die."
-    //     },
-    //     contributor: null
-    // }
 });
