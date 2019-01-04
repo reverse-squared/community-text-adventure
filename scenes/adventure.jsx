@@ -161,11 +161,65 @@ addScenes({
     // Pokemon
     adventure_pokemon_start: {
         prompt: () => <div>
-            <p></p>
+            <p>You carefully step into the tall grass. Then suddenly a Pokemon appears! You can't run from trainer battles, so you send out your Charmander to fight the 
+                Squirtle.
+            </p>
         </div>,
         options: [
-            { text: "", to: "" },
+            { text: "Continue", to: "adventure_pokemon_main" },
         ],
         contributor: "Hunter"
     },
+
+    adventure_pokemon_main: {
+        prompt: () => <div>
+            <p>What does Charmander do?</p>
+        </div>,
+        options: [
+            { text: "Fight", to: "adventure_pokemon_fight" },
+            { text: "Bag", to: "adventure_pokemon_bag" },
+            { text: "Pokemon", to: "adventure_pokemon_pokemon" },
+            { text: "Run", to: "adventure_pokemon_run" },
+        ]
+    },
+
+    adventure_pokemon_fight: {
+        prompt: () => <div>
+            <p>What does Charmander do?</p>
+        </div>,
+        options: [
+            { text: "Scratch.", to: "adventure_pokemon_" },
+            { text: "Growl.", to: "adventure_pokemon_" },
+            { text: "Ember.", to: "adventure_pokemon_" },
+            { text: "Dragon Rage.", to: "adventure_pokemon_" },
+            { text: "Go back.", to: "adventure_pokemon_main" }
+        ]
+    },
+
+    adventure_pokemon_bag: {
+        prompt: () => <div>
+            <p>You have no items in your bag.</p>
+        </div>,
+        options: [
+            { text: "Go back.", to: "adventure_pokemon_main" }
+        ]
+    },
+
+    adventure_pokemon_pokemon: {
+        prompt: () => <div>
+            <p>You only own one pokemon!</p>
+        </div>,
+        options: [
+            { text: "Go back.", to: "adventure_pokemon_main" }
+        ]
+    },
+
+    adventure_pokemon_run: {
+        prompt: () => <div>
+            <p>You can't run from trainer battles!</p>
+        </div>,
+        options: [
+            { text: "Go back.", to: "adventure_pokemon_main" }
+        ]
+    }
 });
