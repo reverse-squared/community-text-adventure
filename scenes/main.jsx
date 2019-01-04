@@ -60,7 +60,8 @@ addScenes({
         </div>,
         options: [
             { text: "Go touch more things.", to: "touch_main" }
-        ]
+        ],
+        contributor: "Adr"
     },
 
     smash_spider: {

@@ -27,7 +27,7 @@ addScenes({
             You touch the chicken, it seems startled for a second. <strong>What do you do?</strong>
         </div>,
         options: [
-            { text: "(try to) Kill it", to: "genocide_chicken_kill" },
+            { text: "(try to) Kill it", to: "genocide_chicken_kill_fail" },
             { text: "Keep it", to: "genocide_chicken_keep" },
             { text: "Act like a chicken", to: "genocide_chicken_act" },
             { text: "Distract it", to: "genocide_chicken_distract" },
@@ -41,6 +41,16 @@ addScenes({
             { text: "Kill it", to: "genocide_chicken_kill" },
             { text: "Act like a chicken", to: "genocide_chicken_act" },
         ]
+    },
+    genocide_chicken_kill_fail: {
+        prompt: <div>
+            A angry swarm of chickens fly at you, turns out, this wasn't a ordinary chicken, it was a cucco, better watch out next time.
+        </div>,
+        ending: {
+            id: "genocide-chicken-fail",
+            name: "Chicken Swarm Ending",
+            description: "Die from a swarm of chicken."
+        }
     }
     
 });
