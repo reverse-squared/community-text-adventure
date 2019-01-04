@@ -21,9 +21,7 @@ const decreaseSkydiveTurn = () => {
 addScenes({
     skydive_pre: {
         prompt: () => <div>
-            <SkydiveHeader />
-            <p>
-                Skydiving is nice. Right out of the hospital, you board the plane and climb to 12,500 feet. The guy opens
+            <p>Skydiving is nice. Right out of the hospital, you board the plane and climb to 12,500 feet. The guy opens
                 the door and tells you to jump. You jump and he tells you to open your parachute when you think it right.
             </p>
         </div>,
@@ -60,6 +58,7 @@ addScenes({
         options: [
             { text: "Try the paracute again.", to: "skydive_parachute_try_again" },
             { text: "Try the backup paracute.", to: "skydive_backup_parachute" },
+            { text: "Use your phone to post to Snapchat that you're about to die.", to: "skydive_snapchat" },
         ],
         action: () => {
             decreaseSkydiveTurn();
@@ -73,7 +72,9 @@ addScenes({
             <p>Nothing. What now?</p>
         </div>,
         options: [
+            { text: "Try the paracute again.", to: "skydive_parachute_try_again" },
             { text: "Try the backup paracute again.", to: "skydive_backup_parachute" },
+            { text: "Use your phone to post to Snapchat that you're about to die.", to: "skydive_snapchat" },
         ],
         action: () => {
             decreaseSkydiveTurn();
@@ -88,6 +89,7 @@ addScenes({
         </div>,
         options: [
             { text: "Take another snap.", to: "skydive_snapchat_2" },
+            { text: "Wait until your death.", to: "skydive_wait" }
         ],
         action: () => {
             decreaseSkydiveTurn();
@@ -122,6 +124,29 @@ addScenes({
         options: [
             { text: "Take another snap.", to: "skydive_snapchat_ending" },
         ],
+        contributor: "Hunter"
+    },
+
+    skydive_wait: {
+        prompt: () => <div>
+            <p>You took that <i>beautiful</i> Snap of yours, and all fo your six friends saw it. Surely one of them will do something.</p>
+        </div>,
+        options: [
+            { text: "Wait more.", to: "skydive_wait_2" },
+            { text: "Take another snap.", to: "skydive_snapchat_2" },
+        ],
+        contributor: "Hunter"
+    },
+
+    skydive_wait_2: {
+        prompt: () => <div>
+            <p>Suddenly, one of your friends you knew last night at the party is at your side. He grabs you and pulls his parachute just in time.</p>
+        </div>,
+        ending: {
+            id: "best-friends",
+            name: "Best Friends Forever",
+            description: "A good friend knows all your best stories, but a best friend has lived them with you."
+        },
         contributor: "Hunter"
     },
 
