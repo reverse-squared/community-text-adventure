@@ -20,6 +20,10 @@ function formatDate(date) {
     return `${year}-${month}-${day} at ${hour}:${minute}${ampm}`;
 }
 
+window.$hideDebug = $hideDebug;
+window.$version = $version;
+window.$buildtime = $buildtime;
+
 addScenes({
     // Introduction Paragraph
     start: {
@@ -32,7 +36,7 @@ addScenes({
                     made by different people, collaborating to create a full game.
                 </p>
                 {
-                    (!(typeof $hideDebug !== "undefined" && $hideDebug))
+                    (!$hideDebug)
                         ? <div style={{color: "#AAA"}}>
                             <p>
                                 This is the development version of CTA, so it will be updated more frequently,

@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "git-branch": "^2.0.1",
     "react-hot-loader": "^4.6.3",
     "web-text-adventure": "^1.4.1"
   },
