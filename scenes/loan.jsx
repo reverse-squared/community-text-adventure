@@ -19,7 +19,7 @@ addFlag("loan_bitcoin", 0);
 addFlag("loan_walletcash", 50);
 addFlag("loan_initial_deposit", 0);
 
-// amount of bitcoin you get per one cash
+// amount of Bitcoin you get per one cash
 const BTC_EXCHANGES = [
     5, // loanTurns===30
     5, // loanTurns===29 (initial deposit)
@@ -112,7 +112,7 @@ addScenes({
         </div>,
         options: [
             { text: "Pay your bills", to: "loan_paybills" },
-            { text: "Invest in some BitCoin", to: "loan_bitcoin" },
+            { text: "Invest in some Bitcoin", to: "loan_bitcoin" },
             { text: "Go back to the hospital", to: "" },
         ],
         action: decreaseTurn,
@@ -122,7 +122,7 @@ addScenes({
         prompt: () => <div>
             <LoanHeader />
             <p>
-                You go to your local <span style={{ color: "orange" }}>BitCoin Store</span>, you are going to be able to spend up to $50 of your cash on bitcoin. How much should you start off doing.
+                You go to your local <span style={{ color: "orange" }}>Bitcoin Store</span>, you are going to be able to spend up to $50 of your cash on Bitcoin. How much should you start off doing.
             </p>
         </div>,
         options: [
@@ -179,33 +179,29 @@ addScenes({
             { text: "Trade BTC --> $$", to: "loan_bitcoin_withdraw"},
             { text: "Wait", to: "loan_bitcoin_main"},
             "seperator",
-            { text: "Pay Loan (-$4313)", disabledText: true, to: "loan_bitcoin_payloan", if:()=>false,}
+            { text: "Pay Loan (-$4313)", disabledText: true, to: "loan_bitcoin_payloan", if:()=>false }
         ],
         action: decreaseTurn,
         contributor: "Dave"
     },
     loan_bitcoin_lose: {
         prompt: () => <div>
-            <p>
-                You lost all your money due to Bitcoin, and fell even farther into debt. First time huh?
-            </p>
+            <p>You lost all your money due to Bitcoin, and fell even farther into debt. First time huh?</p>
         </div>,
         ending: {
             id: "btc-lose",
             name: "Failed Investment",
-            description: "Fail to get rich off of BitCoin, and fail to pay your loan."
+            description: "Fail to get rich off of Bitcoin, and fail to pay your loan."
         }
     },
     loan_bitcoin_win: {
         prompt: () => <div>
-            <p>
-                Look at all the money you got! You can now afford to pay off your loan and live your dream life.
-            </p>
+            <p>Look at all the money you got! You can now afford to pay off your loan and live your dream life.</p>
         </div>,
         ending: {
             id: "btc-win",
             name: "Bitcoin Millionaire",
-            description: "Pay off your loan by getting rich off of BitCoin."
+            description: "Pay off your loan by getting rich off of Bitcoin."
         }
     },
 
