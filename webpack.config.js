@@ -1,5 +1,6 @@
 const path = require("path");
 const webpack = require("webpack");
+const packageJson = require("./package.json");
 const branch = require("git-branch").sync();
 
 module.exports = (env = {production: false}, argv) => ({
@@ -15,7 +16,9 @@ module.exports = (env = {production: false}, argv) => ({
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
         new webpack.DefinePlugin({
-            $hideDebug: env.production && (branch === "master")
+            $hideDebug: JSON.stringify(env.production && (branch === "master")),
+            $version: JSON.stringify(packageJson.version),
+            $buildtime: JSON.stringify(Date.now()),
         })
     ],
     module: {

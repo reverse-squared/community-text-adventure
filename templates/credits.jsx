@@ -9,7 +9,7 @@ const contributors = [
     ["Colyderp"],
     // People below this still need to say exactly how they want credit.
     ["Adr"],
-    ["Alchemyking",             ""],
+    ["Alchemyking"],
     // ["", ""],
 ];
 
