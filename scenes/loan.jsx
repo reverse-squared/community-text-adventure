@@ -95,7 +95,7 @@ const decreaseTurn = () => {
 
 addScenes({
     loan_start: {
-        prompt: <div>
+        prompt: () => <div>
             You somehow got a loan of $4313, and now have to pay it off within 30 turns. Now this is going to be tricky!
         </div>,
         options: [
@@ -113,7 +113,7 @@ addScenes({
         options: [
             { text: "Pay your bills", to: "loan_paybills" },
             { text: "Invest in some Bitcoin", to: "loan_bitcoin" },
-            { text: "Go back to the hospital", to: "" },
+            { text: "Go back to the hospital", to: "loan_back_to_hospital" },
         ],
         action: decreaseTurn,
         contributor: "Dave and Hunter"
@@ -475,7 +475,7 @@ addScenes({
         contributor: null,
     },
     loan_debt_house_ending: {
-        prompt: <div>
+        prompt: () => <div>
             <p>
                 Time's Up!
             </p>
@@ -493,7 +493,7 @@ addScenes({
         contributor: "Dave"
     },
     loan_paybills_smashwindow: {
-        prompt: <div>
+        prompt: () => <div>
             <p>
                 Despite being <strong style={{ color: "red" }}>{formatMoney(-loanMoney)}</strong> into debt, you smashed your neighbour's windows,
                 and now they are suing you for the cost of repairs. Turns out they spent over ten million dollars on their windows, so you are definitely
@@ -518,6 +518,18 @@ addScenes({
             name: "Smash Windows",
             description: "Smash your neighbour's $10,000,000 window",
         }
+    },
+    loan_back_to_hospital: {
+        prompt: () => <div>
+            <p>You walk back into the hospital with the possibility that someone will pay off your loan for you. Who do you ask first.</p>
+        </div>,
+        options: [
+            { text: "The lawyer talking to the receptionist.", to: "" },
+            { text: "The old man in room 842.", to: "" },
+            { text: "The teenager who broke her leg in 629.", to: "" },
+            { text: "Je🅱us in room ∞.", to: "" },
+        ],
+        contributor: "Hunter"
     }
 });
 

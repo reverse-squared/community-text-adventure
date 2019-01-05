@@ -41,7 +41,7 @@ addScenes({
         ]
     },
     credits: {
-        prompt: <div>
+        prompt: () => <div>
             <SceneLink to="start">Back</SceneLink>
             <Credits />
         </div>,
@@ -68,7 +68,7 @@ addScenes({
         options: []
     },
     reset: {
-        prompt: <div>
+        prompt: () => <div>
             Are you sure you want to reset all game progress?
         </div>,
         options: [

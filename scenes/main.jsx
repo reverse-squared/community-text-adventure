@@ -40,7 +40,7 @@ addScenes({
 
     // Spider
     touch_spider: {
-        prompt: <div>
+        prompt: () => <div>
             You touch the spider, it's surprisingly soft, <strong>what do you do?</strong>
         </div>,
         options: [
@@ -65,7 +65,7 @@ addScenes({
     },
 
     smash_spider: {
-        prompt: <div>
+        prompt: () => <div>
             <p>
                 You smashed the Spider, you monster.
             </p>
@@ -80,7 +80,7 @@ addScenes({
     },
 
     touch_human: {
-        prompt: <div>
+        prompt: () => <div>
             <p>
                 You touch the human. You ask them...
             </p>
@@ -94,7 +94,7 @@ addScenes({
     },
     
     touch_lizard: {
-        prompt: <div>
+        prompt: () => <div>
             <p>
                 You reach for the lizard but it bites you right in the arm. You need to...
             </p>
@@ -158,7 +158,7 @@ addScenes({
         contributor: "Dave"
     },
     sleep_ending: {
-        prompt: <div>
+        prompt: () => <div>
             You slept for so long that you were killed by a tornado. Not even the loud tornado sirens, or the tornado itself could wake you up before it killed you.
         </div>,
         ending: {

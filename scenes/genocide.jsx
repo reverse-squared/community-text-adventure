@@ -23,7 +23,7 @@ addScenes({
         contributor: "Hunter and Colyderp"
     },
     genocide_chicken: {
-        prompt: <div>
+        prompt: () => <div>
             You touch the chicken, it seems startled for a second. <strong>What do you do?</strong>
         </div>,
         options: [
@@ -34,7 +34,7 @@ addScenes({
         ]
     },
     genocide_chicken_distract: {
-        prompt: <div>
+        prompt: () => <div>
             You use the spider corpse to distract the chicken.
         </div>,
         options: [
@@ -43,7 +43,7 @@ addScenes({
         ]
     },
     genocide_chicken_kill_fail: {
-        prompt: <div>
+        prompt: () => <div>
             A angry swarm of chickens fly at you, turns out, this wasn't a ordinary chicken, it was a cucco, better watch out next time.
         </div>,
         ending: {
