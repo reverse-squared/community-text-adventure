@@ -139,19 +139,26 @@ addScenes({
         options: [
             { text: "Wait more.", to: "skydive_wait", action: () => {
                 if (skydiveTurns <= 1) {
-                    setScene("skydive_wait_2");
+                    setTimeout(() => {
+                        setScene("skydive_wait_2");
+                    }, 10);
                 }
             }},
             { text: "Take another snap.", to: "skydive_snapchat_2" },
         ],
-        action: decreaseSkydiveTurn,
+        action: () => {
+            skydiveTurns++;
+            decreaseSkydiveTurn();
+            skydiveTurns--;
+        },
         contributor: "Hunter"
     },
 
     skydive_wait_2: {
         prompt: () => <div>
-            <SkydiveHeader />
-            <p>Suddenly, one of your friends you knew last night at the party is at your side. He grabs you and pulls his parachute just in time.</p>
+            <p>
+                Suddenly, one of your friends you knew last night at the party is at your side. He grabs you and pulls his parachute just in time. You are now saved.
+            </p>
         </div>,
         ending: {
             id: "best-friends",

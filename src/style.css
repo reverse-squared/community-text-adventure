@@ -81,7 +81,8 @@ a:not(:hover) {
 }
 .ending-square-title {
     font-weight: bold;
-    font-size: 25px;
+	font-size: 25px;
+	text-align: center;
 }
 .ending-square-desc {
     margin-top: 10px;
@@ -108,7 +109,7 @@ a:not(:hover) {
 	color: aquamarine;
 }
 .ending-header.flash {
-	animation: ending-header-blink 0.8s linear 0s infinite;
+	animation: ending-header-blink 0.65s linear 0s infinite;
 }
 
 #root {
