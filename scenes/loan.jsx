@@ -184,11 +184,10 @@ addScenes({
         action: decreaseTurn,
         contributor: "Dave"
     },
-    // !!! TODO: Write Path.
     loan_bitcoin_lose: {
         prompt: () => <div>
             <p>
-                btc path lose PLACEHOLDER text.
+                You lost all your money due to Bitcoin, and fell even farther into debt. First time huh?
             </p>
         </div>,
         ending: {
@@ -197,11 +196,10 @@ addScenes({
             description: "Fail to get rich off of BitCoin, and fail to pay your loan."
         }
     },
-    // !!! TODO: Write Path.
     loan_bitcoin_win: {
         prompt: () => <div>
             <p>
-                btc path win PLACEHOLDER text.
+                Look at all the money you got! You can now afford to pay off your loan and live your dream life.
             </p>
         </div>,
         ending: {
