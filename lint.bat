@@ -1,1 +1,1 @@
-@eslint ./src/*.jsx ./scenes/*.jsx ./src/*.js ./scenes/*.js ./*.jsx ./*.js ./templates/*.jsx ./templates/*.js %*
+@eslint "." --ext .js,.jsx --ignore-path .eslintignore %*
