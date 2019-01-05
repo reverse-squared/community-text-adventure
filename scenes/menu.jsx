@@ -5,6 +5,21 @@ import SceneLink from "../templates/SceneLink.jsx";
 import EndingCard from "../templates/EndingCard.jsx";
 import { resetGame } from "../src/ending.jsx";
 
+function formatDate(date) {
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, "0");
+    const day = (date.getDate()).toString().padStart(2, "0");
+
+    var hour = date.getHours();
+    var minute = date.getMinutes();
+    var ampm = hour >= 12 ? "pm" : "am";
+    hour = hour % 12;
+    hour = hour ? hour : 12; // the hour '0' should be '12'
+    minute = minute < 10 ? "0" + minute : minute;
+
+    return `${year}-${month}-${day} at ${hour}:${minute}${ampm}`;
+}
+
 addScenes({
     // Introduction Paragraph
     start: {
@@ -16,6 +31,19 @@ addScenes({
                     Welcome to the Community Text Adventure. All paths and options are
                     made by different people, collaborating to create a full game.
                 </p>
+                {
+                    (!(typeof $hideDebug !== "undefined" && $hideDebug))
+                        ? <div style={{color: "#AAA"}}>
+                            <p>
+                                This is the development version of CTA, so it will be updated more frequently,
+                                but also may contain bugs.
+                            </p>
+                            <p>
+                                Version {$version}, last built on {formatDate(new Date($buildtime))}.
+                            </p>
+                        </div>
+                        : null
+                }
                 {
                     progress.percentage > 0
                         ?<div>
@@ -63,6 +91,11 @@ addScenes({
                         return <EndingCard ending={ending} />;
                     })
                 }
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
             </div>;
         },
         options: []
@@ -78,6 +111,7 @@ addScenes({
         ]
     },
 
+    // used for 
     BLANKSCENE: {
         prompt: "<blank>",
         options:[],
