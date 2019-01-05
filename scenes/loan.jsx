@@ -527,8 +527,38 @@ addScenes({
             { text: "The lawyer talking to the receptionist.", to: "" },
             { text: "The old man in room 842.", to: "" },
             { text: "The teenager who broke her leg in 629.", to: "" },
-            { text: "Je🅱us in room ∞.", to: "" },
+            { text: "Je🅱us in room ∞.", to: "loan_jebus" },
         ],
+        contributor: "Hunter"
+    },
+    loan_jebus: {
+        prompt: () => <div>
+            <p>You enter the elevator to go to the highly talked about Je🅱us. All your friends say that he helped them, so he must help you.</p>
+            <p>You arrive in Je🅱us' office and he offers you to pay your loan. He gives you the 
+                <RainbowCircleText string="All Holy, Brand New 2019, One of a Kind, Premium, Limited Edition, Never Seen Before, Deluxe Pro Plus... 🅱" />
+            </p>
+            <p>Maybe you can get some money for it.</p>
+            <p className="inventory-update">
+                + Added 🅱 to Inventory.
+            </p>
+        </div>,
+        options: [
+            { text: "Continue", to: "loan_jebus_2" }
+        ],
+        contributor: "Hunter and Dave"
+    },
+    loan_jebus_2: {
+        prompt: () => <div>
+            <p>You went to your local jewler, and he said you can get $25839479875398 for it. You agree and he gives you the money as long as you keep
+                this transaction a secret.
+            </p>
+            <p>You had enough money to pay off your loan and live your dream life.</p>
+        </div>,
+        ending: {
+            id: "jebus",
+            name: "🅱",
+            description: "🅱"
+        },
         contributor: "Hunter"
     }
 });
