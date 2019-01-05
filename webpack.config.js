@@ -1,5 +1,6 @@
 const path = require("path");
 const webpack = require("webpack");
+const branch = require("git-branch").sync();
 
 module.exports = (env = {production: false}, argv) => ({
     entry: "./src/loader.jsx",
@@ -14,7 +15,7 @@ module.exports = (env = {production: false}, argv) => ({
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
         new webpack.DefinePlugin({
-            $hideDebug: env.production
+            $hideDebug: env.production && (branch === "master")
         })
     ],
     module: {

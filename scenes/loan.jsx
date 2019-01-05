@@ -589,7 +589,7 @@ addScenes({
     },
     loan_jebus_2: {
         prompt: () => <div>
-            <p>You went to your local jewler, and he said you can get $25839479875398 for it. You agree and he gives you the money as long as you keep
+            <p>You went to your local jewler, and he said you can get $258,394,798,753,983 for it. You agree and he gives you the money as long as you keep
                 this transaction a secret.
             </p>
             <p>You had enough money to pay off your loan and live your dream life.</p>
@@ -597,7 +597,7 @@ addScenes({
         ending: {
             id: "jebus",
             name: "🅱",
-            description: "🅱"
+            description: <div style={{ textAlign: "center" }}>🅱</div>
         },
         contributor: "Hunter"
     }
