@@ -561,7 +561,7 @@ addScenes({
     },
     loan_teen: {
         prompt: () => <div>
-            <p>"dONt TAlK tO mE UnTIl I HaD MY CoFFeE," she says.</p>
+            <p>"dONt TAlK tO mE UnTIl I HaD MY CoFFeE," she says. You leave the room pretending you heard and saw nothing.</p>
         </div>,
         options: [
             { text: "The lawyer talking to the receptionist.", to: "loan_lawyer", disabledText: "The lawyer talking to the receptionist.", action: () => askedLawyer = true, if: () => !askedLawyer },
