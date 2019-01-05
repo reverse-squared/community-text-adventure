@@ -1,1 +1,1 @@
-@eslint "." --ext .js,.jsx --ignore-path .eslintignore %*
+@
