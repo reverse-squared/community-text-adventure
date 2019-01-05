@@ -1,7 +1,6 @@
 const path = require("path");
 const webpack = require("webpack");
 const packageJson = require("./package.json");
-const branch = require("git-branch").sync();
 
 module.exports = (env = {production: false}, argv) => ({
     entry: "./src/loader.jsx",
@@ -14,12 +13,12 @@ module.exports = (env = {production: false}, argv) => ({
         contentBase: path.join(__dirname, "src")
     },
     plugins: [
-        new webpack.HotModuleReplacementPlugin(),
+        ...(env.production ? [] : [new webpack.HotModuleReplacementPlugin()]),
         new webpack.DefinePlugin({
-            $hideDebug: JSON.stringify(env.production && (branch === "master")),
+            $hideDebug: JSON.stringify(env.production && !(process.env.SHOW_DEBUG_TOOLS !== "false" && process.env.SHOW_DEBUG_TOOLS !== undefined)),
             $version: JSON.stringify(packageJson.version),
             $buildtime: JSON.stringify(Date.now()),
-        })
+        }),
     ],
     module: {
         rules: [
