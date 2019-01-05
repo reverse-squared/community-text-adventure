@@ -24,33 +24,33 @@ const BTC_EXCHANGES = [
     5, // loanTurns===30
     5, // loanTurns===29 (initial deposit)
     5, // loanTurns===28
-    5, // loanTurns===27
-    4.995, // loanTurns===26
-    4.95, // loanTurns===25
-    4.57,
-    4.21,
-    3.22,
-    5.25,
-    4.21, // loanTurns===20
-    10.25,
-    8.52,
-    3.33,
-    1.95,
-    1.40,
-    0.3,
-    0.1,
-    0.01,
-    0.001,
-    0.0005, // loanTurns===10
-    0.00024,
-    0.0005,
-    0.0003,
-    0.05,
-    0.07,
-    0.005,
-    0.001,
+    4.99999, // loanTurns===27
+    4.9951, // loanTurns===26
+    4.9523, // loanTurns===25
+    4.571364,
+    4.216314,
+    3.221634,
+    5.256134,
+    4.21761, // loanTurns===20
+    10.25152,
+    8.521523,
+    3.3315253,
+    1.95152,
+    1.401532,
+    0.31521523,
+    0.112531253,
+    0.01152532,
+    0.001512532,
+    0.000521525, // loanTurns===10
+    0.000245123,
+    0.00055213,
+    0.0003643,
+    0.055231523,
+    0.075213,
+    0.0054123,
+    0.001852,
     0.0041,
-    0.0050,
+    0.00000000000000012, // :joy:
 ];
 
 function cashToBTC(cash) {
@@ -76,15 +76,18 @@ const decreaseTurn = () => {
     if(loanTurns <= 0) {
         if(loanMoney >= 0) {
             // Win
-
-            // figure out what path they took.
+            if (loan_initial_deposit > 0) {
+                // Bit Coin
+                setScene("loan_bitcoin_winner");
+            }
         } else {
             // Lose
             if(loanBills1[0]) {
                 // spend more money, go 500k in debt.
                 setScene("loan_debt_house_ending");
-            } else {
+            } else if (loan_initial_deposit>0) {
                 // figure out Bitcoin path and etc how they lost.
+                setScene("loan_bitcoin_lose");
             }
         }
     }
@@ -130,7 +133,8 @@ addScenes({
             { text: "$10", to: "loan_bitcoin_initial_dep", action: () => loan_initial_deposit = 10 },
             { text: "$5", to: "loan_bitcoin_initial_dep", action: () => loan_initial_deposit = 5 },
         ],
-        action: decreaseTurn
+        action: decreaseTurn,
+        contributor: "Dave"
     },
     loan_bitcoin_initial_dep: {
         prompt: () => <div>
@@ -139,29 +143,72 @@ addScenes({
             </p>
         </div>,
         options: [
-            {text: "Okay", to: ""}
+            { text: "Okay", to: "loan_bitcoin_main"}
         ],
         action: () => {
             // process and set some new variables
-            loan_bitcoin = 0;
-            loan_walletcash = 50 - loan_initial_deposit;
-
             decreaseTurn();
-        }
+
+            loan_bitcoin = cashToBTC(loan_initial_deposit);
+            loan_walletcash = 50 - loan_initial_deposit;
+        },
+        contributor: "Dave"
     },
     loan_bitcoin_main: {
         prompt: () => <div>
-            <p className={"loan-header " + (loanTurns < 10 ? "loan-header-low" : "")}>
-                You need to pay off a loan of $4313. You have <strong>{loanTurns}</strong> turns left to pay it off.
+            <p className={"loan-header " + (loanTurns < 10 ? "loan-header-low" : "")} style={{marginBottom: "10px"}}>
+                You need to pay off a loan of <strong>$4313</strong>. You have <strong>{loanTurns}</strong> turns left to pay it off.
             </p>
             <div className="bitcoin-status">
-                <p>You have {formatMoney(loan_walletcash)} cash, and {loan_bitcoin} BTC </p>
+                <p>You have <strong>{formatMoney(loan_walletcash)}</strong> cash, and <strong>{loan_bitcoin}</strong> BTC </p>
             </div>
+            <div className="bitcoin-exchange" style={{ marginTop: "0" }}>
+                <h3 style={{marginTop: "0"}}>BTC Exchange Rate</h3>
+                <p>
+                    <strong>$1</strong> --> <strong>{cashToBTC(1)} BTC</strong><br/>
+                    <strong>1 BTC</strong> --> <strong>{formatMoney(btcToCash(1))}</strong><br/>
+                </p>
+            </div>
+            
+            <p>
+                What do you do now?
+            </p>
         </div>,
         options: [
-
+            { text: "Trade $$ --> BTC", to: "loan_bitcoin_deposit"},
+            { text: "Trade BTC --> $$", to: "loan_bitcoin_withdraw"},
+            { text: "Wait", to: "loan_bitcoin_main"},
+            "seperator",
+            { text: "Pay Loan (-$4313)", disabledText: true, to: "loan_bitcoin_payloan", if:()=>false,}
         ],
-        action: decreaseTurn
+        action: decreaseTurn,
+        contributor: "Dave"
+    },
+    // !!! TODO: Write Path.
+    loan_bitcoin_lose: {
+        prompt: () => <div>
+            <p>
+                btc path lose PLACEHOLDER text.
+            </p>
+        </div>,
+        ending: {
+            id: "btc-lose",
+            name: "Failed Investment",
+            description: "Fail to get rich off of BitCoin, and fail to pay your loan."
+        }
+    },
+    // !!! TODO: Write Path.
+    loan_bitcoin_win: {
+        prompt: () => <div>
+            <p>
+                btc path win PLACEHOLDER text.
+            </p>
+        </div>,
+        ending: {
+            id: "btc-win",
+            name: "Bitcoin Millionaire",
+            description: "Pay off your loan by getting rich off of BitCoin."
+        }
     },
 
     loan_paybills: {
