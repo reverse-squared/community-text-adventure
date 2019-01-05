@@ -30,21 +30,39 @@ addScenes({
         </div>,
         options: [
             { text: "Open the parachute...", to: "skydive_no_parachute_start" },
-        ]
+        ],
+        action: decreaseSkydiveTurn,
+        contributor: "Dave",
     },
     skydive_no_parachute_start: {
-        prompt: () => <div>
+        prompt: <div>
+            <SkydiveHeader />
             <p>You try to use your parachute, but you don't actually have one.</p>
         </div>,
         options: [
-            { text: "Try again to use your parachute.", to: "skydive_no_parachute_start" },
+            { text: "Try again to use your nonexistant parachute", to: "skydive_no_parachute_start1" },
             { text: "Use your phone to post to Snapchat that you're about to die", to: "skydive_snapchat" },
 
-        ]
+        ],
+        action: decreaseSkydiveTurn,
+        contributor: "Dave",
+    },
+    skydive_no_parachute_start1: {
+        prompt: <div>
+            <SkydiveHeader />
+            <p>You still have no parachute, that does nothing.</p>
+        </div>,
+        options: [
+            { text: "Try again to use your nonexistant parachute", to: "skydive_no_parachute_start" },
+            { text: "Use your phone to post to Snapchat that you're about to die", to: "skydive_snapchat" },
+        ],
+        action: decreaseSkydiveTurn,
+        contributor: "Dave",
     },
 
     skydive_pre: {
         prompt: () => <div>
+            <SkydiveHeader />
             <p>Skydiving is nice. Right out of the hospital, you board the plane and climb to 12,500 feet. The guy opens
                 the door and tells you to jump. You jump and he tells you to open your parachute when you think it right.
             </p>
