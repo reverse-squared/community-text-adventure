@@ -15,6 +15,51 @@ addFlag("loanWindows", false);
 addFlag("loanWindowsSoldOut", false);
 addFlag("loan_visitedStore", false);
 
+addFlag("loan_bitcoin", 0);
+addFlag("loan_walletcash", 50);
+addFlag("loan_initial_deposit", 0);
+
+// amount of bitcoin you get per one cash
+const BTC_EXCHANGES = [
+    5, // loanTurns===30
+    5, // loanTurns===29 (initial deposit)
+    5, // loanTurns===28
+    5, // loanTurns===27
+    4.995, // loanTurns===26
+    4.95, // loanTurns===25
+    4.57,
+    4.21,
+    3.22,
+    5.25,
+    4.21, // loanTurns===20
+    10.25,
+    8.52,
+    3.33,
+    1.95,
+    1.40,
+    0.3,
+    0.1,
+    0.01,
+    0.001,
+    0.0005, // loanTurns===10
+    0.00024,
+    0.0005,
+    0.0003,
+    0.05,
+    0.07,
+    0.005,
+    0.001,
+    0.0041,
+    0.0050,
+];
+
+function cashToBTC(cash) {
+    return cash * BTC_EXCHANGES[30 - loanTurns];
+}
+function btcToCash(btc) {
+    return btc / BTC_EXCHANGES[30 - loanTurns];
+}
+
 const formatMoney = (num) => {
     if(num < 0) return "-$" + (-num);
     return "$" + num;
@@ -70,6 +115,55 @@ addScenes({
         action: decreaseTurn,
         contributor: "Dave and Hunter"
     },
+    loan_bitcoin: {
+        prompt: () => <div>
+            <LoanHeader />
+            <p>
+                You go to your local <span style={{ color: "orange" }}>BitCoin Store</span>, you are going to be able to spend up to $50 of your cash on bitcoin. How much should you start off doing.
+            </p>
+        </div>,
+        options: [
+            { text: "$50", to: "loan_bitcoin_initial_dep", action: () => loan_initial_deposit = 50 },
+            { text: "$40", to: "loan_bitcoin_initial_dep", action: () => loan_initial_deposit = 40 },
+            { text: "$30", to: "loan_bitcoin_initial_dep", action: () => loan_initial_deposit = 30 },
+            { text: "$20", to: "loan_bitcoin_initial_dep", action: () => loan_initial_deposit = 20 },
+            { text: "$10", to: "loan_bitcoin_initial_dep", action: () => loan_initial_deposit = 10 },
+            { text: "$5", to: "loan_bitcoin_initial_dep", action: () => loan_initial_deposit = 5 },
+        ],
+        action: decreaseTurn
+    },
+    loan_bitcoin_initial_dep: {
+        prompt: () => <div>
+            <p>
+                You trade ${loan_initial_deposit} for {cashToBTC(loan_initial_deposit)} BTC as an initial deposit.
+            </p>
+        </div>,
+        options: [
+            {text: "Okay", to: ""}
+        ],
+        action: () => {
+            // process and set some new variables
+            loan_bitcoin = 0;
+            loan_walletcash = 50 - loan_initial_deposit;
+
+            decreaseTurn();
+        }
+    },
+    loan_bitcoin_main: {
+        prompt: () => <div>
+            <p className={"loan-header " + (loanTurns < 10 ? "loan-header-low" : "")}>
+                You need to pay off a loan of $4313. You have <strong>{loanTurns}</strong> turns left to pay it off.
+            </p>
+            <div className="bitcoin-status">
+                <p>You have {formatMoney(loan_walletcash)} cash, and {loan_bitcoin} BTC </p>
+            </div>
+        </div>,
+        options: [
+
+        ],
+        action: decreaseTurn
+    },
+
     loan_paybills: {
         prompt: () => <div>
             <LoanHeader />
