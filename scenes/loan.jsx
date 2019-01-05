@@ -15,6 +15,55 @@ addFlag("loanWindows", false);
 addFlag("loanWindowsSoldOut", false);
 addFlag("loan_visitedStore", false);
 
+addFlag("loan_bitcoin", 0);
+addFlag("loan_walletcash", 50);
+addFlag("loan_initial_deposit", 0);
+
+addFlag("askedOldMan", false);
+addFlag("askedLawyer", false);
+addFlag("askedTeen", false);
+
+// amount of Bitcoin you get per one cash
+const BTC_EXCHANGES = [
+    5, // loanTurns===30
+    5, // loanTurns===29 (initial deposit)
+    5, // loanTurns===28
+    4.99999, // loanTurns===27
+    4.9951, // loanTurns===26
+    4.9523, // loanTurns===25
+    4.571364,
+    4.216314,
+    3.221634,
+    5.256134,
+    4.21761, // loanTurns===20
+    10.25152,
+    8.521523,
+    3.3315253,
+    1.95152,
+    1.401532,
+    0.31521523,
+    0.112531253,
+    0.01152532,
+    0.001512532,
+    0.000521525, // loanTurns===10
+    0.000245123,
+    0.00055213,
+    0.0003643,
+    0.055231523,
+    0.075213,
+    0.0054123,
+    0.001852,
+    0.0041,
+    0.00000000000000012, // :joy:
+];
+
+function cashToBTC(cash) {
+    return cash * BTC_EXCHANGES[30 - loanTurns];
+}
+function btcToCash(btc) {
+    return btc / BTC_EXCHANGES[30 - loanTurns];
+}
+
 const formatMoney = (num) => {
     if(num < 0) return "-$" + (-num);
     return "$" + num;
@@ -31,15 +80,18 @@ const decreaseTurn = () => {
     if(loanTurns <= 0) {
         if(loanMoney >= 0) {
             // Win
-
-            // figure out what path they took.
+            if (loan_initial_deposit > 0) {
+                // Bit Coin
+                setScene("loan_bitcoin_winner");
+            }
         } else {
             // Lose
             if(loanBills1[0]) {
                 // spend more money, go 500k in debt.
                 setScene("loan_debt_house_ending");
-            } else {
+            } else if (loan_initial_deposit>0) {
                 // figure out Bitcoin path and etc how they lost.
+                setScene("loan_bitcoin_lose");
             }
         }
     }
@@ -47,7 +99,7 @@ const decreaseTurn = () => {
 
 addScenes({
     loan_start: {
-        prompt: <div>
+        prompt: () => <div>
             You somehow got a loan of $4313, and now have to pay it off within 30 turns. Now this is going to be tricky!
         </div>,
         options: [
@@ -64,12 +116,99 @@ addScenes({
         </div>,
         options: [
             { text: "Pay your bills", to: "loan_paybills" },
-            { text: "Invest in some BitCoin", to: "loan_bitcoin" },
-            { text: "Go back to the hospital", to: "" },
+            { text: "Invest in some Bitcoin", to: "loan_bitcoin" },
+            { text: "Go back to the hospital", to: "loan_back_to_hospital" },
         ],
         action: decreaseTurn,
         contributor: "Dave and Hunter"
     },
+    loan_bitcoin: {
+        prompt: () => <div>
+            <LoanHeader />
+            <p>
+                You go to your local <span style={{ color: "orange" }}>Bitcoin Store</span>, you are going to be able to spend up to $50 of your cash on Bitcoin. How much should you start off doing.
+            </p>
+        </div>,
+        options: [
+            { text: "$50", to: "loan_bitcoin_initial_dep", action: () => loan_initial_deposit = 50 },
+            { text: "$40", to: "loan_bitcoin_initial_dep", action: () => loan_initial_deposit = 40 },
+            { text: "$30", to: "loan_bitcoin_initial_dep", action: () => loan_initial_deposit = 30 },
+            { text: "$20", to: "loan_bitcoin_initial_dep", action: () => loan_initial_deposit = 20 },
+            { text: "$10", to: "loan_bitcoin_initial_dep", action: () => loan_initial_deposit = 10 },
+            { text: "$5", to: "loan_bitcoin_initial_dep", action: () => loan_initial_deposit = 5 },
+        ],
+        action: decreaseTurn,
+        contributor: "Dave"
+    },
+    loan_bitcoin_initial_dep: {
+        prompt: () => <div>
+            <p>
+                You trade ${loan_initial_deposit} for {cashToBTC(loan_initial_deposit)} BTC as an initial deposit.
+            </p>
+        </div>,
+        options: [
+            { text: "Okay", to: "loan_bitcoin_main"}
+        ],
+        action: () => {
+            // process and set some new variables
+            decreaseTurn();
+
+            loan_bitcoin = cashToBTC(loan_initial_deposit);
+            loan_walletcash = 50 - loan_initial_deposit;
+        },
+        contributor: "Dave"
+    },
+    loan_bitcoin_main: {
+        prompt: () => <div>
+            <p className={"loan-header " + (loanTurns < 10 ? "loan-header-low" : "")} style={{marginBottom: "10px"}}>
+                You need to pay off a loan of <strong>$4313</strong>. You have <strong>{loanTurns}</strong> turns left to pay it off.
+            </p>
+            <div className="bitcoin-status">
+                <p>You have <strong>{formatMoney(loan_walletcash)}</strong> cash, and <strong>{loan_bitcoin}</strong> BTC </p>
+            </div>
+            <div className="bitcoin-exchange" style={{ marginTop: "0" }}>
+                <h3 style={{marginTop: "0"}}>BTC Exchange Rate</h3>
+                <p>
+                    <strong>$1</strong> --> <strong>{cashToBTC(1)} BTC</strong><br/>
+                    <strong>1 BTC</strong> --> <strong>{formatMoney(btcToCash(1))}</strong><br/>
+                </p>
+            </div>
+            
+            <p>
+                What do you do now?
+            </p>
+        </div>,
+        options: [
+            { text: "Trade $$ --> BTC", to: "loan_bitcoin_deposit"},
+            { text: "Trade BTC --> $$", to: "loan_bitcoin_withdraw"},
+            { text: "Wait", to: "loan_bitcoin_main"},
+            "seperator",
+            { text: "Pay Loan (-$4313)", disabledText: true, to: "loan_bitcoin_payloan", if:()=>false }
+        ],
+        action: decreaseTurn,
+        contributor: "Dave"
+    },
+    loan_bitcoin_lose: {
+        prompt: () => <div>
+            <p>You lost all your money due to Bitcoin, and fell even farther into debt. First time huh?</p>
+        </div>,
+        ending: {
+            id: "btc-lose",
+            name: "Failed Investment",
+            description: "Fail to get rich off of Bitcoin, and fail to pay your loan."
+        }
+    },
+    loan_bitcoin_win: {
+        prompt: () => <div>
+            <p>Look at all the money you got! You can now afford to pay off your loan and live your dream life.</p>
+        </div>,
+        ending: {
+            id: "btc-win",
+            name: "Bitcoin Millionaire",
+            description: "Pay off your loan by getting rich off of Bitcoin."
+        }
+    },
+
     loan_paybills: {
         prompt: () => <div>
             <LoanHeader />
@@ -340,7 +479,7 @@ addScenes({
         contributor: null,
     },
     loan_debt_house_ending: {
-        prompt: <div>
+        prompt: () => <div>
             <p>
                 Time's Up!
             </p>
@@ -358,7 +497,7 @@ addScenes({
         contributor: "Dave"
     },
     loan_paybills_smashwindow: {
-        prompt: <div>
+        prompt: () => <div>
             <p>
                 Despite being <strong style={{ color: "red" }}>{formatMoney(-loanMoney)}</strong> into debt, you smashed your neighbour's windows,
                 and now they are suing you for the cost of repairs. Turns out they spent over ten million dollars on their windows, so you are definitely
@@ -383,6 +522,84 @@ addScenes({
             name: "Smash Windows",
             description: "Smash your neighbour's $10,000,000 window",
         }
+    },
+    loan_back_to_hospital: {
+        prompt: () => <div>
+            <p>You walk back into the hospital with the possibility that someone will pay off your loan for you. Who do you ask first.</p>
+        </div>,
+        options: [
+            { text: "The lawyer talking to the receptionist.", to: "loan_lawyer", disabledText: "The lawyer talking to the receptionist.", action: () => askedLawyer = true, if: () => !askedLawyer },
+            { text: "The old man in room 842.", to: "loan_old_man", disabledText: "The old man in room 842.", action: () => askedOldMan = true, if: () => !askedOldMan },
+            { text: "The teenager who broke her leg in 629.", to: "loan_teen", disabledText: "The teenager who broke her leg in 629.", action: () => askedTeen = true, if: () => !askedTeen },
+            { text: "Je🅱us in room ∞.", to: "loan_jebus" },
+        ],
+        contributor: "Hunter"
+    },
+    loan_lawyer: {
+        prompt: () => <div>
+            <p>The lawyer kept talking totally disregarding you.</p>
+        </div>,
+        options: [
+            { text: "The lawyer talking to the receptionist.", to: "loan_lawyer", disabledText: "The lawyer talking to the receptionist.", action: () => askedLawyer = true, if: () => !askedLawyer },
+            { text: "The old man in room 842.", to: "loan_old_man", disabledText: "The old man in room 842.", action: () => askedOldMan = true, if: () => !askedOldMan },
+            { text: "The teenager who broke her leg in 629.", to: "loan_teen", disabledText: "The teenager who broke her leg in 629.", action: () => askedTeen = true, if: () => !askedTeen },
+            { text: "Je🅱us in room ∞.", to: "loan_jebus" },
+        ],
+        contributor: "Hunter"
+    },
+    loan_old_man: {
+        prompt: () => <div>
+            <p>The old man was sleeping so you left him alone.</p>
+        </div>,
+        options: [
+            { text: "The lawyer talking to the receptionist.", to: "loan_lawyer", disabledText: "The lawyer talking to the receptionist.", action: () => askedLawyer = true, if: () => !askedLawyer },
+            { text: "The old man in room 842.", to: "loan_old_man", disabledText: "The old man in room 842.", action: () => askedOldMan = true, if: () => !askedOldMan },
+            { text: "The teenager who broke her leg in 629.", to: "loan_teen", disabledText: "The teenager who broke her leg in 629.", action: () => askedTeen = true, if: () => !askedTeen },
+            { text: "Je🅱us in room ∞.", to: "loan_jebus" },
+        ],
+        contributor: "Hunter"
+    },
+    loan_teen: {
+        prompt: () => <div>
+            <p>"dONt TAlK tO mE UnTIl I HaD MY CoFFeE," she says.</p>
+        </div>,
+        options: [
+            { text: "The lawyer talking to the receptionist.", to: "loan_lawyer", disabledText: "The lawyer talking to the receptionist.", action: () => askedLawyer = true, if: () => !askedLawyer },
+            { text: "The old man in room 842.", to: "loan_old_man", disabledText: "The old man in room 842.", action: () => askedOldMan = true, if: () => !askedOldMan },
+            { text: "The teenager who broke her leg in 629.", to: "loan_teen", disabledText: "The teenager who broke her leg in 629.", action: () => askedTeen = true, if: () => !askedTeen },
+            { text: "Je🅱us in room ∞.", to: "loan_jebus" },
+        ],
+        contributor: "Hunter"
+    },
+    loan_jebus: {
+        prompt: () => <div>
+            <p>You enter the elevator to go to the highly talked about Je🅱us. All your friends say that he helped them, so he must help you.</p>
+            <p>You arrive in Je🅱us' office and he offers you to pay your loan. He gives you the 
+                <RainbowCircleText string="All Holy, Brand New 2019, One of a Kind, Premium, Limited Edition, Never Seen Before, Deluxe Pro Plus, All Natrual, Grass Fed, No GMO, Vegetarian, Feminist and Flat Earther Free, Version 2019.2a CC for Binbows 9... Dank B Emoji" />
+            </p>
+            <p>Maybe you can get some money for it.</p>
+            <p className="inventory-update">
+                + Added 🅱 to Inventory.
+            </p>
+        </div>,
+        options: [
+            { text: "Continue", to: "loan_jebus_2" }
+        ],
+        contributor: "Hunter and Dave"
+    },
+    loan_jebus_2: {
+        prompt: () => <div>
+            <p>You went to your local jewler, and he said you can get $258,394,798,753,983 for it. You agree and he gives you the money as long as you keep
+                this transaction a secret.
+            </p>
+            <p>You had enough money to pay off your loan and live your dream life.</p>
+        </div>,
+        ending: {
+            id: "jebus",
+            name: "🅱",
+            description: <div style={{ textAlign: "center" }}>🅱</div>
+        },
+        contributor: "Hunter"
     }
 });
 

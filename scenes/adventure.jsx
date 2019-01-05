@@ -36,7 +36,7 @@ addScenes({
     },
 
     spirit_airlines: {
-        prompt: <div>
+        prompt: () => <div>
             <p>
                 Now thats a mistake, you are already dead, just don't go on spirit. YOUR GAME HAS ENDED.
             </p>
@@ -67,7 +67,7 @@ addScenes({
     },
 
     adventure_africa_sleep: {
-        prompt: <div>
+        prompt: () => <div>
             <p>
                 You go to sleep, and realize that you slept so soundly that you never knew the plane crashed on a remote island. Then it burned and exploded due to the leak
                 of engine fuel. Thanks {airlineName}.
