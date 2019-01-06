@@ -1,7 +1,7 @@
 // This file handles the different paths from the loan of $4313 that you need to pay off
 import React from "react";
 import { addFlag, setScene } from "web-text-adventure";
-import { RainbowCircleText } from "../templates/font-styles.jsx";
+import { RainbowCircleText, RainbowText } from "../templates/font-styles.jsx";
 import { addScenes } from "../src/js/ending.jsx";
 
 addFlag("loanMoney", -4313);
@@ -18,6 +18,7 @@ addFlag("loan_visitedStore", false);
 addFlag("loan_bitcoin", 0);
 addFlag("loan_walletcash", 50);
 addFlag("loan_initial_deposit", 0);
+addFlag("loan_payloan", false);
 
 addFlag("askedOldMan", false);
 addFlag("askedLawyer", false);
@@ -54,7 +55,7 @@ const BTC_EXCHANGES = [
     0.0054123,
     0.001852,
     0.0041,
-    0.00000000000000012, // :joy:
+    0.000000000000000111111111111111115, // :joy:
 ];
 
 function cashToBTC(cash) {
@@ -65,8 +66,12 @@ function btcToCash(btc) {
 }
 
 const formatMoney = (num) => {
+    num = (Math.round(num * 100) / 100);
     if(num < 0) return "-$" + (-num);
     return "$" + num;
+};
+const formatBTC = (num) => {
+    return (Math.floor(num * 500) / 500) + " BTC";
 };
 
 const LoanHeader = () => <div>
@@ -75,23 +80,45 @@ const LoanHeader = () => <div>
     </p>
 </div>;
 
+const LoanBTCHeader = () => <div>
+    <p className={"loan-header " + (loanTurns < 10 ? "loan-header-low" : "")} style={{ marginBottom: "10px" }}>
+        You need to pay off a loan of <strong>$4313</strong>. You have <strong>{loanTurns}</strong> turns left to pay it off.
+    </p>
+    <div className="bitcoin-status">
+        <p>You have <strong>{formatMoney(loan_walletcash)}</strong> cash, and <strong>{formatBTC(loan_bitcoin)}</strong></p>
+    </div>
+    <div className="bitcoin-exchange" style={{ marginTop: "0" }}>
+        <h3 style={{ marginTop: "0" }}>BTC Exchange Rate</h3>
+        <p>
+            <strong>$1</strong> --> <strong>{formatBTC(cashToBTC(1))} BTC</strong><br />
+            <strong>1 BTC</strong> --> <strong>{formatMoney(btcToCash(1))}</strong><br />
+        </p>
+    </div>
+</div>;
+
 const decreaseTurn = () => {
     loanTurns--;
     if(loanTurns <= 0) {
-        if(loanMoney >= 0) {
-            // Win
-            if (loan_initial_deposit > 0) {
-                // Bit Coin
-                setScene("loan_bitcoin_winner");
+        if (loan_initial_deposit > 0) {
+            
+            if(loan_walletcash >= 4313 || loan_payloan) {
+                if(loan_walletcash>=1000000000) {
+                    setScene("loan_bitcoin_win");
+                } else {
+                    setScene("loan_bitcoin_win_sortof");
+                }
+            } else {
+                setScene("loan_bitcoin_lose");
             }
+            // Bit Coin
         } else {
             // Lose
             if(loanBills1[0]) {
                 // spend more money, go 500k in debt.
                 setScene("loan_debt_house_ending");
-            } else if (loan_initial_deposit>0) {
-                // figure out Bitcoin path and etc how they lost.
-                setScene("loan_bitcoin_lose");
+            } else {
+                // unknown situation
+                setScene("loan_lose_generic");
             }
         }
     }
@@ -143,7 +170,7 @@ addScenes({
     loan_bitcoin_initial_dep: {
         prompt: () => <div>
             <p>
-                You trade ${loan_initial_deposit} for {cashToBTC(loan_initial_deposit)} BTC as an initial deposit.
+                You trade ${loan_initial_deposit} for {formatBTC(cashToBTC(loan_initial_deposit))} as an initial deposit.
             </p>
         </div>,
         options: [
@@ -160,19 +187,7 @@ addScenes({
     },
     loan_bitcoin_main: {
         prompt: () => <div>
-            <p className={"loan-header " + (loanTurns < 10 ? "loan-header-low" : "")} style={{marginBottom: "10px"}}>
-                You need to pay off a loan of <strong>$4313</strong>. You have <strong>{loanTurns}</strong> turns left to pay it off.
-            </p>
-            <div className="bitcoin-status">
-                <p>You have <strong>{formatMoney(loan_walletcash)}</strong> cash, and <strong>{loan_bitcoin}</strong> BTC </p>
-            </div>
-            <div className="bitcoin-exchange" style={{ marginTop: "0" }}>
-                <h3 style={{marginTop: "0"}}>BTC Exchange Rate</h3>
-                <p>
-                    <strong>$1</strong> --> <strong>{cashToBTC(1)} BTC</strong><br/>
-                    <strong>1 BTC</strong> --> <strong>{formatMoney(btcToCash(1))}</strong><br/>
-                </p>
-            </div>
+            <LoanBTCHeader />
             
             <p>
                 What do you do now?
@@ -183,14 +198,75 @@ addScenes({
             { text: "Trade BTC --> $$", to: "loan_bitcoin_withdraw"},
             { text: "Wait", to: "loan_bitcoin_main"},
             "seperator",
-            { text: "Pay Loan (-$4313)", disabledText: true, to: "loan_bitcoin_payloan", if:()=>false }
+            {
+                text: "Pay Loan (-$4313)",
+                disabledText: () => {
+                    if(loan_payloan) {
+                        return "Pay Loan (Purchased)";
+                    } else {
+                        return "Pay Loan (-$4313)";
+                    }
+                },
+                action: () => loan_payloan = true,
+                to: "loan_bitcoin_main",
+                if:() => (loan_walletcash > 4313 && !loan_payloan)
+            }
         ],
         action: decreaseTurn,
         contributor: "Dave"
     },
+    loan_bitcoin_deposit: {
+        prompt: ()=> <div>
+            <LoanBTCHeader />
+            <p>
+                You want to exchange cash for Bitcoin. How much?
+            </p>
+        </div>,
+        options: [
+            { text: "Cancel", to: "loan_bitcoin_main"},
+            "seperator",
+            { text: "", disabledText: () => (loan_walletcash < 1) ? "(You need at least $1 to buy bitcoin)" : null, if: () => false, to: "loan_bitcoin_main" },  
+            ...[1, 2, 3, 4, 5, 10, 25, 50, 80, 100, 200, 300, 400, 500, 1000, 5000, 10000, 50000, 100000].map(cash => {
+                return {
+                    text: () => `${formatMoney(cash)} for ${formatBTC(cashToBTC(cash))}`,
+                    action: () => {
+                        loan_walletcash -= cash;
+                        loan_bitcoin += cashToBTC(cash);
+                    },
+                    if: () => loan_walletcash >= cash,
+                    to: "loan_bitcoin_main"
+                };
+            }),
+        ]
+    },
+    loan_bitcoin_withdraw: {
+        prompt: ()=> <div>
+            <LoanBTCHeader />
+            <p>
+                You want to exchange Bitcoins for cash. How much?
+            </p>
+        </div>,
+        options: [
+            { text: "Cancel", to: "loan_bitcoin_main"},
+            "seperator",
+            { text: "", disabledText: () => (loan_bitcoin < 0.5) ? "(You need at least 0.5 BTC to sell bitcoin)" : null, if: () => false, to: "loan_bitcoin_main" },  
+            ...[0.5, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20, 25, 30, 40, 50, 60, 70, 80, 90, 100, 250, 300, 350, 400, 450, 500, 600, 650, 700, 750, 800, 850, 900, 950, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000].map(price => {
+                return {
+                    text: () => `${formatBTC(price)} for ${formatMoney(btcToCash(price))}`,
+                    action: () => {
+                        loan_walletcash += btcToCash(price);
+                        loan_bitcoin -= price;
+                    },
+                    if: () => loan_bitcoin >= price,
+                    to: "loan_bitcoin_main"
+                };
+            }),
+        ]
+    },
     loan_bitcoin_lose: {
         prompt: () => <div>
-            <p>You lost all your money due to Bitcoin, and fell even farther into debt. First time huh?</p>
+            <p>You were not able to make enough money from Bitcoin to pay off the loan, and fell even farther into debt. First time huh?</p>
+
         </div>,
         ending: {
             id: "btc-lose",
@@ -200,12 +276,22 @@ addScenes({
     },
     loan_bitcoin_win: {
         prompt: () => <div>
-            <p>Look at all the money you got! You can now afford to pay off your loan and live your dream life.</p>
+            <p>You got <span style={{fontWeight:"bold"}}><RainbowText string={formatMoney(loan_walletcash)} /></span> by investing in Bitcoin, and were able to pay off your loan. What a crazy thing.</p>
+        </div>,
+        ending: {
+            id: "btc-win-billion",
+            name: "Bitcoin Billionaire",
+            description: "Pay off your loan by getting crazy rich off of Bitcoin."
+        }
+    },
+    loan_bitcoin_win_sortof: {
+        prompt: () => <div>
+            <p>You got <span style={{ fontWeight: "bold", color: "green" }}>{formatMoney(loan_walletcash)}</span> by investing in Bitcoin, and were able to pay off your loan.</p>
         </div>,
         ending: {
             id: "btc-win",
-            name: "Bitcoin Millionaire",
-            description: "Pay off your loan by getting rich off of Bitcoin."
+            name: "Bitcoin Success",
+            description: "Pay off your loan by getting money from Bitcoin."
         }
     },
 
@@ -294,8 +380,8 @@ addScenes({
             </p>
         </div>,
         options: [
-            { text: "Buy a new house (-$319,679)", disabledText: true, to: "", if: () => false },
-            { text: "Pay Shipping (-$0.99)", disabledText: true, to: "", if: () => false },
+            { text: "Buy a new house (-$319,679)", disabledText: true, to: "BLANKSCENE", if: () => false },
+            { text: "Pay Shipping (-$0.99)", disabledText: true, to: "BLANKSCENE", if: () => false },
             { text: "Pay Handling (-$0.98)", to: "loan_paybills5", action: () => loanMoney -= .98 },
         ],
         action: decreaseTurn,
@@ -322,7 +408,7 @@ addScenes({
             </p>
         </div>,
         options: [
-            { text: "Buy another house (-$159,839)", to: "", disabledText: true, if: () => false },
+            { text: "Buy another house (-$159,839)", to: "BLANKSCENE", disabledText: true, if: () => false },
             { text: "Pay More Shipping (-$0.50)", to: "loan_paybills7", action: () => loanMoney-=0.50},
             // { text: "Pay Handling (-$0.45)", to: "loan_paybills5", action: () => loanMoney -= 98 },
         ],
@@ -337,8 +423,8 @@ addScenes({
             </p>
         </div>,
         options: [
-            { text: "Buy another house (-$159,839)", to: "", disabledText: true, if: () => false },
-            { text: "Pay More Shipping (-$0.50)", to: "", disabledText: true, if: () => false },
+            { text: "Buy another house (-$159,839)", to: "BLANKSCENE", disabledText: true, if: () => false },
+            { text: "Pay More Shipping (-$0.50)", to: "BLANKSCENE", disabledText: true, if: () => false },
             { text: "Pay More Handling (-$0.45)", to: "loan_paybills_house", action: () => loanMoney -= 98 },
         ],
         action: decreaseTurn,
@@ -390,7 +476,7 @@ addScenes({
                 {
                     loanGroceries.reduce((x, y) => x && y, true) 
                         ? <span>
-                            You have <a href="">taken the entire stock</a> of the store.
+                            You have <a href="https://youtu.be/D0NzFatmLCo">taken the entire stock</a> of the store.
                         </span>
                         : <span>
                             You enter the grocery store, and you decide to buy everything inside the shop, as your

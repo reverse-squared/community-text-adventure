@@ -24,6 +24,11 @@ setCustomHTML((scene) => {
                 : <p className="credit">Scene contributed anonymously</p>
         }
 
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        
         <DebugPanel />
     </div>;
 });

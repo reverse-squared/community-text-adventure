@@ -29,7 +29,7 @@ if (module.hot) {
         sceneCtx(file);
     });
 
-    module.hot.accept("../templates/custom-html.jsx", () => {});
+    module.hot.accept("../../templates/custom-html.jsx", () => {});
     module.hot.accept(sceneCtx.id, () => {
         const sceneCtx = require.context("../../scenes/", true, /\.jsx$/);
         sceneCtx.keys().forEach(file => {

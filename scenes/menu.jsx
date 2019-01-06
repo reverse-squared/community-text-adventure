@@ -116,11 +116,6 @@ addScenes({
                         return <EndingCard ending={ending} />;
                     })
                 }
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
             </div>;
         },
         options: []
