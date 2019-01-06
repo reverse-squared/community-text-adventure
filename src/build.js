@@ -1,10 +1,18 @@
 // builds the game
+require("@babel/register");
 const fs = require("fs-extra");
 const path = require("path");
 const webpack = require("webpack");
 const minifier = require("html-minifier");
-
 const p_output_directory = JSON.parse(fs.readFileSync(path.join(__dirname, "../package.json")).toString()).output_directory;
+
+// get information about the scenes, endings, and other things.
+const WTA = require("web-text-adventure");
+const sceneFiles = fs.readdirSync(path.join(__dirname, "../scenes"));
+sceneFiles.forEach(file => require(path.join(__dirname, "../scenes", file)));
+
+const scenes = WTA.getAllScenes();
+const endingScenes = Object.keys(scenes).filter(x=>scenes[x].ending).length;
 
 // make `dist` folder
 const dist_folder = path.join(__dirname, "../", p_output_directory);
@@ -14,11 +22,14 @@ if (fs.pathExistsSync(dist_folder)) {
 fs.mkdirsSync(dist_folder);
 
 // run `webpack --mode production`
-const config = require("../webpack.config.js")({ production: true });
-config.output = {
-    path: dist_folder,
-    filename: "adventure.js"
-};
+const config = require("../webpack.config.js")({
+    production: true,
+    extraDefines: {
+        $endingCount: JSON.stringify(endingScenes),
+        $dynamicFiles: JSON.stringify(sceneFiles.filter(x => x !== "menu.jsx")),
+    }
+});
+config.output.path = dist_folder;
 
 webpack(config, (err, stats) => {
     // errors
@@ -37,13 +48,13 @@ webpack(config, (err, stats) => {
     // errors
     if (stats.hasErrors()) {
         // eslint-disable-next-line no-console
-        console.error(info.errors);
+        console.error(info.errors.join("\n\n"));
     }
 
     // warnings
     if (stats.hasWarnings()) {
         // eslint-disable-next-line no-console
-        console.warn(info.warnings);
+        console.warn(info.warnings.join("\n"));
     }
 
     // copy index.production.html

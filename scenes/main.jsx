@@ -38,7 +38,6 @@ addScenes({
         contributor: "Hunter"
     },
 
-    // Spider
     touch_spider: {
         prompt: () => <div>
             You touch the spider, it's surprisingly soft, <strong>what do you do?</strong>

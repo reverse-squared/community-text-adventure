@@ -4,11 +4,16 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "@babel/register": "^7.0.0",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
     "react-hot-loader": "^4.6.3",
-    "web-text-adventure": "^1.6.1"
+    "react-loadable": "^5.5.0",
+    "web-text-adventure": "^1.7.0"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/preset-env": "^7.2.3",
     "@babel/preset-react": "^7.0.0",
     "babel-eslint": "^10.0.1",
@@ -19,6 +24,7 @@
     "fs-extra": "^7.0.1",
     "html-minifier": "^3.5.21",
     "style-loader": "^0.23.1",
+    "terser-webpack-plugin": "^1.2.1",
     "true": "0.0.2",
     "webpack": "^4.28.3",
     "webpack-cli": "^3.2.0",

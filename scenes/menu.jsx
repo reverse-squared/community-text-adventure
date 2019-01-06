@@ -1,3 +1,4 @@
+import React from "react";
 import { setScene, setConfig, getConfig } from "web-text-adventure";
 import { addScenes, getGameProgress, getAllEndings } from "../src/ending.jsx";
 import Credits from "../templates/credits.jsx";
