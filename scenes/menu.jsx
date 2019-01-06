@@ -1,4 +1,4 @@
-import { setScene } from "web-text-adventure";
+import { setScene, setConfig, getConfig } from "web-text-adventure";
 import { addScenes, getGameProgress, getAllEndings } from "../src/ending.jsx";
 import Credits from "../templates/credits.jsx";
 import SceneLink from "../templates/SceneLink.jsx";
@@ -20,9 +20,16 @@ function formatDate(date) {
     return `${year}-${month}-${day} at ${hour}:${minute}${ampm}`;
 }
 
-window.$hideDebug = $hideDebug;
-window.$version = $version;
-window.$buildtime = $buildtime;
+function debugBooleanOption(name, display) {
+    return {
+        // text: () => `${display}: ${}`,
+        text: () => <span>{display}: <span style={{ color: getConfig(name) ? "greenyellow" : "red" }}>{ getConfig(name) ? "Enabled" : "Disabled" }</span></span>,
+        to: "debug",
+        action: () => {
+            setConfig(name, !getConfig(name));
+        }
+    };
+}
 
 addScenes({
     // Introduction Paragraph
@@ -70,6 +77,19 @@ addScenes({
                 const win = window.open("https://discord.gg/qzH9wsY", "_blank");
                 win.opener = null;
             }, if: ()=> getGameProgress().achievedEndings > 0 },
+            "seperator",
+            { text: "Debug Options", if: () => !$hideDebug, to: "debug" }
+        ]
+    },
+    debug: {
+        prompt: <div>
+            <h1>Debug Options</h1>
+        </div>,
+        options: [
+            { text: "Back", to: "start" },
+            "seperator",
+            debugBooleanOption("debugPanel", "Debug Panel"),
+            debugBooleanOption("showBrokenLinks", "Always Highlight Broken Links"),
         ]
     },
     credits: {

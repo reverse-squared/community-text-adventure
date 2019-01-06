@@ -5,7 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "react-hot-loader": "^4.6.3",
-    "web-text-adventure": "^1.4.1"
+    "web-text-adventure": "^1.6.1"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
