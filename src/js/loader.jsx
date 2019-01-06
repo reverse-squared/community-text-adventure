@@ -24,14 +24,14 @@ document.head.appendChild(linkElem);
 // Hot Reloading
 if (module.hot) {
     // Scene Files
-    const sceneCtx = require.context("../scenes/", true, /\.jsx$/);
+    const sceneCtx = require.context("../../scenes/", true, /\.jsx$/);
     sceneCtx.keys().forEach(file => {
         sceneCtx(file);
     });
 
     module.hot.accept("../templates/custom-html.jsx", () => {});
     module.hot.accept(sceneCtx.id, () => {
-        const sceneCtx = require.context("../scenes/", true, /\.jsx$/);
+        const sceneCtx = require.context("../../scenes/", true, /\.jsx$/);
         sceneCtx.keys().forEach(file => {
             sceneCtx(file);
         });
@@ -44,7 +44,7 @@ if (module.hot) {
             /* webpackPreload: true */
             /* webpackInclude: /\.jsx$/ */
             /* webpackExclude: /(menu)\.jsx$/ */
-            `../scenes/${branch}`
+            `../../scenes/${branch}`
         );
     }
     require("../../scenes/menu.jsx");
