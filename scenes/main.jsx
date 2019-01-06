@@ -1,6 +1,6 @@
 import React from "react";
 import { addFlag, resetFlags } from "web-text-adventure";
-import { addScenes } from "../src/ending.jsx";
+import { addScenes } from "../src/js/ending.jsx";
 
 addFlag("sleepTime", 0);
 addFlag("hasTouchedSpider", false);

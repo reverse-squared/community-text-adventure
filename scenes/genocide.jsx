@@ -1,5 +1,5 @@
 import React from "react";
-import { addScenes } from "../src/ending.jsx";
+import { addScenes } from "../src/js/ending.jsx";
 import { addFlag } from "web-text-adventure";
 
 addFlag("touch_alive", {
@@ -15,11 +15,11 @@ addScenes({
             <p>You continue your adventure. You spot multiple different animals such as lizards, spiders, and humans. <strong>What do you do?</strong></p>
         </div>,
         options: [
-            { text: "Touch the lizard", to: "genocide_lizard" },
+            { text: "Touch the lizard", disabledText: "(dead)", if: () => touch_alive.lizard, to: "genocide_lizard" },
             { text: "Touch the spider", disabledText: "(dead)", to: "touch_spider", if: () => false },
-            { text: "Touch the human", to: "genocide_human" },
-            { text: "Touch the unicorn", to: "genocide_unicorn" },
-            { text: "Touch the chicken", disabledText: "(dead)", to: "genocide_chicken", if: () => touch_alive.chicken },
+            { text: "Touch the human", disabledText: "(dead)", if: () => touch_alive.human, to: "genocide_human" },
+            { text: "Touch the unicorn", disabledText: "(dead)", if: () => touch_alive.unicorn, to: "genocide_unicorn" },
+            { text: "Touch the chicken", disabledText: "(dead)", if: () => touch_alive.chicken, to: "genocide_chicken" },
         ],
         contributor: "Hunter and Colyderp"
     },

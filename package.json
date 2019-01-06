@@ -18,6 +18,7 @@
     "autoprefixer": "^9.4.4",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.5",
+    "chalk": "^2.4.2",
     "css-loader": "^2.1.0",
     "cssnano": "^4.1.8",
     "eslint": "^5.12.0",
@@ -35,7 +36,8 @@
   },
   "scripts": {
     "start": "webpack-dev-server",
-    "build": "node src/build.js",
+    "build": "node src/build/build.js",
+    "broken-links": "node src/build/list-broken-links.js",
     "lint": "eslint . --ext .js,.jsx --ignore-path .eslintignore || true",
     "lint-fix": "eslint . --ext .js,.jsx --ignore-path .eslintignore --fix || true",
     "cloc": "cloc scenes/ src/ templates/ res/"

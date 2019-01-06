@@ -4,7 +4,7 @@ const packageJson = require("./package.json");
 const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = (env = {production: false, extraDefines: {}}, argv) => ({
-    entry: "./src/loader.jsx",
+    entry: "./src/js/loader.jsx",
     output: {
         path: path.resolve(__dirname),
         filename: "game.js"
@@ -92,4 +92,9 @@ module.exports = (env = {production: false, extraDefines: {}}, argv) => ({
             }),
         ],
     },
+    resolve: {
+        alias: {
+            "ending$": "path.resolve(__dirname, 'src/js/ending.jsx')"
+        }
+    }
 });
