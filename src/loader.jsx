@@ -1,8 +1,25 @@
 // This file handles hot-reloading and starting up 
 // startup file, loads all other files
-
 import "../templates/custom-html.jsx";
 import { setScene } from "web-text-adventure";
+
+// CSS Loading
+import "../src/style.css";
+import(/* webpackPrefetch: true, webpackPreload: true */ "./style-offload.css");
+
+
+// manually prefetch Google Fonts Files
+const gfonts = "https://fonts.googleapis.com/css?family=Roboto:400,700";
+const linkElem = document.createElement("link");
+linkElem.rel = "prefetch";
+linkElem.href = gfonts;
+linkElem.onload = () => {
+    const style = document.createElement("link");
+    style.rel = "stylesheet";
+    style.href = gfonts;
+    document.head.appendChild(style);
+};
+document.head.appendChild(linkElem);
 
 // Hot Reloading
 if (module.hot) {

@@ -1,6 +1,5 @@
 import React from "react";
 import { Prompt, Options, DebugPanel, setCustomHTML } from "web-text-adventure";
-import "../src/style.css";
 
 setCustomHTML((scene) => {
     if (scene.isBlank) return null;

@@ -33,7 +33,16 @@ module.exports = (env = {production: false, extraDefines: {}}, argv) => ({
             },
             {
                 test: /\.css$/,
-                use: ["style-loader", "css-loader"],
+                use: [
+                    "style-loader",
+                    { loader: "css-loader" },
+                    { loader: "postcss-loader", options: {
+                        plugins: [
+                            require("cssnano")(),
+                            require("autoprefixer")(),
+                        ]
+                    }}
+                ]
             },
         ]
     },
