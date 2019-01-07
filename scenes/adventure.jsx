@@ -113,11 +113,26 @@ addScenes({
             <p>You escape the plane without any harm done. With only you as the survivor that you know of, and with the plane about to explode, what do you do?</p>
         </div>,
         options: [
-            { text: "Punch some trees.", to: "" },
-            { text: "Find some food.", to: "", if: () => !hasEatenTurkey },
-            { text: "Break open some suitcases.", to: "" },
+            { text: "Punch some trees.", to: "minecraft_tree" },
+            { text: "Find some food.", to: "adventure_island_food", if: () => !hasEatenTurkey },
+            { text: "Break open some suitcases.", to: "adventure_island_suitcases" },
         ],
         contributor: "Hunter"
+    },
+
+     minecraft_tree: {
+        prompt: () => <div>
+            <p>You punch some trees and get some wood (somehow), the next logical thing to do is to make some wood planks.</p>
+             <p className="inventory-update">
+                + Added 20 Wood Planks to inventory
+            </p>
+        </div>,
+        options: [
+            { text: "Create crafting table.", to: "minecraft_crafting_table" },
+            { text: "Find some food.", to: "adventure_island_food", if: () => !hasEatenTurkey },
+            { text: "Break open some suitcases.", to: "adventure_island_suitcases" },
+        ],
+        contributor: "Adr"
     },
 
     adventure_africa_crash_eat: {
