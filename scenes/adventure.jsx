@@ -90,7 +90,7 @@ addScenes({
         </div>,
         options: [
             { text: "Wait until rescue comes.", to: "adventure_africa_crash_wait" },
-            { text: "Escape the plane.", to: "advenure_island_start" },
+            { text: "Escape the plane.", to: "adventure_island_start" },
             { text: "Finish eating that 10 pound turkey you smuggled in your carry-on.", to: "adventure_africa_crash_eat" },
         ],
         contributor: "Hunter"
