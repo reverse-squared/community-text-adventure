@@ -264,4 +264,17 @@ addScenes({
             description: "Why would anyone want to jump out of a window?",
         }
     },
+
+    fake_your_death: {
+        prompt: () => <div>
+            <p>You fake your death by pretending you died on the street. Nobody cared to check your pulse so they assumed you were dead. They placed you in a 
+                coffin and burried you. With nobody knowing that you exist, what do you do.
+            </p>
+        </div>,
+        options: [
+            { text: "Leave your grave.", to: "grave_leave" },
+            { text: "Wait.", to: "grave_wait" }
+        ],
+        contributor: "Hunter"
+    }
 });
