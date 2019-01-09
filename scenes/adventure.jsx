@@ -120,11 +120,11 @@ addScenes({
         contributor: "Hunter"
     },
 
-     minecraft_tree: {
+    minecraft_tree: {
         prompt: () => <div>
             <p>You punch some trees and get some wood (somehow), the next logical thing to do is to make some wood planks.</p>
-             <p className="inventory-update">
-                + Added 20 Wood Planks to inventory
+            <p className="inventory-update">
+                + 20 Wood Planks to inventory
             </p>
         </div>,
         options: [

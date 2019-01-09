@@ -99,12 +99,13 @@ addScenes({
             </p>
         </div>,
         options: [
-            { text: "Get it treated", to: ""},
+            { text: "Get it treated", to: "touch_lizard_treat"},
             { text: "Punch that lizard", to: ""},
             { text: "Not care, and don't do anything", to: ""},
         ],
         contributor: "Alchemyking"
     },
+    
 
     // Eat breakfast. Level 2.
     wakeup_breakfast: {

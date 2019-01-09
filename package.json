@@ -8,7 +8,7 @@
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-hot-loader": "^4.6.3",
-    "web-text-adventure": "^1.7.0"
+    "web-text-adventure": "^1.8.4"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
