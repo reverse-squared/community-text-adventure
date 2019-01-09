@@ -25,7 +25,7 @@ const directions = [
 const mapDirectionKeyToName = {
     "left": "Turn left",
     "right": "Turn right",
-    "right-ws": "Turn right",
+    "right-ws": "Turn left",
     "left-ws": "Turn right",
     "straight": "Go straight",
     "roundabout left": "Turn left at the roundabout",
@@ -65,7 +65,8 @@ addScenes({
         </div>,
         options: [
             { text: "Begin", to: "hospital_car_start"}
-        ]
+        ],
+        contributor: "Alchemyking (idea) and Dave (implementation)"
     },
     hospital_car_start: {
         prompt: <div>
@@ -95,7 +96,8 @@ addScenes({
                     }
                 }
             }));
-        }
+        },
+        contributor: "Alchemyking (idea) and Dave (implementation)"
     },
     hospital_car_fail: {
         prompt: () => <div>
@@ -103,7 +105,8 @@ addScenes({
                 lmao failured
             </p>
         </div>,
-        options: []
+        options: [],
+        contributor: "todo",
     },
     hospital_car_success: {
         prompt: () => <div>
@@ -111,6 +114,7 @@ addScenes({
                 lmao success
             </p>
         </div>,
-        options: []
+        options: [],
+        contributor: "todo",
     }
 });
