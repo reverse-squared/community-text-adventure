@@ -187,7 +187,7 @@ addScenes({
         ending: {
             id: "fortnite-suicide",
             name: "Bus Jumping Suicide",
-            description: "Why would killing yourself in the sky be a good idea?."
+            description: "Why would killing yourself in the sky be a good idea?"
         },
         contributor: "Hunter"
     },

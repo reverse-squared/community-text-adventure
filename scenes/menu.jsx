@@ -21,6 +21,16 @@ function formatDate(date) {
     return `${year}-${month}-${day} at ${hour}:${minute}${ampm}`;
 }
 
+let debugOptions = {};
+if(typeof localStorage !== "undefined" && localStorage.debug) {
+    try {
+        debugOptions = JSON.parse(localStorage.debug);
+        Object.keys(debugOptions).forEach(opt => setConfig(opt, debugOptions[opt]));
+    } catch (e) {
+        debugOptions = {};
+    }
+}
+
 function debugBooleanOption(name, display) {
     return {
         // text: () => `${display}: ${}`,
@@ -28,6 +38,8 @@ function debugBooleanOption(name, display) {
         to: "debug",
         action: () => {
             setConfig(name, !getConfig(name));
+            debugOptions[name] = getConfig(name);
+            localStorage.debug = JSON.stringify(debugOptions);
         }
     };
 }

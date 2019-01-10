@@ -101,20 +101,27 @@ addScenes({
     },
     hospital_car_fail: {
         prompt: () => <div>
-            <p>
-                lmao failured
-            </p>
+            <p>You somehow failed the navigate to the hospital, even though Google Maps told you <b>EXACTLY</b> how to get there.</p>
+            <p>You also died. Just to let you know.</p>
         </div>,
-        options: [],
-        contributor: "todo",
+        ending: {
+            id: "failed-google-maps",
+            name: "Incompetent at Following \"Simple\" Instructions",
+            description: "You were told the EXACT instuctions and still failed."
+        },
+        contributor: "Hunter",
     },
     hospital_car_success: {
         prompt: () => <div>
-            <p>
-                lmao success
+            <p>You navigated to the hospital successfully and got your bite treated quickly. They don't charge you anything because it was a simple action. You 
+                leave the hospital. What do you decide to do?
             </p>
         </div>,
-        options: [],
-        contributor: "todo",
+        options: [
+            { text: "Become a Coyote", to: "sting_start" },
+            { text: "Become an Uber driver.", to: "uber_start" },
+            { text: "Read a book", to: "read_a_book" }
+        ],
+        contributor: "Hunter",
     }
 });
