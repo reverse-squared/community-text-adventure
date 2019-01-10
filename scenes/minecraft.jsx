@@ -19,6 +19,21 @@ addScenes({
             { text: "Create sticks.", to: "minecraft_tree", disabledText: "Not enough sticks!", if: () => planks > 2, action: () =>  { sticks += 4; planks -= 2; } },
             { text: "Punch another tree.", to: "minecraft_tree", action: () => treesPunched++ },
         ],
+        action: () => {
+            if(treesPunched > 10) {
+                setScene("minecraft_all_trees");
+            }
+        },
         contributor: "Adr and Hunter"
+    },
+    minecraft_all_trees: {
+        prompt: () => <div>
+            <p>You ended up cutting down all the trees in the world, leaving nothing to produce oxygen. Get died.</p>
+        </div>,
+        ending: {
+            id: "all-trees",
+            name: "Tree Killer",
+            description: "You cut down a lot a trees and now the world hate you.",
+        },
     }
 });
