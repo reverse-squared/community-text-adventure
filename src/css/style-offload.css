@@ -1,57 +1,10 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
-
-* {box-sizing: border-box;}
-
-body {
-    background: rgb(22, 22, 22);
-    color: rgb(254, 254, 254);
-    font-family: Roboto, sans-serif;
-    font-size: 18px;
-    margin: auto;
-    max-width: 500px;
-    padding-left: 25px;
-    padding-right: 25px;
-}
-
-h1 {
-	font-size: 34px;
-}
-
-a {
-    color: #7d64ed;
-}
+/* Store CSS Styles that are not required immedietly here */
 
 .inventory-update {
 	color: lime;
 }
 
-a:not(:hover) {
-    text-decoration: none;
-}
-
-.option-disabled {
-    color: rgb(83, 83, 83);
-}
-.option-broken-link {
-    color: #f53838;
-}
-
-.option-seperator {
-    height: 20px;
-}
-
-.credit {
-    color: grey;
-    font-size: 75%;
-}
-
-.playAgain {
-    position: relative;
-    top: 8px;
-    font-weight: bold;
-    font-size: 36px
-}
-
+/*#region Loan */
 .loan-header {
     color: coral;
     text-align: center;
@@ -80,7 +33,9 @@ a:not(:hover) {
 .loan-header-low {
     animation: loan-header-blink 0.8s linear 0s infinite;
 }
+/*#endregion*/
 
+/*#region Ending Screen */
 .ending-status {
     text-align: center;
     font-size: 20px;
@@ -124,19 +79,9 @@ a:not(:hover) {
 .ending-header.flash {
 	animation: ending-header-blink 0.65s linear 0s infinite;
 }
+/*#endregion*/
 
-#root {
-	position: relative;
-}
-
-.resetgame {
-    z-index: 100;
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    color: #555;
-}
-
+/*#region Text FX*/
 @keyframes rainbow {
     0% {
         color: red;
@@ -289,3 +234,7 @@ a:not(:hover) {
 .rainbow.circly {
     animation: rainbow 1s linear 0s infinite, circle 1s linear 0s infinite;
 }
+/*#endregion*/
+
+/*#region*/
+/*#endregion*/

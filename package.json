@@ -1,24 +1,34 @@
 {
   "name": "community-text-adventure",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
     "react-hot-loader": "^4.6.3",
-    "web-text-adventure": "^1.4.1"
+    "web-text-adventure": "^1.8.4"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/preset-env": "^7.2.3",
     "@babel/preset-react": "^7.0.0",
+    "@babel/register": "^7.0.0",
+    "autoprefixer": "^9.4.4",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.5",
+    "chalk": "^2.4.2",
     "css-loader": "^2.1.0",
+    "cssnano": "^4.1.8",
     "eslint": "^5.12.0",
     "eslint-plugin-react": "^7.12.3",
     "fs-extra": "^7.0.1",
     "html-minifier": "^3.5.21",
+    "postcss": "^7.0.7",
+    "postcss-loader": "^3.0.0",
     "style-loader": "^0.23.1",
+    "terser-webpack-plugin": "^1.2.1",
     "true": "0.0.2",
     "webpack": "^4.28.3",
     "webpack-cli": "^3.2.0",
@@ -26,7 +36,8 @@
   },
   "scripts": {
     "start": "webpack-dev-server",
-    "build": "node src/build.js",
+    "build": "node src/build/build.js",
+    "broken-links": "node src/build/list-broken-links.js",
     "lint": "eslint . --ext .js,.jsx --ignore-path .eslintignore || true",
     "lint-fix": "eslint . --ext .js,.jsx --ignore-path .eslintignore --fix || true",
     "cloc": "cloc scenes/ src/ templates/ res/"

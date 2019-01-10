@@ -1,0 +1,52 @@
+* {box-sizing: border-box;}
+
+body {
+    background: rgb(22, 22, 22);
+    color: rgb(254, 254, 254);
+    font-family: Roboto, sans-serif;
+    font-size: 18px;
+    margin: auto;
+    max-width: 500px;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+h1 {
+	font-size: 34px;
+}
+
+a {
+    color: #7d64ed;
+}
+
+a:not(:hover) {
+    text-decoration: none;
+}
+
+.option-disabled {
+    color: rgb(83, 83, 83);
+}
+.option-broken-link {
+    color: #f53838;
+}
+
+.option-seperator {
+    height: 20px;
+}
+
+.credit {
+    color: grey;
+    font-size: 75%;
+}
+
+#root {
+	position: relative;
+}
+
+.resetgame {
+    z-index: 100;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    color: #555;
+}

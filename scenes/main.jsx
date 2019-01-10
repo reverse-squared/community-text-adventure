@@ -1,6 +1,6 @@
 import React from "react";
 import { addFlag, resetFlags, setScene } from "web-text-adventure";
-import { addScenes } from "../src/ending.jsx";
+import { addScenes } from "../src/js/ending.jsx";
 
 addFlag("sleepTime", 0);
 addFlag("hasTouchedSpider", false);
@@ -13,6 +13,7 @@ function increaseGraveWait() {
         setScene("grave_die");
     }
 }
+
 addScenes({
     // Start. Level 1.
     wakeup: {
@@ -46,7 +47,6 @@ addScenes({
         contributor: "Hunter"
     },
 
-    // Spider
     touch_spider: {
         prompt: () => <div>
             You touch the spider, it's surprisingly soft, <strong>what do you do?</strong>
@@ -108,12 +108,13 @@ addScenes({
             </p>
         </div>,
         options: [
-            { text: "Get it treated", to: ""},
+            { text: "Get it treated", to: "touch_lizard_treat"},
             { text: "Punch that lizard", to: ""},
             { text: "Not care, and don't do anything", to: ""},
         ],
         contributor: "Alchemyking"
     },
+    
 
     // Eat breakfast. Level 2.
     wakeup_breakfast: {
@@ -222,7 +223,8 @@ addScenes({
         </div>,
         options: [
             { text: "Pay with Cash", to: "pay_bill_cash" },
-            { text: "Pay with Credit", to: "pay_bill_credit" }
+            { text: "Pay with Credit", to: "pay_bill_credit" },
+            { text: "Take out a loan.", to: "loan_start" },
         ],
         contributor: "Hunter"
     },
@@ -240,13 +242,13 @@ addScenes({
 
     pay_bill_credit: {
         prompt: () => <div>
-            <p></p>
+            <p>You paid with your credit card. Even though it was a fake card, nobody noticed. <s>That won't come back up later.</s> You continue with your day and go outside. What do you do?</p>
         </div>,
         options: [
-            { text: "", to: "" },
-            { text: "", to: "" }
+            { text: "Fake your death", to: "fake_your_death" },
+            { text: "Go skydiving.", to: "skydive_pre" }
         ],
-        contributor: ""
+        contributor: "Dave and Hunter"
     },
 
     // Don't pay hospital bill. Level 5.

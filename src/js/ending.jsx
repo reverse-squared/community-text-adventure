@@ -1,12 +1,16 @@
 // Controls ending save progress
+import React from "react";
 import { addScenes as addScenesReal, setScene } from "web-text-adventure";
-import EndingCard from "../templates/EndingCard.jsx";
+import EndingCard from "../../templates/EndingCard.jsx";
 
 const endings = {};
 const sceneStorage = {};
+let endingStorage = [];
 
-if (!localStorage.endings) localStorage.endings = "";
-let endingStorage = localStorage.endings.split(";");
+if (typeof localStorage !== "undefined") {
+    if (!localStorage.endings) localStorage.endings = "";
+    endingStorage = localStorage.endings.split(";");
+}
 
 export function addEnding(endingInfo) {
     if(endingInfo.id.includes(";")) throw new Error("Ending ID cannot have a ;");
@@ -24,7 +28,7 @@ export function getAllEndings() {
 }
 
 export function getGameProgress() {
-    const totalEndings = Object.keys(endings).length;
+    const totalEndings = (typeof $endingCount === "undefined") ? Object.keys(endings).length : $endingCount;
     const achievedEndings = Object.keys(endings).filter(id => endings[id].achieved).length;
 
     return {
@@ -39,7 +43,7 @@ export function achieveEnding(id) {
 
     endings[id].achieved = true;
     endingStorage.push(id);
-    localStorage.endings = endingStorage.join(";");
+    if(typeof localStorage !== "undefined") localStorage.endings = endingStorage.join(";");
 }
 
 export function resetGame() {

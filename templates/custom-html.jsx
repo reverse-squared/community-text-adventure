@@ -1,6 +1,5 @@
 import React from "react";
 import { Prompt, Options, DebugPanel, setCustomHTML } from "web-text-adventure";
-import "../src/style.css";
 
 setCustomHTML((scene) => {
     if (scene.isBlank) return null;
@@ -25,6 +24,11 @@ setCustomHTML((scene) => {
                 : <p className="credit">Scene contributed anonymously</p>
         }
 
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        
         <DebugPanel />
     </div>;
 });
