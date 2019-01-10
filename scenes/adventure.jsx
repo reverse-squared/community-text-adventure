@@ -128,9 +128,7 @@ addScenes({
             </p>
         </div>,
         options: [
-            { text: "Create crafting table.", to: "minecraft_crafting_table" },
-            { text: "Find some food.", to: "adventure_island_food", if: () => !hasEatenTurkey },
-            { text: "Break open some suitcases.", to: "adventure_island_suitcases" },
+            { text: "Create crafting table.", to: "minecraft_crafting_table" }
         ],
         contributor: "Adr"
     },
