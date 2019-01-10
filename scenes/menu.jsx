@@ -22,7 +22,7 @@ function formatDate(date) {
 }
 
 let debugOptions = {};
-if(localStorage.debug) {
+if(typeof localStorage !== "undefined" && localStorage.debug) {
     try {
         debugOptions = JSON.parse(localStorage.debug);
         Object.keys(debugOptions).forEach(opt => setConfig(opt, debugOptions[opt]));
