@@ -101,12 +101,15 @@ addScenes({
     },
     hospital_car_fail: {
         prompt: () => <div>
-            <p>
-                lmao failured
-            </p>
+            <p>You somehow failed the navigate to the hospital, even though Google Maps told you <b>EXACTLY</b> how to get there.</p>
+            <p>You also died. Just to let you know.</p>
         </div>,
-        options: [],
-        contributor: "todo",
+        ending: {
+            id: "failed-google-maps",
+            name: "Incompetent at Following \"Simple\" Instructions",
+            description: "You were told the EXACT instuctions and still failed."
+        },
+        contributor: "Dave and Hunter",
     },
     hospital_car_success: {
         prompt: () => <div>
