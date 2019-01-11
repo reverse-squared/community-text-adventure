@@ -519,7 +519,7 @@ addScenes({
             loanWindows = true;
             decreaseTurn();
         },
-        contributor: null,
+        contributor: "Toshiyuki",
     },
     loan_paybills_windows_buymore: {
         prompt: () => <div>
@@ -532,7 +532,7 @@ addScenes({
             { text: "More Windows (-$1500)", to: "loan_paybills_windows_buymore2", action: () => loanMoney -= 1500 },
             { text: "Return Home", to: "loan_paybills_house" }
         ],
-        contributor: null,
+        contributor: "Toshiyuki",
     },
     loan_paybills_windows_buymore2: {
         prompt: () => <div>
@@ -546,7 +546,7 @@ addScenes({
             { text: "Return Home", to: "loan_paybills_house" }
         ],
         action: decreaseTurn,
-        contributor: null,
+        contributor: "Toshiyuki",
     },
     loan_paybills_windows_buymore3: {
         prompt: () => <div>
@@ -562,7 +562,7 @@ addScenes({
             loanWindowsSoldOut = true;
             decreaseTurn();
         },
-        contributor: null,
+        contributor: "Toshiyuki",
     },
     loan_debt_house_ending: {
         prompt: () => <div>
