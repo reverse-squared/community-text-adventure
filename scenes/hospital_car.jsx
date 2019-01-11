@@ -171,5 +171,16 @@ addScenes({
         </div>,
         options: HospitalExitActions,
         contributor: "Hunter",
+    },
+    read_a_book: {
+        prompt: () => <div>
+            <p>You decided to read a book to become smart. Turns out that book held all of the world's knowledge. Now you know everything.</p>
+        </div>,
+        ending: {
+            id: "smart-kid",
+            name: "The Smart Kid",
+            description: "You became famous for knowing everything in the world."
+        },
+        contributor: "Hunter"
     }
 });
