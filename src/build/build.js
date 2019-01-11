@@ -8,8 +8,19 @@ const p_output_directory = JSON.parse(fs.readFileSync(path.join(__dirname, "../.
 
 // get information about the scenes, endings, and other things.
 const WTA = require("web-text-adventure");
-const sceneFiles = fs.readdirSync(path.join(__dirname, "../../scenes"));
-sceneFiles.forEach(file => require(path.join(__dirname, "../../scenes", file)));
+const sceneFiles = [];
+
+function requireDirRecursive(folder) {
+    fs.readdirSync(folder).forEach(x => {
+        if (fs.statSync(path.join(folder, x)).isDirectory()) {
+            requireDirRecursive(path.join(folder, x));
+        } else {
+            require(path.join(folder, x));
+            sceneFiles.push(path.join(folder, x).substr(path.join(__dirname, "../../scenes").length + 1).replace(/\\/g,"/"));
+        }
+    });
+}
+requireDirRecursive(path.join(__dirname, "../../scenes"));
 
 const scenes = WTA.getAllScenes();
 const endingScenes = Object.keys(scenes).filter(x=>scenes[x].ending).length;
@@ -26,7 +37,7 @@ const config = require("../../webpack.config.js")({
     production: true,
     extraDefines: {
         $endingCount: JSON.stringify(endingScenes),
-        $dynamicFiles: JSON.stringify(sceneFiles.filter(x => x !== "menu.jsx")),
+        $dynamicFiles: JSON.stringify(sceneFiles.filter(x => x !== "_main/menu.jsx")),
     }
 });
 config.output.path = dist_folder;

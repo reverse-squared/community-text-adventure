@@ -1,8 +1,8 @@
 // This file handles the different paths from the loan of $4313 that you need to pay off
 import React from "react";
 import { addFlag, setScene } from "web-text-adventure";
-import { RainbowCircleText, RainbowText } from "../templates/font-styles.jsx";
-import { addScenes } from "../src/js/ending.jsx";
+import { RainbowCircleText, RainbowText } from "../../templates/font-styles.jsx";
+import { addScenes } from "../../src/js/ending.jsx";
 
 addFlag("loanMoney", -4313);
 addFlag("loanTurns", 31);

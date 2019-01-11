@@ -43,11 +43,11 @@ if (module.hot) {
             /* webpackPrefetch: true */
             /* webpackPreload: true */
             /* webpackInclude: /\.jsx$/ */
-            /* webpackExclude: /(menu)\.jsx$/ */
+            /* webpackExclude: /(_main\/menu)\.jsx$/ */
             `../../scenes/${branch}`
         );
     }
-    require("../../scenes/menu.jsx");
+    require("../../scenes/_main/menu.jsx");
     if (typeof $dynamicFiles !== "undefined") {
         Promise.all($dynamicFiles.map(loadSubBranch)).then(x => {
             // eslint-disable-next-line no-console

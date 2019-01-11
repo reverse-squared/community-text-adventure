@@ -1,11 +1,8 @@
 // contains debug scenes and some fancy required ones
 import React from "react";
-import { setScene, setConfig, getConfig, getAllScenes } from "web-text-adventure";
-import { addScenes, getGameProgress, getAllEndings } from "../src/js/ending.jsx";
-import Credits from "../templates/credits.jsx";
-import SceneLink from "../templates/SceneLink.jsx";
-import EndingCard from "../templates/EndingCard.jsx";
-import { resetGame } from "../src/js/ending.jsx";
+import { setConfig, getConfig, getAllScenes } from "web-text-adventure";
+import { addScenes, resetGame } from "../../src/js/ending.jsx";
+import SceneLink from "../../templates/SceneLink.jsx";
 
 let debugOptions = {};
 if (typeof localStorage !== "undefined" && localStorage.debug) {

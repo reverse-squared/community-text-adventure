@@ -1,10 +1,9 @@
 import React from "react";
-import { setScene, setConfig, getConfig, getAllScenes } from "web-text-adventure";
-import { addScenes, getGameProgress, getAllEndings } from "../src/js/ending.jsx";
-import Credits from "../templates/credits.jsx";
-import SceneLink from "../templates/SceneLink.jsx";
-import EndingCard from "../templates/EndingCard.jsx";
-import { resetGame } from "../src/js/ending.jsx";
+import { setScene, setConfig, getConfig } from "web-text-adventure";
+import { addScenes, getGameProgress, getAllEndings } from "../../src/js/ending.jsx";
+import Credits from "../../templates/credits.jsx";
+import SceneLink from "../../templates/SceneLink.jsx";
+import EndingCard from "../../templates/EndingCard.jsx";
 
 function formatDate(date) {
     const year = date.getFullYear();
