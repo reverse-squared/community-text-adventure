@@ -1,7 +1,7 @@
 import React from "react";
-import { addScenes } from "../../src/js/ending.jsx";
+import { addScenes } from "../../src/js/ending.js";
 import { addFlag, setScene } from "web-text-adventure";
-import HospitalExitActions from "../after_hospital/after_hospital_options.jsx";
+import HospitalExitActions from "./after_hospital_options.jsx";
 
 function randomOf(...list) {
     return list[Math.floor((Math.random() * list.length))];
