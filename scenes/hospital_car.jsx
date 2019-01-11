@@ -158,15 +158,19 @@ addScenes({
             name: "Incompetent at Following \"Simple\" Instructions",
             description: "You were told the EXACT instuctions and still failed."
         },
-        contributor: "Dave and Hunter",
+        contributor: "Hunter",
     },
     hospital_car_success: {
         prompt: () => <div>
-            <p>
-                lmao success now what
+            <p>You navigated to the hospital successfully and got your bite treated quickly. They don't charge you anything because it was a simple action. You 
+                leave the hospital. What do you decide to do?
             </p>
         </div>,
-        options: [],
-        contributor: "todo",
+        options: [
+            { text: "Become a Coyote", to: "sting_start" },
+            { text: "Become an Uber driver.", to: "uber_start" },
+            { text: "Read a book", to: "read_a_book" }
+        ],
+        contributor: "Hunter",
     }
 });
