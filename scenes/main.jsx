@@ -140,7 +140,7 @@ addScenes({
             { text: "...you're hungry and want to eat something.", to: "wakeup_breakfast" },
             { text: "...you have plans to go outside and go on an adventure.", to: "adventure_start" }
         ],
-        contributor: null
+        contributor: "Toshiyuki"
     },
 
     // Sleep. Level 3.
@@ -202,7 +202,7 @@ addScenes({
             { text: "Leave it as is.", to: "regular_pancake_leave" },
             { text: "Rent someone else's pancake.", to: "regular_pancake_rent" }
         ],
-        contributor: null
+        contributor: "Toshiyuki"
     },
     // Peanut butter pancakes. Level 4.
     make_pb_pancakes: {
