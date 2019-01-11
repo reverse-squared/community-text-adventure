@@ -6,6 +6,14 @@ addFlag("sleepTime", 0);
 addFlag("hasTouchedSpider", false);
 addFlag("graveWaitTime", 0);
 
+export const HospitalExitActions = [
+    { text: "Fake your death", to: "fake_your_death" },
+    { text: "Go skydiving.", to: "skydive_pre" },
+    { text: "Become a Coyote", to: "sting_start" },
+    { text: "Become an Uber driver.", to: "uber_start" },
+    { text: "Read a book", to: "read_a_book" }
+];
+
 function increaseGraveWait() {
     graveWaitTime++;
 
@@ -248,10 +256,7 @@ addScenes({
         prompt: () => <div>
             <p>You paid with your cash. Even though it was counterfeit, nobody noticed. <s>That won't come back up later.</s> You continue with your day and go outside. What do you do?</p>
         </div>,
-        options: [
-            { text: "Fake your death", to: "fake_your_death" },
-            { text: "Go skydiving.", to: "skydive_pre" }
-        ],
+        options: HospitalExitActions,
         contributor: "Hunter"
     },
 
@@ -259,10 +264,7 @@ addScenes({
         prompt: () => <div>
             <p>You paid with your credit card. Even though it was a fake card, nobody noticed. <s>That won't come back up later.</s> You continue with your day and go outside. What do you do?</p>
         </div>,
-        options: [
-            { text: "Fake your death", to: "fake_your_death" },
-            { text: "Go skydiving.", to: "skydive_pre" }
-        ],
+        options: HospitalExitActions,
         contributor: "Dave and Hunter"
     },
 
