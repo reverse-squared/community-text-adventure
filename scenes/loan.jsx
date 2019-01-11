@@ -237,7 +237,8 @@ addScenes({
                     to: "loan_bitcoin_main"
                 };
             }),
-        ]
+        ],
+        contributor: "Dave",
     },
     loan_bitcoin_withdraw: {
         prompt: ()=> <div>
@@ -261,7 +262,8 @@ addScenes({
                     to: "loan_bitcoin_main"
                 };
             }),
-        ]
+        ],
+        contributor: "Dave",
     },
     loan_bitcoin_lose: {
         prompt: () => <div>
@@ -272,7 +274,8 @@ addScenes({
             id: "btc-lose",
             name: "Failed Investment",
             description: "Fail to get rich off of Bitcoin, and fail to pay your loan."
-        }
+        },
+        contributor: "Dave",
     },
     loan_bitcoin_win: {
         prompt: () => <div>
@@ -282,7 +285,8 @@ addScenes({
             id: "btc-win-billion",
             name: "Bitcoin Billionaire",
             description: "Pay off your loan by getting crazy rich off of Bitcoin."
-        }
+        },
+        contributor: "Dave",
     },
     loan_bitcoin_win_sortof: {
         prompt: () => <div>
@@ -292,7 +296,8 @@ addScenes({
             id: "btc-win",
             name: "Bitcoin Success",
             description: "Pay off your loan by getting money from Bitcoin."
-        }
+        },
+        contributor: "Dave",
     },
 
     loan_paybills: {
@@ -592,8 +597,8 @@ addScenes({
         </div>,
         options: [
             { text: "Pay for windows (-$10000000)", to: "loan_paybills_smashwindow_end" }
-        ]
-        
+        ],
+        contributor: "Dave"
     },
     loan_paybills_smashwindow_end: {
         prompt: () => <div>
@@ -606,8 +611,9 @@ addScenes({
         ending: {
             id: "smash-window",
             name: "Smash Windows",
-            description: "Smash your neighbour's $10,000,000 window",
-        }
+            description: "Smash your neighbour's $10,000,000 set of windows",
+        },
+        contributor: "Dave"
     },
     loan_back_to_hospital: {
         prompt: () => <div>

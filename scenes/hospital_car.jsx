@@ -147,6 +147,7 @@ addScenes({
                 }
             }));
         },
+        excludeEmptyOptionsCheck: true,
         contributor: "Alchemyking (idea) and Dave (implementation)"
     },
     hospital_car_fail: {
