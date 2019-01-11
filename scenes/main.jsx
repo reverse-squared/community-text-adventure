@@ -204,6 +204,21 @@ addScenes({
         ],
         contributor: "Toshiyuki"
     },
+
+    make_waffles: {
+        prompt: () => <div>
+            <p>
+                You start making the waffles, but you dont have any <span style={{color:"orange"}}>Waffle Mix</span> so you decide to go to the Grocery Store.
+            </p>
+            <p>
+                The grocery store has two brands: a and b
+                
+
+                todo
+            </p>
+        </div>
+    },
+
     // Peanut butter pancakes. Level 4.
     make_pb_pancakes: {
         prompt: () => <div>
