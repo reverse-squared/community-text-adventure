@@ -2,25 +2,68 @@ import React from "react";
 import { addScenes } from "../src/js/ending.jsx";
 import { addFlag, setScene } from "web-text-adventure";
 
+function randomOf(...list) {
+    return list[Math.floor((Math.random() * list.length))];
+}
+function generateDirectionList() {
+    // generate exits
+    const exits = [];
+    while (exits.length < 4) {
+        let num;
+        do {
+            num = ~~(Math.random() * 99 + 1);
+        } while (exits.includes(num));
+        exits.push(num);
+    }
+    const correctExit = randomOf(...exits);
+    
+    // set the exit template
+    options.exit = exits.map(x => "exit" + x);
+
+    // build map
+    return [
+        randomOf("left", "right", "left", "left-ws"),
+        randomOf("left", "right", "left-ws"),
+        randomOf("left", "right-ws", "right-ws", "left-ws"),
+        randomOf("left", "right", "left-ws", "straight", "left"),
+        randomOf("left", "right", "left-ws", "straight", "left", "right-ws"),
+        randomOf("left", "left-ws", "straight", "left", "left-ws", "left", "left-ws"),
+        randomOf("left", "right", "straight", "left", "right", "right-ws", "left-ws"),
+        randomOf("straight", "straight", "left-ws", "right-ws", "left", "right"),
+        randomOf("straight", "left-ws", "right-ws", "left", "right", "left", "left", "right"),
+        randomOf("straight", "left", "right", "left", "left", "right"),
+        randomOf("straight", "left", "left-ws", "right"),
+        randomOf("left", "left", "right"),
+        "exit" + correctExit,
+        randomOf("right", "straight", "right", "right-ws"),
+        randomOf("right", "left", "right", "right-ws"),
+        randomOf("roundabout left", "roundabout right"),
+        randomOf("right", "left", "right"),
+        randomOf("right-ws", "left-ws", "right"),
+        randomOf("destination left", "destination right")
+    ];
+}
+
 // route information
-const directions = [
-    "left",
-    "right",
-    "right-ws",
-    "left",
-    "right",
-    "left-ws",
-    "straight",
-    "left",
-    "right",
-    "left",
-    "exit52",
-    "left",
-    "right",
-    "roundabout left",
-    "right",
-    "destination right",
-];
+// const directions = [
+//     "left",
+//     "right",
+//     "right-ws",
+//     "left",
+//     "right",
+//     "left-ws",
+//     "straight", //
+//     "left",
+//     "right",
+//     "left",
+//     "exit52",
+//     "left",
+//     "right",
+//     "roundabout left",
+//     "right",
+//     "destination right",
+// ];
+addFlag("directions", null);
 
 const mapDirectionKeyToName = {
     "left": "Turn left",
@@ -54,6 +97,12 @@ addScenes({
                 you can find they way. It says the directions once:
             </p>
             <ul style={{userSelect: "none"}}>
+                {(() => {
+                    // generate directions if not made yet
+                    if (!directions)
+                        directions = generateDirectionList();
+                })()}
+
                 {
                     directions.map((dir, i) => {
                         return <li key={i}>
@@ -114,7 +163,7 @@ addScenes({
     hospital_car_success: {
         prompt: () => <div>
             <p>
-                lmao success
+                lmao success now what
             </p>
         </div>,
         options: [],
