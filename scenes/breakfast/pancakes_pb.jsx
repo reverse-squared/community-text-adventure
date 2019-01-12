@@ -1,7 +1,6 @@
 import React from "react";
 import { } from "web-text-adventure";
 import { addScenes } from "@src/ending";
-import HospitalExitActions from "../after_hospital/after_hospital_options.jsx";
 
 addScenes({
     // Peanut butter pancakes. Level 4.
@@ -33,7 +32,10 @@ addScenes({
         prompt: () => <div>
             <p>You paid with your cash. Even though it was counterfeit, nobody noticed. <s>That won't come back up later.</s> You continue with your day and go outside. What do you do?</p>
         </div>,
-        options: HospitalExitActions,
+        options: [
+            { text: "Fake your death", to: "fake_your_death" },
+            { text: "Go skydiving.", to: "skydive_pre" }
+        ],
         contributor: "Hunter"
     },
 
@@ -41,7 +43,10 @@ addScenes({
         prompt: () => <div>
             <p>You paid with your credit card. Even though it was a fake card, nobody noticed. <s>That won't come back up later.</s> You continue with your day and go outside. What do you do?</p>
         </div>,
-        options: HospitalExitActions,
+        options: [
+            { text: "Fake your death", to: "fake_your_death" },
+            { text: "Go skydiving.", to: "skydive_pre" }
+        ],
         contributor: "Dave and Hunter"
     },
 

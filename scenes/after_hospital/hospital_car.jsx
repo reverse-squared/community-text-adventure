@@ -1,7 +1,6 @@
 import React from "react";
 import { addScenes } from "@src/ending";
 import { addFlag, setScene } from "web-text-adventure";
-import HospitalExitActions from "./after_hospital_options.jsx";
 
 function randomOf(...list) {
     return list[Math.floor((Math.random() * list.length))];
@@ -168,7 +167,11 @@ addScenes({
                 leave the hospital. What do you decide to do?
             </p>
         </div>,
-        options: HospitalExitActions,
+        options: [
+            { text: "Become a Coyote", to: "sting_start" },
+            { text: "Become an Uber driver.", to: "uber_start" },
+            { text: "Read a book", to: "read_a_book" }
+        ],
         contributor: "Hunter",
     },
     read_a_book: {
