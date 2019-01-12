@@ -125,8 +125,20 @@ addScenes({
         </div>,
         options: [
             { text: "Sue.", to: "" },
-            { text: "Accept your death.", to: "" },
+            { text: "Accept your death.", to: "drink_bleach" },
             { text: "Tell your friend to try the water and see if it tastes fishy.", to: "" },
-        ]
+        ],
+        contributor: "Hunter"
+    },
+    drink_bleach: {
+        prompt: () => <div>
+            <p>You finally accept your death and die in the resturant. Nobody cares to call 911 either.</p>
+        </div>,
+        ending: {
+            id: "drink-bleach",
+            name: "Drinking Bleach",
+            description: "All the Xbox kids told you to do it and you finally did."
+        },
+        contributor: "Hunter"
     }
 });
