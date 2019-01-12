@@ -16,6 +16,7 @@ addScenes({
         options: [
             { text: "Lucky Charms", to: "waffles_charms" },
             { text: "Frosted Flakes", to: "" },
+            { text: "Leave, and go to The Waffle House", to: "waffle_house" }
         ],
         contributor: "Dave",
     },
@@ -117,5 +118,15 @@ addScenes({
             description: "You feel Suicidal after eating the waffles raw and you die and go to Heck."
         },
         contributor: "Colyderp"
+    },
+    waffle_house: {
+        prompt: () => <div>
+            <p>You realize that the ice cold glass of water, turned out to be bleach. Now that you know you are going to die, what do you do?</p>
+        </div>,
+        options: [
+            { text: "Sue.", to: "" },
+            { text: "Accept your death.", to: "" },
+            { text: "Tell your friend to try the water and see if it tastes fishy.", to: "" },
+        ]
     }
 });
