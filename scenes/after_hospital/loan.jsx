@@ -81,16 +81,22 @@ const LoanHeader = () => <div>
 </div>;
 
 const LoanBTCHeader = () => <div>
-    <p className={"loan-header " + (loanTurns < 10 ? "loan-header-low" : "")} style={{ marginBottom: "10px" }}>
-        You need to pay off a loan of <strong>$4313</strong>. You have <strong>{loanTurns}</strong> turns left to pay it off.
-    </p>
+    {
+        loan_payloan
+            ? <p className={"loan-header " + (loanTurns < 10 ? "loan-header-low" : "")} style={{ marginBottom: "10px" }}>
+                You need to pay off a loan of <strong>$4313</strong>. You have <strong>{loanTurns}</strong> turns left to pay it off.
+            </p>
+            : <p className={"loan-header " + (loanTurns < 10 ? "loan-header-low" : "")} style={{ marginBottom: "10px" }}>
+                You have <strong>{loanTurns}</strong> turns left to make as much money as possible.
+            </p>
+    }
     <div className="bitcoin-status">
         <p>You have <strong>{formatMoney(loan_walletcash)}</strong> cash, and <strong>{formatBTC(loan_bitcoin)}</strong></p>
     </div>
     <div className="bitcoin-exchange" style={{ marginTop: "0" }}>
         <h3 style={{ marginTop: "0" }}>BTC Exchange Rate</h3>
         <p>
-            <strong>$1</strong> --> <strong>{formatBTC(cashToBTC(1))} BTC</strong><br />
+            <strong>$1</strong> --> <strong>{formatBTC(cashToBTC(1))}</strong><br />
             <strong>1 BTC</strong> --> <strong>{formatMoney(btcToCash(1))}</strong><br />
         </p>
     </div>
