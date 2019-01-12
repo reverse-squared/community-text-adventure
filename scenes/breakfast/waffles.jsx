@@ -18,4 +18,14 @@ addScenes({
             { text: "Don't buy anything and instead go to the Pancake House", to: "pancake_house" },
         ]
     },
+    pancake_house: {
+        prompt: () => <div>
+            <p>You realize that the ice cold glass of water, turned out to be bleach. Now that you know you are going to die, what do you do?</p>
+        </div>,
+        options: [
+            { text: "Sue.", to: "" },
+            { text: "Accept your death.", to: "" },
+            { text: "Tell your friend to try the water and see if it tastes fishy.", to: "" },
+        ]
+    }
 });
