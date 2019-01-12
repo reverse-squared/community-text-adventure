@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "module": "es6",
+        "paths": {
+            "@templates/*": ["./templates/*"],
+            "@src/*": ["./src/js/*"],
+            "@css/*": ["./src/css/*"],
+            "@scenes/*": ["./scenes/*"],
+            "@res/*": ["./res/*"]
+        }
+    }
+}

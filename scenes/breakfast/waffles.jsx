@@ -1,7 +1,7 @@
 import React from "react";
-import SceneLink from "../../templates/SceneLink.jsx";
-import { addScenes } from "../../src/js/ending.jsx";
-import { Color } from "../../templates/font-styles.jsx";
+import SceneLink from "@templates/SceneLink";
+import { addScenes } from "@src/ending";
+import { Color } from "@templates/FontStyles";
 
 addScenes({
     make_waffles: {

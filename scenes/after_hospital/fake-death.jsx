@@ -1,6 +1,6 @@
 import React from "react";
 import { addFlag } from "web-text-adventure";
-import { addScenes } from "../../src/js/ending.jsx";
+import { addScenes } from "@src/ending";
 
 addFlag("graveWaitTime", 0);
 

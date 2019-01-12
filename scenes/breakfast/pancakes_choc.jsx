@@ -1,6 +1,6 @@
 import React from "react";
 import { addFlag, setScene } from "web-text-adventure";
-import { addScenes } from "../../src/js/ending.jsx";
+import { addScenes } from "@src/ending";
 
 addFlag("edgy_chocolate_index", 0);
 addFlag("edgy_chocolate", 1);
