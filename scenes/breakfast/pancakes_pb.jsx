@@ -34,7 +34,8 @@ addScenes({
         </div>,
         options: [
             { text: "Fake your death", to: "fake_your_death" },
-            { text: "Go skydiving.", to: "skydive_pre" }
+            { text: "Go skydiving.", to: "skydive_pre" },
+            { text: "Read a book", to: "read_a_book" }
         ],
         contributor: "Hunter"
     },
@@ -45,9 +46,22 @@ addScenes({
         </div>,
         options: [
             { text: "Fake your death", to: "fake_your_death" },
-            { text: "Go skydiving.", to: "skydive_pre" }
+            { text: "Go skydiving.", to: "skydive_pre" },
+            { text: "Read a book", to: "read_a_book" }
         ],
         contributor: "Dave and Hunter"
+    },
+
+    read_a_book: {
+        prompt: () => <div>
+            <p>You decided to read a book to become smart. Turns out that book held all of the world's knowledge. Now you know everything.</p>
+        </div>,
+        ending: {
+            id: "smart-kid",
+            name: "The Smart Kid",
+            description: "You became famous for knowing everything in the world."
+        },
+        contributor: "Hunter"
     },
 
     // Don't pay hospital bill. Level 5.
