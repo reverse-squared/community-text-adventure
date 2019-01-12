@@ -58,9 +58,7 @@ addScenes({
     },
     waffles_frosted_from_charms2: {
         prompt: () => <div>
-            <p>
-                The CEO of Google emails you about how the world is going to die if you choose the Frosted Flakes. <strong>Are you sure you want the Frosted Flakes.</strong>
-            </p>
+            <p>The CEO of Google emails you about how the world is going to die if you choose the Frosted Flakes. <strong>Are you sure you want the Frosted Flakes.</strong></p>
         </div>,
         options: [
             { text: "Lucky Charms", to: "waffles_final_choice" },
@@ -69,9 +67,7 @@ addScenes({
     },
     waffles_final_choice: {
         prompt: () => <div>
-            <p>
-                Final Choice:
-            </p>
+            <p>Final Choice:</p>
         </div>,
         options: [
             { text: "Lucky Charms", to: "waffles_start_making_lc" },
@@ -81,9 +77,7 @@ addScenes({
 
     waffles_start_making_lc: {
         prompt: () => <div>
-            <p>
-                You start making the Lucky Charms Waffles...
-            </p>
+            <p>You start making the Lucky Charms Waffles...</p>
         </div>,
         options: [
             { text: "Wait for it to finish.", to: "" },
@@ -94,9 +88,7 @@ addScenes({
     },
     waffles_start_making_f: {
         prompt: () => <div>
-            <p>
-                You start making the Frosted Flakes Waffles...
-            </p>
+            <p>You start making the Frosted Flakes Waffles...</p>
         </div>,
         options: [
             { text: "Wait for it to finish.", to: "" },
@@ -108,14 +100,12 @@ addScenes({
 
     waffles_raw_ending: {
         prompt: () => <div>
-            <p>
-                After eating the waffles raw you get suicidal (since the waffles contain ketchup). You die and go to Heck.
-            </p>
+            <p>After eating the waffles raw you get suicidal (since the waffles contain ketchup). You die and go to heck.</p>
         </div>,
         ending: {
             id: "raw-waffles",
             name: "Going to Heck",
-            description: "You feel Suicidal after eating the waffles raw and you die and go to Heck."
+            description: "You feel suicidal after eating the waffles raw and you die and go to heck."
         },
         contributor: "Colyderp"
     },
@@ -125,12 +115,12 @@ addScenes({
         </div>,
         options: [
             { text: "Sue.", to: "" },
-            { text: "Accept your death.", to: "drink_bleach" },
-            { text: "Tell your friend to try the water and see if it tastes fishy.", to: "" },
+            { text: "Accept your death.", to: "bleach_drink" },
+            { text: "Tell your friend to try the water and see if it tastes fishy.", to: "bleach_friend" },
         ],
         contributor: "Hunter"
     },
-    drink_bleach: {
+    bleach_drink: {
         prompt: () => <div>
             <p>You finally accept your death and die in the resturant. Nobody cares to call 911 either.</p>
         </div>,
@@ -138,6 +128,19 @@ addScenes({
             id: "drink-bleach",
             name: "Drinking Bleach",
             description: "All the Xbox kids told you to do it and you finally did."
+        },
+        contributor: "Hunter"
+    },
+    bleach_friend: {
+        prompt: () => <div>
+            <p>You hand the glass to your friend and he sips it. He said it tastes normal. When you start to die, he tells you he did a switch-a-roo and sipped
+                his own when you weren't looking. What a failure.
+            </p>
+        </div>,
+        ending: {
+            id: "failed-prankster",
+            name: "Failed Prank",
+            description: "Inspired from all the prank YouTube channels, you thought it was easy and you tried it, and failed."
         },
         contributor: "Hunter"
     }
