@@ -56,6 +56,18 @@ addScenes({
         ],
         contributor: "Dave",
     },
+    waffles_frosted2: {
+        prompt: () => <div>
+            <p>
+                Right as you start grabbing the Frosted Flakes waffle mix, Lucky Charms decides to place out an advertisement on the new Lucky Waffles that they have with 50% less fat and 60% more luck. <strong>Are you sure you want the Frosted Flakes.</strong>
+            </p>
+        </div>,
+        options: [
+            { text: "Lucky Charms", to: "waffles_start_making_f" },
+            { text: "Frosted Flakes", to: "waffles_charms_from_frosted1" },
+        ],
+        contributor: "Dave",
+    },
     waffles_frosted_from_charms1: {
         prompt: () => <div>
             <p>
@@ -63,12 +75,24 @@ addScenes({
             </p>
         </div>,
         options: [
-            { text: "Lucky Charms", to: "waffles_charms_from_frosted1" },
+            { text: "Lucky Charms", to: "waffles_charms_from_frosted2" },
             { text: "Frosted Flakes", to: "waffles_frosted_from_charms2" },
         ],
         contributor: "Dave",
     },
     waffles_frosted_from_charms2: {
+        prompt: () => <div>
+            <p>
+                You decide to change to Frosted Flakes, but then another advertisement appears about the Expensive Price that Frosted Flakes has. <strong>Are you sure you want the Frosted Flakes.</strong>
+            </p>
+        </div>,
+        options: [
+            { text: "Lucky Charms", to: "waffles_charms_from_frosted3" },
+            { text: "Frosted Flakes", to: "waffles_frosted_from_charms3" },
+        ],
+        contributor: "Dave",
+    },
+    waffles_frosted_from_charms3: {
         prompt: () => <div>
             <p>
                 The CEO of Google emails you about how the world is going to die if you choose the Frosted Flakes. <strong>Are you sure you want the Frosted Flakes.</strong>
@@ -82,16 +106,28 @@ addScenes({
     waffles_charms_from_frosted1: {
         prompt: () => <div>
             <p>
-                You decide to change to Frosted Flakes, but then another advertisement appears about the Health Risks of the Frosting that Frosted Flakes uses. <strong>Are you sure you want the Frosted Flakes.</strong>
+                You switch to Lucky Charms, but then you get a advertisement about. <strong>Are you sure you want the Frosted Flakes.</strong>
             </p>
         </div>,
         options: [
             { text: "Lucky Charms", to: "waffles_charms_from_frosted2" },
-            { text: "Frosted Flakes", to: "waffles_charms_from_frosted1" },
+            { text: "Frosted Flakes", to: "waffles_frosted_from_charms2" },
         ],
         contributor: "Dave",
     },
     waffles_charms_from_frosted2: {
+        prompt: () => <div>
+            <p>
+                You decide to change to Lucky Charms, but then they advertise the buy one get 50 free sale that Frosted Flakes are doing. <strong>Are you sure you want the Lucky Charms.</strong>
+            </p>
+        </div>,
+        options: [
+            { text: "Lucky Charms", to: "waffles_charms_from_frosted3" },
+            { text: "Frosted Flakes", to: "waffles_frosted_from_charms3" },
+        ],
+        contributor: "Dave",
+    },
+    waffles_charms_from_frosted3: {
         prompt: () => <div>
             <p>
                 The CEO of Google emails you about how the world is going to die if you choose the Lucky Charms. <strong>Are you sure you want the Lucky Charms.</strong>
@@ -157,7 +193,8 @@ addScenes({
         },
         contributor: "Colyderp"
     },
-    
+
+    // not sure what this will do
     waffle_house: {
         prompt: () => <div>
             <p>You realize that the ice cold glass of water, turned out to be bleach. Now that you know you are going to die, what do you do?</p>
