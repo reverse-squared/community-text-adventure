@@ -52,7 +52,7 @@ addScenes({
         noContributor: true,
     },
     lint_game_content: {
-        prompt: <div>
+        prompt: () => <div>
             <SceneLink to="start">Back</SceneLink>
             <h2>Broken Links</h2>
             <p>
@@ -60,6 +60,7 @@ addScenes({
             </p>
             <ul>
                 {(() => {
+                    getAllScenes();
                     const scenes = getAllScenes();
                     return Object.keys(scenes).filter(scene => {
                         let options = scenes[scene].options;

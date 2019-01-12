@@ -1,5 +1,5 @@
 import React from "react";
-import { addFlag } from "web-text-adventure";
+import SceneLink from "../../templates/SceneLink.jsx";
 import { addScenes } from "../../src/js/ending.jsx";
 import { Color } from "../../templates/font-styles.jsx";
 
@@ -156,7 +156,6 @@ addScenes({
     // #endregion
 
     // starting
-
     waffles_start_making_lc: {
         prompt: () => <div>
             <p>
@@ -164,9 +163,9 @@ addScenes({
             </p>
         </div>,
         options: [
-            { text: "Wait for it to finish.", to: "" },
+            { text: "Wait for it to finish.", to: "waffles_wait" },
             { text: "Just eat it raw.", to: "waffles_raw_ending" },
-            { text: "Make something else for breakfast", to: "make_breakfast" },
+            { text: "Make something else for breakfast", to: "wakeup_breakfast" },
         ],
         contributor: "Dave",
     },
@@ -177,7 +176,7 @@ addScenes({
             </p>
         </div>,
         options: [
-            { text: "Wait for it to finish.", to: "" },
+            { text: "Wait for it to finish.", to: "waffles_wait" },
             { text: "Just eat it raw.", to: "waffles_raw_ending" },
             { text: "Make something else for breakfast", to: "wakeup_breakfast" },
         ],
@@ -220,5 +219,293 @@ addScenes({
             description: "All the Xbox kids told you to do it and you finally did."
         },
         contributor: "Hunter"
+    },
+    // ^ hunter do something
+
+    waffles_wait: {
+        prompt: () => <div>
+            <p>
+                You Wait for the waffles to cook...
+            </p>
+            <ul>
+                <SceneLink to="waffles_wait1">Wait</SceneLink>
+            </ul>
+        </div>,
+        options: [],
+        contributor: "Dave"
+    },
+    waffles_wait1: {
+        prompt: () => <div>
+            <p>
+                You Wait for the waffles to cook...
+            </p>
+            <ul>
+                <SceneLink style={{
+                    display:"block",
+                    transform: "translateY(1px)",
+                }} to="waffles_wait2">Wait</SceneLink>
+            </ul>
+        </div>,
+        options: [],
+        contributor: "Dave"
+    },
+    waffles_wait2: {
+        prompt: () => <div>
+            <p>
+                You Wait for the waffles to cook...
+            </p>
+            <ul>
+                <SceneLink style={{
+                    display:"block",
+                    transform: "translateY(3px)",
+                }} to="waffles_wait3">Wait</SceneLink>
+            </ul>
+        </div>,
+        options: [],
+        contributor: "Dave"
+    },
+    waffles_wait3: {
+        prompt: () => <div>
+            <p>
+                You Wait for the waffles to cook...
+            </p>
+            <ul>
+                <SceneLink style={{
+                    display:"block",
+                    transform: "translateY(9px)",
+                }} to="waffles_wait4">Wait</SceneLink>
+            </ul>
+        </div>,
+        options: [],
+        contributor: "Dave"
+    },
+    waffles_wait4: {
+        prompt: () => <div>
+            <p>
+                You Wait for the waffles to cook...
+            </p>
+            <ul>
+                <SceneLink style={{
+                    display:"block",
+                    transform: "translateY(120px)",
+                }} to="waffles_wait5">Wait</SceneLink>
+            </ul>
+        </div>,
+        options: [],
+        contributor: "Dave"
+    },
+    waffles_wait5: {
+        prompt: () => <div>
+            <p>
+                You Wait for the waffles to cook...
+            </p>
+            <ul>
+                <SceneLink style={{
+                    display:"block",
+                    transform: "translateY(100px) translateX(60px)",
+                }} to="waffles_wait6">Wait</SceneLink>
+            </ul>
+        </div>,
+        options: [],
+        contributor: "Dave"
+    },
+    waffles_wait6: {
+        prompt: () => <div>
+            <p>
+                You Wait for the waffles to cook...
+            </p>
+            <ul>
+                <SceneLink style={{
+                    display: "block",
+                    position: "absolute",
+                    bottom: "-100px",
+                    right: "500px",
+                }} to="waffles_wait7">Wait</SceneLink>
+            </ul>
+        </div>,
+        options: [],
+        contributor: "Dave"
+    },
+    waffles_wait7: {
+        prompt: () => <div>
+            <p>
+                You Wait for the waffles to cook...
+            </p>
+            <ul>
+                <SceneLink style={{
+                    display: "block",
+                    position: "absolute",
+                    transform: "translateX(60px) rotate(232deg)"
+                }} to="waffles_wait8">Wait</SceneLink>
+            </ul>
+        </div>,
+        options: [],
+        contributor: "Dave"
+    },
+    waffles_wait8: {
+        prompt: () => <div>
+            <p>
+                You Wait for the waffles to cook...
+            </p>
+            <ul>
+                <SceneLink style={{
+                    display: "block",
+                    position: "absolute",
+                    transform: "translateX(80px) translateY(180px) rotate(42deg) scale(3)"
+                }} to="waffles_wait9">Wait</SceneLink>
+            </ul>
+        </div>,
+        options: [],
+        contributor: "Dave"
+    },
+    waffles_wait9: {
+        prompt: () => <div>
+            <p>
+                You Wait for the waffles to cook...
+            </p>
+            <ul>
+                <SceneLink style={{
+                    display: "block",
+                    position: "absolute",
+                    transform: "translateX(-20px) translateY(240px) rotate(90deg) scale(0.5)"
+                }} to="waffles_wait10">Wait</SceneLink>
+            </ul>
+        </div>,
+        options: [],
+        contributor: "Dave"
+    },
+    waffles_wait10: {
+        prompt: () => <div>
+            <p>
+                You Wait for the waffles to cook...
+            </p>
+            <ul>
+                <SceneLink style={{
+                    display: "block",
+                    position: "absolute",
+                    transform: "translateX(-200px) translateY(240px) rotate(-20deg) scale(40)"
+                }} to="waffles_wait11">Wait</SceneLink>
+            </ul>
+        </div>,
+        options: [],
+        contributor: "Dave"
+    },
+    waffles_wait11: {
+        prompt: () => <div>
+            <p>
+                You Wait for the waffles to cook...
+            </p>
+            <ul>
+                <SceneLink style={{
+                    display: "block",
+                    position: "absolute",
+                    color: "black",
+                    transform: "translateX(-2px) translateY(60px) rotate(23deg) scale(1.1)"
+                }} to="waffles_wait12">Wait</SceneLink>
+            </ul>
+        </div>,
+        options: [],
+        contributor: "Dave"
+    },
+    waffles_wait12: {
+        prompt: () => <div>
+            <p>
+                You Wait for the waffles to cook...
+            </p>
+            <ul>
+                <SceneLink style={{
+                    display: "block",
+                    position: "absolute",
+                    color: "black",
+                    transform: "translateX(54px) translateY(72px) rotate(101deg) scale(0.8)"
+                }} to="waffles_wait13">Wait</SceneLink>
+            </ul>
+        </div>,
+        options: [],
+        contributor: "Dave"
+    },
+    waffles_wait13: {
+        prompt: () => <div style={{position: "relative"}}>
+            <p>
+                You <span style={{visibility: "hidden"}}>Wait</span> for the waffles to cook...
+            </p>
+            <SceneLink style={{
+                display: "block",
+                position: "absolute",
+                color: "white",
+                top: "0px",
+                left: "34.9px"
+            }} to="waffles_wait14">Wait</SceneLink>
+        </div>,
+        options: [],
+        contributor: "Dave"
+    },
+    waffles_wait14: {
+        prompt: () => <div>
+            <p>
+                You Wait for the waffles to cook...
+            </p>
+            <ul>
+                <SceneLink style={{
+                    display: "block",
+                    position: "absolute",
+                    transform: "translateX(300px) translateY(20px) rotate(30deg) scale(4)"
+                }} to="waffles_wait15">Wait</SceneLink>
+            </ul>
+        </div>,
+        options: [],
+        contributor: "Dave"
+    },
+    waffles_wait15: {
+        prompt: () => <div>
+            <p>
+                You Wait for the waffles to cook...
+            </p>
+            <ul>
+                <SceneLink style={{
+                    display: "block",
+                    position: "absolute",
+                    transform: "translateX(200px) translateY(220px) rotate(-46deg) scale(4)"
+                }} to="waffles_wait_done">Wait</SceneLink>
+            </ul>
+        </div>,
+        options: [],
+        contributor: "Dave"
+    },
+    waffles_wait_done: {
+        prompt: () => <div>
+            <p>
+                You Wait for the waffles to cook... and they are done now!
+            </p>
+        </div>,
+        options: [
+            { text: "Eat them", to: "eat_waffle_ending"},
+            { text: "Throw them away", to: "throw_away_waffle"},
+        ],
+        contributor: "Dave"
+    },
+    throw_away_waffle: {
+        prompt: () => <div>
+            <p>
+                Without tasting the waffle, you throw it away, and a homeless person goes off with it. Well, you still need breakfast so you should start doing that.
+            </p>
+        </div>,
+        options: [
+            {text: "Make Breakfast", to: "wakeup_breakfast"}
+        ],
+        contributor: "Colyderp",
+    },
+    eat_waffle_ending: {
+        prompt: () => <div>
+            <p>
+                You have created the best waffle there has ever been, and won the award winning prize for best waffle, but because you ate the waffle it doesn't count. Close Enough.
+            </p>
+        </div>,
+        ending: {
+            id: "waffle",
+            name: "Close Enough to Award Winning",
+            description: "Create a award winning waffle, but have it be disqualified due to it being eaten."
+        },
+        contributor: "Dave",
     }
 });

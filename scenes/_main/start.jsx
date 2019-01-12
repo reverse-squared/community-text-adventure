@@ -128,7 +128,7 @@ addScenes({
                     {
                         text: "Give up and Starve...",
                         to: "breakfast_fail_ending",
-                        if: () => !startedOmelette,
+                        if: () => startedWaffles && startedOmelette && startedHashbrowns && startedPancakes ,
                     },
                 ];
             } else {
@@ -140,7 +140,6 @@ addScenes({
                 ];
             }
         },
-        
         contributor: "Colyderp"
     },
 
