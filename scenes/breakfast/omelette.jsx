@@ -13,6 +13,18 @@ addScenes({
         ],
         contributor: "Colyderp (Idea) and Hunter (Facts)"
     },
+    make_omelette_fail: {
+        prompt: () => <div>
+            <p>
+                You make yourself an omelette. You heard on the news that they have a lot of protein in them. But somehow while making it you mess up the recipe and it turned into a pile of extracted protein.
+            </p>
+        </div>,
+        options: [
+            { text: "oh...", to: "wakeup_breakfast" },
+        ],
+        action: () => startedOmelette = true,
+        contributor: "Dave and Adr"
+    },
     omelette_ending_1: {
         prompt: () => <div>
             <p>The omelet is a breakfast classic!  Protein-rich eggs delicately cooked with a variety of tantalizing ingredients and folded into a pillow of tasty goodness, omelets are usually a top seller at restaurants.  With so many ways to make this favorite dish, your question is a good one to ask. </p>

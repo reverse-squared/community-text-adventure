@@ -1,5 +1,5 @@
 import React from "react";
-import { } from "web-text-adventure";
+import { addFlag } from "web-text-adventure";
 import { addScenes } from "../../src/js/ending.jsx";
 import { Color } from "../../templates/font-styles.jsx";
 
@@ -17,6 +17,7 @@ addScenes({
             { text: "Lucky Charms", to: "waffles_charms" },
             { text: "Frosted Flakes", to: "waffles_frosted" },
         ],
+        action: () => startedWaffles = true,
         contributor: "Dave",
     },
     // #region debate over which one
@@ -102,6 +103,7 @@ addScenes({
             { text: "Lucky Charms", to: "waffles_final_choice" },
             { text: "Frosted Flakes", to: "waffles_final_choice" },
         ],
+        contributor: "Dave",
     },
     waffles_charms_from_frosted1: {
         prompt: () => <div>
@@ -137,6 +139,7 @@ addScenes({
             { text: "Lucky Charms", to: "waffles_final_choice" },
             { text: "Frosted Flakes", to: "waffles_final_choice" },
         ],
+        contributor: "Dave",
     },
     waffles_final_choice: {
         prompt: () => <div>
@@ -148,6 +151,7 @@ addScenes({
             { text: "Lucky Charms", to: "waffles_start_making_lc" },
             { text: "Frosted Flakes", to: "waffles_start_making_f" },
         ],
+        contributor: "Dave",
     },
     // #endregion
 
@@ -162,7 +166,7 @@ addScenes({
         options: [
             { text: "Wait for it to finish.", to: "" },
             { text: "Just eat it raw.", to: "waffles_raw_ending" },
-            { text: "Make something else for breakfast", to: "" },
+            { text: "Make something else for breakfast", to: "make_breakfast" },
         ],
         contributor: "Dave",
     },
@@ -175,7 +179,7 @@ addScenes({
         options: [
             { text: "Wait for it to finish.", to: "" },
             { text: "Just eat it raw.", to: "waffles_raw_ending" },
-            { text: "Make something else for breakfast", to: "" },
+            { text: "Make something else for breakfast", to: "wakeup_breakfast" },
         ],
         contributor: "Dave",
     },

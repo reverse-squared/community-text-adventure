@@ -1,8 +1,13 @@
 import React from "react";
-import { addFlag, resetFlags, setScene } from "web-text-adventure";
+import { addFlag, resetFlags } from "web-text-adventure";
 import { addScenes } from "../../src/js/ending.jsx";
 
 addFlag("sleepTime", 0);
+
+addFlag("startedWaffles", false);
+addFlag("startedPancakes", false);
+addFlag("startedOmelette", false);
+addFlag("startedHashbrowns", false);
 
 addScenes({
     // Start. Level 1.
@@ -111,12 +116,31 @@ addScenes({
         prompt: () => <div>
             <p>You walk downstairs to make some breakfast.What do you make?</p>
         </div>,
-        options: [
-            { text: "Pancakes.", to: "make_pancakes" },
-            { text: "Waffles.", to: "make_waffles" },
-            { text: "Hashbrowns.", to: "make_hashbrowns" },
-            { text: "Omelette.", to: "make_omelette" },
-        ],
+        options: () => {
+
+            if (startedWaffles || startedOmelette || startedHashbrowns || startedPancakes) {
+                return [
+                    { text: "Pancakes", disabledText: true, if: () => !startedPancakes, to: "make_pancakes" },
+                    { text: "Waffles", disabledText: true, if: () => !startedWaffles, to: "make_waffles" },
+                    { text: "Hashbrowns", disabledText: true, if: () => !startedHashbrowns, to: "make_hashbrowns" },
+                    { text: "Omelette", disabledText: true, if: () => !startedOmelette, to: "make_omelette_fail" },
+                    // "seperator",
+                    {
+                        text: "Give up and Starve...",
+                        to: "breakfast_fail_ending",
+                        if: () => !startedOmelette,
+                    },
+                ];
+            } else {
+                return [
+                    { text: "Pancakes", to: "make_pancakes" },
+                    { text: "Waffles", to: "make_waffles" },
+                    { text: "Hashbrowns", to: "make_hashbrowns" },
+                    { text: "Omelette", to: "make_omelette" },
+                ];
+            }
+        },
+        
         contributor: "Colyderp"
     },
 
