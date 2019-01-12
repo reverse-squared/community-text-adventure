@@ -47,7 +47,7 @@ addScenes({
         options: [
             { text: "Yes, Reset.", action: () => resetGame(), to: "BLANKSCENE" },
             "seperator",
-            { text: "No, do not.", to: "start" }
+            { text: "No, do not.", to: "start" },
         ],
         noContributor: true,
     },
