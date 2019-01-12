@@ -232,7 +232,8 @@ addScenes({
             </ul>
         </div>,
         options: [],
-        contributor: "Dave"
+        contributor: "Dave",
+        excludeEmptyOptionsCheck: true,
     },
     waffles_wait1: {
         prompt: () => <div>
@@ -247,7 +248,8 @@ addScenes({
             </ul>
         </div>,
         options: [],
-        contributor: "Dave"
+        contributor: "Dave",
+        excludeEmptyOptionsCheck: true,
     },
     waffles_wait2: {
         prompt: () => <div>
@@ -262,7 +264,8 @@ addScenes({
             </ul>
         </div>,
         options: [],
-        contributor: "Dave"
+        contributor: "Dave",
+        excludeEmptyOptionsCheck: true,
     },
     waffles_wait3: {
         prompt: () => <div>
@@ -277,7 +280,8 @@ addScenes({
             </ul>
         </div>,
         options: [],
-        contributor: "Dave"
+        contributor: "Dave",
+        excludeEmptyOptionsCheck: true,
     },
     waffles_wait4: {
         prompt: () => <div>
@@ -292,7 +296,8 @@ addScenes({
             </ul>
         </div>,
         options: [],
-        contributor: "Dave"
+        contributor: "Dave",
+        excludeEmptyOptionsCheck: true,
     },
     waffles_wait5: {
         prompt: () => <div>
@@ -307,7 +312,8 @@ addScenes({
             </ul>
         </div>,
         options: [],
-        contributor: "Dave"
+        contributor: "Dave",
+        excludeEmptyOptionsCheck: true,
     },
     waffles_wait6: {
         prompt: () => <div>
@@ -324,7 +330,8 @@ addScenes({
             </ul>
         </div>,
         options: [],
-        contributor: "Dave"
+        contributor: "Dave",
+        excludeEmptyOptionsCheck: true,
     },
     waffles_wait7: {
         prompt: () => <div>
@@ -340,7 +347,8 @@ addScenes({
             </ul>
         </div>,
         options: [],
-        contributor: "Dave"
+        contributor: "Dave",
+        excludeEmptyOptionsCheck: true,
     },
     waffles_wait8: {
         prompt: () => <div>
@@ -356,7 +364,8 @@ addScenes({
             </ul>
         </div>,
         options: [],
-        contributor: "Dave"
+        contributor: "Dave",
+        excludeEmptyOptionsCheck: true,
     },
     waffles_wait9: {
         prompt: () => <div>
@@ -372,7 +381,8 @@ addScenes({
             </ul>
         </div>,
         options: [],
-        contributor: "Dave"
+        contributor: "Dave",
+        excludeEmptyOptionsCheck: true,
     },
     waffles_wait10: {
         prompt: () => <div>
@@ -388,7 +398,8 @@ addScenes({
             </ul>
         </div>,
         options: [],
-        contributor: "Dave"
+        contributor: "Dave",
+        excludeEmptyOptionsCheck: true,
     },
     waffles_wait11: {
         prompt: () => <div>
@@ -405,7 +416,8 @@ addScenes({
             </ul>
         </div>,
         options: [],
-        contributor: "Dave"
+        contributor: "Dave",
+        excludeEmptyOptionsCheck: true,
     },
     waffles_wait12: {
         prompt: () => <div>
@@ -422,7 +434,8 @@ addScenes({
             </ul>
         </div>,
         options: [],
-        contributor: "Dave"
+        contributor: "Dave",
+        excludeEmptyOptionsCheck: true,
     },
     waffles_wait13: {
         prompt: () => <div style={{position: "relative"}}>
@@ -438,7 +451,8 @@ addScenes({
             }} to="waffles_wait14">Wait</SceneLink>
         </div>,
         options: [],
-        contributor: "Dave"
+        contributor: "Dave",
+        excludeEmptyOptionsCheck: true,
     },
     waffles_wait14: {
         prompt: () => <div>
@@ -454,7 +468,8 @@ addScenes({
             </ul>
         </div>,
         options: [],
-        contributor: "Dave"
+        contributor: "Dave",
+        excludeEmptyOptionsCheck: true,
     },
     waffles_wait15: {
         prompt: () => <div>
@@ -470,7 +485,8 @@ addScenes({
             </ul>
         </div>,
         options: [],
-        contributor: "Dave"
+        contributor: "Dave",
+        excludeEmptyOptionsCheck: true,
     },
     waffles_wait_done: {
         prompt: () => <div>
@@ -482,7 +498,8 @@ addScenes({
             { text: "Eat them", to: "eat_waffle_ending"},
             { text: "Throw them away", to: "throw_away_waffle"},
         ],
-        contributor: "Dave"
+        contributor: "Dave",
+        excludeEmptyOptionsCheck: true,
     },
     throw_away_waffle: {
         prompt: () => <div>
@@ -494,6 +511,7 @@ addScenes({
             {text: "Make Breakfast", to: "wakeup_breakfast"}
         ],
         contributor: "Colyderp",
+        excludeEmptyOptionsCheck: true,
     },
     eat_waffle_ending: {
         prompt: () => <div>
@@ -507,5 +525,6 @@ addScenes({
             description: "Create a award winning waffle, but have it be disqualified due to it being eaten."
         },
         contributor: "Dave",
+        excludeEmptyOptionsCheck: true,
     }
 });

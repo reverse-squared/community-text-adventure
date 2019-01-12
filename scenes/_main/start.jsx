@@ -79,7 +79,8 @@ addScenes({
         </div>,
         options: [
             { text: "Go back and touch more things", to: "genocide_main"}
-        ]
+        ],
+        contributor: "Adr"
     },
 
     touch_human: {
