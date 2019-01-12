@@ -179,31 +179,6 @@ addScenes({
         contributor: "Colyderp"
     },
 
-    // not sure what this will do
-    waffle_house: {
-        prompt: () => <div>
-            <p>You realize that the ice cold glass of water, turned out to be bleach. Now that you know you are going to die, what do you do?</p>
-        </div>,
-        options: [
-            { text: "Sue.", to: "" },
-            { text: "Accept your death.", to: "bleach_drink" },
-            { text: "Tell your friend to try the water and see if it tastes fishy.", to: "bleach_friend" },
-        ],
-        contributor: "Hunter"
-    },
-    bleach_drink: {
-        prompt: () => <div>
-            <p>You finally accept your death and die in the resturant. Nobody cares to call 911 either.</p>
-        </div>,
-        ending: {
-            id: "drink-bleach",
-            name: "Drinking Bleach",
-            description: "All the Xbox kids told you to do it and you finally did."
-        },
-        contributor: "Hunter"
-    },
-    // ^ hunter do something
-
     waffles_wait: {
         prompt: () => <div>
             <p>You Wait for the waffles to cook...</p>
