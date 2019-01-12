@@ -10,8 +10,8 @@ const contributors = [
     ["Adr"],
     ["Alchemyking"],
     ["Toshiyuki",               "https://steamcommunity.com/id/nekoalex66/"],
+    ["Helvetica"],
     // People below this still need to say exactly how they want credit.
-    // ["", ""],
 ];
 
 export default hot(module)(() => <div>

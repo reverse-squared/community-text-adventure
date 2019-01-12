@@ -1,8 +1,8 @@
 // This file handles the different paths from the loan of $4313 that you need to pay off
 import React from "react";
 import { addFlag, setScene } from "web-text-adventure";
-import { RainbowCircleText, RainbowText } from "../../templates/font-styles.jsx";
-import { addScenes } from "../../src/js/ending.jsx";
+import { RainbowCircleText, RainbowText } from "@templates/FontStyles";
+import { addScenes } from "@src/ending";
 
 addFlag("loanMoney", -4313);
 addFlag("loanTurns", 31);
@@ -81,16 +81,22 @@ const LoanHeader = () => <div>
 </div>;
 
 const LoanBTCHeader = () => <div>
-    <p className={"loan-header " + (loanTurns < 10 ? "loan-header-low" : "")} style={{ marginBottom: "10px" }}>
-        You need to pay off a loan of <strong>$4313</strong>. You have <strong>{loanTurns}</strong> turns left to pay it off.
-    </p>
+    {
+        loan_payloan
+            ? <p className={"loan-header " + (loanTurns < 10 ? "loan-header-low" : "")} style={{ marginBottom: "10px" }}>
+                You need to pay off a loan of <strong>$4313</strong>. You have <strong>{loanTurns}</strong> turns left to pay it off.
+            </p>
+            : <p className={"loan-header " + (loanTurns < 10 ? "loan-header-low" : "")} style={{ marginBottom: "10px" }}>
+                You have <strong>{loanTurns}</strong> turns left to make as much money as possible.
+            </p>
+    }
     <div className="bitcoin-status">
         <p>You have <strong>{formatMoney(loan_walletcash)}</strong> cash, and <strong>{formatBTC(loan_bitcoin)}</strong></p>
     </div>
     <div className="bitcoin-exchange" style={{ marginTop: "0" }}>
         <h3 style={{ marginTop: "0" }}>BTC Exchange Rate</h3>
         <p>
-            <strong>$1</strong> --> <strong>{formatBTC(cashToBTC(1))} BTC</strong><br />
+            <strong>$1</strong> --> <strong>{formatBTC(cashToBTC(1))}</strong><br />
             <strong>1 BTC</strong> --> <strong>{formatMoney(btcToCash(1))}</strong><br />
         </p>
     </div>

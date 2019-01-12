@@ -1,13 +1,14 @@
 {
   "name": "community-text-adventure",
-  "version": "1.7.0",
+  "version": "1.8.0",
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "module-alias": "^2.1.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-hot-loader": "^4.6.3",
-    "web-text-adventure": "^1.8.4"
+    "web-text-adventure": "^1.9.0"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
@@ -18,6 +19,7 @@
     "autoprefixer": "^9.4.4",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.5",
+    "babel-plugin-webpack-alias": "^2.1.2",
     "chalk": "^2.4.2",
     "css-loader": "^2.1.0",
     "cssnano": "^4.1.8",
@@ -44,5 +46,12 @@
   },
   "license": "MIT",
   "output_directory": "dist",
-  "private": true
+  "private": true,
+  "_moduleAliases": {
+    "@templates": "templates",
+    "@src": "src/js",
+    "@css": "src/css",
+    "@scenes": "scenes",
+    "@res": "res"
+  }
 }

@@ -1,5 +1,8 @@
 // builds the game
+
+require("module-alias/register");
 require("@babel/register");
+
 const fs = require("fs-extra");
 const path = require("path");
 const webpack = require("webpack");
@@ -27,10 +30,7 @@ const endingScenes = Object.keys(scenes).filter(x=>scenes[x].ending).length;
 
 // make `dist` folder
 const dist_folder = path.join(__dirname, "../../", p_output_directory);
-if (fs.pathExistsSync(dist_folder)) {
-    fs.removeSync(dist_folder);
-}
-fs.mkdirsSync(dist_folder);
+fs.ensureDirSync(dist_folder);
 
 // run `webpack --mode production`
 const config = require("../../webpack.config.js")({

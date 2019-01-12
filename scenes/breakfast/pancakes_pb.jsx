@@ -1,6 +1,6 @@
 import React from "react";
 import { } from "web-text-adventure";
-import { addScenes } from "../../src/js/ending.jsx";
+import { addScenes } from "@src/ending";
 import HospitalExitActions from "../after_hospital/after_hospital_options.jsx";
 
 addScenes({
@@ -66,6 +66,7 @@ addScenes({
             id: "jump-out-window",
             name: "Leap of Faith",
             description: "Why would anyone want to jump out of a window?",
-        }
+        },
+        contributor: "Dave",
     },
 });

@@ -1,8 +1,8 @@
 // contains debug scenes and some fancy required ones
 import React from "react";
 import { setConfig, getConfig, getAllScenes } from "web-text-adventure";
-import { addScenes, resetGame } from "../../src/js/ending.jsx";
-import SceneLink from "../../templates/SceneLink.jsx";
+import { addScenes, resetGame } from "@src/ending";
+import SceneLink from "@templates/SceneLink";
 
 let debugOptions = {};
 if (typeof localStorage !== "undefined" && localStorage.debug) {
@@ -52,7 +52,7 @@ addScenes({
         noContributor: true,
     },
     lint_game_content: {
-        prompt: <div>
+        prompt: () => <div>
             <SceneLink to="start">Back</SceneLink>
             <h2>Broken Links</h2>
             <p>
@@ -60,6 +60,7 @@ addScenes({
             </p>
             <ul>
                 {(() => {
+                    getAllScenes();
                     const scenes = getAllScenes();
                     return Object.keys(scenes).filter(scene => {
                         let options = scenes[scene].options;

@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import Lock from "../res/lock.jsx";
+import Lock from "@res/lock";
 
 export default ({ ending }) => <div className="ending-square">
     <div className="ending-square-title">{ending.name}</div>

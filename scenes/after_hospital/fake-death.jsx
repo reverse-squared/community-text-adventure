@@ -1,6 +1,6 @@
 import React from "react";
 import { addFlag } from "web-text-adventure";
-import { addScenes } from "../../src/js/ending.jsx";
+import { addScenes } from "@src/ending";
 
 addFlag("graveWaitTime", 0);
 
@@ -33,7 +33,8 @@ addScenes({
             id: "grave-zombie",
             name: "Rose from the Dead",
             description: "Fake your death and rise from the \"dead\".",
-        }
+        },
+        contributor: "Hunter",
     },
     grave_wait: {
         prompt: () => <div>
@@ -43,7 +44,8 @@ addScenes({
             { text: "Wait more.", to: "grave_wait" },
             { text: "Leave grave.", to: "grave_leave" }
         ],
-        action: increaseGraveWait
+        action: increaseGraveWait,
+        contributor: "Hunter",
     },
     grave_die: {
         prompt: () => <div>
@@ -53,6 +55,7 @@ addScenes({
             id: "grave-death",
             name: "Accidental Suicide",
             description: "You accidentally killed yourself in your own grave. How does that even happen?",
-        }
+        },
+        contributor: "Hunter",
     }
 });

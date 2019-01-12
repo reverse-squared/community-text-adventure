@@ -1,9 +1,9 @@
 import React from "react";
 import { setScene, setConfig, getConfig } from "web-text-adventure";
-import { addScenes, getGameProgress, getAllEndings } from "../../src/js/ending.jsx";
-import Credits from "../../templates/credits.jsx";
-import SceneLink from "../../templates/SceneLink.jsx";
-import EndingCard from "../../templates/EndingCard.jsx";
+import { addScenes, getGameProgress, getAllEndings } from "@src/ending";
+import Credits from "@templates/Credits";
+import SceneLink from "@templates/SceneLink";
+import EndingCard from "@templates/EndingCard";
 
 function formatDate(date) {
     const year = date.getFullYear();
