@@ -1,10 +1,9 @@
 import React from "react";
 import { setScene, setConfig, getConfig } from "web-text-adventure";
-import { addScenes, getGameProgress, getAllEndings } from "../src/js/ending.jsx";
-import Credits from "../templates/credits.jsx";
-import SceneLink from "../templates/SceneLink.jsx";
-import EndingCard from "../templates/EndingCard.jsx";
-import { resetGame } from "../src/js/ending.jsx";
+import { addScenes, getGameProgress, getAllEndings } from "@src/ending";
+import Credits from "@templates/Credits";
+import SceneLink from "@templates/SceneLink";
+import EndingCard from "@templates/EndingCard";
 
 function formatDate(date) {
     const year = date.getFullYear();
@@ -91,26 +90,19 @@ addScenes({
                 win.opener = null;
             }, if: ()=> getGameProgress().achievedEndings > 0 },
             "seperator",
-            { text: "Debug Options", if: () => !$hideDebug, to: "debug" }
-        ]
-    },
-    debug: {
-        prompt: <div>
-            <h1>Debug Options</h1>
-        </div>,
-        options: [
-            { text: "Back", to: "start" },
-            "seperator",
-            debugBooleanOption("debugPanel", "Debug Panel"),
-            debugBooleanOption("showBrokenLinks", "Always Highlight Broken Links"),
-        ]
+            { text: "Debug Options", if: () => !$hideDebug, to: "debug" },
+            { text: "Test Game Content", if: () => !$hideDebug, to: "lint_game_content" },
+        ],
+        noContributor: true,
     },
     credits: {
         prompt: () => <div>
             <SceneLink to="start">Back</SceneLink>
             <Credits />
         </div>,
-        options: []
+        options: [],
+        excludeEmptyOptionsCheck: true,
+        noContributor: true,
     },
     endings: {
         prompt: () => {
@@ -130,23 +122,8 @@ addScenes({
                 }
             </div>;
         },
-        options: []
+        options: [],
+        excludeEmptyOptionsCheck: true,
+        noContributor: true,
     },
-    reset: {
-        prompt: () => <div>
-            Are you sure you want to reset all game progress?
-        </div>,
-        options: [
-            { text: "Yes, Reset.", action: () => resetGame(), to: "BLANKSCENE"},
-            "seperator",
-            { text: "No, do not.", to: "start"}
-        ]
-    },
-
-    // used for 
-    BLANKSCENE: {
-        prompt: "<blank>",
-        options:[],
-        isBlank:true
-    }
 });

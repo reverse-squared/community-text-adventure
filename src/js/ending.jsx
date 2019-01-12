@@ -1,7 +1,7 @@
 // Controls ending save progress
 import React from "react";
 import { addScenes as addScenesReal, setScene } from "web-text-adventure";
-import EndingCard from "../../templates/EndingCard.jsx";
+import EndingCard from "@templates/EndingCard";
 
 const endings = {};
 const sceneStorage = {};
@@ -77,7 +77,8 @@ addScenesReal({
                 setScene("start");
                 endingFlag = null;
             }
-        }
+        },
+        noContributor: true,
     }
 });
 

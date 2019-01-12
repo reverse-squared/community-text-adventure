@@ -1,18 +1,13 @@
 import React from "react";
-import { addFlag, resetFlags, setScene } from "web-text-adventure";
-import { addScenes } from "../src/js/ending.jsx";
+import { addFlag, resetFlags } from "web-text-adventure";
+import { addScenes } from "@src/ending";
 
 addFlag("sleepTime", 0);
-addFlag("hasTouchedSpider", false);
-addFlag("graveWaitTime", 0);
 
-function increaseGraveWait() {
-    graveWaitTime++;
-
-    if(graveWaitTime > 4) {
-        setScene("grave_die");
-    }
-}
+addFlag("startedWaffles", false);
+addFlag("startedPancakes", false);
+addFlag("startedOmelette", false);
+addFlag("startedHashbrowns", false);
 
 addScenes({
     // Start. Level 1.
@@ -84,7 +79,8 @@ addScenes({
         </div>,
         options: [
             { text: "Go back and touch more things", to: "genocide_main"}
-        ]
+        ],
+        contributor: "Adr"
     },
 
     touch_human: {
@@ -121,12 +117,30 @@ addScenes({
         prompt: () => <div>
             <p>You walk downstairs to make some breakfast.What do you make?</p>
         </div>,
-        options: [
-            { text: "Pancakes.", to: "make_pancakes" },
-            { text: "Waffles.", to: "make_waffles" },
-            { text: "Hashbrowns.", to: "make_hashbrowns" },
-            { text: "Omelette.", to: "make_omelette" },
-        ],
+        options: () => {
+
+            if (startedWaffles || startedOmelette || startedHashbrowns || startedPancakes) {
+                return [
+                    { text: "Pancakes", disabledText: true, if: () => !startedPancakes, to: "make_pancakes" },
+                    { text: "Waffles", disabledText: true, if: () => !startedWaffles, to: "make_waffles" },
+                    { text: "Hashbrowns", disabledText: true, if: () => !startedHashbrowns, to: "make_hashbrowns" },
+                    { text: "Omelette", disabledText: true, if: () => !startedOmelette, to: "make_omelette_fail" },
+                    // "seperator",
+                    {
+                        text: "Give up and Starve...",
+                        to: "breakfast_fail_ending",
+                        if: () => startedWaffles && startedOmelette && startedHashbrowns && startedPancakes ,
+                    },
+                ];
+            } else {
+                return [
+                    { text: "Pancakes", to: "make_pancakes" },
+                    { text: "Waffles", to: "make_waffles" },
+                    { text: "Hashbrowns", to: "make_hashbrowns" },
+                    { text: "Omelette", to: "make_omelette" },
+                ];
+            }
+        },
         contributor: "Colyderp"
     },
 
@@ -140,7 +154,7 @@ addScenes({
             { text: "...you're hungry and want to eat something.", to: "wakeup_breakfast" },
             { text: "...you have plans to go outside and go on an adventure.", to: "adventure_start" }
         ],
-        contributor: null
+        contributor: "Toshiyuki"
     },
 
     // Sleep. Level 3.
@@ -191,130 +205,4 @@ addScenes({
         ],
         contributor: "Dave"
     },
-
-    make_regular_pancakes: {
-        prompt: () => <div>
-            <p>You start making a pancake. What do you do with it.</p>
-        </div>,
-        options: [
-            { text: "Put syrup on it.", to: "regular_pancake_syrup" },
-            { text: "Put butter on it.", to: "regular_pancake_butter" },
-            { text: "Leave it as is.", to: "regular_pancake_leave" },
-            { text: "Rent someone else's pancake.", to: "regular_pancake_rent" }
-        ],
-        contributor: null
-    },
-    // Peanut butter pancakes. Level 4.
-    make_pb_pancakes: {
-        prompt: () => <div>
-            <p>Turns out you are allergic to peanut butter. Now you have to play a hospital and ambulance bill of <strong>$4313</strong>. Do you pay it?</p>
-        </div>,
-        options: [
-            { text: "Yes (-$4313)", to: "yes_pay_bill" },
-            { text: "No", to: "no_pay_bill" }
-        ],
-        contributor: "Hunter"
-    },
-
-    // Pay the hospital bill.
-    yes_pay_bill: {
-        prompt: () => <div>
-            <p>You wanna pay your bill, so you have two options, pay with cash and risk getting arrested with counterfeit cash, or pay with one of your 23 credit cards which probably are all maxed out.</p>
-        </div>,
-        options: [
-            { text: "Pay with Cash", to: "pay_bill_cash" },
-            { text: "Pay with Credit", to: "pay_bill_credit" },
-            { text: "Take out a loan.", to: "loan_start" },
-        ],
-        contributor: "Hunter"
-    },
-
-    pay_bill_cash: {
-        prompt: () => <div>
-            <p>You paid with your cash. Even though it was counterfeit, nobody noticed. <s>That won't come back up later.</s> You continue with your day and go outside. What do you do?</p>
-        </div>,
-        options: [
-            { text: "Fake your death", to: "fake_your_death" },
-            { text: "Go skydiving.", to: "skydive_pre" }
-        ],
-        contributor: "Hunter"
-    },
-
-    pay_bill_credit: {
-        prompt: () => <div>
-            <p>You paid with your credit card. Even though it was a fake card, nobody noticed. <s>That won't come back up later.</s> You continue with your day and go outside. What do you do?</p>
-        </div>,
-        options: [
-            { text: "Fake your death", to: "fake_your_death" },
-            { text: "Go skydiving.", to: "skydive_pre" }
-        ],
-        contributor: "Dave and Hunter"
-    },
-
-    // Don't pay hospital bill. Level 5.
-    no_pay_bill: {
-        prompt: () => <div>
-            <p>You decide not to pay the bill and...</p>
-        </div>,
-        options: [
-            { text: "Run for it.", to: "run_from_hospital" },
-            { text: "Take out a loan.", to: "loan_start" },
-            { text: "Jump out a window.", to: "jump_out_a_window" },
-        ],
-        contributor: "Filip96"
-    },
-
-    jump_out_a_window: {
-        prompt: () => <div>
-            You jump out of the window, taking your leap of faith... and die, what kind of idea was that supposed to be.
-        </div>,
-        ending: {
-            id: "jump-out-window",
-            name: "Leap of Faith",
-            description: "Why would anyone want to jump out of a window?",
-        }
-    },
-
-    fake_your_death: {
-        prompt: () => <div>
-            <p>You fake your death by pretending you died on the street. Nobody cared to check your pulse so they assumed you were dead. They placed you in a 
-                coffin and burried you. With nobody knowing that you exist, what do you do.
-            </p>
-        </div>,
-        options: [
-            { text: "Leave your grave.", to: "grave_death_leave" },
-            { text: "Wait.", to: "grave_wait" }
-        ],
-        contributor: "Hunter"
-    },
-    grave_death_leave: {
-        prompt: () => <div>
-            <p>When you left your grave, the burrial ceremony wasn't over. People though you were a zombie and shot you down.</p>
-        </div>,
-        ending: {
-            id: "grave-zombie",
-            name: "Rose from the Dead",
-            description: "Fake your death and rise from the \"dead\".",
-        }
-    },
-    grave_wait: {
-        prompt: () => <div>
-            <p>You waited five minutes. What now?</p>
-        </div>,
-        options: [
-            { text: "Wait more.", to: "grave_wait" },
-            { text: "Leave grave.", to: "grave_leave" }
-        ],
-        action: increaseGraveWait
-    },
-    grave_die: {
-        prompt: () => <div>
-            <p>You somehow died in your grave, because of a lack of oxygen. The whole point was to fake your death and not <i>actually</i> die. Good job.</p>
-        </div>,
-        ending: {
-            id: "grave-death",
-            name: "Accidental Suicide",
-            description: "You accidentally killed yourself in your own grave. How does that even happen?",
-        }
-    }
 });

@@ -1,5 +1,8 @@
 // builds the game
+
+require("module-alias/register");
 require("@babel/register");
+
 const fs = require("fs-extra");
 const path = require("path");
 const webpack = require("webpack");
@@ -8,25 +11,33 @@ const p_output_directory = JSON.parse(fs.readFileSync(path.join(__dirname, "../.
 
 // get information about the scenes, endings, and other things.
 const WTA = require("web-text-adventure");
-const sceneFiles = fs.readdirSync(path.join(__dirname, "../../scenes"));
-sceneFiles.forEach(file => require(path.join(__dirname, "../../scenes", file)));
+const sceneFiles = [];
+
+function requireDirRecursive(folder) {
+    fs.readdirSync(folder).forEach(x => {
+        if (fs.statSync(path.join(folder, x)).isDirectory()) {
+            requireDirRecursive(path.join(folder, x));
+        } else {
+            require(path.join(folder, x));
+            sceneFiles.push(path.join(folder, x).substr(path.join(__dirname, "../../scenes").length + 1).replace(/\\/g,"/"));
+        }
+    });
+}
+requireDirRecursive(path.join(__dirname, "../../scenes"));
 
 const scenes = WTA.getAllScenes();
 const endingScenes = Object.keys(scenes).filter(x=>scenes[x].ending).length;
 
 // make `dist` folder
 const dist_folder = path.join(__dirname, "../../", p_output_directory);
-if (fs.pathExistsSync(dist_folder)) {
-    fs.removeSync(dist_folder);
-}
-fs.mkdirsSync(dist_folder);
+fs.ensureDirSync(dist_folder);
 
 // run `webpack --mode production`
 const config = require("../../webpack.config.js")({
     production: true,
     extraDefines: {
         $endingCount: JSON.stringify(endingScenes),
-        $dynamicFiles: JSON.stringify(sceneFiles.filter(x => x !== "menu.jsx")),
+        $dynamicFiles: JSON.stringify(sceneFiles.filter(x => x !== "_main/menu.jsx")),
     }
 });
 config.output.path = dist_folder;

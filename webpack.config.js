@@ -94,7 +94,12 @@ module.exports = (env = {production: false, extraDefines: {}}, argv) => ({
     },
     resolve: {
         alias: {
-            "ending$": "path.resolve(__dirname, 'src/js/ending.jsx')"
-        }
+            "@templates": __dirname + "/templates/",
+            "@src": __dirname + "/src/js/",
+            "@css": __dirname + "/src/css/",
+            "@scenes": __dirname + "/scenes/",
+            "@res": __dirname + "/res/"
+        },
+        extensions: [".js", ".jsx", ".json"]
     }
 });

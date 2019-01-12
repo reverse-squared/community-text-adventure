@@ -1,10 +1,10 @@
 // This file handles hot-reloading and starting up 
 // startup file, loads all other files
-import "../../templates/custom-html.jsx";
+import "@templates/CustomHTML";
 import { setScene } from "web-text-adventure";
 
 // CSS Loading
-import "../css/style.css";
+import "@css/style.css";
 import(/* webpackPrefetch: true, webpackPreload: true */ "../css/style-offload.css");
 
 
@@ -24,14 +24,14 @@ document.head.appendChild(linkElem);
 // Hot Reloading
 if (module.hot) {
     // Scene Files
-    const sceneCtx = require.context("../../scenes/", true, /\.jsx$/);
+    const sceneCtx = require.context("@scenes/", true, /\.jsx$/);
     sceneCtx.keys().forEach(file => {
         sceneCtx(file);
     });
 
-    module.hot.accept("../../templates/custom-html.jsx", () => {});
+    module.hot.accept("@templates/CustomHTML", () => {});
     module.hot.accept(sceneCtx.id, () => {
-        const sceneCtx = require.context("../../scenes/", true, /\.jsx$/);
+        const sceneCtx = require.context("@scenes/", true, /\.jsx$/);
         sceneCtx.keys().forEach(file => {
             sceneCtx(file);
         });
@@ -43,11 +43,11 @@ if (module.hot) {
             /* webpackPrefetch: true */
             /* webpackPreload: true */
             /* webpackInclude: /\.jsx$/ */
-            /* webpackExclude: /(menu)\.jsx$/ */
-            `../../scenes/${branch}`
+            /* webpackExclude: /(_main\/menu)\.jsx$/ */
+            `@scenes/${branch}`
         );
     }
-    require("../../scenes/menu.jsx");
+    require("@scenes/_main/menu.jsx");
     if (typeof $dynamicFiles !== "undefined") {
         Promise.all($dynamicFiles.map(loadSubBranch)).then(x => {
             // eslint-disable-next-line no-console
@@ -59,3 +59,6 @@ if (module.hot) {
 if(location.href.endsWith("#credits")) {
     setScene("credits");
 }
+
+// Expose React Dev Tools
+// eval("(a)=>{if(!window.__REACT_DEVTOOLS_GLOBAL_HOOK__)window['__REACT_DEVTOOLS_GLOBAL_HOOK__']=a}")(__REACT_DEVTOOLS_GLOBAL_HOOK__);

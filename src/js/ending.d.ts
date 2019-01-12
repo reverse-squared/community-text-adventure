@@ -20,9 +20,16 @@ interface GameProgress {
     /** Percentage of completion. (0-1) */
     percentage: number;
 }
-interface SceneWithEnding extends Scene {
+interface SceneWithCTA extends Scene {
     /** Marks this scene as an ending, and when this scene is activated you earn the ending. */
     ending?: EndingInfo;
+
+    /** Marks who created what part */
+    contributor?: string | null;
+    /** Marks this scene as 'no contributor' */
+    noContributor?: true;
+    /** Exclude this scene from the Empty Options List check */
+    excludeEmptyOptionsCheck?: true;
 }
 
 /** Registers an ending, or replaces it if it already exists */
@@ -38,4 +45,4 @@ export function getGameProgress(): GameProgress;
 export function achieveEnding(id: string): undefined;
 
 /** Add scenes but with ending support */
-export function addScenes(scenes: { [id: string]: SceneWithEnding }): undefined;
+export function addScenes(scenes: { [id: string]: SceneWithCTA }): undefined;
