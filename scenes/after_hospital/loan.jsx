@@ -1,8 +1,8 @@
 // This file handles the different paths from the loan of $4313 that you need to pay off
 import React from "react";
 import { addFlag, setScene } from "web-text-adventure";
-import { RainbowCircleText, RainbowText } from "../templates/font-styles.jsx";
-import { addScenes } from "../src/js/ending.jsx";
+import { RainbowCircleText, RainbowText } from "../../templates/font-styles.jsx";
+import { addScenes } from "../../src/js/ending.jsx";
 
 addFlag("loanMoney", -4313);
 addFlag("loanTurns", 31);
@@ -81,16 +81,22 @@ const LoanHeader = () => <div>
 </div>;
 
 const LoanBTCHeader = () => <div>
-    <p className={"loan-header " + (loanTurns < 10 ? "loan-header-low" : "")} style={{ marginBottom: "10px" }}>
-        You need to pay off a loan of <strong>$4313</strong>. You have <strong>{loanTurns}</strong> turns left to pay it off.
-    </p>
+    {
+        loan_payloan
+            ? <p className={"loan-header " + (loanTurns < 10 ? "loan-header-low" : "")} style={{ marginBottom: "10px" }}>
+                You need to pay off a loan of <strong>$4313</strong>. You have <strong>{loanTurns}</strong> turns left to pay it off.
+            </p>
+            : <p className={"loan-header " + (loanTurns < 10 ? "loan-header-low" : "")} style={{ marginBottom: "10px" }}>
+                You have <strong>{loanTurns}</strong> turns left to make as much money as possible.
+            </p>
+    }
     <div className="bitcoin-status">
         <p>You have <strong>{formatMoney(loan_walletcash)}</strong> cash, and <strong>{formatBTC(loan_bitcoin)}</strong></p>
     </div>
     <div className="bitcoin-exchange" style={{ marginTop: "0" }}>
         <h3 style={{ marginTop: "0" }}>BTC Exchange Rate</h3>
         <p>
-            <strong>$1</strong> --> <strong>{formatBTC(cashToBTC(1))} BTC</strong><br />
+            <strong>$1</strong> --> <strong>{formatBTC(cashToBTC(1))}</strong><br />
             <strong>1 BTC</strong> --> <strong>{formatMoney(btcToCash(1))}</strong><br />
         </p>
     </div>
@@ -237,7 +243,8 @@ addScenes({
                     to: "loan_bitcoin_main"
                 };
             }),
-        ]
+        ],
+        contributor: "Dave",
     },
     loan_bitcoin_withdraw: {
         prompt: ()=> <div>
@@ -261,7 +268,8 @@ addScenes({
                     to: "loan_bitcoin_main"
                 };
             }),
-        ]
+        ],
+        contributor: "Dave",
     },
     loan_bitcoin_lose: {
         prompt: () => <div>
@@ -272,7 +280,8 @@ addScenes({
             id: "btc-lose",
             name: "Failed Investment",
             description: "Fail to get rich off of Bitcoin, and fail to pay your loan."
-        }
+        },
+        contributor: "Dave",
     },
     loan_bitcoin_win: {
         prompt: () => <div>
@@ -282,7 +291,8 @@ addScenes({
             id: "btc-win-billion",
             name: "Bitcoin Billionaire",
             description: "Pay off your loan by getting crazy rich off of Bitcoin."
-        }
+        },
+        contributor: "Dave",
     },
     loan_bitcoin_win_sortof: {
         prompt: () => <div>
@@ -292,7 +302,8 @@ addScenes({
             id: "btc-win",
             name: "Bitcoin Success",
             description: "Pay off your loan by getting money from Bitcoin."
-        }
+        },
+        contributor: "Dave",
     },
 
     loan_paybills: {
@@ -519,7 +530,7 @@ addScenes({
             loanWindows = true;
             decreaseTurn();
         },
-        contributor: null,
+        contributor: "Toshiyuki",
     },
     loan_paybills_windows_buymore: {
         prompt: () => <div>
@@ -532,7 +543,7 @@ addScenes({
             { text: "More Windows (-$1500)", to: "loan_paybills_windows_buymore2", action: () => loanMoney -= 1500 },
             { text: "Return Home", to: "loan_paybills_house" }
         ],
-        contributor: null,
+        contributor: "Toshiyuki",
     },
     loan_paybills_windows_buymore2: {
         prompt: () => <div>
@@ -546,7 +557,7 @@ addScenes({
             { text: "Return Home", to: "loan_paybills_house" }
         ],
         action: decreaseTurn,
-        contributor: null,
+        contributor: "Toshiyuki",
     },
     loan_paybills_windows_buymore3: {
         prompt: () => <div>
@@ -562,7 +573,7 @@ addScenes({
             loanWindowsSoldOut = true;
             decreaseTurn();
         },
-        contributor: null,
+        contributor: "Toshiyuki",
     },
     loan_debt_house_ending: {
         prompt: () => <div>
@@ -592,8 +603,8 @@ addScenes({
         </div>,
         options: [
             { text: "Pay for windows (-$10000000)", to: "loan_paybills_smashwindow_end" }
-        ]
-        
+        ],
+        contributor: "Dave"
     },
     loan_paybills_smashwindow_end: {
         prompt: () => <div>
@@ -606,8 +617,9 @@ addScenes({
         ending: {
             id: "smash-window",
             name: "Smash Windows",
-            description: "Smash your neighbour's $10,000,000 window",
-        }
+            description: "Smash your neighbour's $10,000,000 set of windows",
+        },
+        contributor: "Dave"
     },
     loan_back_to_hospital: {
         prompt: () => <div>

@@ -1,5 +1,5 @@
 import React from "react";
-import { addScenes } from "../src/js/ending.jsx";
+import { addScenes } from "../../src/js/ending.jsx";
 import { addFlag } from "web-text-adventure";
 
 addScenes({

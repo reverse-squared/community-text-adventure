@@ -7,9 +7,11 @@ const contributors = [
     ["Dave",                    "https://davecode.me/"],
     ["Filip96",                 "https://filipkin.com/"],
     ["Colyderp"],
-    // People below this still need to say exactly how they want credit.
     ["Adr"],
     ["Alchemyking"],
+    ["Toshiyuki",               "https://steamcommunity.com/id/nekoalex66/"],
+    ["Helvetica"],
+    // People below this still need to say exactly how they want credit.
     // ["", ""],
 ];
 

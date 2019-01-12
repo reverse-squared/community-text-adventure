@@ -77,7 +77,8 @@ addScenesReal({
                 setScene("start");
                 endingFlag = null;
             }
-        }
+        },
+        noContributor: true,
     }
 });
 

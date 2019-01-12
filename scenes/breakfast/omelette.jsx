@@ -1,5 +1,5 @@
 import React from "react";
-import { addScenes } from "../src/js/ending.jsx";
+import { addScenes } from "../../src/js/ending.jsx";
 
 addScenes({
     make_omelette: {
@@ -12,6 +12,18 @@ addScenes({
             { text: "Next.", to: "omelette_ending_1" },
         ],
         contributor: "Colyderp (Idea) and Hunter (Facts)"
+    },
+    make_omelette_fail: {
+        prompt: () => <div>
+            <p>
+                You make yourself an omelette. You heard on the news that they have a lot of protein in them. But somehow while making it you mess up the recipe and it turned into a pile of extracted protein.
+            </p>
+        </div>,
+        options: [
+            { text: "oh...", to: "wakeup_breakfast" },
+        ],
+        action: () => startedOmelette = true,
+        contributor: "Dave and Adr"
     },
     omelette_ending_1: {
         prompt: () => <div>

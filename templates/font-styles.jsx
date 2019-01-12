@@ -22,3 +22,7 @@ export const CircleText = (props) => {
         })}
     </span>;
 };
+
+export const Color = (props) => {
+    return <span style={{ color: props.col || props.color, ...props.style}} {...props}>{props.children}</span>;
+};
