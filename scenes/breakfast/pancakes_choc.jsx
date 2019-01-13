@@ -101,7 +101,7 @@ addScenes({
     edgy_ending_overdose: {
         prompt: () => <div>
             <p>
-                You are making the edgy pancakes, where suddenly, a man points at you and says “GASP! Racist!”. He comes into your house and kicks you in the balls so hard you die
+                You are making the edgy pancakes, where suddenly, a man points at you and says “GASP! Racist!”. He comes into your house and kicks you in the balls so hard you die.
             </p>
         </div>,
         ending: {
