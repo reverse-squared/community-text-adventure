@@ -190,7 +190,7 @@ addScenes({
             description: "Sleep until a tornado kills you."
         },
         contributor: "Hunter"
-    },
+    },  
 
     // Pancakes. Level 3.
     make_pancakes: {

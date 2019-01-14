@@ -9,7 +9,7 @@ addScenes({
         </div>,
         options: [
             { text: "Hashbrowns", to: "hashbrown_death" },
-            { text: "Hashbrownies", to: "" }
+            { text: "Hashbrownies", to: "hashbrownies" }
         ],
         contributor: "Adr"
     },
@@ -23,5 +23,10 @@ addScenes({
             description: "How did you even choke on something that easy to eat?"
         },
         contributor: "Colyderp"
+    },
+    hashbrownies: {
+        prompt: () => <div>
+            <p></p>
+        </div>
     }
 });

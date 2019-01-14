@@ -178,7 +178,8 @@ addScenes({
             { text: "Activate your glider.", to: "" },
             { text: "Keep falling.", to: "" },
             { text: "Disconnect from the game.", to: "adventure_fortnite_leave_game" },
-        ]
+        ],
+        contributor: "Hunter"
     },
     adventure_fortnite_leave_game: {
         prompt: () => <div>
