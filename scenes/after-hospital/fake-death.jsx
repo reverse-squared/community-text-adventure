@@ -57,5 +57,16 @@ addScenes({
             description: "You accidentally killed yourself in your own grave. How does that even happen?",
         },
         contributor: "Hunter",
+    },
+    grave_leave: {
+        prompt: () => <div>
+            <p>Now that you are "dead", and nobody knows that you are alive, what illegal crimes will you commit?</p>
+        </div>,
+        options: [
+            { text: "Become a Hitman", to: "" },
+            { text: "Rob a Bank", to: "" },
+            { text: "Become a Level 1 Crook", to: "" }
+        ],
+        contributor: "Hunter"
     }
 });
