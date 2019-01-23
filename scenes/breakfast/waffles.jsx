@@ -268,7 +268,7 @@ addScenes({
                     display: "block",
                     position: "absolute",
                     bottom: "-100px",
-                    right: "500px",
+                    right: "-2px",
                 }} to="waffles_wait7">Wait</SceneLink>
             </ul>
         </div>,
