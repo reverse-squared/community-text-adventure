@@ -33,6 +33,7 @@
             "always"
         ],
         "no-undef": "off",
-        "no-unused-vars": "off"
+        "no-unused-vars": "off",
+        "no-unreachable": "off"
     }
 }

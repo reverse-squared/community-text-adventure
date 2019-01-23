@@ -3,6 +3,7 @@ import { addScenes } from "@src/ending";
 import { addFlag, setScene } from "web-text-adventure";
 
 const inventoryData = {};
+const recipeData = [];
 
 const itemToName = {
     log: "Oak Log",
@@ -10,7 +11,7 @@ const itemToName = {
     plank: "Oak Wood Planks",
 };
 
-const Inventory = () => <div>
+const InventoryDisplay = () => <div>
     <h3>Inventory</h3>
     <p>
         {
@@ -21,6 +22,7 @@ const Inventory = () => <div>
     </p>
 </div>;
 
+/** Inventory */
 function addItem(type, num) {
     inventoryData[type] = getItem(type) + num;
 }
@@ -37,6 +39,52 @@ function removeItem(type, num) {
     inventoryData[type] = getItem(type) - num;
 }
 
+function displayName(type) {
+    return itemToName[type];
+}
+
+function itemCount(id, count) {
+    return {id, count};
+}
+function displayItemCount(ic) {
+    return displayName(ic.id);
+}
+
+/** Recipies */
+function addRecipe(items, output) {
+    recipeData.push({
+        items,
+        output,
+        discovered: false
+    });
+}
+function getCraftingOptions() {
+    return [];
+    
+    // Discover new ones
+    recipeData.forEach(recipe => {
+        if (recipe.discovered) return;
+        if (hasItem(recipe.a.id, recipe.a.count) && hasItem(recipe.b.id, recipe.b.count)) {
+            recipe.discovered = true;
+        }
+    });
+
+    // return magic
+    return recipeData.map(rec => {
+        return {
+            text: `Craft: ${rec.items.map(displayItemCount).join(" + ")} -> ${displayItemCount(rec.output)}`,
+            to: null,
+        };
+    });
+}
+
+addRecipe(
+    [
+        itemCount("log", 1)
+    ],
+    itemCount("plank", 4)
+);
+
 // Stats
 addFlag("treesPunched", 0);
 
@@ -45,17 +93,15 @@ addScenes({
         prompt: () => <div>
             <p>You punch some trees and get some wood (somehow), the next logical thing to do is to make some wood planks.</p>
             
-            <Inventory />
+            <InventoryDisplay />
         </div>,
-        options: [
+        options: () => [
             { text: "Punch another tree.", to: "minecraft_tree", action: () => {
                 treesPunched++;
                 addItem("log", 1);
             }},
-            "seperator"
-            // { text: "Create planks.", to: "minecraft_tree", disabledText: "Create planks (Not enough logs!)", if: () => logs > 1, action: () =>  { logs--; planks += 4; } },
-            // { text: "Create sticks.", to: "minecraft_tree", disabledText: "Create sticks (Not enough sticks!)", if: () => planks > 2, action: () =>  { sticks += 4; planks -= 2; } },
-            // { text: "Create crafting table.", disabledText: "Create crafting table. (Not enough planks!)", if: () => planks >= 4, to: "minecraft_crafting_table" },
+            "seperator",
+            ...getCraftingOptions()
         ],
         action: () => {
             if(treesPunched > 10) {
