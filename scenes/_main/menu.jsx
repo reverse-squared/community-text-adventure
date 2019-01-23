@@ -115,6 +115,19 @@ addScenes({
         excludeEmptyOptionsCheck: true,
         noContributor: true,
     },
+    "\"tutorial\"": {
+        prompt: () => <div>
+            <p>
+                Community Text Adventure is a game about different endings,
+                there are many different ways you can have the story play out.
+                Now that you got your first ending, it's time to get
+                all {getGameProgress().totalEndings} endings.
+            </p>
+        </div>,
+        options: [
+            { text: "Go to Main Menu", to: "start" }
+        ]
+    },
     endings: {
         prompt: () => {
             const progress = getGameProgress();

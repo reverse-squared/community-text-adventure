@@ -53,7 +53,7 @@ export function resetGame() {
 
 var endingFlag = null;
 var endingFlagAchieved = false;
-
+var endingFirst = false;
 addScenesReal({
     check_new_ending: {
         prompt: () => {
@@ -69,13 +69,14 @@ addScenesReal({
                 <EndingCard ending={{ ...sceneStorage[endingFlag].ending, achieved: true }} />
             </div>;
         },
-        options: [
-            { text: "Continue", to: "start", action: () => endingFlag = null }
+        options: () => [
+            { text: "Continue", to: endingFirst ? "\"tutorial\"" : "start", action: () => { endingFlag = null; endingFirst = null;} }
         ],
         action: () => {
             if(endingFlag === null) {
                 setScene("start");
                 endingFlag = null;
+                endingFirst = null;
             }
         },
         noContributor: true,
@@ -109,6 +110,7 @@ export function addScenes(scenes) {
             const sceneAction = scenes[id].action;
             scenes[id].action = () => {
                 endingFlag = id;
+                endingFirst = getGameProgress().achievedEndings === 0;
                 
                 endingFlagAchieved = scenes[id].ending.achieved;
                 scenes[id].ending.achieved = true;
