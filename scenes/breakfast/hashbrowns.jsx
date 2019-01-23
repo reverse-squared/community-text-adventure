@@ -26,7 +26,32 @@ addScenes({
     },
     hashbrownies: {
         prompt: () => <div>
-            <p></p>
-        </div>
+            <p>You make <b>hash</b>brownies, but the hashbrownies have all sorts of assortments of letters all over it. Do you try and understand what it 
+                means?
+            </p>
+        </div>,
+        options: [
+            { text: "Yes", to: "hash_start" },
+            { text: "Sure", to: "hash_start" },
+            { text: "Absolutely", to: "hash_start" },
+            { text: "By All Means", to: "hash_start" },
+            { text: "Okey Dokey", to: "hash_start" },
+            { text: "Alright", to: "hash_start" },
+            { text: "Of Course", to: "hash_start" },
+            { text: "Definitely", to: "hash_start" },
+            { text: "No thank!", to: "hash_no" }
+        ],
+        contributor: "Toshiyuki and Hunter"
+    },
+    hash_no: {
+        prompt: () => <div>
+            <p>You ate a brownie.</p>
+        </div>,
+        ending: {
+            id: "ate-brownie",
+            name: "Eated Unhealthy",
+            description: "You ate a brownie."
+        },
+        contributor: "Hunter"
     }
 });
