@@ -295,8 +295,9 @@ addScenes({
             <p>Now that the battle is over, what do you do?</p>
         </div>,
         options: [
-            { text: "Use Fly.", to: "skydive_no_parachute_pokemon" },
-            { text: "Feed the Pokemon", to: "pokemon_feed" }
+            { text: "Use Fly.", to: "skydive_no_parachute_pokemon" },   
+            { text: "Feed the Pokemon", to: "pokemon_feed" },
+            { text: "Go to a Championship", to: "pokemon_championship" }
         ],
         contributor: "Hunter"
     },
@@ -357,5 +358,15 @@ addScenes({
             description: "It's the kind of stuff you'd expect Tiger Woods to tee of it.",
         },
         contributor: "Hunter"
+    },
+
+    pokemon_championship: {
+        prompt: () => <div>
+            <p>Ok do stuff.</p>
+        </div>,
+        options: [
+
+        ],
+        contributor: ""
     }
 });
