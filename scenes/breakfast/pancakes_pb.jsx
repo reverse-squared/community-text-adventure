@@ -1,6 +1,38 @@
 import React from "react";
-import { } from "web-text-adventure";
+import { setScene } from "web-text-adventure";
 import { addScenes } from "@src/ending";
+
+let progressTimer = null;
+let progress = null;
+let inputElem = null;
+
+function QuickTimeDom() {
+    return <div style={{ height: "6px", width: "100%", background: "#2f4570" }}>
+        <div style={{ height: "100%", width: "100%", background: "cornflowerblue" }} id="inner-progress" />
+    </div>;
+}
+function QuickTimeHandlers(extra = {}) {
+    const decreasePerStep = (1000 / 45) / (10 * (extra.time / 1000));
+    return {
+        onDeactivate: () => {
+            if (progressTimer) clearInterval(progressTimer);
+            progressTimer = null;
+            if (extra.onDeactivate) extra.onDeactivate();
+        },
+        action: () => {
+            progressTimer = setInterval(() => {
+                progress -= decreasePerStep;
+                if (progress <= 0) {
+                    setScene("run_from_hospital_fail");
+                } else {
+                    document.getElementById("inner-progress").style.width = progress + "%";
+                }
+            }, 1000/45);
+            progress = 100;
+            if (extra.action) extra.action();
+        },
+    };
+}
 
 addScenes({
     // Peanut butter pancakes. Level 4.
@@ -88,4 +120,360 @@ addScenes({
         },
         contributor: "Dave",
     },
+
+    run_from_hospital: {
+        prompt: <div>
+            <p>
+                You start running...
+            </p>
+        </div>,
+        options: [
+            { text: "Run More", to: "run_from_hospital2" }
+        ],
+        contributor: "Dave",
+    },
+    run_from_hospital2: {
+        prompt: <div>
+            <p>
+                You continue running...
+            </p>
+        </div>,
+        options: [
+            { text: "Run More", to: "run_from_hospital3" }
+        ],
+        contributor: "Dave",
+    },
+    run_from_hospital3: {
+        prompt: <div>
+            <p>
+                You continue running, they notice you are running away...
+            </p>
+            <QuickTimeDom />
+        </div>,
+        options: [
+            { text: "Run More", to: "run_from_hospital4" }
+        ],
+        ...QuickTimeHandlers({
+            time: 2000,
+        }),
+        contributor: "Dave",
+    },
+    run_from_hospital4: {
+        prompt: <div>
+            <p>
+                You continue running...
+            </p>
+            <QuickTimeDom />
+        </div>,
+        options: [
+            { text: "Run More", to: null, if: () => false, disabledText: true },
+            { text: "Run More", to: "run_from_hospital5" }
+        ],
+        ...QuickTimeHandlers({
+            time: 2000,
+        }),
+        contributor: "Dave",
+    },
+    run_from_hospital5: {
+        prompt: <div>
+            <p>
+                You continue running...
+            </p>
+            <QuickTimeDom />
+        </div>,
+        options: [
+            { text: "Run More", to: null, if: () => false, disabledText: true },
+            { text: "Run More", to: null, if: () => false, disabledText: true },
+            { text: "Run More", to: "run_from_hospital6" }
+        ],
+        ...QuickTimeHandlers({
+            time: 2000,
+        }),
+        contributor: "Dave",
+    },
+    run_from_hospital6: {
+        prompt: <div>
+            <p>
+                You continue running...
+            </p>
+            <QuickTimeDom />
+        </div>,
+        options: [
+            { text: "Run More", to: null, if: () => false, disabledText: true },
+            { text: "Run More", to: null, if: () => false, disabledText: true },
+            { text: "Run More", to: null, if: () => false, disabledText: true },
+            { text: "Run More", to: null, if: () => false, disabledText: true },
+            { text: "Run More", to: null, if: () => false, disabledText: true },
+            { text: "Run More", to: "run_from_hospital7" }
+        ],
+        ...QuickTimeHandlers({
+            time: 2000,
+        }),
+        contributor: "Dave",
+    },
+    run_from_hospital7: {
+        prompt: <div>
+            <p>
+                You continue running...
+            </p>
+            <QuickTimeDom />
+        </div>,
+        options: [
+            { text: "Run More", to: null, if: () => false, disabledText: true },
+            { text: "Run More", to: null, if: () => false, disabledText: true },
+            { text: "Run More", to: "run_from_hospital8" },
+            { text: "Run More", to: null, if: () => false, disabledText: true },
+            { text: "Run More", to: null, if: () => false, disabledText: true },
+            { text: "Run More", to: null, if: () => false, disabledText: true },
+        ],
+        ...QuickTimeHandlers({
+            time: 2000,
+        }),
+        contributor: "Dave",
+    },
+    run_from_hospital8: {
+        prompt: <div>
+            <p>
+                You continue running...
+            </p>
+            <QuickTimeDom />
+        </div>,
+        options: [
+            { text: "Run More", to: "run_from_hospital9" },
+            { text: "Run More", to: null, if: () => false, disabledText: true },
+            { text: "Run More", to: null, if: () => false, disabledText: true },
+            { text: "Run More", to: null, if: () => false, disabledText: true },
+            { text: "Run More", to: null, if: () => false, disabledText: true },
+            { text: "Run More", to: null, if: () => false, disabledText: true },
+            { text: "Run More", to: null, if: () => false, disabledText: true },
+        ],
+        ...QuickTimeHandlers({
+            time: 2000,
+        }),
+        contributor: "Dave",
+    },
+    run_from_hospital9: {
+        prompt: <div>
+            <p>
+                You continue running...
+            </p>
+            <QuickTimeDom />
+        </div>,
+        options: [
+            { text: "Run More", to: null, if: () => false, disabledText: true },
+            { text: "Run More", to: "run_from_hospital10" },
+            { text: "Run More", to: null, if: () => false, disabledText: true },
+            { text: "Run More", to: null, if: () => false, disabledText: true },
+            { text: "Run More", to: null, if: () => false, disabledText: true },
+            { text: "Run More", to: null, if: () => false, disabledText: true },
+            { text: "Run More", to: null, if: () => false, disabledText: true },
+            { text: "Run More", to: null, if: () => false, disabledText: true },
+            { text: "Run More", to: "run_from_hospital10" },
+            { text: "Run More", to: null, if: () => false, disabledText: true },
+            { text: "Run More", to: "run_from_hospital10" },
+            { text: "Run More", to: null, if: () => false, disabledText: true },
+        ],
+        ...QuickTimeHandlers({
+            time: 1500,
+        }),
+        contributor: "Dave",
+    },
+    run_from_hospital10: {
+        prompt: <div>
+            <p>
+                You continue running...
+            </p>
+            <QuickTimeDom />
+        </div>,
+        options: [
+            { text: "Run More", to: null, if: () => false, disabledText: true },
+            { text: "Run More", to: null, if: () => false, disabledText: true },
+            { text: "Run More", to: null, if: () => false, disabledText: true },
+            { text: "Run More", to: null, if: () => false, disabledText: true },
+            { text: "Run More", to: "run_from_hospital11" },
+            { text: "Run More", to: null, if: () => false, disabledText: true },
+            { text: "Run More", to: null, if: () => false, disabledText: true },
+            { text: "Run More", to: null, if: () => false, disabledText: true },
+            { text: "Run More", to: null, if: () => false, disabledText: true },
+            { text: "Run More", to: null, if: () => false, disabledText: true },
+            { text: "Run More", to: null, if: () => false, disabledText: true },
+            { text: "Run More", to: null, if: () => false, disabledText: true },
+        ],
+        ...QuickTimeHandlers({
+            time: 1500,
+        }),
+        contributor: "Dave",
+    },
+    run_from_hospital11: {
+        prompt: <div>
+            <p>
+                You continue running...
+            </p>
+            <QuickTimeDom />
+        </div>,
+        options: [
+            { text: "Dont Click This One!", to: null },
+            { text: "Dont Click This One!", to: null },
+            { text: "Dont Click This One!", to: null },
+            { text: "Click Here!", to: "run_from_hospital12" },
+            { text: "Dont Click This One!", to: null },
+            { text: "Dont Click This One!", to: null },
+        ],
+        ...QuickTimeHandlers({
+            time: 1500,
+        }),
+        contributor: "Dave",
+    },
+    run_from_hospital12: {
+        prompt: <div>
+            <p>
+                You continue running...
+            </p>
+            <QuickTimeDom />
+        </div>,
+        options: [
+            { text: "Run More", to: null, if: () => false, disabledText: true },
+            { text: "Run More", to: "run_from_hospital13" },
+        ],
+        ...QuickTimeHandlers({
+            time: 1500,
+        }),
+        contributor: "Dave",
+    },
+    run_from_hospital13: {
+        prompt: <div>
+            <p>
+                You continue running...
+            </p>
+            <QuickTimeDom />
+        </div>,
+        options: [
+            { text: "Run More", to: "run_from_hospital14" },
+        ],
+        ...QuickTimeHandlers({
+            time: 1500,
+        }),
+        contributor: "Dave",
+    },
+    run_from_hospital14: {
+        prompt: <div>
+            <p>
+                You continue running...
+            </p>
+            <QuickTimeDom />
+        </div>,
+        options: [
+            ...Array(100).fill(0).map(() => ({ text: "Run More", to: null, if: () => false, disabledText: true })),
+            { text: "Run More", to: "run_from_hospital15" },
+        ],
+        ...QuickTimeHandlers({
+            time: 5000,
+        }),
+        contributor: "Dave",
+    },
+    run_from_hospital15: {
+        prompt: <div>
+            <p>
+                You continue running...
+            </p>
+            <QuickTimeDom />
+        </div>,
+        options: [
+            { text: "Run More", to: "run_from_hospital16" },
+        ],
+        ...QuickTimeHandlers({
+            time: 1500,
+        }),
+        contributor: "Dave",
+    },
+    run_from_hospital16: {
+        prompt: <div>
+            <p>
+                You continue running...
+            </p>
+            <h1>Press V to continue</h1>
+            <QuickTimeDom />
+        </div>,
+        options: [
+            {text: "refresh", to: "run_from_hospital16"}
+        ],
+        ...QuickTimeHandlers({
+            time: 1800,
+            action: () => {
+                inputElem = document.createElement("input");
+                document.body.appendChild(inputElem);
+                inputElem.focus();
+                inputElem.onkeydown = (item) => {
+                    if (item.keyCode == 86) {
+                        setScene("run_from_hospital17");
+                    }
+                    item.preventDefault();
+                };
+                inputElem.style = "background:transparent;border:none;outline:none;position:absolute;top:250px;";
+            },
+            onDeactivate: () => {
+                if (inputElem) {
+                    inputElem.remove();
+                    inputElem = null;
+                }
+            }
+        }),
+        excludeEmptyOptionsCheck: true,
+        contributor: "Hunter",
+    },
+    run_from_hospital17: {
+        prompt: <div>
+            <p>
+                You are close to the exit...
+            </p>
+            <QuickTimeDom />
+        </div>,
+        options: [
+            { text: "Run Back to the Start", to: "run_from_hospital3" },
+            { text: "Run Out the Exit", to: "run_from_hospital_finish" },
+            { text: "Run To Jail", to: "run_from_hospital_jail" },
+            { text: "Stop Running", to: "run_from_hospital_fail" },
+        ],
+        ...QuickTimeHandlers({
+            time: 1100,
+        }),
+        contributor: "Dave",
+    },
+
+    run_from_hospital_fail: {
+        prompt: () => <div>
+            <p>
+                prompt for failing
+            </p>
+        </div>,
+        ending: {
+            id: "escape-failure",
+            name: "Caught Running Away",
+            description: "Get caught by the police while running away from your hospital bill of $4313"
+        }
+    },
+    run_from_hospital_jail: {
+        prompt: () => <div>
+            <p>
+                prompt for running into jail
+            </p>
+        </div>,
+        ending: {
+            id: "escape-to-jail",
+            name: "Escape to a Jail",
+            description: "Your plan of running away was thought up too quickly that you accidentally escaped to jail..."
+        }
+    },
+    run_from_hospital_finish: {
+        prompt: () => <div>
+            <p>
+                prompt for finishing
+            </p>
+        </div>,
+        ending: {
+            id: "escape-success",
+            name: "The Escape Plan",
+            description: "You successfully ran away from the police, and avoided the bill of $4313"
+        }
+    }
 });
