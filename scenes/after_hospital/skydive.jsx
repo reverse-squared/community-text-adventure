@@ -34,6 +34,16 @@ addScenes({
         action: decreaseSkydiveTurn,
         contributor: "Dave",
     },
+    skydive_no_parachute_pokemon: {
+        prompt: () => <div>
+            <p>Your charizard is flying too fast and you fall off at 12,500 feet in the air., and you also have no idea how to skydive.</p>
+        </div>,
+        options: [
+            { text: "Open the parachute...", to: "skydive_no_parachute_start" },
+        ],
+        action: decreaseSkydiveTurn,
+        contributor: "Hunter",
+    },
     skydive_no_parachute_start: {
         prompt: <div>
             <SkydiveHeader />

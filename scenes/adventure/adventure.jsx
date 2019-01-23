@@ -224,13 +224,12 @@ addScenes({
             <p>What does Charmander do?</p>
         </div>,
         options: [
-            { text: "Scratch.", to: "adventure_pokemon_" },
-            { text: "Growl.", to: "adventure_pokemon_" },
-            { text: "Ember.", to: "adventure_pokemon_" },
-            { text: "Dragon Rage.", to: "adventure_pokemon_" },
+            { text: "Yeet", to: "adventure_pokemon_yeet" },
+            { text: "Die", to: "adventure_pokemon_die" },
+            { text: "Ember", to: "adventure_pokemon_ember" },
             { text: "Go back.", to: "adventure_pokemon_main" }
         ],
-        contributor: "Hunter"
+        contributor: "Alchemyking and Hunter"
     },
 
     adventure_pokemon_bag: {
@@ -259,6 +258,44 @@ addScenes({
         </div>,
         options: [
             { text: "Go back.", to: "adventure_pokemon_main" }
+        ],
+        contributor: "Hunter"
+    },
+
+    adventure_pokemon_ember: {
+        prompt: () => <div>
+            <p>Opponent: You though this was a REAL battle? Get lost.</p>
+            <p>Your oponent then throws a magical portal above your head and you get deaded by a bug twomp  .</p>
+        </div>,
+        ending: {
+            id: "thwomped",
+            name: "Thwomped",
+            description: "Get crushed by a big stone guy dude... thing... idek.",
+        },
+        contributor: "Hunter"
+    },
+    adventure_pokemon_die: {
+        prompt: () => <div>
+            <p>You told your Charmander to use Die.</p>
+            <p>Your pokemon's level or stress reacted 100% and it started to kill itself.</p>
+            <p>It finally died, and nobody was there to stop it.</p>
+            <h1>F</h1>
+        </div>,
+        ending: {
+            id: "pokemon-suicide",
+            name: "Pokemon Suicide",
+            description: "It's not animal abuse if you're not abusing it.",
+        },
+        contributor: "Hunter"
+    },
+    adventure_pokemon_yeet: {
+        prompt: () => <div>
+            <p>Your Charmander evolved into a Charizard, and YEETED, the oponent across the hills.</p>
+            <p>I'm pretty sure it died.</p>
+            <p>Now that the battle is over, what do you do?</p>
+        </div>,
+        options: [
+            { text: "Use Fly.", to: "skydive_no_parachute_pokemon" }
         ],
         contributor: "Hunter"
     }
