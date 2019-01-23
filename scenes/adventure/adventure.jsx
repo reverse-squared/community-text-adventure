@@ -295,8 +295,67 @@ addScenes({
             <p>Now that the battle is over, what do you do?</p>
         </div>,
         options: [
-            { text: "Use Fly.", to: "skydive_no_parachute_pokemon" }
+            { text: "Use Fly.", to: "skydive_no_parachute_pokemon" },
+            { text: "Feed the Pokemon", to: "pokemon_feed" }
         ],
+        contributor: "Hunter"
+    },
+    pokemon_feed: {
+        prompt: () => <div>
+            <p>You scramble through your pocket to find anything that could be used as food. After three minutes of digging, you find a raw piece of meat.
+                Do you feed Charizard it?
+            </p>
+        </div>,
+        options: [
+            { text: "Yes", to: "pokemon_yes_feed" },
+            { text: "No", to: "pokemon_no_feed" }
+        ],
+        contributor: "Hunter"
+    },
+    pokemon_no_feed: {
+        prompt: () => <div>
+            <p>You neglected to feed and take care of your pokemon and it eventually died. Professor Oak found out though all those sneaky nanoCams he 
+                has watching your every move. Your punishment: Banished to an island. Do you come back?
+            </p>
+        </div>,
+        options: [
+            { text: "Yes", to: "pokemon_yes_come_back" },
+            { text: "No", to: "pokemon_no_come_back" }
+        ],
+        contributor: "Hunter"
+    },
+    pokemon_no_come_back: {
+        prompt: () => <div>
+            <p>You decide to not come back. You now live on this island for ever.</p>
+        </div>,
+        ending: {
+            id: "island-banished",
+            name: "Banished to an Island",
+            description: "You got banished to an island and stayed there for the rest of you're life.",
+        },
+        contributor: "Hunter"
+    },
+    pokemon_yes_come_back: {
+        prompt: () => <div>
+            <p>Remember what I said about nanoCams? Yeah, Professor Oak found out you came back and banished you to a large island.</p>
+        </div>,
+        ending: {
+            id: "big-island-banished",
+            name: "Banished to a BIG Island",
+            description: "You got banished to an big island and made it your own.",
+        },
+        contributor: "Hunter"
+    },
+    pokemon_yes_feed: {
+        prompt: () => <div>
+            <p>You feed the Charizard the raw meat. SUPRISE, pokemon can't eat raw meat, and your Charizard is dead.</p>
+            <p><a href="https://youtu.be/AGMGe3jQNjY" target="_blank">"It's probably just playing possum."</a></p>
+        </div>,
+        ending: {
+            id: "raw-meat-pokemon",
+            name: "IT'S RAW.",
+            description: "It's the kind of stuff you'd expect Tiger Woods to tee of it.",
+        },
         contributor: "Hunter"
     }
 });
