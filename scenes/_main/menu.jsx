@@ -126,7 +126,8 @@ addScenes({
         </div>,
         options: [
             { text: "Go to Main Menu", to: "start" }
-        ]
+        ],
+        noContributor: true
     },
     endings: {
         prompt: () => {
