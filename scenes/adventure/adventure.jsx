@@ -113,7 +113,7 @@ addScenes({
             <p>You escape the plane without any harm done. With only you as the survivor that you know of, and with the plane about to explode, what do you do?</p>
         </div>,
         options: [
-            { text: "Punch some trees.", to: "minecraft_tree", action: () => { planks += 20; treesPunched++; } },
+            { text: "Punch some trees.", to: "minecraft_tree" },
             { text: "Find some food.", to: "adventure_island_food", if: () => !hasEatenTurkey },
             { text: "Break open some suitcases.", to: "adventure_island_suitcases" },
         ],

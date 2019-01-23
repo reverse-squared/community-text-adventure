@@ -9,6 +9,16 @@ body {
     max-width: 500px;
     padding-left: 25px;
     padding-right: 25px;
+    overflow-y: scroll;
+}
+
+::-webkit-scrollbar {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: rgb(255, 255, 255);
+    border-radius: 7px;
+    border: 3px solid rgb(22,22,22);
 }
 
 h1 {

@@ -134,10 +134,12 @@ addScenes({
             const progress = getGameProgress();
             const endings = getAllEndings();
             return <div>
-                <SceneLink to="start">Back</SceneLink>
-                <p className="ending-status">
-                    You have gotten {progress.achievedEndings} of {progress.totalEndings} endings ({(progress.percentage * 100).toFixed(0)}% Completion)
-                </p>
+                <div className="stick-ending-status">
+                    <SceneLink to="start">Back</SceneLink>
+                    <p className="ending-status">
+                        You have gotten {progress.achievedEndings} of {progress.totalEndings} endings ({(progress.percentage * 100).toFixed(0)}% Completion)
+                    </p>
+                </div>
                 <h2>Achieved Endings <a href="#" style={{fontSize: "0.6em"}} onClick={toggleHideAchieved}>{hideAchieved ? "Unhide" : "Hide"}</a></h2>
                 {
                     !hideAchieved &&
@@ -147,7 +149,7 @@ addScenes({
                         return <EndingCard ending={ending} />;
                     })
                 }
-                <h2>Locked Endings <a href="#" style={{fontSize: "0.6em"}} onClick={toggleHideUnAchieved}>{hideAchieved ? "Unhide" : "Hide"}</a></h2>
+                <h2>Locked Endings <a href="#" style={{fontSize: "0.6em"}} onClick={toggleHideUnAchieved}>{hideUnAchieved ? "Unhide" : "Hide"}</a></h2>
                 {
                     !hideUnAchieved &&
                     Object.keys(endings).filter(id => !endings[id].achieved).map(id => {
