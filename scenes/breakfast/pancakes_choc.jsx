@@ -27,7 +27,7 @@ function EvaluateEdgyness() {
     } else if (edgy_chocolate < 9001) {
         setScene("edgy_ending_overdose");
     } else if (edgy_chocolate === 9001) {
-        setScene("edgy_ending_over9000");
+        setScene("edgy_ending_9001");
     } else {
         setScene("edgy_ending_overdose");
     }
