@@ -11,6 +11,7 @@ const contributors = [
     ["Alchemyking"],
     ["Toshiyuki",               "https://steamcommunity.com/id/nekoalex66/"],
     ["Helvetica"],
+    ["Daniel (Phrotonz)"]
     // People below this still need to say exactly how they want credit.
 ];
 
