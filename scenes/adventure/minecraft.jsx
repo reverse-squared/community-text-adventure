@@ -1,10 +1,12 @@
 import React, {Fragment} from "react";
 import { addScenes } from "@src/ending";
 import { addFlag, setScene } from "web-text-adventure";
+import SceneLink from "@templates/SceneLink";
 
 addFlag("__rerender", undefined);
 addFlag("inventoryData", {});
 addFlag("recipeData", []);
+addFlag("fromScene", "none");
 
 const itemToName = {
     log: "Oak Log",
@@ -88,6 +90,18 @@ function getCraftingOptions() {
         };
     });
 }
+function craftingOptionsWithLink(scene) {
+    return [
+        { is: "seperator" },
+        ...(hasItem("wood_pickaxe", 1) ? [
+            {
+                text: "Crafting Menu",
+                to: "minecraft_craft",
+                action: () => fromScene = scene
+            }
+        ] : getCraftingOptions())
+    ]
+}
 
 // Recipe Contents
 function addRecipes() {
@@ -122,8 +136,13 @@ addScenes({
                 treesPunched++;
                 addItem("log", 1);
             }},
-            { is: "seperator" },
-            ...getCraftingOptions()
+            {
+                text: "Go Mining",
+                if: () => hasItem("wood_pickaxe", 1),
+                to: "minecraft_mine"
+            },
+            
+            ...craftingOptionsWithLink("minecraft_tree")
         ],
         action: () => {
             if(treesPunched > 15) {
@@ -132,9 +151,21 @@ addScenes({
         },
         contributor: "Adr and Hunter"
     },
+    minecraft_mine: {
+        prompt: () => <div>
+            <p>
+                TODO: GO MINING
+            </p>
+            <InventoryDisplay />
+        </div>,
+        options: () => [
+            ...craftingOptionsWithLink("minecraft_mine")
+        ]
+    },
     minecraft_craft: {
-        prompt: <div>
+        prompt: () => <div>
             <h2>Crafting Table</h2>
+            <SceneLink to={fromScene}>Exit</SceneLink>
         </div>,
         options: () => [
             ...getCraftingOptions()
