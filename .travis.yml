@@ -7,4 +7,5 @@ install:
 - npm install -D
 
 after_success: 
+- npm run test
 - npm run coverage

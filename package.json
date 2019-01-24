@@ -47,8 +47,8 @@
     "lint": "eslint . --ext .js,.jsx --ignore-path .eslintignore || true",
     "lint-fix": "eslint . --ext .js,.jsx --ignore-path .eslintignore --fix || true",
     "cloc": "cloc scenes/ src/ templates/ res/",
-    "test": "nyc --reporter=html --reporter=text mocha",
-    "coverage": "nyc report --reporter=text-lcov | coveralls"
+    "test": "nyc --extension .jsx --reporter=html --report-dir=dist/coverage --reporter=text mocha",
+    "generate-coverage": "npm run test || true"
   },
   "license": "MIT",
   "output_directory": "dist",
