@@ -26,6 +26,7 @@ const InventoryDisplay = () => <div>
     </p>
 </div>;
 
+//#region item/recipe/game logic
 /** Inventory */
 function addItem(type, num) {
     inventoryData[type] = getItem(type) + num;
@@ -103,6 +104,8 @@ function craftingOptionsWithLink(scene) {
     ]
 }
 
+//#endregion
+
 // Recipe Contents
 function addRecipes() {
     recipeData = [];
@@ -110,6 +113,7 @@ function addRecipes() {
     addRecipe([itemCount("planks", 2)], itemCount("stick", 4));
     addRecipe([itemCount("planks", 3), itemCount("stick", 2)], itemCount("wood_pickaxe", 1));
 }
+
 // Stats
 addFlag("treesPunched", 0);
 
@@ -169,7 +173,8 @@ addScenes({
         </div>,
         options: () => [
             ...getCraftingOptions()
-        ]
+        ],
+        excludeEmptyOptionsCheck: true
     },
     minecraft_all_trees: {
         prompt: () => <div>
