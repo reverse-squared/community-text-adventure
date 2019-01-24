@@ -60,7 +60,8 @@ addScenes({
             { text: "Chocolate + Milk", to: "" },
             { text: "Chocolate + Cocaine", to: "" },
             { text: "Fuck it, just use chocolate", to: "" },
-        ]
+        ],
+        contributor: "Neema"
     },
     edgy_pancakes: {
         prompt: () => <div>

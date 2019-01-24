@@ -101,7 +101,7 @@ function craftingOptionsWithLink(scene) {
                 action: () => fromScene = scene
             }
         ] : getCraftingOptions())
-    ]
+    ];
 }
 
 //#endregion

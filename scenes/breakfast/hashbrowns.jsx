@@ -1,6 +1,7 @@
 import React from "react";
 import { } from "web-text-adventure";
 import { addScenes } from "@src/ending";
+import { CircleText } from "@templates/FontStyles";
 
 addScenes({
     make_hashbrowns: {
@@ -26,26 +27,92 @@ addScenes({
     },
     hashbrownies: {
         prompt: () => <div>
-            <p>You make <b>hash</b>brownies, but the hashbrownies have all sorts of assortments of letters all over it. Do you try and understand what it 
+            <p>
+                You make <b>hash</b>brownies, but the hashbrownies have all sorts of assortments of letters all over it. Do you try and understand what it 
                 means?
             </p>
         </div>,
         options: [
-            { text: "Yes", to: "hash_start" },
-            { text: "Sure", to: "hash_start" },
-            { text: "Absolutely", to: "hash_start" },
-            { text: "By All Means", to: "hash_start" },
-            { text: "Okey Dokey", to: "hash_start" },
-            { text: "Alright", to: "hash_start" },
-            { text: "Of Course", to: "hash_start" },
-            { text: "Definitely", to: "hash_start" },
+            { text: "Yes", to: "hash_failtounderstand" },
+            { text: "Sure", to: "" },
+            { text: "Absolutely", to: "" },
+            { text: "By All Means", to: "hash_byallmeans" },
+            { text: "Okey Dokey", to: "hash_okaydokey" },
+            { text: "Alright", to: "" },
+            { text: "Of Course", to: "hash_ofcourse" },
+            { text: "Definitely", to: "hash_definetly" },
             { text: "No thank!", to: "hash_no" }
         ],
         contributor: "Toshiyuki and Hunter"
     },
+    hash_failtounderstand: {
+        prompt: () => <div>
+            <p>
+                You try to understand what it means, but it's too hard to understand... You end up deciding that you should not eat this as it may be dangerous to your health.
+            </p>
+        </div>,
+        options: [
+            { text: "Find something else to eat.", to: "wakeup_breakfast", action: () => startedHashbrowns = true }
+        ]
+    },
+    hash_okaydokey: {
+        prompt: () => <div>
+            <p>
+                You say "Okey Dokey", like you dont know how to read words, but you can read letters. You need to go back to <span style={{color: "cornflowerblue"}}><CircleText string="Reading School" /></span>.
+            </p>
+        </div>,
+        contributor: "Dave",
+        ending: {
+            id: "reading-school",
+            name: "Forget How to Read Properly",
+            description: "You half-forgot how to read so you went to reading school"
+        }
+    },
+    hash_ofcourse: {
+        prompt: () => <div>
+            <p>
+                Of course you can read what's on them. They say nothing! It's just a Mario Kart track layout. 🤔
+            </p>
+        </div>,
+        options: [
+            { text: "Make a really fucking big version", to: "hash_fuckingbig_version" },
+            { text: "Make a tiny potato kart", to: "hash_potatokart" },
+            { text: "Eat it", to: "hash_eat" },
+            { text: "Smoke it", to: "hash_smokeit" },
+        ],
+        contributor: "Neema"
+    },
+    hash_definetly: {
+        prompt: () => <div>
+            <p>
+                You definetly can read what's on them. They say nothing! It's just a Mario Kart track layout. 🤔
+            </p>
+        </div>,
+        options: [
+            { text: "Make a really fucking big version", to: "hash_fuckingbig_version" },
+            { text: "Make a tiny potato kart", to: "hash_potatokart" },
+            { text: "Eat it", to: "hash_eat" },
+            { text: "Smoke it", to: "hash_smokeit" },
+        ],
+        contributor: "Neema"
+    },
+    hash_byallmeans: {
+        prompt: () => <div>
+            <p>
+                By all means you read what's on them. They say nothing! It's just a Mario Kart track layout. 🤔
+            </p>
+        </div>,
+        options: [
+            { text: "Make a really fucking big version", to: "hash_fuckingbig_version" },
+            { text: "Make a tiny potato kart", to: "hash_potatokart" },
+            { text: "Eat it", to: "hash_eat" },
+            { text: "Smoke it", to: "hash_smokeit" },
+        ],
+        contributor: "Neema"
+    },
     hash_no: {
         prompt: () => <div>
-            <p>You ate a brownie.</p>
+            <p>You ate the brownie instead.</p>
         </div>,
         ending: {
             id: "ate-brownie",

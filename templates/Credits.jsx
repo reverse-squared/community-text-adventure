@@ -11,6 +11,8 @@ const contributors = [
     ["Alchemyking"],
     ["Toshiyuki",               "https://steamcommunity.com/id/nekoalex66/"],
     ["Helvetica"],
+    ["Neema",                   "https://www.youtube.com/channel/UCEBtKv5G3SKwbWjjmb1yOBA"],
+    ["39cookies "],
     // People below this still need to say exactly how they want credit.
 ];
 

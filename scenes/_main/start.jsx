@@ -143,6 +143,18 @@ addScenes({
         },
         contributor: "Colyderp"
     },
+    breakfast_fail_ending: {
+        prompt: () => <div>
+            <p>
+                Out of all your options for breakfast, how did you fail to find one that worked. You ended up starving.
+            </p>
+        </div>,
+        ending: {
+            id: "breakfast-failure",
+            name: "Fail to make breakfast",
+            description: "With so many options how did you fail a simple task"
+        }
+    },
 
     // Check time. Level 2.
     wakeup_check_time: {
