@@ -23,7 +23,7 @@ addScenes({
             <p>You put the nice {topping} on it. You eat the pancake and feel nice to go on with your day, what do you do?</p>
         </div>,
         options: [
-            
+            // TODO: Options for regular_pancake_eat.
         ],
         contributor: "Hunter"
     },

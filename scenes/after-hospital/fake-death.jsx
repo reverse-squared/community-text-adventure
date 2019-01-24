@@ -1,8 +1,10 @@
 import React from "react";
-import { addFlag } from "web-text-adventure";
+import { addFlag, setScene } from "web-text-adventure";
 import { addScenes } from "@src/ending";
 
 addFlag("graveWaitTime", 0);
+addFlag("wrongPasswords", 0);
+addFlag("passwords", [false, false, false, false, false, false]);
 
 function increaseGraveWait() {
     graveWaitTime++;
@@ -58,15 +60,55 @@ addScenes({
         },
         contributor: "Hunter",
     },
+
+    // TODO: Hitman and cook.
     grave_leave: {
         prompt: () => <div>
             <p>Now that you are "dead", and nobody knows that you are alive, what illegal crimes will you commit?</p>
         </div>,
         options: [
             { text: "Become a Hitman", to: "" },
-            { text: "Rob a Bank", to: "" },
+            { text: "Rob a Bank", to: "bank_rob" },
             { text: "Become a Level 1 Crook", to: "" }
         ],
         contributor: "Hunter"
+    },
+
+    bank_rob: {
+        prompt: () => <div>
+            <p>You want to enter a bank, but with the recent rising of bank robberies, they have password protected the bank. What is the <b>super secret password?</b></p>
+        </div>,
+        options: [
+            { text: "123456", to: "bank_rob_wrong", disabledText: true, if: () => !passwords[0], action: () => { wrongPasswords++; passwords[0] = true; } },
+            { text: "password", to: "bank_rob_wrong", disabledText: true, if: () => !passwords[1], action: () => { wrongPasswords++; passwords[1] = true; } },
+            { text: "FUCKINGPASSWORD", to: "bank_rob_right" },
+            { text: "h*82fX&11P*c4p", to: "bank_rob_wrong", disabledText: true, if: () => !passwords[3], action: () => { wrongPasswords++; passwords[3] = true; } },
+            { text: "Your SSN Number", to: "bank_rob_wrong", disabledText: true, if: () => !passwords[4], action: () => { wrongPasswords++; passwords[4] = true; } },
+            { text: "All of the Above", to: "bank_rob_wrong", disabledText: true, if: () => !passwords[5], action: () => { wrongPasswords++; passwords[5] = true; } }
+        ],
+        contributor: "Hunter, Dave, and Colyderp"
+    },
+    bank_rob_wrong: {
+        prompt: () => <div>
+            <p>The tiny little screen buzzes at you...</p>
+            <h1 style={{color: "red"}}>WRONG PASSWORD!</h1>
+        </div>,
+        options: [
+            { text: "123456", to: "bank_rob_wrong", disabledText: true, if: () => !passwords[0], action: () => { wrongPasswords++; passwords[0] = true; } },
+            { text: "password", to: "bank_rob_wrong", disabledText: true, if: () => !passwords[1], action: () => { wrongPasswords++; passwords[1] = true; } },
+            { text: "FUCKINGPASSWORD", to: "bank_rob_right" },
+            { text: "h*82fX&11P*c4p", to: "bank_rob_wrong", disabledText: true, if: () => !passwords[3], action: () => { wrongPasswords++; passwords[3] = true; } },
+            { text: "Your SSN Number", to: "bank_rob_wrong", disabledText: true, if: () => !passwords[4], action: () => { wrongPasswords++; passwords[4] = true; } },
+            { text: "All of the Above", to: "bank_rob_wrong", disabledText: true, if: () => !passwords[5], action: () => { wrongPasswords++; passwords[5] = true; } }
+        ],
+        action: () => {
+            if(wrongPasswords === 5) {
+                setScene("bank_caught");
+            }
+        },
+        contributor: "Hunter, Dave, and Colyderp"
     }
+
+    // TODO: bank_rob_right
+    // TODO: bank_caught
 });
