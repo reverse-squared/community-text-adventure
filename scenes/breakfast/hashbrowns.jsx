@@ -125,42 +125,30 @@ addScenes({
             </p>
         </div>,
         options: [
-            { text: () => <span style={{ fontFamily: "monospace", fontSize: "", color: "red", fontWeight: "900", fontStyle: "italic", textShadow: "0 0 5px red" }}>I N H A L E &nbsp; M O R E</span>, to: "hash_smokeit5" },
+            { text: () => <span style={{ fontFamily: "monospace", fontSize: "", color: "red", fontWeight: "900", fontStyle: "italic", textShadow: "0 0 5px red" }}>I N H A L E &nbsp; M O R E</span>, to: "hash_smoke_end" },
         ],
         contributor: "Dave"
     },
     hash_stop_novape: {
         prompt: () => <div>
-            <p>
-                TODO You decide not to vape
-            </p>
+            <p><b>HIT OR MISS, I NEVER HIT THAT VAPE! HUH?</b> You have become a <span className="gradient-green">Level 100 Master</span>. Now this is epic. Here</p>
         </div>,
         options: [
-
+            // TODO:
         ],
-        contributor: ""
-    },
-    hash_smokeit5: {
-        prompt: () => <div>
-            <p>
-                TODO You smoke too much you  dehydrate and die
-            </p>
-        </div>,
-        options: [
-
-        ],
-        contributor: ""
+        contributor: "Hunter"
     },
     hash_smoke_end: {
         prompt: () => <div>
-            <p>
-                TODO You smoke a little, but thats not okay
-            </p>
+            <p>You vaped so much potato brownies, you started to get severe vomiting, seizures, and difficulty breathing.</p>
+            <p>You also passed out, and died of dehydration soon after.</p>
         </div>,
-        options: [
-
-        ],
-        contributor: ""
+        ending: {
+            id: "over-vape",
+            name: "xX_420VapeLord_Xx",
+            description: "You are now in the club of the dankest of dank vape lords. Welcome to the gang!"
+        },
+        contributor: "Hunter"
     },
 
     hash_definetly: {

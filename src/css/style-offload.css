@@ -243,6 +243,18 @@
 .rainbow.circly {
     animation: rainbow 1s linear 0s infinite, circle 1s linear 0s infinite;
 }
+
+@keyframes gradient-green { 
+	0% {color: rgb(0, 255, 0);}
+	50% {color: rgb(0, 98, 0)}
+	100% {color: rgb(0, 255, 0);}
+}
+
+.gradient-green {
+	font-weight: 900;
+	animation: gradient-green 0.8s infinite;
+
+}
 /*#endregion*/
 
 /*#region*/
