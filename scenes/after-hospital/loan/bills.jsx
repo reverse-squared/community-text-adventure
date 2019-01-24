@@ -2,6 +2,7 @@ import React from "react";
 import { addFlag } from "web-text-adventure";
 import { addScenes } from "@src/ending.jsx";
 import { LoanHeader, decreaseTurn, formatMoney } from "./loan";
+import { RainbowCircleText, RainbowText } from "@templates/FontStyles";
 
 addFlag("loanBills1", [false,false,false]);
 addFlag("loanBills2", [false,false]);
