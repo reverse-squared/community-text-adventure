@@ -56,9 +56,9 @@ addScenes({
         </div>,
         options: [
             { text: "Chocolate + Butter", to: "" },
-            { text: "Cocoa + Butter", to: "" },
+            { text: "Cocoa + Butter", to: "pancakes_white_chocolate_butter" },
             { text: "Chocolate + Milk", to: "" },
-            { text: "Chocolate + Cocaine", to: "" },
+            { text: "Chocolate + Cocaine", to: "pancakes_white_chocolate_cocaine" },
             { text: "Fuck it, just use chocolate", to: "" },
         ],
         contributor: "Neema"
@@ -152,4 +152,29 @@ addScenes({
         },
         contributor: "Helvetica",
     },
+    pancakes_white_chocolate_cocaine: {
+        prompt: () => <div>
+            <p>Sure, because apparently cocaine is like white cocoa powder. You mix the melted chocolate with the "cocoa" and it turns a lighter shade of brown, but not white.</p>
+        </div>,
+        options: [
+            { text: "More cocaine.", to: "" },
+            { text: "Use the cocaine chocolate.", to: "" },
+            { text: "Snort the cocaine chocolate.", to: "" }
+        ],
+        contributor: "Neema"
+    },
+    pancakes_white_chocolate_butter: {
+        prompt: <div>
+            <p>Chocolate has cocoa in it, right? You shred the chocolate into a bowl with melted butter. Halfway through mixing it, you realise that the chocolate is only turning a golden brown color. 
+                Also you've cut yourself on the grater.
+            </p>
+        </div>,
+        options: [
+            { text: "Add more butter.", to: "" },
+            { text: "Add more blood.", to: "" },
+            { text: "Add pancake batter.", to: "" },
+            { text: "Keep mixing.", to: "" }
+        ],
+        contributor: "Neema"
+    }
 });

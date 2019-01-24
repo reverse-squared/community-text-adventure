@@ -38,7 +38,7 @@ addScenes({
             { text: "Absolutely", to: "" },
             { text: "By All Means", to: "hash_byallmeans" },
             { text: "Okey Dokey", to: "hash_okaydokey" },
-            { text: "Alright", to: "" },
+            { text: "Alright", to: "hash_allright" },
             { text: "Of Course", to: "hash_ofcourse" },
             { text: "Definitely", to: "hash_definetly" },
             { text: "No thank!", to: "hash_no" }
@@ -120,7 +120,16 @@ addScenes({
             description: "You ate a brownie."
         },
         contributor: "Hunter"
+    },
+    hash_allright: {
+        prompt: () => <div>
+            <p>You got your left arm and leg cut off trying to say alright. I guess you were <strong>ALL RIGHT</strong>. <em>ba dum tss...</em></p>
+        </div>,
+        ending: {
+            id: "all-right",
+            name: "All right.",
+            description: "Looks like you are right handed... Let me take care of the left..."
+        },
+        contributor: "Hunter"
     }
-
-    // TODO: hash_start
 });
