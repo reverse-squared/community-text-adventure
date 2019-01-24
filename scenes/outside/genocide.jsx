@@ -64,7 +64,7 @@ addScenes({
         options: [
             { text: "Throw it in the furnace.", to: "" },
             { text: "Eat it.", to: "" },
-            { text: "Give it to the dogs.", to: "" },
+            { text: "Give it to the dogs.", to: "genocide_chicken_kill_dogs" },
             { text: "Keep it.", to: "genocide_main" },
         ],
         contributor: "Hunter"
@@ -88,5 +88,16 @@ addScenes({
         options: [
         ],
         contributor: "Hunter"
+    },
+    genocide_chicken_kill_dogs: {
+        prompt: () => <div>
+            <p>You stop for a second and think, 'Maybe I can also kill the dogs!'</p>
+        </div>,
+        options: [
+            { text: "Inject the chicken with arsenic first.", to: "" },
+            { text: " Don’t poison the chicken.", to: "" },
+            { text: "Never mind, keep the chicken.  ", to: "" }
+        ],
+        contributor: "Daniel (Phrotonz)"
     }
 });

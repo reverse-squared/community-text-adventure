@@ -34,7 +34,7 @@ addScenes({
         </div>,
         options: [
             { text: "Yes", to: "hash_failtounderstand" },
-            { text: "Sure", to: "" },
+            { text: "Sure", to: "hash_sure" },
             { text: "Absolutely", to: "" },
             { text: "By All Means", to: "hash_byallmeans" },
             { text: "Okey Dokey", to: "hash_okaydokey" },
@@ -131,5 +131,62 @@ addScenes({
             description: "Looks like you are right handed... Let me take care of the left..."
         },
         contributor: "Hunter"
+    },
+    hash_sure: {
+        prompt: () => <div>
+            <p>You say sure, but the person neat you heard you say "sue". He decideds to sue you for "threatening" to sue him. What do you do?</p>
+        </div>,
+        options: [
+            { text: "Sue back.", to: "hash_sue" },
+            { text: "Get sued.", to: "hash_get_sued" },
+            { text: "Murder him.", to: "hash_murder" },
+            { text: "Escape.", to: "" },
+        ],
+        contributor: "Hunter"
+    },
+    hash_sue: {
+        prompt: () => <div>
+            <p>You tell him that you are going to sue him. He says, "bet no proof." What now?</p>
+        </div>,
+        options: [
+            { text: "Sue.", to: "hash_sue2" },
+            { text: "Sue.", to: "hash_sue2" },
+            { text: "Sue.", to: "hash_sue2" },
+            { text: "Sue.", to: "hash_sue2" },
+            { text: "Sue.", to: "hash_sue2" }
+        ],
+        contributor: "Hunter"
+    },
+    hash_sue2: {
+        prompt: () => <div>
+            <p>You sue the guy and win.</p>
+        </div>,
+        ending: {
+            id: "hash-sue",
+            name: "Accidental Sueing",
+            description: "Sue an innocent person."
+        },
+        contributor: "Hunter"
+    },
+    hash_get_sued: {
+        prompt: () => <div>
+            <p>You were even told that you were going to get sued. Still, you did nothing about it. Not even get a lawyer.</p>
+        </div>,
+        ending: {
+            id: "hash-sued",
+            name: "Agree to get Sued",
+            description: "I guess you just wanted to see what it would be like. Who does that?"
+        },
+        contributor: "Hunter"
+    },
+    hash_murder: {
+        prompt: () => <div>
+            <p>You killed him because he was going to sue you. Now his familiy is probably gonna sue you. You should of just ran away.</p>
+        </div>,
+        ending: {
+            id: "sue-murder",
+            name: "Violence IS the Answer",
+            description: "Hahahahahahahahahahahahahah."
+        }
     }
 });
