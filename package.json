@@ -42,7 +42,8 @@
     "broken-links": "node src/build/list-broken-links.js",
     "lint": "eslint . --ext .js,.jsx --ignore-path .eslintignore || true",
     "lint-fix": "eslint . --ext .js,.jsx --ignore-path .eslintignore --fix || true",
-    "cloc": "cloc scenes/ src/ templates/ res/"
+    "cloc": "cloc scenes/ src/ templates/ res/",
+    "test": "mocha"
   },
   "license": "MIT",
   "output_directory": "dist",
