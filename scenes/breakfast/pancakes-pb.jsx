@@ -409,7 +409,7 @@ addScenes({
                     }
                     item.preventDefault();
                 };
-                inputElem.style = "background:transparent;border:none;outline:none;position:absolute;top:250px;";
+                inputElem.style = "background:transparent;border:none;outline:none;position:absolute;top:290px;";
             },
             onDeactivate: () => {
                 if (inputElem) {
