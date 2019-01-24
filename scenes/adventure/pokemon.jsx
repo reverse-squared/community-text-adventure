@@ -107,7 +107,7 @@ addScenes({
         options: [
             { text: "Use Fly.", to: "skydive_no_parachute_pokemon" },   
             { text: "Feed the Pokemon", to: "pokemon_feed" },
-            { text: "Go to a Championship", to: "pokemon_championship" }
+            { text: "Go to a Championship", to: "champ_start" }
         ],
         contributor: "Hunter"
     },
@@ -168,15 +168,5 @@ addScenes({
             description: "It's the kind of stuff you'd expect Tiger Woods to tee of it.",
         },
         contributor: "Hunter"
-    },
-
-    pokemon_championship: {
-        prompt: () => <div>
-            <p>Ok do stuff.</p>
-        </div>,
-        options: [
-
-        ],
-        contributor: ""
     }
 });

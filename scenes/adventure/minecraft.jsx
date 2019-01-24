@@ -1,14 +1,18 @@
 import React, {Fragment} from "react";
 import { addScenes } from "@src/ending";
 import { addFlag, setScene } from "web-text-adventure";
+import SceneLink from "@templates/SceneLink";
 
-const inventoryData = {};
-const recipeData = [];
+addFlag("__rerender", undefined);
+addFlag("inventoryData", {});
+addFlag("recipeData", []);
+addFlag("fromScene", "none");
 
 const itemToName = {
     log: "Oak Log",
     stick: "Stick",
-    plank: "Oak Wood Planks",
+    planks: "Oak Wood Planks",
+    wood_pickaxe: "Wooden Pickaxe",
 };
 
 const InventoryDisplay = () => <div>
@@ -16,12 +20,13 @@ const InventoryDisplay = () => <div>
     <p>
         {
             Object.keys(inventoryData).filter(key => inventoryData[key] !== 0).map(key => <Fragment key={key}>
-                {itemToName[key] || "item." + key}: {inventoryData[key]}
+                {itemToName[key] || "item." + key}: {inventoryData[key]} <br/>
             </Fragment>)
         }
     </p>
 </div>;
 
+//#region item/recipe/game logic
 /** Inventory */
 function addItem(type, num) {
     inventoryData[type] = getItem(type) + num;
@@ -47,7 +52,11 @@ function itemCount(id, count) {
     return {id, count};
 }
 function displayItemCount(ic) {
-    return displayName(ic.id);
+    if(ic.count !== 1) {
+        return displayName(ic.id) + "*" + ic.count;
+    } else {
+        return displayName(ic.id);
+    }
 }
 
 /** Recipies */
@@ -59,36 +68,67 @@ function addRecipe(items, output) {
     });
 }
 function getCraftingOptions() {
-    return [];
-    
     // Discover new ones
-    recipeData.forEach(recipe => {
-        if (recipe.discovered) return;
-        if (hasItem(recipe.a.id, recipe.a.count) && hasItem(recipe.b.id, recipe.b.count)) {
-            recipe.discovered = true;
+    recipeData.forEach(rec => {
+        if (rec.items.find(x => !hasItem(x.id, x.count)) == undefined) {
+            rec.discovered = true;
         }
     });
 
     // return magic
-    return recipeData.map(rec => {
+    return recipeData.filter(x => x.discovered).map(rec => {
         return {
             text: `Craft: ${rec.items.map(displayItemCount).join(" + ")} -> ${displayItemCount(rec.output)}`,
             to: null,
+            disabledText: true,
+            if: () => rec.items.find(x => !hasItem(x.id, x.count)) == undefined,
+            action: () => {
+                rec.items.forEach(item => removeItem(item.id, item.count));
+                addItem(rec.output.id, rec.output.count);
+
+                __rerender = undefined;
+            }
         };
     });
 }
+function craftingOptionsWithLink(scene) {
+    return [
+        { is: "seperator" },
+        ...(hasItem("wood_pickaxe", 1) ? [
+            {
+                text: "Crafting Menu",
+                to: "minecraft_craft",
+                action: () => fromScene = scene
+            }
+        ] : getCraftingOptions())
+    ];
+}
 
-addRecipe(
-    [
-        itemCount("log", 1)
-    ],
-    itemCount("plank", 4)
-);
+//#endregion
+
+// Recipe Contents
+function addRecipes() {
+    recipeData = [];
+    addRecipe([itemCount("log", 1)], itemCount("planks", 4));
+    addRecipe([itemCount("planks", 2)], itemCount("stick", 4));
+    addRecipe([itemCount("planks", 3), itemCount("stick", 2)], itemCount("wood_pickaxe", 1));
+}
 
 // Stats
 addFlag("treesPunched", 0);
 
 addScenes({
+    minecraft_start: {
+        prompt: <div></div>,
+        options: [],
+        excludeEmptyOptionsCheck: true,
+        noContributor: true,
+        action: () => {
+            addRecipes();
+            addItem("log", 1);
+            setScene("minecraft_tree");
+        }
+    },
     minecraft_tree: {
         prompt: () => <div>
             <p>You punch some trees and get some wood (somehow), the next logical thing to do is to make some wood planks.</p>
@@ -100,15 +140,41 @@ addScenes({
                 treesPunched++;
                 addItem("log", 1);
             }},
-            "seperator",
-            ...getCraftingOptions()
+            {
+                text: "Go Mining",
+                if: () => hasItem("wood_pickaxe", 1),
+                to: "minecraft_mine"
+            },
+            
+            ...craftingOptionsWithLink("minecraft_tree")
         ],
         action: () => {
-            if(treesPunched > 10) {
+            if(treesPunched > 15) {
                 setScene("minecraft_all_trees");
             }
         },
         contributor: "Adr and Hunter"
+    },
+    minecraft_mine: {
+        prompt: () => <div>
+            <p>
+                TODO: GO MINING
+            </p>
+            <InventoryDisplay />
+        </div>,
+        options: () => [
+            ...craftingOptionsWithLink("minecraft_mine")
+        ]
+    },
+    minecraft_craft: {
+        prompt: () => <div>
+            <h2>Crafting Table</h2>
+            <SceneLink to={fromScene}>Exit</SceneLink>
+        </div>,
+        options: () => [
+            ...getCraftingOptions()
+        ],
+        excludeEmptyOptionsCheck: true
     },
     minecraft_all_trees: {
         prompt: () => <div>

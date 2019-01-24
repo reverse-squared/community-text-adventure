@@ -23,6 +23,7 @@ addScenes({
         options: [
             { text: "Fix the bug.", to: "fourth_wall" },
             { text: "Develop new feature.", to: "" },
+            { text: "Play Half Life 3.", to: "hl3" },
             { text: "Go get some coffee.", to: "work_coffee", action: () => coffeeDrank++ }
         ],
         contributor: "Hunter"
@@ -65,5 +66,21 @@ addScenes({
             description: "You broke it..."
         },
         contributor: "Daniel (Phrotonz)"
+    },
+    hl3: {
+        prompt: () => <div>
+            <p>
+                You load up the new <span style={{ fontSize: "1.25em", color: "orange", fontStyle: "italic" }}>Half Life 3</span>. It's super good. So many new features.
+            </p>
+            <p>
+                While playing, you come to the plot twist that the Cake is a Lie. This leads you into an existential crisis and you faint.
+            </p>
+        </div>,
+        ending: {
+            id: "cake-lie",
+            name: "The Cake is a Lie",
+            description: "While playing Half Life 3, you realize the cake was a lie and experience an existential crisis and die",
+        },
+        contributor: "Helvetica"
     }
 });
