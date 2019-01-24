@@ -4,7 +4,9 @@ require("@babel/register");
 const mockery = require("mockery");
 const React = require("react");
 describe("Custom HTML", function() {
-    before(function() {
+    let render;
+
+    before(function () {
         mockery.enable({
             warnOnReplace: false,
             warnOnUnregistered: false,
@@ -15,14 +17,21 @@ describe("Custom HTML", function() {
             Prompt: () => React.createElement("wta-prompt"),
             Options: () => React.createElement("wta-options"),
             DebugPanel: () => React.createElement("wta-debug"),
-            setCustomHTML: (html) => htmll = html({prompt: "Hello World", contributor: null}),
+            setCustomHTML: (html) => render = html,
         });
+
+        require("../templates/CustomHTML");
 
     });
     after(function () {
         mockery.disable();
     });
     it("does not crash during render", function() {
-        require("../templates/CustomHTML");
+        render({ prompt: "Hello World", options: [], contributor: null });
+    });
+    it("returns nothing for a blank scene", function() {
+        if (render({ prompt: "Hello World", options: [], contributor: null, isBlank: true }) !== null) {
+            throw new Error("Expected Null");
+        }
     });
 });
