@@ -43,10 +43,24 @@ addScenes({
         options: [
             { text: "Dark chocolate", to: "edgy_pancakes" },
             { text: "Milk Chocolate", to: "" },
-            { text: "White Chocolate", to: "" },
+            { text: "White Chocolate", to: "pancakes_white_chocolate" },
             { text: "Baker’s chocolate", to: "" },
         ],
         contributor: "Alchemyking"
+    },
+    pancakes_white_chocolate: {
+        prompt: () => <div>
+            <p>
+                Crap. You don't have any white chocolate. You go onto le Google and research how to make it yourself. 'Cocoa Butter' is what it's made of. How will you make your chocolate?
+            </p>
+        </div>,
+        options: [
+            { text: "Chocolate + Butter", to: "" },
+            { text: "Cocoa + Butter", to: "" },
+            { text: "Chocolate + Milk", to: "" },
+            { text: "Chocolate + Cocaine", to: "" },
+            { text: "Fuck it, just use chocolate", to: "" },
+        ]
     },
     edgy_pancakes: {
         prompt: () => <div>
