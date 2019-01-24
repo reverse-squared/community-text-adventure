@@ -247,7 +247,8 @@ addScenes({
             <p>You wait for the pancakes to finish.</p>
         </div>,
         options: [
-            { text: "Wait more.", to: "pancakes_white_chocolate_milk_no_wait_2"}
+            { text: "Wait more.", to: "pancakes_white_chocolate_milk_no_wait_2"},
+            { text: "Eat.", to: "pancakes_white_chocolate_milk_raw"}
         ],
         contributor: "Hunter"
     },
@@ -256,126 +257,68 @@ addScenes({
             <p>You wait for the pancakes to finish.</p>
         </div>,
         options: [
-            { text: "Wait more.", to: "pancakes_white_chocolate_milk_no_wait_3"}
+            { text: "Wait more.", to: "pancakes_white_chocolate_milk_no_wait_3"},
+            { text: "Eat.", to: "pancakes_white_chocolate_milk_raw"}
         ],
         contributor: "Hunter"
     },
     pancakes_white_chocolate_milk_no_wait_3: {
         prompt: () => <div>
             <p>You wait for the pancakes to finish.</p>
-            <ul>
-                <SceneLink style={{
-                    display:"block",
-                    transform: "rotate(180deg)",
-                    paddingLeft: "300px"
-                }} to="pancakes_white_chocolate_milk_yes_wait_4">Wait more.</SceneLink>
-            </ul>
         </div>,
-        options: [],
+        options: [
+            { text: "Wait more.", to: "pancakes_white_chocolate_milk_no_wait_4"},
+            { text: "Eat.", to: "pancakes_white_chocolate_milk_yes_wait_done"}
+        ],
         contributor: "Hunter"
     },
-    pancakes_white_chocolate_milk_yes_wait_4: {
+    pancakes_white_chocolate_milk_no_wait_4: {
         prompt: () => <div>
             <p>You wait for the pancakes to finish.</p>
-            <ul>
-                <SceneLink style={{
-                    display:"block",
-                    position: "absolute",
-                    transform: "translateX(60px) rotate(232deg)",
-                }} to="pancakes_white_chocolate_milk_yes_wait_5">Wait more.</SceneLink>
-            </ul>
         </div>,
-        options: [],
+        options: [
+            { text: "Wait more.", to: "pancakes_white_chocolate_milk_no_wait_5"},
+            { text: "Eat.", to: "pancakes_white_chocolate_milk_yes_wait_fail"}
+        ],
         contributor: "Hunter"
     },
-    pancakes_white_chocolate_milk_yes_wait_5: {
+    pancakes_white_chocolate_milk_no_wait_5: {
         prompt: () => <div>
             <p>You wait for the pancakes to finish.</p>
-            <ul>
-                <SceneLink style={{
-                    display:"block",
-                    position: "absolute",
-                    transform: "translateY(650px) rotate(112d   eg) scale(20)",
-                }} to="pancakes_white_chocolate_milk_yes_wait_6">Wait more.</SceneLink>
-            </ul>
         </div>,
-        options: [],
+        options: [
+            { text: "Wait more.", to: "pancakes_white_chocolate_milk_no_wait_6"},
+            { text: "Eat.", to: "pancakes_white_chocolate_milk_yes_wait_fail"}
+        ],
         contributor: "Hunter"
     },
-    pancakes_white_chocolate_milk_yes_wait_6: {
+    pancakes_white_chocolate_milk_no_wait_6: {
         prompt: () => <div>
             <p>You wait for the pancakes to finish.</p>
-            <small><small>Scroll down!</small></small>
-            <ul>
-                <SceneLink style={{
-                    display:"block",
-                    position: "absolute",
-                    transform: "translateY(15022px) rotate(90deg) scale(10)",
-                    textDecoration: "underline"
-                }} to="pancakes_white_chocolate_milk_yes_wait_7">Wait more.</SceneLink>
-            </ul>
         </div>,
-        options: [],
+        options: [
+            { text: "Wait more.", to: "pancakes_white_chocolate_milk_no_wait_7"},
+            { text: "Eat.", to: "pancakes_white_chocolate_milk_yes_wait_fail"}
+        ],
         contributor: "Hunter"
     },
-    pancakes_white_chocolate_milk_yes_wait_7: {
+    pancakes_white_chocolate_milk_no_wait_6: {
         prompt: () => <div>
             <p>You wait for the pancakes to finish.</p>
-            <ul>
-                <SceneLink style={{
-                    display:"block",
-                    position: "absolute",
-                    transform: "scale(0.3)",
-                    textDecoration: "underline"
-                }} to="pancakes_white_chocolate_milk_yes_wait_8">Wait more.</SceneLink>
-            </ul>
         </div>,
-        options: [],
+        options: [
+            { text: "Wait more.", to: "pancakes_white_chocolate_milk_no_wait_7"},
+            { text: "Eat.", to: "pancakes_white_chocolate_milk_yes_wait_fail"}
+        ],
         contributor: "Hunter"
     },
-    pancakes_white_chocolate_milk_yes_wait_8: {
+    pancakes_white_chocolate_milk_no_wait_6: {
         prompt: () => <div>
-            <p>You wait for the pancakes to finish.</p>
-            <QuickTimeDom />
-            <ul>
-                <SceneLink to="pancakes_white_chocolate_milk_yes_wait_9">Done.</SceneLink>
-            </ul>
-            
+            <p>The pancakes caught on fire.</p>
         </div>,
-        ...QuickTimeHandlers({
-            time: 750,
-        }),
-        options: [],
-        contributor: "Hunter"
-    },
-    pancakes_white_chocolate_milk_yes_wait_9: {
-        prompt: () => <div>
-            <p>Press the "\" key.</p>
-            <QuickTimeDom />
-            
-        </div>,
-        ...QuickTimeHandlers({
-            time: 750,
-            action: () => {
-                inputElem = document.createElement("input");
-                document.body.appendChild(inputElem);
-                inputElem.focus();
-                inputElem.onkeydown = (item) => {
-                    if (item.keyCode == 220) {
-                        setScene("pancakes_white_chocolate_milk_yes_wait_done");
-                    }
-                    item.preventDefault();
-                };
-                inputElem.style = "background:transparent;border:none;outline:none;position:absolute;top:290px;";
-            },
-            onDeactivate: () => {
-                if (inputElem) {
-                    inputElem.remove();
-                    inputElem = null;
-                }
-            }
-        }),
-        options: [],
+        options: [
+            { text: "Eat.", to: "pancakes_white_chocolate_milk_yes_wait_fail"}
+        ],
         contributor: "Hunter"
     },
     pancakes_white_chocolate_milk_yes_wait_done: {
@@ -399,5 +342,17 @@ addScenes({
             description: "Worst chef in the world."
         },
         contributor: "Hunter"
+    },
+    pancakes_white_chocolate_milk_raw: {
+        prompt: () => <div>
+            <p>You ate the pancakes that have cooked for a total of one minute. The pancake is very soggy, and it doesn't even look like a pancake. You still slurp of the liquid. It was <strong>very </strong>
+                tasety.
+            </p>
+        </div>,
+        ending: {
+            id: "raw-pancakes",
+            name: "The Good Liquid",
+            description: "It's very tasety ( ͡° ͜ʖ ͡°)."
+        }
     }
 });
