@@ -11,6 +11,7 @@ function QuickTimeDom() {
         <div style={{ height: "100%", width: "100%", background: "cornflowerblue" }} id="inner-progress" />
     </div>;
 }
+
 function QuickTimeHandlers(extra = {}) {
     const decreasePerStep = (1000 / 45) / (10 * (extra.time / 1000));
     return {
