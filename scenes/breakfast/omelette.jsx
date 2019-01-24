@@ -67,7 +67,7 @@ addScenes({
         prompt: () => <div>
             <p>The fluffy omelette is a refined version of an ancient food. According to Alan Davidson, the French word omelette came into use during the mid-16th 
                 century, but the versions alumelle and alumete are employed by the Ménagier de Paris (II, 5) in 1393. Rabelais (Pantagruel, IV, 9) mentions an 
-                homelaicte d'oeufs,    Olivier de Serres an amelette, François Pierre La Varenne's Le cuisinier françois (1651) has aumelette, and the modern 
+                homelaicte d'oeufs, Olivier de Serres an amelette, François Pierre La Varenne's Le cuisinier françois (1651) has aumelette, and the modern 
                 omelette appears in Cuisine bourgoise (1784).
             </p>
             <p>According to the founding legend of the annual giant Easter omelette of Bessières, Haute-Garonne, when Napoleon Bonaparte and his army were traveling 

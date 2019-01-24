@@ -6,7 +6,7 @@ const TerserPlugin = require("terser-webpack-plugin");
 module.exports = (env = {production: false, extraDefines: {}}, argv) => ({
     entry: "./src/js/loader.jsx",
     output: {
-        path: path.resolve(__dirname),
+        path: path.resolve(__dirname, "dist"),
         filename: "game.js"
     },
     devServer: {

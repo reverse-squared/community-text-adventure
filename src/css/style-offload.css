@@ -67,6 +67,15 @@
     color: red;
 }
 
+.stick-ending-status {
+    position: sticky;
+    top: 0px;
+    padding: 12px 0;
+    background: rgb(22,22,22);
+    z-index: 10;
+    box-shadow: 0 0px 10px 10px rgb(22,22,22);
+}
+
 @keyframes ending-header-blink {
 	0% { color: aquamarine; }
 	49.9% { color: aquamarine; }
@@ -222,12 +231,12 @@
 }
 
 .rainbow {
-    position: relative;
     animation: rainbow 1s linear 0s infinite;
 }
 
 .circly {
-    left: -5px;
+	left: -5px;
+    position: relative;	
     animation: circle 1s linear 0s infinite;
 }
 

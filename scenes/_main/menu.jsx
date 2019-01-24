@@ -1,5 +1,5 @@
 import React from "react";
-import { setScene, setConfig, getConfig } from "web-text-adventure";
+import { setScene, setConfig, getConfig, addFlag } from "web-text-adventure";
 import { addScenes, getGameProgress, getAllEndings } from "@src/ending";
 import Credits from "@templates/Credits";
 import SceneLink from "@templates/SceneLink";
@@ -41,6 +41,17 @@ function debugBooleanOption(name, display) {
             localStorage.debug = JSON.stringify(debugOptions);
         }
     };
+}
+
+addFlag("hideAchieved", false);
+addFlag("hideUnAchieved", false);
+function toggleHideAchieved() {
+    hideAchieved = !hideAchieved;
+    addFlag("hideAchieved", hideAchieved);
+}
+function toggleHideUnAchieved() {
+    hideUnAchieved = !hideUnAchieved;
+    addFlag("hideUnAchieved", hideAchieved);
 }
 
 addScenes({
@@ -104,17 +115,44 @@ addScenes({
         excludeEmptyOptionsCheck: true,
         noContributor: true,
     },
+    "\"tutorial\"": {
+        prompt: () => <div>
+            <p>
+                Community Text Adventure is a game about different endings,
+                there are many different ways you can have the story play out.
+                Now that you got your first ending, it's time to get
+                all {getGameProgress().totalEndings} endings.
+            </p>
+        </div>,
+        options: [
+            { text: "Go to Main Menu", to: "start" }
+        ],
+        noContributor: true
+    },
     endings: {
         prompt: () => {
             const progress = getGameProgress();
             const endings = getAllEndings();
             return <div>
-                <SceneLink to="start">Back</SceneLink>
-                <p className="ending-status">
-                    You have gotten {progress.achievedEndings} of {progress.totalEndings} endings ({(progress.percentage * 100).toFixed(0)}% Completion)
-                </p>
+                <div className="stick-ending-status">
+                    <SceneLink to="start">Back</SceneLink>
+                    <p className="ending-status">
+                        You have gotten {progress.achievedEndings} of {progress.totalEndings} endings ({(progress.percentage * 100).toFixed(0)}% Completion)
+                    </p>
+                </div>
+                <h2>Achieved Endings <a href="#" style={{fontSize: "0.6em"}} onClick={toggleHideAchieved}>{hideAchieved ? "Unhide" : "Hide"}</a></h2>
                 {
-                    Object.keys(endings).map(id => {
+                    !hideAchieved &&
+                    Object.keys(endings).filter(id => endings[id].achieved).map(id => {
+                        const ending = endings[id];
+
+                        return <EndingCard ending={ending} />;
+                    })
+                }
+                <h2>Locked Endings <a href="#" style={{fontSize: "0.6em"}} onClick={toggleHideUnAchieved}>{hideUnAchieved ? "Unhide" : "Hide"}</a></h2>
+                {
+                    !hideUnAchieved &&
+                    Object.keys(endings).filter(id => !endings[id].achieved).map(id => {
                         const ending = endings[id];
 
                         return <EndingCard ending={ending} />;

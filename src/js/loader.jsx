@@ -7,7 +7,6 @@ import { setScene } from "web-text-adventure";
 import "@css/style.css";
 import(/* webpackPrefetch: true, webpackPreload: true */ "../css/style-offload.css");
 
-
 // manually prefetch Google Fonts Files
 const gfonts = "https://fonts.googleapis.com/css?family=Roboto:400,700";
 const linkElem = document.createElement("link");
@@ -59,6 +58,3 @@ if (module.hot) {
 if(location.href.endsWith("#credits")) {
     setScene("credits");
 }
-
-// Expose React Dev Tools
-// eval("(a)=>{if(!window.__REACT_DEVTOOLS_GLOBAL_HOOK__)window['__REACT_DEVTOOLS_GLOBAL_HOOK__']=a}")(__REACT_DEVTOOLS_GLOBAL_HOOK__);
