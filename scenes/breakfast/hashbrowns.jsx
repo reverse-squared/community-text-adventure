@@ -82,6 +82,87 @@ addScenes({
         ],
         contributor: "Neema"
     },
+    hash_smokeit: {
+        prompt: () => <div>
+            <p>
+                You shred the hashbrownies and shove them into your vaporiser. Time to vape some potato brownies!
+            </p>
+        </div>,
+        options: [
+            { text: "Inhale", to: "hash_smokeit2" },
+            { text: "Stop Vaping", to: "hash_stop_novape" },
+        ],
+        contributor: "Neema"
+    },
+    hash_smokeit2: {
+        prompt: () => <div>
+            <p>
+                You inhale it...
+            </p>
+        </div>,
+        options: [
+            { text: "Inhale MORE", to: "hash_smokeit3" },
+            { text: "Stop Vaping", to: "hash_smoke_end" },
+        ],
+        contributor: "Dave"
+    },
+    hash_smokeit3: {
+        prompt: () => <div>
+            <p>
+                You inhale it...
+            </p>
+        </div>,
+        options: [
+            { text: () => <span>Inhale <span style={{ fontWeight: "900", fontStyle: "italic" }}>M O R E</span></span>, to: "hash_smokeit4" },
+            { text: "Stop Vaping", to: "hash_smoke_end" },
+        ],
+        contributor: "Dave"
+    },
+    hash_smokeit4: {
+        prompt: () => <div>
+            <p>
+                You inhale it...
+            </p>
+        </div>,
+        options: [
+            { text: () => <span style={{ fontFamily: "monospace", fontSize: "", color: "red", fontWeight: "900", fontStyle: "italic", textShadow: "0 0 5px red" }}>I N H A L E &nbsp; M O R E</span>, to: "hash_smokeit5" },
+        ],
+        contributor: "Dave"
+    },
+    hash_stop_novape: {
+        prompt: () => <div>
+            <p>
+                TODO You decide not to vape
+            </p>
+        </div>,
+        options: [
+
+        ],
+        contributor: ""
+    },
+    hash_smokeit5: {
+        prompt: () => <div>
+            <p>
+                TODO You smoke too much you  dehydrate and die
+            </p>
+        </div>,
+        options: [
+
+        ],
+        contributor: ""
+    },
+    hash_smoke_end: {
+        prompt: () => <div>
+            <p>
+                TODO You smoke a little, but thats not okay
+            </p>
+        </div>,
+        options: [
+
+        ],
+        contributor: ""
+    },
+
     hash_definetly: {
         prompt: () => <div>
             <p>
