@@ -1,15 +1,18 @@
 import React from "react";
+import GraphemeSplitter from "grapheme-splitter";
+const splitter = new GraphemeSplitter();
+console.log(GraphemeSplitter);
 
 export const RainbowText = (props) => {
     return <span>
-        {(props.string || "").split("").map((char, index) => {
+        {splitter.splitGraphemes(props.string || "").split("").map((char, index) => {
             return <span className="rainbow" style={{ animationDelay: "-" + (10 * index) + "ms" }} key={index.toString()}>{char}</span>;
         })}
     </span>;
 };
 export const RainbowCircleText = (props) => {
     return <span className="circley-container">
-        {(props.string || "").split("").map((char, index) => {
+        {splitter.splitGraphemes(props.string || "").split("").map((char, index) => {
             return <span className="rainbow circly" style={{ animationDelay: "-" + (10 * index) + "ms" }} key={index.toString()}>{char}</span>;
         })}
     </span>;
@@ -17,8 +20,16 @@ export const RainbowCircleText = (props) => {
 
 export const CircleText = (props) => {
     return <span className="circley-container">
-        {(props.string || "").split("").map((char, index) => {
+        {splitter.splitGraphemes(props.string || "").map((char, index) => {
             return <span className="circly" style={{ animationDelay: "-" + (10 * index) + "ms" }} key={index.toString()}>{char}</span>;
+        })}
+    </span>;
+};
+
+export const FlashText = (props) => {
+    return <span style={{fontWeight:"bold", color: "#FF0"}}>
+        {splitter.splitGraphemes(props.string || "").map((char, index) => {
+            return <span className="flashyyy" style={{ animationDelay: "-" + (10 * index) + "ms" }} key={index.toString()}>{char}</span>;
         })}
     </span>;
 };

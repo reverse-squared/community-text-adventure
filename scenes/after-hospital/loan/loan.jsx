@@ -1,7 +1,7 @@
 // This file handles the different paths from the loan of $4313 that you need to pay off
 import React from "react";
 import { addFlag, setScene } from "web-text-adventure";
-import { RainbowCircleText, RainbowText } from "@templates/FontStyles";
+import { FlashText } from "@templates/FontStyles";
 import { addScenes } from "@src/ending";
 
 addFlag("loanMoney", -4313);
@@ -127,8 +127,10 @@ addScenes({
     loan_jebus: {
         prompt: () => <div>
             <p>You enter the elevator to go to the highly talked about Je🅱us. All your friends say that he helped them, so he must help you.</p>
-            <p>You arrive in Je🅱us' office and he offers you to pay your loan. He gives you the 
-                <RainbowCircleText string="All Holy, Brand New 2019, One of a Kind, Premium, Limited Edition, Never Seen Before, Deluxe Pro Plus, Version 2019.2a CC... Dank B Emoji" />
+            <p>You arrive in Je🅱us' office and he offers you to pay your loan. He gives you the...
+            </p>
+            <p>
+                <FlashText string="All Holy, Brand New 2019, One of a Kind, Premium, Limited Edition, Never Seen Before, Deluxe Pro Plus, Version 2019.2a CC... Dank 🅱 Emoji" />
             </p>
             <p>Maybe you can get some money for it.</p>
             <p className="inventory-update">
