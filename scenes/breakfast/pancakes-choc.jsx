@@ -302,17 +302,17 @@ addScenes({
         ],
         contributor: "Hunter"
     },
-    pancakes_white_chocolate_milk_no_wait_7: {
+    pancakes_white_chocolate_milk_no_wait_6: {
         prompt: () => <div>
             <p>You wait for the pancakes to finish.</p>
         </div>,
         options: [
-            { text: "Wait more.", to: "pancakes_white_chocolate_milk_no_wait_8"},
+            { text: "Wait more.", to: "pancakes_white_chocolate_milk_no_wait_7"},
             { text: "Eat.", to: "pancakes_white_chocolate_milk_yes_wait_fail"}
         ],
         contributor: "Hunter"
     },
-    pancakes_white_chocolate_milk_no_wait_8: {
+    pancakes_white_chocolate_milk_no_wait_6: {
         prompt: () => <div>
             <p>The pancakes caught on fire.</p>
         </div>,
