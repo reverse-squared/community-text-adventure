@@ -72,6 +72,7 @@ addScenes({
             { text: "Pay your bills", to: "loan_paybills" },
             { text: "Invest in some Bitcoin", to: "loan_bitcoin" },
             { text: "Go back to the hospital", to: "loan_back_to_hospital" },
+            { text: "Pass Go and Pickup $200", to: "monopoly_200_ending", if: () => collect200 }
         ],
         action: decreaseTurn,
         contributor: "Dave and Hunter"
@@ -153,6 +154,29 @@ addScenes({
             id: "jebus",
             name: "🅱",
             description: <div style={{ textAlign: "center" }}>🅱</div>
+        },
+        contributor: "Hunter"
+    },
+    monopoly_200_ending: {
+        prompt: () => <div>
+            <LoanHeader />
+            <p>Oh look at that. There's $200 dollars on the ground. How crazy. Do you pick it up?</p>
+        </div>,
+        options: [
+            { text: "Yes", to: "luck_ending" },
+            { text: "No", to: "loan_main", action: () => collect200 = false }
+        ],
+        action: decreaseTurn,
+        contributor: "Hunter"
+    },
+    luck_ending: {
+        prompt: () => <div>
+            <p>You pickup the $200 and keep it for yourself. It didn't pay off your loan, but you were lucky!</p>
+        </div>,
+        ending: {
+            id: "lucky-guy",
+            title: "Lucky Guy",
+            description: "So lucky, you found $200 laying on the ground."
         },
         contributor: "Hunter"
     }

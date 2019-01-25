@@ -3,6 +3,8 @@ import { addFlag } from "web-text-adventure";
 import { addScenes } from "@src/ending.jsx";
 import { GreenGradient } from "@templates/FontStyles";
 
+addFlag("collect200", false);
+
 addScenes({
     hash_stop_novape: {
         prompt: () => <div>
@@ -25,9 +27,19 @@ addScenes({
             { text: "NANI?!?!", to: "" },
             { text: "That's what she said...", to: "" },
             { text: "I play Pokemon Go...", to: "" },
-            { text: "TURN IT UP TO 11...", to: "" },
+            { text: "TURN IT UP TO 11...", to: "meme_turn11" },
             { text: "Wake me up inside...", to: "" }
         ],
         contributor: "Hunter, Helvetica, and Dave"
     },
+    meme_turn11: {
+        prompt: () => <div>
+            <p>Nice try... but that ending is in a diffrent castle. Now go back to the start <strong>Do Not Collect $200</strong>... and also, you don't get an ending this time.</p>
+            <img src="https://media1.tenor.com/images/9bb8f1a9272c2d29f77f442b90a5b111/tenor.gif" />
+        </div>,
+        options: [
+            { text: "Return to Start", to: "wakeup_no_reset", action: () => collect200 = true }
+        ],
+        contributor: "Hunter"
+    }
 });

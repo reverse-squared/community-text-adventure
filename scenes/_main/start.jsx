@@ -29,6 +29,20 @@ addScenes({
         contributor: "Dave"
     },
 
+    wakeup_no_reset: {
+        prompt: () => <div>
+            <p>You wake up in a room. <strong>What do you do?</strong></p>
+        </div>,
+        
+        options: [
+            { text: "Go outstide", to: "wakeup_outside" },
+            { text: "Make some breakfast.", to: "wakeup_breakfast" },
+            { text: "Check the time", to: "wakeup_check_time" }
+        ],
+
+        contributor: "Dave"
+    },
+
     // Go outside. Level 2.
     wakeup_outside: {
         prompt: () => <div>
