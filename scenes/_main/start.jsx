@@ -119,7 +119,7 @@ addScenes({
         </div>,
         options: [
             { text: "Get it treated", to: "touch_lizard_treat"},
-            { text: "Punch that lizard", to: ""},
+            { text: "Punch that lizard", to: "jail_start"},
             { text: "Not care, and don't do anything", to: ""},
         ],
         contributor: "Alchemyking"
