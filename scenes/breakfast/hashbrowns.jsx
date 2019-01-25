@@ -2,6 +2,7 @@ import React from "react";
 import { } from "web-text-adventure";
 import { addScenes } from "@src/ending";
 import { CircleText } from "@templates/FontStyles";
+import { GreenGradient } from "@templates/FontStyles";
 
 addScenes({
     make_hashbrowns: {
@@ -131,7 +132,7 @@ addScenes({
     },
     hash_stop_novape: {
         prompt: () => <div>
-            <p><b>HIT OR MISS, I NEVER HIT THAT VAPE! HUH?</b> You have become a <span className="gradient-green">Level 100 Master</span>. Now this is epic. Here</p>
+            <p><b>HIT OR MISS, I NEVER HIT THAT VAPE! HUH?</b> You have become a <GreenGradient string="Level 100 Master"/>. Now this is epic. Here</p>
         </div>,
         options: [
             // TODO:

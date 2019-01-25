@@ -34,6 +34,14 @@ export const FlashText = (props) => {
     </span>;
 };
 
+export const GreenGradient = (props) => {
+    return <span>
+        {splitter.splitGraphemes(props.string || "").map((char, index) => {
+            return <span className="gradient-green" style={{ animationDelay: (- 1000 + 50 * index) + "ms" }} key={index.toString()}>{char}</span>;
+        })}
+    </span>;
+};
+
 export const Color = (props) => {
     return <span style={{ color: props.col || props.color, ...props.style}} {...props}>{props.children}</span>;
 };
