@@ -129,15 +129,6 @@ addScenes({
         ],
         contributor: "Dave"
     },
-    hash_stop_novape: {
-        prompt: () => <div>
-            <p><b>HIT OR MISS, I NEVER HIT THAT VAPE! HUH?</b> You have become a <span className="gradient-green">Level 100 Master</span>. Now this is epic. Here</p>
-        </div>,
-        options: [
-            // TODO:
-        ],
-        contributor: "Hunter"
-    },
     hash_smoke_end: {
         prompt: () => <div>
             <p>You vaped so much potato brownies, you started to get severe vomiting, seizures, and difficulty breathing.</p>
