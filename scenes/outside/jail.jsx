@@ -304,6 +304,7 @@ addScenes({
             { text: "Do nothing.", to: "" },
             { text: "Call Threepio.", to: "" }
         ],
+        action: () => decreasePoliceTurn(),
         contributor: "Hunter"
     }
 });
