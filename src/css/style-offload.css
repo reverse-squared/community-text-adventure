@@ -267,6 +267,18 @@
 	animation: gradient-green 0.8s infinite;
 
 }
+
+@keyframes police { 
+	0% {color: rgb(255, 0, 0);}
+	50% {color: rgb(38, 0, 255)}
+	100% {color: rgb(255, 0, 0);}
+}
+
+.police {
+	font-weight: 900;
+	animation: police 0.5s infinite;
+
+}
 /*#endregion*/
 
 /*#region*/

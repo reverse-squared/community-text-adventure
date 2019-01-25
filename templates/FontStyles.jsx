@@ -1,7 +1,6 @@
 import React from "react";
 import GraphemeSplitter from "grapheme-splitter";
 const splitter = new GraphemeSplitter();
-console.log(GraphemeSplitter);
 
 export const RainbowText = (props) => {
     return <span>
