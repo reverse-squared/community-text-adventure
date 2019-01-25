@@ -17,11 +17,11 @@ const JailCellHeader = () => <div>
 
 const JailRunHeader = () => <div>
     <p className={"loan-header " + (jailRunTurns < 3 ? "loan-header-low" : "")}>
-        You have <strong>{jailRunTurns}</strong> turns before the <span className="police">Police</span> catch you.
+        <span className="police">You have <strong>{jailRunTurns}</strong> turns before the Police catch you.</span>
     </p>
 </div>;
 
-function decreaseTurn() {
+function decreaseCellTurn() {
     jailTurns--;
     
     if(jailTurns === 0 && wallHealth <= 0) {
@@ -31,6 +31,10 @@ function decreaseTurn() {
     }else if(jailTurns > 0 && wallHealth <= 0) {
         setScene("jail_phase2");
     }
+}
+
+function decreasePoliceTurn() {
+    jailRunTurns--;
 }
 
 addScenes({
@@ -55,7 +59,7 @@ addScenes({
             { text: "Punch the Wall", to: "jail_wall_punch" },
             { text: "Chip Away at the Wall", to: "jail_wall_chip", if: () => hasMetalBar },
         ],
-        action: () => decreaseTurn(),
+        action: () => decreaseCellTurn(),
         contributor: "Hunter"
     },
     jail_wall_punch: {
@@ -70,7 +74,7 @@ addScenes({
         ],
         action: () => {
             wallHealth--;
-            decreaseTurn();
+            decreaseCellTurn();
         },
         contributor: "Hunter"
     },
@@ -85,7 +89,7 @@ addScenes({
         ],
         action: () => {
             wallHealth -= 5;
-            decreaseTurn();
+            decreaseCellTurn();
         },
         contributor: "Hunter"
     },
@@ -119,7 +123,7 @@ addScenes({
         options: [
             { text: "Search the Infirmary", to: "jail_phase2_infirm" },
             { text: "Search the Cell Next to Yours", to: "jail_phase2_neighbor" },
-            { text: "Search the Pockets", to: "jail_phase2_pockets" }
+            { text: "Search your Pockets", to: "jail_phase2_pockets" }
         ],
         contributor: "Hunter"
     },
@@ -175,8 +179,130 @@ addScenes({
         </div>,
         options: [
             { text: "Tool Gun", to: "" },
-            { text: "Teleporter", to: "" },
-            { text: "Invisability Cloak", to: "" }
+            { text: "Teleporter", to: "jail_run_teleport" },
+            { text: "Invisability Cloak", to: "jail_run_invis" }
+        ],
+        contributor: "Hunter"
+    },
+    jail_run_invis: {
+        prompt: () => <div>
+            <p>You throw on the cloak you got from your pocket, but turns out, it made everything invisable. Even your eyes. Now you can't see. You run off a ledge of the building and die of fall
+                damage.
+            </p>
+        </div>,
+        ending: {
+            id: "jail-invis",
+            name: "Invisability Master",
+            description: "Go invisable and immediately die from falling."
+        },
+        contributor: "Hunter"
+    },
+    jail_run_teleport: {
+        prompt: () => <div>
+            <JailRunHeader />
+            <p>You pull out your teleporter, and decide to hide. Where do you teleport to?</p>
+        </div>,
+        options: [
+            { text: "Outside the Prison", to: "jail_run_out" },
+            { text: "In the Nearby Room", to: "jail_nearby" },
+            { text: "Then Floor Below", to: "jail_below" },
+            { text: "The Floor Above", to: "jail_above" }
+        ],
+        action: () => decreasePoliceTurn(),
+        contributor: "Hunter"
+    },
+    jail_run_out: {
+        prompt: () => <div>
+            <JailRunHeader />
+            <p>You select your destination, and click teleport. All of a sudden, you are outside the prison at 25,000 feet in the air. I guess you didn't realize that the teleporter map was 3D.</p>
+        </div>,
+        ending: {
+            id: "jail-25000",
+            name: "Is Fall Damage Enabled?",
+            description: "Fail to teleport to the right altitude."
+        },
+        contributor: "Hunter"
+    },
+    jail_below: {
+        prompt: () => <div>
+            <JailRunHeader />
+            <p>You select your destination, and click teleport. All of a sudden, you in the ground. Turns out this prison is only one floor tall. You suffocate and die.</p>
+        </div>,
+        ending: {
+            id: "jail-below",
+            name: "The Basement",
+            description: "But this prison didn't have a basement :("
+        },
+        contributor: "Hunter"
+    },
+    jail_nearby: {
+        prompt: () => <div>
+            <JailRunHeader />
+            <p>You select your destination, and click teleport. All of a sudden, you in the jail cell off to your right. There is no way out. You are the arrested and executed.</p>
+        </div>,
+        ending: {
+            id: "jail-nearby",
+            name: "Bad UI",
+            description: "The teleporter had a bad UI and it just said \"Room\" not \"Cell\"."
+        },
+        contributor: "Hunter"
+    },
+    jail_above: {
+        prompt: () => <div>
+            <JailRunHeader />
+            <p>You select your destination, and click teleport. All of a sudden, you are on the roof. Turns out the prison is only one story tall. What now?</p>
+        </div>,
+        options: [
+            { text: "Jump off the Roof", to: "jail_out_jump" },
+            { text: "Search the Roof", to: "jail_out_search" },
+            { text: "Enter the Vent", to: "jail_out_vent" }
+        ],
+        action: () => decreasePoliceTurn(),
+        contributor: "Hunter"
+    },
+    jail_out_jump: {
+        prompt: () => <div>
+            <p>You jumped off the roof and accidentally landed head first. You died instantly. The police found you short after. Thats a RIP in the chat.</p>
+        </div>,
+        ending: {
+            id: "jail-jump-suicide",
+            name: "It's not a Diving Board",
+            description: "You looked like an olympic diver. Maybe you should become one..."
+        },
+        contributor: "Hunter"
+    },
+    jail_out_search: {
+        prompt: () => <div>
+            <JailRunHeader />
+            <p>You start to search the roof. You find an <b>Old Piece of Rope</b> and a <b>Basketball</b>... which do you take.</p>
+        </div>,
+        options: [
+            { text: "The Rope", to: "jail_heli_shoot" },
+            { text: "The Basketball", to: "jail_heli_shoot" }
+        ],
+        action: () => decreasePoliceTurn(),
+        contributor: "Hunter"
+    },
+    jail_heli_shoot: {
+        prompt: () => <div>
+            <p>Just as you were picking it up, a <b>Boeing AH-64 Apache</b> flys above you, and shoots all of its missiles and guns at you. You dead son.</p>
+        </div>,
+        ending: {
+            id: "attack-helicopter",
+            name: "I Identify as an Attack Helicopter",
+            description: "I sexually Identify as an Attack Helicopter. Ever since I was a boy I dreamed of soaring over the oilfields dropping hot sticky loads..."
+        },
+        contributor: "Hunter"
+    },
+    jail_out_vent: {
+        prompt: () => <div>
+            <JailRunHeader />
+            <p>You climb into the vent to avoid the incoming helicopter. Now you are in the trash compactor. What now?</p>
+        </div>,
+        options: [
+            { text: "Try to jam it.", to: "" },
+            { text: "Do nothing.", to: "" },
+            { text: "Call Threepio.", to: "" }
         ],
         contributor: "Hunter"
     }
