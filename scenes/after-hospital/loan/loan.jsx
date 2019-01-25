@@ -175,7 +175,7 @@ addScenes({
         </div>,
         ending: {
             id: "lucky-guy",
-            title: "Lucky Guy",
+            name: "Lucky Guy",
             description: "So lucky, you found $200 laying on the ground."
         },
         contributor: "Hunter"
