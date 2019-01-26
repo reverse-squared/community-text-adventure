@@ -149,8 +149,8 @@ addScenes({
             <p>You start making the Lucky Charms Waffles...</p>
         </div>,
         options: [
-            { text: "Wait for it to finish.", to: "waffles_wait" },
-            { text: "Just eat it raw.", to: "waffles_raw_ending" },
+            { text: "Wait for it to finish", to: "waffles_wait" },
+            { text: "Just eat it raw", to: "waffles_raw_ending" },
             { text: "Make something else for breakfast", to: "wakeup_breakfast" },
         ],
         contributor: "Dave",
@@ -160,8 +160,8 @@ addScenes({
             <p>You start making the Frosted Flakes Waffles...</p>
         </div>,
         options: [
-            { text: "Wait for it to finish.", to: "waffles_wait" },
-            { text: "Just eat it raw.", to: "waffles_raw_ending" },
+            { text: "Wait for it to finish", to: "waffles_wait" },
+            { text: "Just eat it raw", to: "waffles_raw_ending" },
             { text: "Make something else for breakfast", to: "wakeup_breakfast" },
         ],
         contributor: "Dave",

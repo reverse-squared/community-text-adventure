@@ -10,10 +10,10 @@ addScenes({
             <p>You start making a pancake. What do you do with it.</p>
         </div> ,
         options: [
-            { text: "Put syrup on it.", to: "regular_pancake_eat", action: () => topping = "Syrup" },
-            { text: "Put butter on it.", to: "regular_pancake_eat", action: () => topping = "Butter" },
-            { text: "Leave it as is.", to: "regular_pancake_leave" },
-            { text: "Rent someone else's pancake.", to: "regular_pancake_rent" }
+            { text: "Put syrup on it", to: "regular_pancake_eat", action: () => topping = "Syrup" },
+            { text: "Put butter on it", to: "regular_pancake_eat", action: () => topping = "Butter" },
+            { text: "Leave it as is", to: "regular_pancake_leave" },
+            { text: "Rent someone else's pancake", to: "regular_pancake_rent" }
         ],
         contributor: "Toshiyuki"
     },

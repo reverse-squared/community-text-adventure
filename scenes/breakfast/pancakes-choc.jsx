@@ -211,7 +211,7 @@ addScenes({
         ending: {
             id: "edgy-negative",
             name: "Negative Edginess",
-            description: "Somehow got negative edginess from adding too much Dark Chocolate",
+            description: "Somehow got negative edginess from adding too much Dark Chocolate.",
         },
         contributor: "Helvetica",
     },
@@ -220,9 +220,9 @@ addScenes({
             <p>Sure, because apparently cocaine is like white cocoa powder. You mix the melted chocolate with the "cocoa" and it turns a lighter shade of brown, but not white.</p>
         </div>,
         options: [
-            { text: "More cocaine.", to: "pancakes_white_chocolate_cocaine2" },
-            { text: "Use the cocaine chocolate.", to: "pancakes_white_chocolate_cocaine_make" },
-            { text: "Snort the cocaine chocolate.", to: "pancakes_white_chocolate_cocaine_snort" }
+            { text: "More cocaine", to: "pancakes_white_chocolate_cocaine2" },
+            { text: "Use the cocaine chocolate", to: "pancakes_white_chocolate_cocaine_make" },
+            { text: "Snort the cocaine chocolate", to: "pancakes_white_chocolate_cocaine_snort" }
         ],
         contributor: "Neema"
     },
@@ -233,9 +233,9 @@ addScenes({
             </p>
         </div>,
         options: [
-            { text: "More cocaine.", to: "pancakes_white_chocolate_cocaine2" },
-            { text: "Use the cocaine chocolate.", to: "pancakes_white_chocolate_cocaine_make" },
-            { text: "Snort the cocaine chocolate.", to: "pancakes_white_chocolate_cocaine_snort" }
+            { text: "More cocaine", to: "pancakes_white_chocolate_cocaine2" },
+            { text: "Use the cocaine chocolate", to: "pancakes_white_chocolate_cocaine_make" },
+            { text: "Snort the cocaine chocolate", to: "pancakes_white_chocolate_cocaine_snort" }
         ],
         contributor: "Neema"
     },
@@ -246,9 +246,9 @@ addScenes({
             </p>
         </div>,
         options: [
-            { text: "More cocaine.", to: "pancakes_white_chocolate_cocaine2" },
-            { text: "Use the cocaine chocolate.", to: "pancakes_white_chocolate_cocaine_make" },
-            { text: "Snort the cocaine chocolate.", to: "pancakes_white_chocolate_cocaine_snort" }
+            { text: "More cocaine", to: "pancakes_white_chocolate_cocaine2" },
+            { text: "Use the cocaine chocolate", to: "pancakes_white_chocolate_cocaine_make" },
+            { text: "Snort the cocaine chocolate", to: "pancakes_white_chocolate_cocaine_snort" }
         ],
         contributor: "Neema"
     },
@@ -272,10 +272,10 @@ addScenes({
             </p>
         </div>,
         options: [
-            { text: "Add more butter.", to: "" },
-            { text: "Add more blood.", to: "" },
-            { text: "Add pancake batter.", to: "" },
-            { text: "Keep mixing.", to: "" }
+            { text: "Add more butter", to: "" },
+            { text: "Add more blood", to: "" },
+            { text: "Add pancake batter", to: "" },
+            { text: "Keep mixing", to: "" }
         ],
         contributor: "Neema"
     },
@@ -314,8 +314,8 @@ addScenes({
             <p>You wait for the pancakes to finish.</p>
         </div>,
         options: [
-            { text: "Wait more.", to: "pancakes_white_chocolate_milk_no_wait_2"},
-            { text: "Eat.", to: "pancakes_white_chocolate_milk_raw"}
+            { text: "Wait more", to: "pancakes_white_chocolate_milk_no_wait_2"},
+            { text: "Eat", to: "pancakes_white_chocolate_milk_raw"}
         ],
         contributor: "Hunter"
     },
@@ -324,8 +324,8 @@ addScenes({
             <p>You wait for the pancakes to finish.</p>
         </div>,
         options: [
-            { text: "Wait more.", to: "pancakes_white_chocolate_milk_no_wait_3"},
-            { text: "Eat.", to: "pancakes_white_chocolate_milk_raw"}
+            { text: "Wait more", to: "pancakes_white_chocolate_milk_no_wait_3"},
+            { text: "Eat", to: "pancakes_white_chocolate_milk_raw"}
         ],
         contributor: "Hunter"
     },
@@ -334,8 +334,8 @@ addScenes({
             <p>You wait for the pancakes to finish.</p>
         </div>,
         options: [
-            { text: "Wait more.", to: "pancakes_white_chocolate_milk_no_wait_4"},
-            { text: "Eat.", to: "pancakes_white_chocolate_milk_yes_wait_done"}
+            { text: "Wait more", to: "pancakes_white_chocolate_milk_no_wait_4"},
+            { text: "Eat", to: "pancakes_white_chocolate_milk_yes_wait_done"}
         ],
         contributor: "Hunter"
     },
@@ -344,8 +344,8 @@ addScenes({
             <p>You wait for the pancakes to finish.</p>
         </div>,
         options: [
-            { text: "Wait more.", to: "pancakes_white_chocolate_milk_no_wait_5"},
-            { text: "Eat.", to: "pancakes_white_chocolate_milk_yes_wait_fail"}
+            { text: "Wait more", to: "pancakes_white_chocolate_milk_no_wait_5"},
+            { text: "Eat", to: "pancakes_white_chocolate_milk_yes_wait_fail"}
         ],
         contributor: "Hunter"
     },
@@ -354,8 +354,8 @@ addScenes({
             <p>You wait for the pancakes to finish.</p>
         </div>,
         options: [
-            { text: "Wait more.", to: "pancakes_white_chocolate_milk_no_wait_6"},
-            { text: "Eat.", to: "pancakes_white_chocolate_milk_yes_wait_fail"}
+            { text: "Wait more", to: "pancakes_white_chocolate_milk_no_wait_6"},
+            { text: "Eat", to: "pancakes_white_chocolate_milk_yes_wait_fail"}
         ],
         contributor: "Hunter"
     },
@@ -364,8 +364,8 @@ addScenes({
             <p>You wait for the pancakes to finish.</p>
         </div>,
         options: [
-            { text: "Wait more.", to: "pancakes_white_chocolate_milk_no_wait_7"},
-            { text: "Eat.", to: "pancakes_white_chocolate_milk_yes_wait_fail"}
+            { text: "Wait more", to: "pancakes_white_chocolate_milk_no_wait_7"},
+            { text: "Eat", to: "pancakes_white_chocolate_milk_yes_wait_fail"}
         ],
         contributor: "Hunter"
     },
@@ -374,8 +374,8 @@ addScenes({
             <p>You wait for the pancakes to finish.</p>
         </div>,
         options: [
-            { text: "Wait more.", to: "pancakes_white_chocolate_milk_no_wait_8"},
-            { text: "Eat.", to: "pancakes_white_chocolate_milk_yes_wait_fail"}
+            { text: "Wait more", to: "pancakes_white_chocolate_milk_no_wait_8"},
+            { text: "Eat", to: "pancakes_white_chocolate_milk_yes_wait_fail"}
         ],
         contributor: "Hunter"
     },
@@ -384,7 +384,7 @@ addScenes({
             <p>The pancakes caught on fire.</p>
         </div>,
         options: [
-            { text: "Eat.", to: "pancakes_white_chocolate_milk_yes_wait_fail"}
+            { text: "Eat", to: "pancakes_white_chocolate_milk_yes_wait_fail"}
         ],
         contributor: "Hunter"
     },

@@ -22,7 +22,7 @@ addScenes({
             { text: "I smell pennies...", to: "" },
             { text: "Mary, is that a police...", to: "" },
             { text: "It's time for a crusade...", to: "" },
-            { text: "Yeetus yeetus..", to: "" },
+            { text: "Yeetus yeetus..,", to: "" },
             { text: "You're gonna have a bad time...", to: "" },
             { text: "NANI?!?!", to: "" },
             { text: "That's what she said...", to: "" },

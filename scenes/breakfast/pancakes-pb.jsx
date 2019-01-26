@@ -56,7 +56,7 @@ addScenes({
         options: [
             { text: "Pay with Cash", to: "pay_bill_cash" },
             { text: "Pay with Credit", to: "pay_bill_credit" },
-            { text: "Take out a loan.", to: "loan_start" },
+            { text: "Take out a loan", to: "loan_start" },
         ],
         contributor: "Hunter"
     },
@@ -67,7 +67,7 @@ addScenes({
         </div>,
         options: [
             { text: "Fake your death", to: "fake_your_death" },
-            { text: "Go skydiving.", to: "skydive_pre" },
+            { text: "Go skydiving", to: "skydive_pre" },
             { text: "Read a book", to: "read_a_book" }
         ],
         contributor: "Hunter"
@@ -79,7 +79,7 @@ addScenes({
         </div>,
         options: [
             { text: "Fake your death", to: "fake_your_death" },
-            { text: "Go skydiving.", to: "skydive_pre" },
+            { text: "Go skydiving", to: "skydive_pre" },
             { text: "Read a book", to: "read_a_book" }
         ],
         contributor: "Dave and Hunter"
@@ -103,9 +103,9 @@ addScenes({
             <p>You decide not to pay the bill and...</p>
         </div>,
         options: [
-            { text: "Run for it.", to: "run_from_hospital" },
-            { text: "Take out a loan.", to: "loan_start" },
-            { text: "Jump out a window.", to: "jump_out_a_window" },
+            { text: "Run for it", to: "run_from_hospital" },
+            { text: "Take out a loan", to: "loan_start" },
+            { text: "Jump out a window", to: "jump_out_a_window" },
         ],
         contributor: "Filip96"
     },
@@ -450,7 +450,7 @@ addScenes({
         ending: {
             id: "escape-failure",
             name: "Caught Running Away",
-            description: "Get caught by the police while running away from your hospital bill of $4313"
+            description: "Get caught by the police while running away from your hospital bill of $4313."
         }
     },
     run_from_hospital_jail: {
@@ -474,7 +474,7 @@ addScenes({
         ending: {
             id: "escape-success",
             name: "The Escape Plan",
-            description: "You successfully ran away from the police, and avoided the bill of $4313"
+            description: "You successfully ran away from the police, and avoided the bill of $4313."
         }
     }
 });

@@ -169,7 +169,7 @@ addScenes({
         </div>,
         options: [
             { text: "Become a Coyote", to: "sting_start" },
-            { text: "Become an Uber driver.", to: "uber_start" }
+            { text: "Become an Uber driver", to: "uber_start" }
         ],
         contributor: "Hunter",
     }

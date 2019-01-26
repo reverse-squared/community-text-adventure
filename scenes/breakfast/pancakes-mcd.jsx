@@ -11,8 +11,8 @@ addScenes({
         </div>,
         options: [
             { text: "Wait", to: "make_mcd_pancakes", action: () => mcDonaldsWaitTime++ },
-            { text: "Give up and leave.", to: "wakeup_breakfast" },
-            { text: "Give up and go to The Pancake House.", to: "pancake_house" }
+            { text: "Give up and leave", to: "wakeup_breakfast" },
+            { text: "Give up and go to The Pancake House", to: "pancake_house" }
         ],
         action: () => {
             if(mcDonaldsWaitTime > 15) {
@@ -30,9 +30,9 @@ addScenes({
                 water, turned out to be bleach. Now that you know you are going to die, what do you do?</p>
         </div>,
         options: [
-            { text: "Sue.", to: "" },
-            { text: "Accept your death.", to: "bleach_drink" },
-            { text: "Tell your friend to try the water and see if it tastes fishy.", to: "bleach_friend" },
+            { text: "Sue", to: "" },
+            { text: "Accept your death", to: "bleach_drink" },
+            { text: "Tell your friend to try the water and see if it tastes fishy", to: "bleach_friend" },
         ],
         contributor: "Hunter"
     },

@@ -10,8 +10,8 @@ addScenes({
             <p>He explains to you that you haven't shown up to work yesterday which you were supposed to. Someone had to make up all the work you missed and missing something.</p>
         </div>,
         options: [
-            { text: "Go to work.", to: "work_start" },
-            { text: "Don't go to work.", to: "" }
+            { text: "Go to work", to: "work_start" },
+            { text: "Don't go to work", to: "" }
             // TODO: Don't go to work path.
         ],
         contributor: "Hunter"
@@ -21,10 +21,10 @@ addScenes({
             <p>You sit down at your desk, then realizing all the work you missed. <i>I better get started</i> you think. What do you do first.</p>
         </div>,
         options: [
-            { text: "Fix the bug.", to: "fourth_wall" },
-            { text: "Develop new feature.", to: "" },
-            { text: "Play Half Life 3.", to: "hl3" },
-            { text: "Go get some coffee.", to: "work_coffee", action: () => coffeeDrank++ }
+            { text: "Fix the bug", to: "fourth_wall" },
+            { text: "Develop new feature", to: "" },
+            { text: "Play Half Life 3", to: "hl3" },
+            { text: "Go get some coffee", to: "work_coffee", action: () => coffeeDrank++ }
         ],
         contributor: "Hunter"
     },
@@ -33,8 +33,8 @@ addScenes({
             <p>The coffee you drink is great. It's the best you ever had. Now what?</p>
         </div>,
         options: [
-            { text: "Go back.", to: "work_start" },
-            { text: "Drink more.", to: "work_coffee", action: () => coffeeDrank++ }
+            { text: "Go back", to: "work_start" },
+            { text: "Drink more", to: "work_coffee", action: () => coffeeDrank++ }
         ],
         action: () => {
             if(coffeeDrank > 10) {

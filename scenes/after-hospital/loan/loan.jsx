@@ -82,10 +82,10 @@ addScenes({
             <p>You walk back into the hospital with the possibility that someone will pay off your loan for you. Who do you ask first.</p>
         </div>,
         options: [
-            { text: "The lawyer talking to the receptionist.", to: "loan_lawyer", disabledText: "The lawyer talking to the receptionist.", action: () => askedLawyer = true, if: () => !askedLawyer },
-            { text: "The old man in room 842.", to: "loan_old_man", disabledText: "The old man in room 842.", action: () => askedOldMan = true, if: () => !askedOldMan },
-            { text: "The teenager who broke her leg in 629.", to: "loan_teen", disabledText: "The teenager who broke her leg in 629.", action: () => askedTeen = true, if: () => !askedTeen },
-            { text: "Je🅱us in room ∞.", to: "loan_jebus" },
+            { text: "The lawyer talking to the receptionist", to: "loan_lawyer", disabledText: "The lawyer talking to the receptionist", action: () => askedLawyer = true, if: () => !askedLawyer },
+            { text: "The old man in room 842", to: "loan_old_man", disabledText: "The old man in room 842", action: () => askedOldMan = true, if: () => !askedOldMan },
+            { text: "The teenager who broke her leg in 629", to: "loan_teen", disabledText: "The teenager who broke her leg in 629", action: () => askedTeen = true, if: () => !askedTeen },
+            { text: "Je🅱us in room ∞", to: "loan_jebus" },
         ],
         contributor: "Hunter"
     },
@@ -94,10 +94,10 @@ addScenes({
             <p>The lawyer kept talking totally disregarding you.</p>
         </div>,
         options: [
-            { text: "The lawyer talking to the receptionist.", to: "loan_lawyer", disabledText: "The lawyer talking to the receptionist.", action: () => askedLawyer = true, if: () => !askedLawyer },
-            { text: "The old man in room 842.", to: "loan_old_man", disabledText: "The old man in room 842.", action: () => askedOldMan = true, if: () => !askedOldMan },
-            { text: "The teenager who broke her leg in 629.", to: "loan_teen", disabledText: "The teenager who broke her leg in 629.", action: () => askedTeen = true, if: () => !askedTeen },
-            { text: "Je🅱us in room ∞.", to: "loan_jebus" },
+            { text: "The lawyer talking to the receptionist", to: "loan_lawyer", disabledText: "The lawyer talking to the receptionist", action: () => askedLawyer = true, if: () => !askedLawyer },
+            { text: "The old man in room 842", to: "loan_old_man", disabledText: "The old man in room 842", action: () => askedOldMan = true, if: () => !askedOldMan },
+            { text: "The teenager who broke her leg in 629", to: "loan_teen", disabledText: "The teenager who broke her leg in 629", action: () => askedTeen = true, if: () => !askedTeen },
+            { text: "Je🅱us in room ∞", to: "loan_jebus" },
         ],
         contributor: "Hunter"
     },
@@ -106,10 +106,10 @@ addScenes({
             <p>The old man was sleeping so you left him alone.</p>
         </div>,
         options: [
-            { text: "The lawyer talking to the receptionist.", to: "loan_lawyer", disabledText: "The lawyer talking to the receptionist.", action: () => askedLawyer = true, if: () => !askedLawyer },
-            { text: "The old man in room 842.", to: "loan_old_man", disabledText: "The old man in room 842.", action: () => askedOldMan = true, if: () => !askedOldMan },
-            { text: "The teenager who broke her leg in 629.", to: "loan_teen", disabledText: "The teenager who broke her leg in 629.", action: () => askedTeen = true, if: () => !askedTeen },
-            { text: "Je🅱us in room ∞.", to: "loan_jebus" },
+            { text: "The lawyer talking to the receptionist", to: "loan_lawyer", disabledText: "The lawyer talking to the receptionist", action: () => askedLawyer = true, if: () => !askedLawyer },
+            { text: "The old man in room 842", to: "loan_old_man", disabledText: "The old man in room 842", action: () => askedOldMan = true, if: () => !askedOldMan },
+            { text: "The teenager who broke her leg in 629", to: "loan_teen", disabledText: "The teenager who broke her leg in 629", action: () => askedTeen = true, if: () => !askedTeen },
+            { text: "Je🅱us in room ∞", to: "loan_jebus" },
         ],
         contributor: "Hunter"
     },
@@ -118,10 +118,10 @@ addScenes({
             <p>"dONt TAlK tO mE UnTIl I HaD MY CoFFeE," she says. You leave the room pretending you heard and saw nothing.</p>
         </div>,
         options: [
-            { text: "The lawyer talking to the receptionist.", to: "loan_lawyer", disabledText: "The lawyer talking to the receptionist.", action: () => askedLawyer = true, if: () => !askedLawyer },
-            { text: "The old man in room 842.", to: "loan_old_man", disabledText: "The old man in room 842.", action: () => askedOldMan = true, if: () => !askedOldMan },
-            { text: "The teenager who broke her leg in 629.", to: "loan_teen", disabledText: "The teenager who broke her leg in 629.", action: () => askedTeen = true, if: () => !askedTeen },
-            { text: "Je🅱us in room ∞.", to: "loan_jebus" },
+            { text: "The lawyer talking to the receptionist", to: "loan_lawyer", disabledText: "The lawyer talking to the receptionist", action: () => askedLawyer = true, if: () => !askedLawyer },
+            { text: "The old man in room 842", to: "loan_old_man", disabledText: "The old man in room 842", action: () => askedOldMan = true, if: () => !askedOldMan },
+            { text: "The teenager who broke her leg in 629", to: "loan_teen", disabledText: "The teenager who broke her leg in 629", action: () => askedTeen = true, if: () => !askedTeen },
+            { text: "Je🅱us in room ∞", to: "loan_jebus" },
         ],
         contributor: "Hunter"
     },
@@ -176,17 +176,8 @@ addScenes({
         ending: {
             id: "lucky-guy",
             name: "Lucky Guy",
-            description: "So lucky, you found $200 laying on the ground."
+            description: "So lucky, you found $200 laying on the ground just by passing go.",
         },
         contributor: "Hunter"
     }
 });
-
-// todo
-/*
-
-used on having the best house that you went a million dollars in debt - Dave
-
-and then at the end of it all, all of your stuff gets stolen from you - SinkingSailor
-
-*/

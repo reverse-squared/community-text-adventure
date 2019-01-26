@@ -2,7 +2,7 @@ import React from "react";
 import { addFlag } from "web-text-adventure";
 import { addScenes } from "@src/ending.jsx";
 import { LoanHeader, decreaseTurn, formatMoney } from "./loan";
-import { RainbowCircleText, RainbowText } from "@templates/FontStyles";
+import { RainbowCircleText } from "@templates/FontStyles";
 
 addFlag("loanBills1", [false,false,false]);
 addFlag("loanBills2", [false,false]);
@@ -230,9 +230,9 @@ addScenes({
             </p>
         </div>,
         options: [
-            { text: "Oh, hell yeah. (-$1500)", to: "loan_paybills_windows_buymore", action: () => loanMoney -= 1500 },
-            { text: "No.", to: "loan_paybills_house" },
-            { text: "Smash neighbour's windows.", to: "loan_paybills_smashwindow" },
+            { text: "Oh, hell yeah (-$1500)", to: "loan_paybills_windows_buymore", action: () => loanMoney -= 1500 },
+            { text: "No", to: "loan_paybills_house" },
+            { text: "Smash neighbour's windows", to: "loan_paybills_smashwindow" },
         ],
         action: () => {
             loanWindows = true;
@@ -325,7 +325,7 @@ addScenes({
         ending: {
             id: "smash-window",
             name: "Smash Windows",
-            description: "Smash your neighbour's $10,000,000 set of windows",
+            description: "Smash your neighbour's $10,000,000 set of windows.",
         },
         contributor: "Dave"
     },

@@ -68,10 +68,10 @@ addScenes({
             <p>What do you do with it?</p>
         </div>,
         options: [
-            { text: "Throw it in the furnace.", to: "", action: () => geno_haschickencorpse = false },
-            { text: "Eat it.", to: "", action: () => geno_haschickencorpse = false },
-            { text: "Give it to the dogs.", to: "genocide_chicken_kill_dogs", action: () => geno_haschickencorpse = false },
-            { text: "Keep it.", to: "genocide_main" },
+            { text: "Throw it in the furnace", to: "", action: () => geno_haschickencorpse = false },
+            { text: "Eat it", to: "", action: () => geno_haschickencorpse = false },
+            { text: "Give it to the dogs", to: "genocide_chicken_kill_dogs", action: () => geno_haschickencorpse = false },
+            { text: "Keep it", to: "genocide_main" },
         ],
         action: () => geno_haschickencorpse = true,
         contributor: "Hunter"
@@ -101,9 +101,9 @@ addScenes({
             <p>You stop for a second and think, 'Maybe I can also kill the dogs!'</p>
         </div>,
         options: [
-            { text: "Inject the chicken with arsenic first.", to: "genocide_chicken_poison_dogs" },
-            { text: "Don't poison the chicken.", to: "genocide_chicken_feed_dogs" },
-            { text: "Never mind, keep the chicken.  ", to: "genocide_main", action: () => geno_haschickencorpse = true }
+            { text: "Inject the chicken with arsenic first", to: "genocide_chicken_poison_dogs" },
+            { text: "Don't poison the chicken", to: "genocide_chicken_feed_dogs" },
+            { text: "Never mind, keep the chicken", to: "genocide_main", action: () => geno_haschickencorpse = true }
         ],
         contributor: "Daniel (Phrotonz)"
     },

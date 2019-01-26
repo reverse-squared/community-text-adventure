@@ -300,9 +300,9 @@ addScenes({
             <p>You climb into the vent to avoid the incoming helicopter. Now you are in the trash compactor. What now?</p>
         </div>,
         options: [
-            { text: "Try to jam it.", to: "" },
-            { text: "Do nothing.", to: "" },
-            { text: "Call Threepio.", to: "" }
+            { text: "Try to jam it", to: "" },
+            { text: "Do nothing", to: "" },
+            { text: "Call Threepio", to: "" }
         ],
         action: () => decreasePoliceTurn(),
         contributor: "Hunter"

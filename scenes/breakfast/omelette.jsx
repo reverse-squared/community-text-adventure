@@ -9,7 +9,7 @@ addScenes({
             </p>
         </div>,
         options: [
-            { text: "Next.", to: "omelette_ending_1" },
+            { text: "Next", to: "omelette_ending_1" },
         ],
         contributor: "Colyderp (Idea) and Hunter (Facts)"
     },
@@ -32,7 +32,7 @@ addScenes({
             </p>
         </div>,
         options: [
-            { text: "Next.", to: "omelette_ending_2" },
+            { text: "Next", to: "omelette_ending_2" },
         ],
         contributor: "Colyderp (Idea) and Hunter (Facts)"
     },
@@ -44,7 +44,7 @@ addScenes({
             </p>
         </div>,
         options: [
-            { text: "Next.", to: "omelette_ending_3" },
+            { text: "Next", to: "omelette_ending_3" },
         ],
         contributor: "Colyderp (Idea) and Hunter (Facts)"
     },
@@ -59,7 +59,7 @@ addScenes({
             </ul>
         </div>,
         options: [
-            { text: "Next.", to: "omelette_ending_4" },
+            { text: "Next", to: "omelette_ending_4" },
         ],
         contributor: "Colyderp (Idea) and Hunter (Facts)"
     },
@@ -77,7 +77,7 @@ addScenes({
             </p>
         </div>,
         options: [
-            { text: "Next.", to: "omelette_ending_5" },
+            { text: "Next", to: "omelette_ending_5" },
         ],
         contributor: "Colyderp (Idea) and Hunter (Facts)"
     },
@@ -91,7 +91,7 @@ addScenes({
             </p>
         </div>,
         options: [
-            { text: "Next.", to: "omelette_ending_final" },
+            { text: "Next", to: "omelette_ending_final" },
         ],
         contributor: "Colyderp (Idea) and Hunter (Facts)"
     },

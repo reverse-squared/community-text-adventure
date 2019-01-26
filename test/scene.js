@@ -16,13 +16,14 @@ function requireDirRecursive(folder) {
         } else {
             const file = path.join(folder, x).substring(path.join(__dirname, "../scenes/").length).replace(/\\/g, "/");
             if(file === "template.jsx") return;
+            if(file === "after-hospital/loan/loan.jsx") return;
             files.push(file);
             require(path.join(folder, x));
             const scenes = WTA.getAllScenes();
             Object.keys(scenes).forEach(scene => {
                 if(scene === null) return;
                 if(scene === "null") return;
-                scenes[scene].ORIGIN_FILE = scenes[scene].ORIGIN_FILE || file;
+                scenes[scene].ORIGIN_FILE = (scenes[scene].ORIGIN_FILE === undefined) ? file : scenes[scene].ORIGIN_FILE;
             });
         }
     });
@@ -68,12 +69,12 @@ function tryScene(scene) {
         }
 
         if (typeof element.text === "string" && element.text.endsWith(".") && !element.text.endsWith("...")) {
-            throw new Error(`Option #${i} ends with a period! Standard is to not do this!`);
+            throw new Error(`Option #${i} ends with a period! Standard is to not do this! ${element.text}`);
         }
     }
 
     if(scenes[scene].ending) {
-        if (!scenes[scene].ending.description.endsWith(".") && !scenes[scene].ending.description.endsWith("...") && !scenes[scene].ending.description.endsWith("!") && !scenes[scene].ending.description.endsWith("?")) {
+        if ((typeof scenes[scene].ending.description === "string") && !scenes[scene].ending.description.endsWith(".") && !scenes[scene].ending.description.endsWith("...") && !scenes[scene].ending.description.endsWith("!") && !scenes[scene].ending.description.endsWith("?") && !scenes[scene].ending.description.endsWith(":(") && !scenes[scene].ending.description.endsWith(":)")) {
             throw new Error("Ending does not end with a period or punctionation mark.");
         }
         if (scenes[scene].ending.name.endsWith(".") && !scenes[scene].ending.name.endsWith("...")) {
@@ -93,7 +94,14 @@ describe("Scenes Render Properly", function() {
                     try {
                         tryScene(scene);
                     } catch (error) {
-                        throw new Error(error.message + "\n\nIn: " + path.join(__dirname,"../scenes/",file) + "\n");
+                        const f = path.join(__dirname, "../scenes/", file);
+                        const line = fs.readFileSync(f).toString().split("\n").findIndex(x=>x.includes(scene + ":")) + 1;
+                        const stack = error.stack.split("\n");
+                        stack[1] = "   at " + scene + " (" + f + ":" + line + ")";
+                        delete stack[2];
+                        delete stack[3];
+                        error.stack = stack.join("\n");
+                        throw error;
                     }
                 });
             });

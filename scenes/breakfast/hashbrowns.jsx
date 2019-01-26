@@ -52,7 +52,7 @@ addScenes({
             </p>
         </div>,
         options: [
-            { text: "Find something else to eat.", to: "wakeup_breakfast", action: () => startedHashbrowns = true }
+            { text: "Find something else to eat", to: "wakeup_breakfast", action: () => startedHashbrowns = true }
         ]
     },
     hash_okaydokey: {
@@ -65,7 +65,7 @@ addScenes({
         ending: {
             id: "reading-school",
             name: "Forget How to Read Properly",
-            description: "You half-forgot how to read so you went to reading school"
+            description: "You half-forgot how to read so you went to reading school."
         }
     },
     hash_ofcourse: {
@@ -187,7 +187,7 @@ addScenes({
         </div>,
         ending: {
             id: "all-right",
-            name: "All right.",
+            name: "All right",
             description: "Looks like you are right handed... Let me take care of the left..."
         },
         contributor: "Hunter"
@@ -197,23 +197,35 @@ addScenes({
             <p>You say sure, but the person neat you heard you say "sue". He decideds to sue you for "threatening" to sue him. What do you do?</p>
         </div>,
         options: [
-            { text: "Sue back.", to: "hash_sue" },
-            { text: "Get sued.", to: "hash_get_sued" },
-            { text: "Murder him.", to: "hash_murder" },
-            { text: "Escape.", to: "" },
+            { text: "Sue back", to: "hash_sue" },
+            { text: "Get sued", to: "hash_get_sued" },
+            { text: "Murder him", to: "hash_murder" },
+            { text: "Escape", to: "" },
+            { text: "throw a no u", to: "sue_nou" },
         ],
         contributor: "Hunter"
+    },
+    sue_nou: {
+        prompt: <div>
+            <p>he says quietly:</p>
+            <h1>no u</h1>
+        </div>,
+        ending: {
+            id: "nou",
+            name: "No u",
+            description: "Get \"No U-ed\" after \"No U-ing\" someone.",
+        }
     },
     hash_sue: {
         prompt: () => <div>
             <p>You tell him that you are going to sue him. He says, "bet no proof." What now?</p>
         </div>,
         options: [
-            { text: "Sue.", to: "hash_sue2" },
-            { text: "Sue.", to: "hash_sue2" },
-            { text: "Sue.", to: "hash_sue2" },
-            { text: "Sue.", to: "hash_sue2" },
-            { text: "Sue.", to: "hash_sue2" }
+            { text: "Sue", to: "hash_sue2" },
+            { text: "Sue", to: "hash_sue2" },
+            { text: "Sue", to: "hash_sue2" },
+            { text: "Sue", to: "hash_sue2" },
+            { text: "Sue", to: "hash_sue2" }
         ],
         contributor: "Hunter"
     },

@@ -22,8 +22,8 @@ addScenes({
             </p>
         </div>,
         options: [
-            { text: "Leave your grave.", to: "grave_death_leave" },
-            { text: "Wait.", to: "grave_wait" }
+            { text: "Leave your grave", to: "grave_death_leave" },
+            { text: "Wait", to: "grave_wait" }
         ],
         contributor: "Hunter"
     },
@@ -43,8 +43,8 @@ addScenes({
             <p>You waited five minutes. What now?</p>
         </div>,
         options: [
-            { text: "Wait more.", to: "grave_wait" },
-            { text: "Leave grave.", to: "grave_leave" }
+            { text: "Wait more", to: "grave_wait" },
+            { text: "Leave grave", to: "grave_leave" }
         ],
         action: increaseGraveWait,
         contributor: "Hunter",
