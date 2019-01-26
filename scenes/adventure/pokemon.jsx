@@ -108,7 +108,6 @@ addScenes({
         options: [
             { text: "Use Fly", to: "skydive_no_parachute_pokemon" },   
             { text: "Feed the Pokemon", to: "pokemon_feed" },
-            { text: "Go to a Championship", to: "champ_start" }
         ],
         contributor: "Hunter"
     },
