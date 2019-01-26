@@ -1,13 +1,24 @@
 {
     "compilerOptions": {
-        "baseUrl": ".",
+        "baseUrl": "./node_modules/",
         "module": "es6",
         "paths": {
-            "@templates/*": ["./templates/*"],
-            "@src/*": ["./src/js/*"],
-            "@css/*": ["./src/css/*"],
-            "@scenes/*": ["./scenes/*"],
-            "@res/*": ["./res/*"]
-        }
-    }
+            "@templates/*": ["../templates/*"],
+            "@src/*": ["../src/js/*"],
+            "@css/*": ["../src/css/*"],
+            "@scenes/*": ["../scenes/*"],
+            "@res/*": ["../res/*"],
+        },
+    },
+    "exclude": [
+        "node_modules",
+        "dist",
+    ],
+    "include": [
+        "src/**/*",
+        "scenes/**/*",
+        "test/**/*",
+        "templates/**/*",
+        "res/**/*",
+    ]
 }
