@@ -1,6 +1,6 @@
 // This file handles the different paths from the loan of $4313 that you need to pay off
 import React from "react";
-import { addFlag, setScene } from "web-text-adventure";
+import { addFlag, setScene } from "web-text-adventure/src/adventure";
 import { FlashText } from "@templates/FontStyles";
 import { addScenes } from "@src/ending";
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { setScene } from "web-text-adventure";
+import { setScene } from "web-text-adventure/src/adventure";
 import { addScenes } from "@src/ending";
 
 let progressTimer = null;

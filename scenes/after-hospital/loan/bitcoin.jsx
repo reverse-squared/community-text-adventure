@@ -1,5 +1,5 @@
 import React from "react";
-import { addFlag } from "web-text-adventure";
+import { addFlag } from "web-text-adventure/src/adventure";
 import { addScenes } from "@src/ending.jsx";
 import { RainbowText } from "@templates/FontStyles";
 

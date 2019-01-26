@@ -10,15 +10,4 @@
             "@res/*": ["../res/*"],
         },
     },
-    "exclude": [
-        "node_modules",
-        "dist",
-    ],
-    "include": [
-        "src/**/*",
-        "scenes/**/*",
-        "test/**/*",
-        "templates/**/*",
-        "res/**/*",
-    ]
 }

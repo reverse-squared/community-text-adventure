@@ -1,7 +1,7 @@
 // This file handles hot-reloading and starting up 
 // startup file, loads all other files
 import "@templates/CustomHTML";
-import { setScene } from "web-text-adventure";
+import { setScene } from "web-text-adventure/src/adventure";
 
 // CSS Loading
 import "@css/style.css";

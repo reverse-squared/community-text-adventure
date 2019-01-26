@@ -1,5 +1,5 @@
 import React from "react";
-import { addFlag } from "web-text-adventure";
+import { addFlag } from "web-text-adventure/src/adventure";
 import { addScenes } from "@src/ending.jsx";
 import { GreenGradient } from "@templates/FontStyles";
 
@@ -11,7 +11,7 @@ addScenes({
             <p><b>HIT OR MISS, I NEVER HIT THAT VAPE! HUH?</b> You have become a <GreenGradient string="Level 100 Master"/>. Now this is epic. That's how <s>the mafia</s> school works.</p>
         </div>,
         options: [
-            { text: "Attention, all Fortnite gamers...", to: "" },
+            { text: "Attention, all Fortnite gamers...", to: "attention_all_gamers" },
             { text: "I wanna be tracer...", to: "" },
             { text: "1 2 7 3...", to: "" },
             { text: "I'm going to say the N-Word...", to: "" },
@@ -22,7 +22,7 @@ addScenes({
             { text: "I smell pennies...", to: "" },
             { text: "Mary, is that a police...", to: "" },
             { text: "It's time for a crusade...", to: "" },
-            { text: "Yeetus yeetus..,", to: "" },
+            { text: "Yeetus yeetus...", to: "" },
             { text: "You're gonna have a bad time...", to: "" },
             { text: "NANI?!?!", to: "" },
             { text: "That's what she said...", to: "" },
@@ -41,5 +41,8 @@ addScenes({
             { text: "Return to Start", to: "wakeup_no_reset", action: () => collect200 = true }
         ],
         contributor: "Hunter"
+    },
+    attention_all_gamers: {
+        
     }
 });

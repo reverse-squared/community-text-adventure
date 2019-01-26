@@ -1,5 +1,5 @@
 import React from "react";
-import { addFlag, setScene } from "web-text-adventure";
+import { addFlag, setScene } from "web-text-adventure/src/adventure";
 import { addScenes } from "@src/ending.jsx";
 import { GreenGradient } from "@templates/FontStyles";
 

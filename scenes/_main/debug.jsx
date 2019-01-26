@@ -1,6 +1,6 @@
 // contains debug scenes and some fancy required ones
 import React from "react";
-import { setConfig, getConfig, getAllScenes } from "web-text-adventure";
+import { setConfig, getConfig, getAllScenes } from "web-text-adventure/src/adventure";
 import { addScenes, resetGame } from "@src/ending";
 import SceneLink from "@templates/SceneLink";
 
