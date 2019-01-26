@@ -175,7 +175,8 @@ addScenes({
             id: "breakfast-failure",
             name: "Fail to make breakfast",
             description: "With so many options how did you fail a simple task."
-        }
+        },
+        contributor: "Dave",
     },
 
     // Check time. Level 2.

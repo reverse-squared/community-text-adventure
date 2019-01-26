@@ -174,7 +174,8 @@ addScenes({
         options: () => [
             ...getCraftingOptions()
         ],
-        excludeEmptyOptionsCheck: true
+        excludeEmptyOptionsCheck: true,
+        noContributor: true,
     },
     minecraft_all_trees: {
         prompt: () => <div>

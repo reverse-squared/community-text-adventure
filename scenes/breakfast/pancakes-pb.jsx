@@ -436,7 +436,7 @@ addScenes({
             { text: "Stop Running", to: "run_from_hospital_fail" },
         ],
         ...QuickTimeHandlers({
-            time: 1100,
+            time: 2999,
         }),
         contributor: "Dave",
     },
@@ -444,37 +444,40 @@ addScenes({
     run_from_hospital_fail: {
         prompt: () => <div>
             <p>
-                prompt for failing
+                They caught you, and you got sent to jail. How unfortunate.
             </p>
         </div>,
         ending: {
             id: "escape-failure",
             name: "Caught Running Away",
             description: "Get caught by the police while running away from your hospital bill of $4313."
-        }
+        },
+        contributor: "Dave",
     },
     run_from_hospital_jail: {
         prompt: () => <div>
             <p>
-                prompt for running into jail
+                You escaped them, and they somehow did not send more forces to stop you. Wait a second... You escaped to a jail. <strong>Now that's a fancy way to capture people.</strong>
             </p>
         </div>,
         ending: {
             id: "escape-to-jail",
             name: "Escape to a Jail",
             description: "Your plan of running away was thought up too quickly that you accidentally escaped to jail..."
-        }
+        },
+        contributor: "Dave",
     },
     run_from_hospital_finish: {
         prompt: () => <div>
             <p>
-                prompt for finishing
+                You escaped them, and they somehow did not send more forces to stop you.
             </p>
         </div>,
         ending: {
             id: "escape-success",
             name: "The Escape Plan",
             description: "You successfully ran away from the police, and avoided the bill of $4313."
-        }
+        },
+        contributor: "Dave"
     }
 });

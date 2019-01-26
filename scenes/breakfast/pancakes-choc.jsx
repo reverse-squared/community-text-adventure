@@ -1,41 +1,6 @@
 import React from "react";
 import { addFlag, setScene } from "web-text-adventure";
 import { addScenes } from "@src/ending";
-import SceneLink from "@templates/SceneLink";
-
-// Stolen from peanut butter pancakes.
-let progressTimer = null;
-let progress = null;
-let inputElem = null;
-
-function QuickTimeDom() {
-    return <div style={{ height: "6px", width: "100%", background: "#2f4570" }}>
-        <div style={{ height: "100%", width: "100%", background: "cornflowerblue" }} id="inner-progress" />
-    </div>;
-}
-
-function QuickTimeHandlers(extra = {}) {
-    const decreasePerStep = (1000 / 45) / (10 * (extra.time / 1000));
-    return {
-        onDeactivate: () => {
-            if (progressTimer) clearInterval(progressTimer);
-            progressTimer = null;
-            if (extra.onDeactivate) extra.onDeactivate();
-        },
-        action: () => {
-            progressTimer = setInterval(() => {
-                progress -= decreasePerStep;
-                if (progress <= 0) {
-                    setScene("pancakes_white_chocolate_milk_yes_wait_fail");
-                } else {
-                    document.getElementById("inner-progress").style.width = progress + "%";
-                }
-            }, 1000/45);
-            progress = 100;
-            if (extra.action) extra.action();
-        },
-    };
-}
 
 addFlag("edgy_chocolate_index", 0);
 addFlag("edgy_chocolate", 1);
@@ -420,6 +385,7 @@ addScenes({
             id: "raw-pancakes",
             name: "The Good Liquid",
             description: "It's very tasety ( ͡° ͜ʖ ͡°)."
-        }
+        },
+        contributor: "Hunter"
     }
 });

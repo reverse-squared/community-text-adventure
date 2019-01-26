@@ -53,7 +53,8 @@ addScenes({
         </div>,
         options: [
             { text: "Find something else to eat", to: "wakeup_breakfast", action: () => startedHashbrowns = true }
-        ]
+        ],
+        contributor: "Dave"
     },
     hash_okaydokey: {
         prompt: () => <div>
@@ -214,7 +215,8 @@ addScenes({
             id: "nou",
             name: "No u",
             description: "Get \"No U-ed\" after \"No U-ing\" someone.",
-        }
+        },
+        contributor: "Dave"
     },
     hash_sue: {
         prompt: () => <div>
@@ -259,6 +261,7 @@ addScenes({
             id: "sue-murder",
             name: "Violence IS the Answer",
             description: "Hahahahahahahahahahahahahah."
-        }
+        },
+        contributor: "Hunter"
     }
 });
