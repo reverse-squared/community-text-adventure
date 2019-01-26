@@ -94,7 +94,7 @@ addScenes({
             { text: "Milk Chocolate", to: "pancakes_milk_chocolate" },
             { text: "White Chocolate", to: "pancakes_white_chocolate" },
         ],
-        contributor: "Alchemyking"
+        contributor: "Dave"
     },
     pancakes_baker_chocolate: {
         prompt: () => <div>
@@ -108,7 +108,8 @@ addScenes({
             { text: "Top the pancakes with actual chocolate to hide it’s disgustingness", to: "make_chocolate_top_them" },
             { text: "Yell", to: "" },
             { text: "Cry because your breakfast was ruined", to: "" },
-        ]
+        ],
+        contributor: "Daniel (Phrotonz)"
     },
     pancakes_white_chocolate: {
         prompt: () => <div>
@@ -219,10 +220,49 @@ addScenes({
             <p>Sure, because apparently cocaine is like white cocoa powder. You mix the melted chocolate with the "cocoa" and it turns a lighter shade of brown, but not white.</p>
         </div>,
         options: [
-            { text: "More cocaine.", to: "" },
-            { text: "Use the cocaine chocolate.", to: "" },
-            { text: "Snort the cocaine chocolate.", to: "" }
+            { text: "More cocaine.", to: "pancakes_white_chocolate_cocaine2" },
+            { text: "Use the cocaine chocolate.", to: "pancakes_white_chocolate_cocaine_make" },
+            { text: "Snort the cocaine chocolate.", to: "pancakes_white_chocolate_cocaine_snort" }
         ],
+        contributor: "Neema"
+    },
+    pancakes_white_chocolate_cocaine2: {
+        prompt: () => <div>
+            <p>
+                You add more cocaine...
+            </p>
+        </div>,
+        options: [
+            { text: "More cocaine.", to: "pancakes_white_chocolate_cocaine2" },
+            { text: "Use the cocaine chocolate.", to: "pancakes_white_chocolate_cocaine_make" },
+            { text: "Snort the cocaine chocolate.", to: "pancakes_white_chocolate_cocaine_snort" }
+        ],
+        contributor: "Neema"
+    },
+    pancakes_white_chocolate_cocaine3: {
+        prompt: () => <div>
+            <p>
+                You add more cocaine...
+            </p>
+        </div>,
+        options: [
+            { text: "More cocaine.", to: "pancakes_white_chocolate_cocaine2" },
+            { text: "Use the cocaine chocolate.", to: "pancakes_white_chocolate_cocaine_make" },
+            { text: "Snort the cocaine chocolate.", to: "pancakes_white_chocolate_cocaine_snort" }
+        ],
+        contributor: "Neema"
+    },
+    pancakes_white_chocolate_cocaine4: {
+        prompt: () => <div>
+            <p>
+                You add so much cocaine to the chocolate that you're not even sure if its chocolate-flavored cocaine or cocaine-flavored chocolate anymore.
+            </p>
+        </div>,
+        ending: {
+            id: "too-much-cocaine",
+            name: "Are you sure that's White Chocolate?",
+            description: "You're not even sure if its chocolate-flavored cocaine or cocaine-flavored chocolate anymore."
+        },
         contributor: "Neema"
     },
     pancakes_white_chocolate_butter: {
