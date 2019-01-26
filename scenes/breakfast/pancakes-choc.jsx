@@ -77,11 +77,38 @@ addScenes({
         </div>,
         options: [
             { text: "Dark chocolate", to: "edgy_pancakes" },
-            { text: "Milk Chocolate", to: "" },
+            { text: "Milk Chocolate", to: "pancakes_milk_chocolate" },
             { text: "White Chocolate", to: "pancakes_white_chocolate" },
-            { text: "Baker’s chocolate", to: "" },
+            { text: "Baker’s chocolate", to: "pancakes_baker_chocolate" },
         ],
         contributor: "Alchemyking"
+    },
+    make_chocolate_top_them: {
+        prompt: () => <div>
+            <p>
+                You top the Baker's choclate with...
+            </p>
+        </div>,
+        options: [
+            { text: "Dark chocolate", to: "edgy_pancakes" },
+            { text: "Milk Chocolate", to: "pancakes_milk_chocolate" },
+            { text: "White Chocolate", to: "pancakes_white_chocolate" },
+        ],
+        contributor: "Alchemyking"
+    },
+    pancakes_baker_chocolate: {
+        prompt: () => <div>
+            <p>
+                You use the Baker’s Chocolate only to find it doesn’t melt and tastes like old Easter eggs. What do you do?
+            </p>
+        </div>,
+        options: [
+            { text: "Sue the Baking Chocolate company", to: "" },
+            { text: "Throw away the pancakes", to: "" },
+            { text: "Top the pancakes with actual chocolate to hide it’s disgustingness", to: "make_chocolate_top_them" },
+            { text: "Yell", to: "" },
+            { text: "Cry because your breakfast was ruined", to: "" },
+        ]
     },
     pancakes_white_chocolate: {
         prompt: () => <div>
