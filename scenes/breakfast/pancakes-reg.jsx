@@ -1,8 +1,24 @@
 import React from "react";
-import { addFlag } from "web-text-adventure";
+import { addFlag, setScene } from "web-text-adventure";
 import { addScenes } from "@src/ending";
 
+addFlag("__rerender");
 addFlag("topping", "");
+addFlag("pizzatoppings", []);
+
+const pizzaTopping = (id) => ({
+    text: "add " + id,
+    to: null,
+    if: () => !pizzatoppings.includes(id),
+    action: () => {
+        pizzatoppings.push(id);
+        if(pizzatoppings.length >= 5) {
+            setScene("pineapple_on_pancakes_ending");
+        }
+        __rerender = undefined;
+    },
+    disabledText: true
+});
 
 addScenes({
     make_regular_pancakes: {
@@ -12,12 +28,27 @@ addScenes({
         options: [
             { text: "Put syrup on it", to: "regular_pancake_eat", action: () => topping = "Syrup" },
             { text: "Put butter on it", to: "regular_pancake_eat", action: () => topping = "Butter" },
+            { text: "Put pineapple on it", to: "regular_pancake_pineapple" },
             { text: "Leave it as is", to: "regular_pancake_leave" },
-            { text: "Rent someone else's pancake", to: "regular_pancake_rent" }
+            { text: "Rent someone else's pancake", to: "regular_pancake_rent" },
         ],
         contributor: "Toshiyuki"
     },
-
+    regular_pancake_pineapple: {
+        prompt: () => <div>
+            <p>
+                You put the pineapple on the pancake... At least it's not a pizza!
+            </p>
+        </div>,
+        options: [
+            pizzaTopping("some cheese"),
+            pizzaTopping("some pepperoni"),
+            pizzaTopping("some mayo"),
+            pizzaTopping("some bacon"),
+            pizzaTopping("whatever else goes on a pizza"),
+        ],
+        contributor: "Helvetica"
+    },
     regular_pancake_eat: {
         prompt: () => <div>
             <p>You put the nice {topping} on it. You eat the pancake and feel nice to go on with your day, what do you do?</p>
@@ -52,5 +83,18 @@ addScenes({
             description: "They let you have their food for FREE."
         },
         contributor: "Hunter"
+    },
+    pineapple_on_pancakes_ending: {
+        prompt: () => <div>
+            <p>
+                You've created a pineapple pizza, but it's a pancake. Is this really what you wanted?
+            </p>
+        </div>,
+        ending: {
+            id: "pineapple-pancakes",
+            name: "Pineapple on Pancakes",
+            description: "Construct a pancake that is actaully a pizza..."
+        },
+        contributor: "Helvetica"
     }
 });

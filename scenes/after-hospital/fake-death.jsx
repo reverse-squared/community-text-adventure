@@ -27,6 +27,9 @@ addScenes({
         ],
         contributor: "Hunter"
     },
+    actionss: {
+
+    },
     grave_death_leave: {
         prompt: () => <div>
             <p>When you left your grave, the burrial ceremony wasn't over. People though you were a zombie and shot you down.</p>
@@ -69,7 +72,7 @@ addScenes({
         options: [
             { text: "Become a Hitman", to: "hitman" },
             { text: "Rob a Bank", to: "bank_rob" },
-            { text: "Become a Level 1 Crook", to: "" }
+            { text: "Become a Level 1 Crook", to: "level1_crook" }
         ],
         contributor: "Hunter"
     },
@@ -146,8 +149,44 @@ addScenes({
             description: "Become a hitman for yourself.",
         },
         contributor: "Dave"
-    }
+    },
 
     // TODO: bank_rob_right 
     // TODO: bank_caught
+    bank_rob_right: {
+        prompt: () => <div>
+            <p>
+                You unlocked the bank vault and got out of it the <strong>$123,456,789.10</strong> that they had stored in it.
+            </p>
+        </div>,
+        ending: {
+            id: "bank-vault",
+            name: "Inside the Bank Vault",
+            description: "Unlock the bank vault somehow",
+        }
+    },
+    bank_caught: {
+        prompt: () => <div>
+            <p>
+                You got caught!! If only you would have had one more chance you would have figured out that password!
+            </p>
+        </div>,
+        ending: {
+            id: "bank-vault",
+            name: "Inside the Bank Vault",
+            description: "Unlock the bank vault somehow",
+        }
+    },
+
+    level1_crook: {
+        //TODO: Later
+        prompt: () => <div>
+            <p>
+                You enter the mafia as a level 1 crook, now what do you do.
+            </p>
+        </div>,
+        options: [
+            { text: "Level Up", to: "" }
+        ]
+    }
 });
