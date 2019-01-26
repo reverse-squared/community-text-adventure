@@ -45,9 +45,9 @@ addScenes({
             Are you sure you want to reset all game progress?
         </div>,
         options: [
-            { text: "Yes, Reset.", action: () => resetGame(), to: "BLANKSCENE" },
+            { text: "Yes, reset all progress", action: () => resetGame(), to: "BLANKSCENE" },
             "seperator",
-            { text: "No, do not.", to: "start" },
+            { text: "No, do not", to: "start" },
         ],
         noContributor: true,
     },

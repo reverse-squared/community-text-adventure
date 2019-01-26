@@ -12,7 +12,7 @@ addScenes({
         options: [
             { text: "Go to work.", to: "work_start" },
             { text: "Don't go to work.", to: "" }
-            // TODO: Don''t go to work path.
+            // TODO: Don't go to work path.
         ],
         contributor: "Hunter"
     },  
@@ -79,7 +79,7 @@ addScenes({
         ending: {
             id: "cake-lie",
             name: "The Cake is a Lie",
-            description: "While playing Half Life 3, you realize the cake was a lie and experience an existential crisis and die",
+            description: "While playing Half Life 3, you realize the cake was a lie and experience an existential crisis and die.",
         },
         contributor: "Helvetica"
     }

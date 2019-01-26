@@ -66,6 +66,19 @@ function tryScene(scene) {
         if (typeof element.to !== "string" && element.to !== null) {
             throw new Error(`Option #${i} does not contain a valid "to" property`);
         }
+
+        if (typeof element.text === "string" && element.text.endsWith(".") && !element.text.endsWith("...")) {
+            throw new Error(`Option #${i} ends with a period! Standard is to not do this!`);
+        }
+    }
+
+    if(scenes[scene].ending) {
+        if (!scenes[scene].ending.description.endsWith(".") && !scenes[scene].ending.description.endsWith("...") && !scenes[scene].ending.description.endsWith("!") && !scenes[scene].ending.description.endsWith("?")) {
+            throw new Error("Ending does not end with a period or punctionation mark.");
+        }
+        if (scenes[scene].ending.name.endsWith(".") && !scenes[scene].ending.name.endsWith("...")) {
+            throw new Error("Ending name ends with a period, standard is not to do this.");
+        }
     }
 }
 
@@ -77,7 +90,11 @@ describe("Scenes Render Properly", function() {
                 if(scene === "BLANKSCENE") return;
         
                 it(scene, function() {
-                    tryScene(scene);
+                    try {
+                        tryScene(scene);
+                    } catch (error) {
+                        throw new Error(error.message + "\n\nIn: " + path.join(__dirname,"../scenes/",file) + "\n");
+                    }
                 });
             });
         });

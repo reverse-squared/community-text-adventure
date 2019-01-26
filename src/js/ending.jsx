@@ -101,7 +101,7 @@ export function addScenes(scenes) {
             if(!scenes[id].options) {
                 scenes[id].options = [
                     {
-                        text: "End.",
+                        text: "End",
                         to: "check_new_ending"
                     }
                 ];

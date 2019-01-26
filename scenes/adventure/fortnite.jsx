@@ -48,9 +48,9 @@ addScenes({
             <p>Now that you are out of the bus, you see everyone else in the bus start jumping too. What do you do?</p>
         </div>,
         options: [
-            { text: "Activate your glider.", to: "" },
-            { text: "Keep falling.", to: "" },
-            { text: "Disconnect from the game.", to: "adventure_fortnite_leave_game" },
+            { text: "Activate your glider", to: "" },
+            { text: "Keep falling", to: "" },
+            { text: "Disconnect from the game", to: "adventure_fortnite_leave_game" },
         ],
         contributor: "Hunter"
     },

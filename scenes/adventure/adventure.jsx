@@ -12,9 +12,9 @@ addScenes({
                 What do you do first?</b></p>
         </div>,
         options: [
-            { text: "Get on a plane to go to Africa.", to: "adventure_africa_pre" },
-            { text: "Board the bus.", to: "adventure_fortnite_start" },
-            { text: "Walk in the tall grass.", to: "adventure_pokemon_start" }
+            { text: "Get on a plane to go to Africa", to: "adventure_africa_pre" },
+            { text: "Board the bus", to: "adventure_fortnite_start" },
+            { text: "Walk in the tall grass", to: "adventure_pokemon_start" }
         ],
         contributor: "Hunter"
     },
@@ -89,9 +89,9 @@ addScenes({
             </p>
         </div>,
         options: [
-            { text: "Wait until rescue comes.", to: "adventure_africa_crash_wait" },
-            { text: "Escape the plane.", to: "adventure_island_start" },
-            { text: "Finish eating that 10 pound turkey you smuggled in your carry-on.", to: "adventure_africa_crash_eat" },
+            { text: "Wait until rescue comes", to: "adventure_africa_crash_wait" },
+            { text: "Escape the plane", to: "adventure_island_start" },
+            { text: "Finish eating that 10 pound turkey you smuggled in your carry-on", to: "adventure_africa_crash_eat" },
         ],
         contributor: "Hunter"
     },
@@ -113,9 +113,9 @@ addScenes({
             <p>You escape the plane without any harm done. With only you as the survivor that you know of, and with the plane about to explode, what do you do?</p>
         </div>,
         options: [
-            { text: "Punch some trees.", to: "minecraft_start" },
-            { text: "Find some food.", to: "adventure_island_food", if: () => !hasEatenTurkey },
-            { text: "Break open some suitcases.", to: "adventure_island_suitcases" },
+            { text: "Punch some trees", to: "minecraft_start" },
+            { text: "Find some food", to: "adventure_island_food", if: () => !hasEatenTurkey },
+            { text: "Break open some suitcases", to: "adventure_island_suitcases" },
         ],
         contributor: "Hunter"
     },

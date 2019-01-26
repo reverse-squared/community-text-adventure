@@ -136,7 +136,7 @@ addScenes({
             <InventoryDisplay />
         </div>,
         options: () => [
-            { text: "Punch another tree.", to: "minecraft_tree", action: () => {
+            { text: "Punch another tree", to: "minecraft_tree", action: () => {
                 treesPunched++;
                 addItem("log", 1);
             }},
