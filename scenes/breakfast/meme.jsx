@@ -7,6 +7,11 @@ import checkCard from "@src/card";
 
 addFlag("collect200", false);
 addFlag("scriptsRead", 0);
+addFlag("failedCrusades", 0);
+
+const CrusadeHeader= () => <div>
+    <p>Your Crusade's Have Failed {failedCrusades} time{(failedCrusades != 1) ? "s" : ""}!</p>
+</div>;
 
 function checkCreditCard() {
     if(checkCard(document.getElementById("cardid").value)) {
@@ -24,24 +29,37 @@ addScenes({
         options: [
             { text: "Attention, all Fortnite gamers...", to: "meme_attention_all_gamers" },
             { text: "I wanna be tracer...", to: "meme_overwatch" },
-            { text: "1 2 7 3...", to: "" },
+            { text: "1 2 7 3...", to: "meme_1273" },
             { text: "I'm going to say the N-Word...", to: "meme_word" },
             { text: "This is so sad... Alexa play...", to: "meme_alexa" },
             { text: "Wait. That's illegal...", to: "" },
             { text: "What even is this?", to: "meme_whateven" },
             { text: "Kris, is that a weed...", to: "meme_weed" },
             { text: "I smell pennies...", to: "" },
-            { text: "Mary, is that a police...", to: "" },
-            { text: "It's time for a crusade...", to: "" },
+            { text: "Mary, is that a police...", to: "meme_police" },
+            { text: "It's time for a crusade...", to: "meme_crusade" },
             { text: "Yeetus yeetus...", to: "" },
             { text: "You're gonna have a bad time...", to: "" },
             { text: "NANI?!?!", to: "" },
             { text: "That's what she said...", to: "" },
-            { text: "I play Pokemon Go...", to: "" },
+            { text: "I play Pokemon Go...", to: "meme_pokemon_go" },
             { text: "TURN IT UP TO 11...", to: "meme_turn11" },
             { text: "Wake me up inside...", to: "" }
         ],
         contributor: "Hunter, Helvetica, and Dave"
+    },
+    meme_pokemon_go: {
+        prompt: () => <div>
+            <p>
+                Get out this is too old, like what? 2015?
+            </p>
+        </div>,
+        ending: {
+            id: "2015",
+            name: "Get Kicked out",
+            description: "What is this? 2015?"
+        },
+        contributor: "Koz"
     },
     meme_turn11: {
         prompt: () => <div>
@@ -4799,5 +4817,89 @@ addScenes({
             description: "Pathetic..."
         },
         contributor: "Hunter"
+    },
+    meme_1273: {
+        prompt: () => <div>
+            <p>That’s not how counting works! You get sent to Baldi’s Basics, where you have to endure the toughest question of all...</p>
+            <p><b>WHAT’S 1 + 1?,</b></p>
+        </div>,
+        options: [
+            { text: "2", to: "meme_1273_2" },
+            { text: "83838383838", to: "meme_1273_8" },
+        ],
+        contributor: "Alchemyking"
+    },
+    meme_1273_2: {
+        prompt: () => <div>
+            <p>Suddenly, a bunch of catgirls break into the classroom and maul you to death, all while some sort of Estonian pop song plays in the background.</p>
+        </div>,
+        ending: {
+            id: "nni",
+            name: "NICO NICO NIIII",
+            description: "Still a better answer than 9 + 10 = 21."
+        },
+        contributor: "Alchemyking"
+    },
+    meme_1273_8: {
+        prompt: () => <div>
+            <p>You got it right! as a reward, the teacher lets you go down Rockefeller Street. You now know what Rockefeller groove is.</p>
+        </div>,
+        ending: {
+            id: "rockefeller-street",
+            name: "YOU’RE WINNER!",
+            description: "CONGRATATION!"
+        },
+        contributor: "Alchemyking"
+    },
+    meme_police: {
+        prompt: () => <div>
+            <p>You see that Mary has a police officer next to her, so you decide to call the <span style={{color: "green"}}><i>420 Gang</i></span> to warn them of their presence. Thanks loyal gang member.</p>
+        </div>,
+        ending: {
+            id: "gang-member",
+            name: "Loyal Gang Member",
+            description: "Give a good warning of the \"Bad Guys\"..."
+        },
+        contributor: "Hunter"
+    },
+    meme_crusade: {
+        prompt: () => <div>
+            <CrusadeHeader />
+            <p>You decicde to do a crusade... <span style={{color: "red"}}><b>It failed...</b></span></p>
+        </div>,
+        options: [
+            { text: "Crusade Again...", to: "meme_crusade" },
+            { text: "Stop the Crusades", to: "meme_crusade_stop", if: () => failedCrusades > 0 }
+        ],
+        action: () => {
+            failedCrusades++;
+
+            if(failedCrusades >= 1000000) {
+                setScene("crusades_one_mil")
+            }
+        },
+        contributor: "Hunter"
+    },
+    meme_crusade_stop: {
+        prompt: () => <div>
+            <p>You stopped the crusades after {failedCrusades} attempt{(failedCrusades != 1) ? "s" : ""}. Nobody listened to you and you eventually fell into a deep depression...</p>
+        </div>,
+        ending: {
+            id: "crusade-stop",
+            name: "Stopping the Crusades",
+            description: "At least you know when to stop..."
+        }
+    },
+    crusades_one_mil: {
+        prompt: <div>
+            <p><b>WOW!</b> We did not expect you to click that button one million times. In fact, you probably didn't you either used an autoclicker or you viewed
+                the source code and set the variable in the developer tools console. You little cheater...</p>
+        </div>,
+        ending: {
+            id: "crusade-cheater",
+            name: "Probably Cheater",
+            description: "We will never know."
+        },
+
     }
 });
