@@ -1,6 +1,6 @@
 import React from "react";
-import { } from "web-text-adventure";
-import { addScenes } from "@src/ending.jsx";
+import { } from "web-text-adventure/src/adventure";
+import { addScenes } from "@src/ending";
 
 addScenes({
     // Pokemon
@@ -37,7 +37,8 @@ addScenes({
             { text: "Yeet", to: "adventure_pokemon_yeet" },
             { text: "Die", to: "adventure_pokemon_die" },
             { text: "Ember", to: "adventure_pokemon_ember" },
-            { text: "Go back.", to: "adventure_pokemon_main" }
+            "seperator",
+            { text: "Go back", to: "adventure_pokemon_main" }
         ],
         contributor: "Alchemyking and Hunter"
     },
@@ -47,7 +48,7 @@ addScenes({
             <p>You have no items in your bag.</p>
         </div>,
         options: [
-            { text: "Go back.", to: "adventure_pokemon_main" }
+            { text: "Go back", to: "adventure_pokemon_main" }
         ],
         contributor: "Hunter"
     },
@@ -57,7 +58,7 @@ addScenes({
             <p>You only own one pokemon!</p>
         </div>,
         options: [
-            { text: "Go back.", to: "adventure_pokemon_main" }
+            { text: "Go back", to: "adventure_pokemon_main" }
         ],
         contributor: "Hunter"
     },
@@ -67,7 +68,7 @@ addScenes({
             <p>You can't run from trainer battles!</p>
         </div>,
         options: [
-            { text: "Go back.", to: "adventure_pokemon_main" }
+            { text: "Go back", to: "adventure_pokemon_main" }
         ],
         contributor: "Hunter"
     },
@@ -105,9 +106,8 @@ addScenes({
             <p>Now that the battle is over, what do you do?</p>
         </div>,
         options: [
-            { text: "Use Fly.", to: "skydive_no_parachute_pokemon" },   
+            { text: "Use Fly", to: "skydive_no_parachute_pokemon" },   
             { text: "Feed the Pokemon", to: "pokemon_feed" },
-            { text: "Go to a Championship", to: "champ_start" }
         ],
         contributor: "Hunter"
     },
@@ -164,7 +164,7 @@ addScenes({
         </div>,
         ending: {
             id: "raw-meat-pokemon",
-            name: "IT'S RAW.",
+            name: "IT'S RAW!",
             description: "It's the kind of stuff you'd expect Tiger Woods to tee of it.",
         },
         contributor: "Hunter"

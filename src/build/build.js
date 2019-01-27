@@ -86,7 +86,6 @@ webpack(config, (err, stats) => {
         },
         removeComments: true,
         removeAttributeQuotes: true,
-        removeOptionalTags: true,
         removeRedundantAttributes: true,
         removeScriptTypeAttributes: true,
         removeStyleLinkTypeAttributes: true,

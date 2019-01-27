@@ -1,6 +1,6 @@
 import React, {Fragment} from "react";
 import { addScenes } from "@src/ending";
-import { addFlag, setScene } from "web-text-adventure";
+import { addFlag, setScene } from "web-text-adventure/src/adventure";
 import SceneLink from "@templates/SceneLink";
 
 addFlag("__rerender", undefined);
@@ -136,7 +136,7 @@ addScenes({
             <InventoryDisplay />
         </div>,
         options: () => [
-            { text: "Punch another tree.", to: "minecraft_tree", action: () => {
+            { text: "Punch another tree", to: "minecraft_tree", action: () => {
                 treesPunched++;
                 addItem("log", 1);
             }},
@@ -174,7 +174,8 @@ addScenes({
         options: () => [
             ...getCraftingOptions()
         ],
-        excludeEmptyOptionsCheck: true
+        excludeEmptyOptionsCheck: true,
+        noContributor: true,
     },
     minecraft_all_trees: {
         prompt: () => <div>

@@ -1,6 +1,6 @@
 import React from "react";
 import { addScenes } from "@src/ending";
-import { addFlag, setScene } from "web-text-adventure";
+import { addFlag, setScene } from "web-text-adventure/src/adventure";
 
 function randomOf(...list) {
     return list[Math.floor((Math.random() * list.length))];
@@ -44,25 +44,8 @@ function generateDirectionList() {
     ];
 }
 
-// route information
-// const directions = [
-//     "left",
-//     "right",
-//     "right-ws",
-//     "left",
-//     "right",
-//     "left-ws",
-//     "straight", //
-//     "left",
-//     "right",
-//     "left",
-//     "exit52",
-//     "left",
-//     "right",
-//     "roundabout left",
-//     "right",
-//     "destination right",
-// ];
+addFlag("wrongturns", 0);
+
 addFlag("directions", null);
 
 const mapDirectionKeyToName = {
@@ -137,10 +120,22 @@ addScenes({
                     if(id === correct_answer) {
                         hospital_car_step++;
                         if(hospital_car_step >= directions.length) {
-                            setScene("hospital_car_success");
+                            if(wrongturns>0) {
+                                setScene("hospital_car_fail_almost");
+                            } else {
+                                setScene("hospital_car_success");
+                            }
                         }
                     } else {
-                        setScene("hospital_car_fail");
+                        if(wrongturns >= 2) {
+                            setScene("hospital_car_fail");
+                        } else {
+                            wrongturns++;
+                            hospital_car_step++;
+                            if (hospital_car_step >= directions.length) {
+                                setScene("hospital_car_fail_almost");
+                            }
+                        }
                     }
                 }
             }));
@@ -169,8 +164,22 @@ addScenes({
         </div>,
         options: [
             { text: "Become a Coyote", to: "sting_start" },
-            { text: "Become an Uber driver.", to: "uber_start" }
+            { text: "Become an Uber driver", to: "uber_start" },
+            { text: "Play some Elemental 4", to: "elemental4" },
         ],
         contributor: "Hunter",
+    },
+    hospital_car_fail_almost: {
+        prompt: () => <div>
+            <p>
+                You almost got to the hospital, but you took a wrong turn and landed at Chuck E Cheese... so... okay.
+            </p>
+        </div>,
+        ending: {
+            id: "lmao-failed-route",
+            name: "Ended up at Chuck E Cheese",
+            description: "You almost got to the hospital, but you took a wrong turn and landed at Chuck E Cheese... so... okay.",
+        }
+        
     }
 });

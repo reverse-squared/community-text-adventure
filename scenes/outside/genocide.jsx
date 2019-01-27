@@ -1,6 +1,6 @@
 import React from "react";
 import { addScenes } from "@src/ending";
-import { addFlag } from "web-text-adventure";
+import { addFlag } from "web-text-adventure/src/adventure";
 
 addFlag("touch_alive", {
     chicken: true,
@@ -8,6 +8,8 @@ addFlag("touch_alive", {
     human: true,
     unicorn: true,
 });
+addFlag("geno_haschickencorpse", false);
+addFlag("geno_hasspidercorpse", true);
 
 addScenes({
     genocide_main: {
@@ -16,13 +18,14 @@ addScenes({
         </div>,
         options: [
             { text: "Touch the lizard", disabledText: "(dead)", if: () => touch_alive.lizard, to: "genocide_lizard" },
-            { text: "Touch the spider", disabledText: "(dead)", to: "touch_spider", if: () => false },
+            { text: "Touch the spider", disabledText: "(dead)", if: () => false, to: null },
             { text: "Touch the human", disabledText: "(dead)", if: () => touch_alive.human, to: "genocide_human" },
             { text: "Touch the unicorn", disabledText: "(dead)", if: () => touch_alive.unicorn, to: "genocide_unicorn" },
             { text: "Touch the chicken", disabledText: "(dead)", if: () => touch_alive.chicken, to: "genocide_chicken" },
         ],
         contributor: "Hunter and Colyderp"
     },
+    //#region Chicken
     genocide_chicken: {
         prompt: () => <div>
             You touch the chicken, it seems startled for a second. <strong>What do you do?</strong>
@@ -31,17 +34,19 @@ addScenes({
             { text: "(try to) Kill it", to: "genocide_chicken_kill_fail" },
             { text: "Keep it", to: "genocide_chicken_keep" },
             { text: "Act like a chicken", to: "genocide_chicken_act" },
-            { text: "Distract it", to: "genocide_chicken_distract" },
-        ]
+            { text: "Distract it with spider corpse", if: () => geno_hasspidercorpse, to: "genocide_chicken_distract" },
+        ],
+        contributor: "Adr"
     },
     genocide_chicken_distract: {
         prompt: () => <div>
-            You use the spider corpse to distract the chicken.
+            You use the spider corpse to distract the chicken. It seems confused
         </div>,
         options: [
             { text: "Kill it", to: "genocide_chicken_kill", action: () => touch_alive.chicken = false },
             { text: "Act like a chicken", to: "genocide_chicken_act" },
-        ]
+        ],
+        contributor: "Dave"
     },
     genocide_chicken_kill_fail: {
         prompt: () => <div>
@@ -51,7 +56,8 @@ addScenes({
             id: "genocide-chicken-fail",
             name: "Chicken Swarm Ending",
             description: "Die from a swarm of chicken."
-        }
+        },
+        contributor: "Adr"
     },
     genocide_chicken_kill: {
         prompt: () => <div>
@@ -62,11 +68,12 @@ addScenes({
             <p>What do you do with it?</p>
         </div>,
         options: [
-            { text: "Throw it in the furnace.", to: "" },
-            { text: "Eat it.", to: "" },
-            { text: "Give it to the dogs.", to: "genocide_chicken_kill_dogs" },
-            { text: "Keep it.", to: "genocide_main" },
+            { text: "Throw it in the furnace", to: "", action: () => geno_haschickencorpse = false },
+            { text: "Eat it", to: "", action: () => geno_haschickencorpse = false },
+            { text: "Give it to the dogs", to: "genocide_chicken_kill_dogs", action: () => geno_haschickencorpse = false },
+            { text: "Keep it", to: "genocide_main" },
         ],
+        action: () => geno_haschickencorpse = true,
         contributor: "Hunter"
     },
     genocide_chicken_act: {
@@ -83,7 +90,7 @@ addScenes({
     },
     genocide_chicken_keep: {
         prompt: () => <div>
-            <p></p>
+            <p>TODO: Chicken</p>
         </div>,
         options: [
         ],
@@ -94,10 +101,36 @@ addScenes({
             <p>You stop for a second and think, 'Maybe I can also kill the dogs!'</p>
         </div>,
         options: [
-            { text: "Inject the chicken with arsenic first.", to: "" },
-            { text: " Don’t poison the chicken.", to: "" },
-            { text: "Never mind, keep the chicken.  ", to: "" }
+            { text: "Inject the chicken with arsenic first", to: "genocide_chicken_poison_dogs" },
+            { text: "Don't poison the chicken", to: "genocide_chicken_feed_dogs" },
+            { text: "Never mind, keep the chicken", to: "genocide_main", action: () => geno_haschickencorpse = true }
         ],
         contributor: "Daniel (Phrotonz)"
+    },
+    genocide_chicken_poison_dogs: {
+        prompt: () => <div>
+            <p>
+                You give it the poisoned chicken. Turns out they are immune to it, and they enjoy it.
+            </p>
+        </div>,
+        options: [
+            { text: "Ok", to: "genocide_main" },
+        ],
+        contributor: "Dave",
+    },
+    genocide_chicken_feed_dogs: {
+        prompt: () => <div>
+            <p>
+                You give it the chicken. They enjoy it.
+            </p>
+        </div> ,
+        options: [
+            { text: "Ok", to: "genocide_main" },
+        ],
+        contributor: "Dave",
     }
+    //#endregion Chicken
+    //#region Lizard
+    
+    //#endregion
 });

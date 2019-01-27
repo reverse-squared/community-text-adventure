@@ -1,13 +1,14 @@
 {
   "name": "community-text-adventure",
-  "version": "1.10.0",
+  "version": "1.11.0",
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "grapheme-splitter": "^1.0.4",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-hot-loader": "^4.6.3",
-    "web-text-adventure": "^1.10.4"
+    "web-text-adventure": "^1.10.5"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
@@ -15,18 +16,22 @@
     "@babel/preset-env": "^7.2.3",
     "@babel/preset-react": "^7.0.0",
     "@babel/register": "^7.0.0",
-    "module-alias": "^2.1.0",
     "autoprefixer": "^9.4.4",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.5",
     "babel-plugin-webpack-alias": "^2.1.2",
     "chalk": "^2.4.2",
+    "coveralls": "^3.0.2",
     "css-loader": "^2.1.0",
     "cssnano": "^4.1.8",
     "eslint": "^5.12.0",
     "eslint-plugin-react": "^7.12.3",
     "fs-extra": "^7.0.1",
     "html-minifier": "^3.5.21",
+    "mocha": "^5.2.0",
+    "mockery": "^2.1.0",
+    "module-alias": "^2.1.0",
+    "nyc": "^13.1.0",
     "postcss": "^7.0.7",
     "postcss-loader": "^3.0.0",
     "style-loader": "^0.23.1",
@@ -42,7 +47,9 @@
     "broken-links": "node src/build/list-broken-links.js",
     "lint": "eslint . --ext .js,.jsx --ignore-path .eslintignore || true",
     "lint-fix": "eslint . --ext .js,.jsx --ignore-path .eslintignore --fix || true",
-    "cloc": "cloc scenes/ src/ templates/ res/"
+    "cloc": "cloc scenes/ src/ templates/ res/",
+    "test": "nyc --extension .jsx --reporter=html --report-dir=dist/coverage --reporter=text mocha",
+    "generate-coverage": "npm run test || true"
   },
   "license": "MIT",
   "output_directory": "dist",

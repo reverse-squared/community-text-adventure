@@ -1,6 +1,7 @@
 import React from "react";
-import { addFlag, resetFlags } from "web-text-adventure";
-import { addScenes } from "@src/ending";
+import { addFlag, resetFlags } from "web-text-adventure/src/adventure";
+import { addScenes, getGameProgress } from "@src/ending";
+import { RainbowText } from "@templates/FontStyles";
 
 addFlag("sleepTime", 0);
 
@@ -16,15 +17,36 @@ addScenes({
             <p>You wake up in a room. <strong>What do you do?</strong></p>
         </div>,
         
-        options: [
+        options: () => [
             { text: "Go outstide", to: "wakeup_outside" },
-            { text: "Make some breakfast.", to: "wakeup_breakfast" },
-            { text: "Check the time", to: "wakeup_check_time" }
+            { text: "Make some breakfast", to: "wakeup_breakfast" },
+            { text: "Check the time", to: "wakeup_check_time" },
+            
+            /*
+            ...((getGameProgress().percentage >= 1) ? [
+                "seperator",
+                { text: () => <RainbowText string={"Brag about how you got all " + getGameProgress().totalEndings + " endings"}/>, to: "true_ending" }
+            ] : [])
+            */
         ],
 
         action: () => {
             resetFlags();
         },
+
+        contributor: "Dave"
+    },
+
+    wakeup_no_reset: {
+        prompt: () => <div>
+            <p>You wake up in a room, <strong>What do you do?</strong></p>
+        </div>,
+        
+        options: [
+            { text: "Go outstide", to: "wakeup_outside" },
+            { text: "Make some breakfast", to: "wakeup_breakfast" },
+            { text: "Check the time", to: "wakeup_check_time" }
+        ],
 
         contributor: "Dave"
     },
@@ -62,7 +84,7 @@ addScenes({
             </p>
         </div>,
         options: [
-            { text: "Go touch more things.", to: "touch_main" }
+            { text: "Go touch more things", to: "touch_main" }
         ],
         contributor: "Adr"
     },
@@ -105,7 +127,7 @@ addScenes({
         </div>,
         options: [
             { text: "Get it treated", to: "touch_lizard_treat"},
-            { text: "Punch that lizard", to: ""},
+            { text: "Punch that lizard", to: "jail_start"},
             { text: "Not care, and don't do anything", to: ""},
         ],
         contributor: "Alchemyking"
@@ -152,8 +174,9 @@ addScenes({
         ending: {
             id: "breakfast-failure",
             name: "Fail to make breakfast",
-            description: "With so many options how did you fail a simple task"
-        }
+            description: "With so many options how did you fail a simple task."
+        },
+        contributor: "Dave",
     },
 
     // Check time. Level 2.
@@ -162,9 +185,9 @@ addScenes({
             <p>You look at your clock to check the time and realize...</p>
         </div>,
         options: [
-            { text: "...you are still sleepy and need more rest.", to: "sleep" },
-            { text: "...you're hungry and want to eat something.", to: "wakeup_breakfast" },
-            { text: "...you have plans to go outside and go on an adventure.", to: "adventure_start" }
+            { text: "...you are still sleepy and need more rest", to: "sleep" },
+            { text: "...you're hungry and want to eat something", to: "wakeup_breakfast" },
+            { text: "...you have plans to go outside and go on an adventure", to: "adventure_start" }
         ],
         contributor: "Toshiyuki"
     },
@@ -175,8 +198,8 @@ addScenes({
             <p>You go to bed and get more rest.</p>
         </div>,
         options: [
-            { text: "Sleep more.", to: "sleepmore" },
-            { text: "Wake up.", to: "wakeup" }
+            { text: "Sleep more", to: "sleepmore" },
+            { text: "Wake up", to: "wakeup" }
         ],
         contributor: "Dave"
     },
@@ -185,9 +208,9 @@ addScenes({
             <p>You continue to sleep.</p>
         </div>,
         options: [
-            { text: "Sleep more.", to: "sleepmore", if: () => sleepTime < 26 },
-            { text: "Wake up.", to: "sleep_ending", if: () => sleepTime >= 26 },
-            { text: "Wake up.", to: "wakeup", if: () => sleepTime <= 20,  }
+            { text: "Sleep more", to: "sleepmore", if: () => sleepTime < 26 },
+            { text: "Wake up", to: "sleep_ending", if: () => sleepTime >= 26 },
+            { text: "Wake up", to: "wakeup", if: () => sleepTime <= 20,  }
         ],
         action: () => sleepTime++,
         contributor: "Dave"
@@ -199,7 +222,7 @@ addScenes({
         ending: {
             id: "sleep-ending",
             name: "Death by Tornado",
-            description: "Sleep until a tornado kills you."
+            description: "Sleep until a tornado kills you.",
         },
         contributor: "Hunter"
     },  
@@ -210,11 +233,24 @@ addScenes({
             <p>You want to make pancakes, but you have a few types to choose from.</p>
         </div>,
         options: [
-            { text: "Regular.", to: "make_regular_pancakes" },
-            { text: "McDonalds™ brand.", to: "make_mcd_pancakes" },
-            { text: "Chocolate.", to: "make_chocolate_pancakes" },
-            { text: "Peanut butter.", to: "make_pb_pancakes" }
+            { text: "Regular", to: "make_regular_pancakes" },
+            { text: "McDonalds™ brand", to: "make_mcd_pancakes" },
+            { text: "Chocolate", to: "make_chocolate_pancakes" },
+            { text: "Peanut butter", to: "make_pb_pancakes" }
         ],
         contributor: "Dave"
     },
+
+    true_ending: {
+        prompt: () => <div>
+            <p>
+                TODO: i want to talk about how theres no real prize for getting here, and how
+                your actions of getting 100% means killing many others and yourself many times,
+                in many ways. to sort of a way 'your are the monster' here.
+            </p>
+        </div>,
+        options: [],
+        excludeEmptyOptionsCheck: true,
+        noContributor: true,
+    }
 });

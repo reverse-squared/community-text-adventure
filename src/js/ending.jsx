@@ -1,6 +1,6 @@
 // Controls ending save progress
 import React from "react";
-import { addScenes as addScenesReal, setScene } from "web-text-adventure";
+import { addScenes as addScenesReal, setScene } from "web-text-adventure/src/adventure";
 import EndingCard from "@templates/EndingCard";
 
 const endings = {};
@@ -10,6 +10,7 @@ let endingStorage = [];
 if (typeof localStorage !== "undefined") {
     if (!localStorage.endings) localStorage.endings = "";
     endingStorage = localStorage.endings.split(";");
+    endingStorage = endingStorage.filter(x => x !== "");
 }
 
 export function addEnding(endingInfo) {
@@ -39,9 +40,7 @@ export function getGameProgress() {
 }
 
 export function achieveEnding(id) {
-    if (!(id in endings)) return;
-
-    endings[id].achieved = true;
+    if (endings[id]) endings[id].achieved = true;
     endingStorage.push(id);
     if(typeof localStorage !== "undefined") localStorage.endings = endingStorage.join(";");
 }
@@ -101,7 +100,7 @@ export function addScenes(scenes) {
             if(!scenes[id].options) {
                 scenes[id].options = [
                     {
-                        text: "End.",
+                        text: "End",
                         to: "check_new_ending"
                     }
                 ];

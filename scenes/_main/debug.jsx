@@ -1,6 +1,6 @@
 // contains debug scenes and some fancy required ones
 import React from "react";
-import { setConfig, getConfig, getAllScenes } from "web-text-adventure";
+import { setConfig, getConfig, getAllScenes } from "web-text-adventure/src/adventure";
 import { addScenes, resetGame } from "@src/ending";
 import SceneLink from "@templates/SceneLink";
 
@@ -45,9 +45,9 @@ addScenes({
             Are you sure you want to reset all game progress?
         </div>,
         options: [
-            { text: "Yes, Reset.", action: () => resetGame(), to: "BLANKSCENE" },
+            { text: "Yes, reset all progress", action: () => resetGame(), to: "BLANKSCENE" },
             "seperator",
-            { text: "No, do not.", to: "start" },
+            { text: "No, do not", to: "start" },
         ],
         noContributor: true,
     },

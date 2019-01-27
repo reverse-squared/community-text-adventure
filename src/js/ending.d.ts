@@ -1,5 +1,5 @@
 // This module handles endings, see implementations at ./src/ending.jsx
-import { Scene, Text } from 'web-text-adventure';
+import { Scene, Text } from 'web-text-adventure/src/adventure';
 
 /** Info passed to addEnding() */
 interface EndingInfo {

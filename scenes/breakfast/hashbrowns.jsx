@@ -1,5 +1,5 @@
 import React from "react";
-import { } from "web-text-adventure";
+import { } from "web-text-adventure/src/adventure";
 import { addScenes } from "@src/ending";
 import { CircleText } from "@templates/FontStyles";
 
@@ -52,8 +52,9 @@ addScenes({
             </p>
         </div>,
         options: [
-            { text: "Find something else to eat.", to: "wakeup_breakfast", action: () => startedHashbrowns = true }
-        ]
+            { text: "Find something else to eat", to: "wakeup_breakfast", action: () => startedHashbrowns = true }
+        ],
+        contributor: "Dave"
     },
     hash_okaydokey: {
         prompt: () => <div>
@@ -65,7 +66,7 @@ addScenes({
         ending: {
             id: "reading-school",
             name: "Forget How to Read Properly",
-            description: "You half-forgot how to read so you went to reading school"
+            description: "You half-forgot how to read so you went to reading school."
         }
     },
     hash_ofcourse: {
@@ -82,6 +83,66 @@ addScenes({
         ],
         contributor: "Neema"
     },
+    hash_smokeit: {
+        prompt: () => <div>
+            <p>
+                You shred the hashbrownies and shove them into your vaporiser. Time to vape some potato brownies!
+            </p>
+        </div>,
+        options: [
+            { text: "Inhale", to: "hash_smokeit2" },
+            { text: "Stop Vaping", to: "hash_stop_novape" },
+        ],
+        contributor: "Neema"
+    },
+    hash_smokeit2: {
+        prompt: () => <div>
+            <p>
+                You inhale it...
+            </p>
+        </div>,
+        options: [
+            { text: "Inhale MORE", to: "hash_smokeit3" },
+            { text: "Stop Vaping", to: "hash_smoke_end" },
+        ],
+        contributor: "Dave"
+    },
+    hash_smokeit3: {
+        prompt: () => <div>
+            <p>
+                You inhale it...
+            </p>
+        </div>,
+        options: [
+            { text: () => <span>Inhale <span style={{ fontWeight: "900", fontStyle: "italic" }}>M O R E</span></span>, to: "hash_smokeit4" },
+            { text: "Stop Vaping", to: "hash_smoke_end" },
+        ],
+        contributor: "Dave"
+    },
+    hash_smokeit4: {
+        prompt: () => <div>
+            <p>
+                You inhale it...
+            </p>
+        </div>,
+        options: [
+            { text: () => <span style={{ fontFamily: "monospace", fontSize: "", color: "red", fontWeight: "900", fontStyle: "italic", textShadow: "0 0 5px red" }}>I N H A L E &nbsp; M O R E</span>, to: "hash_smoke_end" },
+        ],
+        contributor: "Dave"
+    },
+    hash_smoke_end: {
+        prompt: () => <div>
+            <p>You vaped so much potato brownies, you started to get severe vomiting, seizures, and difficulty breathing.</p>
+            <p>You also passed out, and died of dehydration soon after.</p>
+        </div>,
+        ending: {
+            id: "over-vape",
+            name: "xX_420VapeLord_Xx",
+            description: "You are now in the club of the dankest of dank vape lords. Welcome to the gang!"
+        },
+        contributor: "Hunter"
+    },
+
     hash_definetly: {
         prompt: () => <div>
             <p>
@@ -127,7 +188,7 @@ addScenes({
         </div>,
         ending: {
             id: "all-right",
-            name: "All right.",
+            name: "All right",
             description: "Looks like you are right handed... Let me take care of the left..."
         },
         contributor: "Hunter"
@@ -137,23 +198,36 @@ addScenes({
             <p>You say sure, but the person neat you heard you say "sue". He decideds to sue you for "threatening" to sue him. What do you do?</p>
         </div>,
         options: [
-            { text: "Sue back.", to: "hash_sue" },
-            { text: "Get sued.", to: "hash_get_sued" },
-            { text: "Murder him.", to: "hash_murder" },
-            { text: "Escape.", to: "" },
+            { text: "Sue back", to: "hash_sue" },
+            { text: "Get sued", to: "hash_get_sued" },
+            { text: "Murder him", to: "hash_murder" },
+            { text: "Escape", to: "" },
+            { text: "throw a no u", to: "sue_nou" },
         ],
         contributor: "Hunter"
+    },
+    sue_nou: {
+        prompt: <div>
+            <p>he says quietly:</p>
+            <h1>no u</h1>
+        </div>,
+        ending: {
+            id: "nou",
+            name: "No u",
+            description: "Get \"No U-ed\" after \"No U-ing\" someone.",
+        },
+        contributor: "Dave"
     },
     hash_sue: {
         prompt: () => <div>
             <p>You tell him that you are going to sue him. He says, "bet no proof." What now?</p>
         </div>,
         options: [
-            { text: "Sue.", to: "hash_sue2" },
-            { text: "Sue.", to: "hash_sue2" },
-            { text: "Sue.", to: "hash_sue2" },
-            { text: "Sue.", to: "hash_sue2" },
-            { text: "Sue.", to: "hash_sue2" }
+            { text: "Sue", to: "hash_sue2" },
+            { text: "Sue", to: "hash_sue2" },
+            { text: "Sue", to: "hash_sue2" },
+            { text: "Sue", to: "hash_sue2" },
+            { text: "Sue", to: "hash_sue2" }
         ],
         contributor: "Hunter"
     },
@@ -187,6 +261,7 @@ addScenes({
             id: "sue-murder",
             name: "Violence IS the Answer",
             description: "Hahahahahahahahahahahahahah."
-        }
+        },
+        contributor: "Hunter"
     }
 });

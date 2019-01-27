@@ -1,5 +1,5 @@
 import React from "react";
-import { setScene, setConfig, getConfig, addFlag } from "web-text-adventure";
+import { setScene, setConfig, getConfig, addFlag } from "web-text-adventure/src/adventure";
 import { addScenes, getGameProgress, getAllEndings } from "@src/ending";
 import Credits from "@templates/Credits";
 import SceneLink from "@templates/SceneLink";
