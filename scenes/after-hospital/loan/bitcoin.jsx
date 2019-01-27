@@ -1,6 +1,6 @@
 import React from "react";
 import { addFlag } from "web-text-adventure/src/adventure";
-import { addScenes } from "@src/ending.jsx";
+import { addScenes } from "@src/ending";
 import { RainbowText } from "@templates/FontStyles";
 
 import { LoanHeader, decreaseTurn, formatMoney } from "./loan";

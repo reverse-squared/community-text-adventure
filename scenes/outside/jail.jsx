@@ -1,6 +1,6 @@
 import React from "react";
 import { addFlag, setScene } from "web-text-adventure/src/adventure";
-import { addScenes } from "@src/ending.jsx";
+import { addScenes } from "@src/ending";
 import { GreenGradient } from "@templates/FontStyles";
 
 addFlag("wallHealth", 40);
@@ -163,9 +163,23 @@ addScenes({
         </div>,
         options: [
             // TODO: more of this
-            { text: "Search your Pockets", to: "jail_phase2_card_pockets" }
+            { text: "Search your Pockets", to: "jail_phase2_card_pockets" },
+            { text: "Go to Egypt", to: "jail_gotofuckingEgypt" },
         ],
         contributor: "Dave"
+    },
+    jail_gotofuckingEgypt: {
+        prompt: () => <div>
+            <p>
+                You try to leave jail going to egypt, but the security sees you and then they Yeet you back into your cell. The End.
+            </p>
+        </div>,
+        ending: {
+            id: "yeeted-into-the-cell",
+            name: "Attempt to go to Egypt",
+            description: "...exept you are in jail and wanted, so you are Yeeted back into your jail cell."
+        },
+        contributor: "Alchemyking"
     },
     jail_phase2_infirm: {
         prompt: () => <div>
