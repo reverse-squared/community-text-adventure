@@ -42,7 +42,7 @@ const BTC_EXCHANGES = [
     0.0054123,
     0.001852,
     0.0041,
-    0.000000000000000111111111111111115, // :joy:
+    0.00000005,
 ];
 
 function cashToBTC(cash) {
@@ -58,7 +58,7 @@ const formatBTC = (num) => {
 
 const LoanBTCHeader = () => <div>
     {
-        loan_payloan
+        !loan_payloan
             ? <p className={"loan-header " + (loanTurns < 10 ? "loan-header-low" : "")} style={{ marginBottom: "10px" }}>
                 You need to pay off a loan of <strong>$4313</strong>. You have <strong>{loanTurns}</strong> turns left to pay it off.
             </p>
@@ -213,7 +213,7 @@ addScenes({
         </div>,
         ending: {
             id: "btc-win-billion",
-            name: "Bitcoin Billionaire",
+            name: "Bitcoin Millionaire",
             description: "Pay off your loan by getting crazy rich off of Bitcoin."
         },
         contributor: "Dave",

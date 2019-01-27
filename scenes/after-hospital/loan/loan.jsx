@@ -23,7 +23,7 @@ export const decreaseTurn = () => {
         if (loan_initial_deposit > 0) {
             
             if(loan_walletcash >= 4313 || loan_payloan) {
-                if(loan_walletcash>=1000000000) {
+                if(loan_walletcash>=1000000) {
                     setScene("loan_bitcoin_win");
                 } else {
                     setScene("loan_bitcoin_win_sortof");
