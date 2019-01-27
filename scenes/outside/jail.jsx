@@ -165,6 +165,7 @@ addScenes({
             // TODO: more of this
             { text: "Search your Pockets", to: "jail_phase2_card_pockets" },
             { text: "Go to Egypt", to: "jail_gotofuckingEgypt" },
+            { text: "Go out the Window", to: "escape_via_the_window_lmao" },
         ],
         contributor: "Dave"
     },
@@ -180,6 +181,18 @@ addScenes({
             description: "...exept you are in jail and wanted, so you are Yeeted back into your jail cell."
         },
         contributor: "Alchemyking"
+    },
+    escape_via_the_window_lmao: {
+        prompt: () => <div>
+            <p>
+                You notice the window is open (and not smashed), so you decide to escape that way. It works and now no one noticed anything that happened that day.
+            </p>
+        </div>,
+        ending: {
+            id: "windowescape",
+            name: "Window Escape",
+            description: "Escape jail thru a window."
+        }
     },
     jail_phase2_infirm: {
         prompt: () => <div>
