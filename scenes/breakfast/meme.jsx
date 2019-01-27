@@ -24,7 +24,7 @@ addScenes({
         options: [
             { text: "Attention, all Fortnite gamers...", to: "meme_attention_all_gamers" },
             { text: "I wanna be tracer...", to: "meme_overwatch" },
-            { text: "1 2 7 3...", to: "" },
+            { text: "1 2 7 3...", to: "meme_1273" },
             { text: "I'm going to say the N-Word...", to: "meme_word" },
             { text: "This is so sad... Alexa play...", to: "meme_alexa" },
             { text: "Wait. That's illegal...", to: "" },
@@ -4799,5 +4799,38 @@ addScenes({
             description: "Pathetic..."
         },
         contributor: "Hunter"
+    },
+    meme_1273: {
+        prompt: () => <div>
+            <p>That’s not how counting works! You get sent to Baldi’s Basics, where you have to endure the toughest question of all...</p>
+            <p><b>WHAT’S 1 + 1?,</b></p>
+        </div>,
+        options: [
+            { text: "2", to: "meme_1273_2" },
+            { text: "83838383838", to: "meme_1273_8" },
+        ],
+        contributor: "Alchemyking"
+    },
+    meme_1273_2: {
+        prompt: () => <div>
+            <p>Suddenly, a bunch of catgirls break into the classroom and maul you to death, all while some sort of Estonian pop song plays in the background.</p>
+        </div>,
+        ending: {
+            id: "nni",
+            name: "NICO NICO NIIII",
+            description: "Still a better answer than 9 + 10 = 21."
+        },
+        contributor: "Alchemyking"
+    },
+    meme_1273_8: {
+        prompt: () => <div>
+            <p>You got it right! as a reward, the teacher lets you go down Rockefeller Street. You now know what Rockefeller groove is.</p>
+        </div>,
+        ending: {
+            id: "rockefeller-street",
+            name: "YOU’RE WINNER!",
+            description: "CONGRATATION!"
+        },
+        contributor: "Alchemyking"
     }
 });
