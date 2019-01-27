@@ -74,7 +74,7 @@ function tryScene(scene) {
     }
 
     if(scenes[scene].ending) {
-        if ((typeof scenes[scene].ending.description === "string") && !scenes[scene].ending.description.endsWith(".") && !scenes[scene].ending.description.endsWith("...") && !scenes[scene].ending.description.endsWith("!") && !scenes[scene].ending.description.endsWith("?") && !scenes[scene].ending.description.endsWith(":(") && !scenes[scene].ending.description.endsWith(":)")) {
+        if ((typeof scenes[scene].ending.description === "string") && !scenes[scene].ending.description.endsWith(".") && !scenes[scene].ending.description.endsWith("\"") && !scenes[scene].ending.description.endsWith("...") && !scenes[scene].ending.description.endsWith("!") && !scenes[scene].ending.description.endsWith("?") && !scenes[scene].ending.description.endsWith(":(") && !scenes[scene].ending.description.endsWith(":)")) {
             throw new Error("Ending does not end with a period or punctionation mark.");
         }
         if (scenes[scene].ending.name.endsWith(".") && !scenes[scene].ending.name.endsWith("...")) {

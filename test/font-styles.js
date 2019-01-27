@@ -1,3 +1,6 @@
+require("module-alias/register");
+require("@babel/register");
+
 describe("Font Styles", () => {
     const FontStyles = require("../templates/FontStyles");
     Object.keys(FontStyles).forEach(style => {
