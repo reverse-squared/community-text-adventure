@@ -37,11 +37,24 @@ addScenes({
             { text: "You're gonna have a bad time...", to: "" },
             { text: "NANI?!?!", to: "" },
             { text: "That's what she said...", to: "" },
-            { text: "I play Pokemon Go...", to: "" },
+            { text: "I play Pokemon Go...", to: "meme_pokemon_go" },
             { text: "TURN IT UP TO 11...", to: "meme_turn11" },
             { text: "Wake me up inside...", to: "" }
         ],
         contributor: "Hunter, Helvetica, and Dave"
+    },
+    meme_pokemon_go: {
+        prompt: () => <div>
+            <p>
+                Get out this is too old, like what? 2015?
+            </p>
+        </div>,
+        ending: {
+            id: "2015",
+            name: "Get Kicked out",
+            description: "What is this? 2015?"
+        },
+        contributor: "Koz"
     },
     meme_turn11: {
         prompt: () => <div>
