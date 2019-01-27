@@ -10,6 +10,7 @@ let endingStorage = [];
 if (typeof localStorage !== "undefined") {
     if (!localStorage.endings) localStorage.endings = "";
     endingStorage = localStorage.endings.split(";");
+    endingStorage = endingStorage.filter(x => x !== "");
 }
 
 export function addEnding(endingInfo) {
@@ -39,9 +40,7 @@ export function getGameProgress() {
 }
 
 export function achieveEnding(id) {
-    if (!(id in endings)) return;
-
-    endings[id].achieved = true;
+    if (endings[id]) endings[id].achieved = true;
     endingStorage.push(id);
     if(typeof localStorage !== "undefined") localStorage.endings = endingStorage.join(";");
 }

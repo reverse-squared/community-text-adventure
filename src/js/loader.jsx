@@ -1,11 +1,14 @@
 // This file handles hot-reloading and starting up 
 // startup file, loads all other files
+import upgrade from "./upgrade";
 import "@templates/CustomHTML";
 import { setScene } from "web-text-adventure/src/adventure";
 
 // CSS Loading
 import "@css/style.css";
 import(/* webpackPrefetch: true, webpackPreload: true */ "../css/style-offload.css");
+
+upgrade();
 
 // manually prefetch Google Fonts Files
 const gfonts = "https://fonts.googleapis.com/css?family=Roboto:400,700";
