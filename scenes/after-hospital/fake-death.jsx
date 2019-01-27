@@ -27,9 +27,6 @@ addScenes({
         ],
         contributor: "Hunter"
     },
-    actionss: {
-
-    },
     grave_death_leave: {
         prompt: () => <div>
             <p>When you left your grave, the burrial ceremony wasn't over. People though you were a zombie and shot you down.</p>
@@ -151,8 +148,6 @@ addScenes({
         contributor: "Dave"
     },
 
-    // TODO: bank_rob_right 
-    // TODO: bank_caught
     bank_rob_right: {
         prompt: () => <div>
             <p>
@@ -162,19 +157,19 @@ addScenes({
         ending: {
             id: "bank-vault",
             name: "Inside the Bank Vault",
-            description: "Unlock the bank vault somehow",
+            description: "Unlock the bank vault somehow.",
         }
     },
     bank_caught: {
         prompt: () => <div>
             <p>
-                You got caught!! If only you would have had one more chance you would have figured out that password!
+                You got caught! If only you would have had one more chance you would have figured out that password!
             </p>
         </div>,
         ending: {
             id: "bank-vault",
-            name: "Inside the Bank Vault",
-            description: "Unlock the bank vault somehow",
+            name: "HACKERMAN",
+            description: "Because real hackers just guess...",
         }
     },
 

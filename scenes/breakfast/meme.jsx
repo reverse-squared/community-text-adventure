@@ -6,6 +6,7 @@ import SceneLink from "@templates/SceneLink";
 import checkCard from "@src/card";
 
 addFlag("collect200", false);
+addFlag("scriptsRead", 0);
 
 function checkCreditCard() {
     if(checkCard(document.getElementById("cardid").value)) {
@@ -137,9 +138,9 @@ addScenes({
             <p>I don't know about you, but it looks <i style={{fontWeight: "bold"}}>A LOT</i> like <span style={{color: "green"}}>weed</span> to me.</p>
         </div>,
         options: [
-            { text: "Call the police.", to: "" },
-            { text: "Do literally nothing.", to: "" },
-            { text: "\"Officer, he's over here!\"", to: "" } 
+            { text: "Call the Police", to: "" },
+            { text: "Do Literally Nothing", to: "" },
+            { text: "\"Officer, He's Over Here\"", to: "" } 
         ],
         contributor: "Hunter"
     },
@@ -4757,9 +4758,46 @@ addScenes({
             </p>
         </div>,
         options: [
-            { text: "DO IT AGAIN!", to: "" },
-            { text: "no dont...", to: "" }
+            { text: "DO IT AGAIN!", to: "meme_bee", action: () => scriptsRead++ },
+            { text: "no dont...", to: "meme_bee_dont" }
         ],
+        action: () => {
+            if(scriptsRead > 5) {
+                setScene("bee_lover");
+            }
+        },
+        contributor: "Hunter"
+    },
+    bee_lover: {
+        prompt: () => <div>
+            <p>You heard <span style={{color:"yellow"}}>The Bee Movie</span> so many times, you decided you spend the rest of your life protecting the life of bees.</p>
+        </div>,
+        ending: {
+            id: "bee-lover",
+            name: "Bee Lover",
+            description: "You like jazz?"
+        },
+        contributor: "Hunter"
+    },
+    meme_bee_dont: {
+        prompt: () => <div>
+            <p>As a smart person, you did not waste your time hearing the <span style={{color:"yellow"}}>The Bee Movie</span> script even more. What now do you ask Alexa?</p>
+        </div>,
+        options: [
+            { text: "What is One Quintillion to the Power of One Quintillion?", to: "" },
+            { text: "What does the fox say?", to: "" },
+            { text: "Show me a recipe for a grilled cheese sandwich", to: "meme_alexa2_grilled_cheese" }
+        ]
+    },
+    meme_alexa2_grilled_cheese: {
+        prompt: () => <div>
+            <p><b>Alexa</b>: Pathetic. You're 32 years of age, and you don't know how to make a grilled cheese sandwich. <b>IT'S NAME IS THE RECIPE YOU #$@&%*!</b></p>
+        </div>,
+        ending: {
+            id: "grilled-cheese",
+            name: "Bad at Cooking",
+            description: "Pathetic..."
+        },
         contributor: "Hunter"
     }
 });
