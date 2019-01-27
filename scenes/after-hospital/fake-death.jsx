@@ -169,7 +169,7 @@ addScenes({
         ending: {
             id: "bank-vault",
             name: "HACKERMAN",
-            description: "Because real hackers just guess...",
+            description: "Suck it up buttercup... better luck next time!",
         }
     },
 

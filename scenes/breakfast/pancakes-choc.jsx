@@ -226,7 +226,7 @@ addScenes({
         </div>,
         ending: {
             id: "too-much-cocaine",
-            name: "Are you sure that's White Chocolate?",
+            name: "Are You Sure That's White Chocolate?",
             description: "You're not even sure if its chocolate-flavored cocaine or cocaine-flavored chocolate anymore."
         },
         contributor: "Neema"
