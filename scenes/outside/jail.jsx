@@ -172,7 +172,7 @@ addScenes({
     jail_gotofuckingEgypt: {
         prompt: () => <div>
             <p>
-                You try to leave jail going to egypt, but the security sees you and then they Yeet you back into your cell. The End.
+                You try to leave jail going to Egypt, but the security sees you and then they Yeet you back into your cell. The End.
             </p>
         </div>,
         ending: {

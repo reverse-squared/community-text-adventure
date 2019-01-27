@@ -188,7 +188,7 @@ addScenes({
         </div>,
         ending: {
             id: "all-right",
-            name: "All right",
+            name: "All Right",
             description: "Looks like you are right handed... Let me take care of the left..."
         },
         contributor: "Hunter"
@@ -202,18 +202,18 @@ addScenes({
             { text: "Get sued", to: "hash_get_sued" },
             { text: "Murder him", to: "hash_murder" },
             { text: "Escape", to: "" },
-            { text: "throw a no u", to: "sue_nou" },
+            { text: "Throw a No U", to: "sue_nou" },
         ],
         contributor: "Hunter"
     },
     sue_nou: {
         prompt: <div>
-            <p>he says quietly:</p>
-            <h1>no u</h1>
+            <p>He says quietly:</p>
+            <h1>No U</h1>
         </div>,
         ending: {
             id: "nou",
-            name: "No u",
+            name: "No U",
             description: "Get \"No U-ed\" after \"No U-ing\" someone.",
         },
         contributor: "Dave"
