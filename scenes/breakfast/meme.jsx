@@ -7,6 +7,11 @@ import checkCard from "@src/card";
 
 addFlag("collect200", false);
 addFlag("scriptsRead", 0);
+addFlag("failedCrusades", 0);
+
+const CrusadeHeader= () => <div>
+    <p>Your Crusade's Have Failed {failedCrusades} time{(failedCrusades != 1) ? "s" : ""}!</p>
+</div>;
 
 function checkCreditCard() {
     if(checkCard(document.getElementById("cardid").value)) {
@@ -31,8 +36,8 @@ addScenes({
             { text: "What even is this?", to: "meme_whateven" },
             { text: "Kris, is that a weed...", to: "meme_weed" },
             { text: "I smell pennies...", to: "" },
-            { text: "Mary, is that a police...", to: "" },
-            { text: "It's time for a crusade...", to: "" },
+            { text: "Mary, is that a police...", to: "meme_police" },
+            { text: "It's time for a crusade...", to: "meme_crusade" },
             { text: "Yeetus yeetus...", to: "" },
             { text: "You're gonna have a bad time...", to: "" },
             { text: "NANI?!?!", to: "" },
@@ -4845,5 +4850,56 @@ addScenes({
             description: "CONGRATATION!"
         },
         contributor: "Alchemyking"
+    },
+    meme_police: {
+        prompt: () => <div>
+            <p>You see that Mary has a police officer next to her, so you decide to call the <span style={{color: "green"}}><i>420 Gang</i></span> to warn them of their presence. Thanks loyal gang member.</p>
+        </div>,
+        ending: {
+            id: "gang-member",
+            name: "Loyal Gang Member",
+            description: "Give a good warning of the \"Bad Guys\"..."
+        },
+        contributor: "Hunter"
+    },
+    meme_crusade: {
+        prompt: () => <div>
+            <CrusadeHeader />
+            <p>You decicde to do a crusade... <span style={{color: "red"}}><b>It failed...</b></span></p>
+        </div>,
+        options: [
+            { text: "Crusade Again...", to: "meme_crusade" },
+            { text: "Stop the Crusades", to: "meme_crusade_stop", if: () => failedCrusades > 0 }
+        ],
+        action: () => {
+            failedCrusades++;
+
+            if(failedCrusades >= 1000000) {
+                setScene("crusades_one_mil")
+            }
+        },
+        contributor: "Hunter"
+    },
+    meme_crusade_stop: {
+        prompt: () => <div>
+            <p>You stopped the crusades after {failedCrusades} attempt{(failedCrusades != 1) ? "s" : ""}. Nobody listened to you and you eventually fell into a deep depression...</p>
+        </div>,
+        ending: {
+            id: "crusade-stop",
+            name: "Stopping the Crusades",
+            description: "At least you know when to stop..."
+        }
+    },
+    crusades_one_mil: {
+        prompt: <div>
+            <p><b>WOW!</b> We did not expect you to click that button one million times. In fact, you probably didn't you either used an autoclicker or you viewed
+                the source code and set the variable in the developer tools console. You little cheater...</p>
+        </div>,
+        ending: {
+            id: "crusade-cheater",
+            name: "Probably Cheater",
+            description: "We will never know."
+        },
+
     }
 });
