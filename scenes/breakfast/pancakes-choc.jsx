@@ -74,7 +74,7 @@ addScenes({
             { text: "Yell", to: "" },
             { text: "Cry because your breakfast was ruined", to: "" },
         ],
-        contributor: "Daniel (Phrotonz)"
+        contributor: null,
     },
     pancakes_white_chocolate: {
         prompt: () => <div>

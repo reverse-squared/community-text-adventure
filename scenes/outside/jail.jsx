@@ -7,13 +7,27 @@ addFlag("wallHealth", 40);
 addFlag("hasMetalBar", false);
 addFlag("jailTurns", 10);
 addFlag("jailRunTurns", 20);
+addFlag("jailForCard", false);
 
-const JailCellHeader = () => <div>
-    <p className={"loan-header " + (jailTurns < 3 ? "loan-header-low" : "")}>
-        You have <strong>{jailTurns}</strong> turns before the <GreenGradient string="Lizard's Venom"/> kicks in.
-        Wall Health: {wallHealth}
-    </p>
-</div>;
+const JailCellHeader = () => {
+    if(jailForCard) {
+        return <div>
+            <p className={"loan-header " + (jailTurns < 3 ? "loan-header-low" : "")}>
+                You are stuck in jail...
+                <br />
+                Wall Health: {wallHealth}
+            </p>
+        </div>;
+    } else {
+        return <div>
+            <p className={"loan-header " + (jailTurns < 3 ? "loan-header-low" : "")}>
+                You have <strong>{jailTurns}</strong> turns before the <GreenGradient string="Lizard's Venom" /> kicks in.
+                <br/>
+                Wall Health: {wallHealth}
+            </p>
+        </div>;
+    }
+};
 
 const JailRunHeader = () => <div>
     <p className={"loan-header " + (jailRunTurns < 3 ? "loan-header-low" : "")}>
@@ -22,14 +36,18 @@ const JailRunHeader = () => <div>
 </div>;
 
 function decreaseCellTurn() {
-    jailTurns--;
+    if (!jailForCard) jailTurns--;
     
     if(jailTurns === 0 && wallHealth <= 0) {
         setScene("jail_die_breaking");
     }else if(jailTurns === 0 && wallHealth > 0) {
         setScene("jail_die");
     }else if(jailTurns > 0 && wallHealth <= 0) {
-        setScene("jail_phase2");
+        if(jailForCard) {
+            setScene("jail_phase2_card");
+        } else {
+            setScene("jail_phase2");
+        }
     }
 }
 
@@ -42,6 +60,18 @@ addScenes({
         prompt: () => <div>
             <JailCellHeader />
             <p>You punch the lizard, but it’s ok. Oh, look, animal rights people have sent you to jail! How will you escape?</p>
+        </div>,
+        options: [
+            { text: "Punch the Wall", to: "jail_wall_punch" },
+            { text: "Chip Away at the Wall", to: "jail_wall_chip", if: () => hasMetalBar },
+            { text: "Search Around the Cell", to: "jail_metal_bar", action: () => hasMetalBar = true, if: () => !hasMetalBar }
+        ],
+        contributor: "Daniel (Phrotonz)"
+    },
+    jail_start_card: {
+        prompt: () => <div>
+            <JailCellHeader />
+            <p>Welp, now you're in jail now! How will you escape?</p>
         </div>,
         options: [
             { text: "Punch the Wall", to: "jail_wall_punch" },
@@ -118,7 +148,7 @@ addScenes({
 
     jail_phase2: {
         prompt: () => <div>
-            <p>You escaped from your cell, but you must find a way to cure yourself from the venom. Where do you do?</p>
+            <p>You escaped from your cell, but you must find a way to cure yourself from the venom. What do you do?</p>
         </div>,
         options: [
             { text: "Search the Infirmary", to: "jail_phase2_infirm" },
@@ -126,6 +156,16 @@ addScenes({
             { text: "Search your Pockets", to: "jail_phase2_pockets" }
         ],
         contributor: "Hunter"
+    },
+    jail_phase2_card: {
+        prompt: () => <div>
+            <p>You escaped from your cell. What do you do?</p>
+        </div>,
+        options: [
+            // TODO: more of this
+            { text: "Search your Pockets", to: "jail_phase2_card_pockets" }
+        ],
+        contributor: "Dave"
     },
     jail_phase2_infirm: {
         prompt: () => <div>
@@ -153,6 +193,18 @@ addScenes({
         prompt: <div>
             <p>OwO look at that. There's a vaccine in your pocket for lizard venom. You inject it in yourself. For some reason this seems really familiar to what you do at home all the time. You feel a lot better, 
                 but now the popo are looking for you. Gotta run!
+            </p>
+        </div>,
+        options: [
+            { text: "Run Away", to: "jail_run_start" },
+            { text: "Get Caught", to: "jail_caught" }
+        ],
+        contributor: "Hunter"
+    },
+    jail_phase2_card_pockets: {
+        prompt: <div>
+            <p>
+                OwO look at that. There's a vaccine in your pocket for lizard venom. You aren't sure what you can do with it as you don't have lizard venom poisoning. Uh oh, now the popo are looking for you. Gotta run!
             </p>
         </div>,
         options: [

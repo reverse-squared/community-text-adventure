@@ -1,9 +1,19 @@
 import React from "react";
-import { addFlag } from "web-text-adventure/src/adventure";
-import { addScenes } from "@src/ending.jsx";
+import { addFlag, setScene } from "web-text-adventure/src/adventure";
+import { addScenes } from "@src/ending";
 import { GreenGradient } from "@templates/FontStyles";
+import SceneLink from "@templates/SceneLink";
+import checkCard from "@src/card";
 
 addFlag("collect200", false);
+
+function checkCreditCard() {
+    if(checkCard(document.getElementById("cardid").value)) {
+        setScene("real_card");
+    } else {
+        setScene("invalid_card");
+    }
+}
 
 addScenes({
     hash_stop_novape: {
@@ -12,9 +22,9 @@ addScenes({
         </div>,
         options: [
             { text: "Attention, all Fortnite gamers...", to: "attention_all_gamers" },
-            { text: "I wanna be tracer...", to: "" },
+            { text: "I wanna be tracer...", to: "overwatch" },
             { text: "1 2 7 3...", to: "" },
-            { text: "I'm going to say the N-Word...", to: "" },
+            { text: "I'm going to say the N-Word...", to: "nword" },
             { text: "This is so sad... Alexa play...", to: "" },
             { text: "Wait. That's illegal...", to: "" },
             { text: "What even is this?", to: "" },
@@ -43,6 +53,80 @@ addScenes({
         contributor: "Hunter"
     },
     attention_all_gamers: {
-        
+        prompt: () => <div>
+            <p>
+                <span style={{ color: "red" }}>Attention all Community Text Adventure gamers!</span> Hunter is in great danger, and he needs your help.
+                He is too caught up in having an actual life that he has not worked on the game for several minutes! If he doesn't get back to the game
+                the fans will throw hate!
+                All he needs is your credit card number, the three digits on the back, and the expiration month and year.
+                But you got to be quick, so that Hunter can get the pull request, compile the game, and upload the <em><b>EPIC UPDATE TO CTA</b></em>.
+            </p>
+            <br/><br/>
+            <p style={{textAlign:"center"}}>
+                Enter in your credit card number:
+            </p>
+            <div style={{ textAlign: "center" }}>
+                <input style={{ background: "black", color: "white", padding: "1em", border: "1px solid white" }} type="text" id="cardid" placeholder="A totally legitimate input box. " />
+                {" "}
+                <button style={{ background: "black", color: "white", padding: "1em", border: "1px solid white" }} onClick={checkCreditCard}>Send</button>
+                <br/>
+                <SceneLink to="attention_all_gamers2" style={{ fontSize: "0.5em", textAlign: "center" }}>more info</SceneLink>
+            </div>
+        </div>,
+        options: [],
+        excludeEmptyOptionsCheck: true,
+        contributor: "Daniel (Phrotonz) and Dave"
+    },
+    attention_all_gamers2: {
+        prompt: () => <div><p>it doesn't actually do anything with what you type in lmao.</p></div>,
+        options: [
+            { text: "Back", to: "attention_all_gamers" }
+        ]
+    },
+
+    nword: {
+        prompt: () => <div>
+            <code>The Devs: Actually let's not.</code><br/>
+        </div>,
+        ending: {
+            id: "banned-by-devs",
+            name: "Blocked by The Devs",
+            description: "We can't say the N-Word in this game, says the devs."
+        }
+    },
+
+    real_card: {
+        prompt: () => <div>
+            <p>
+                The card gets accepted, and you have successfully helped Hunter work on CTA.
+            </p>
+        </div>,
+        ending: {
+            id: "real-card",
+            name: "Honest Person",
+            description: "Enter a real credit card into the box."
+        },
+        contributor: "Dave"
+    },
+    invalid_card: {
+        prompt: () => <div>
+            <p>
+                They find out that your didn't enter a credit card into it, and they send you to jail. (Who would even try entering a real card into it anyways?)
+            </p>
+        </div>,
+        options: [
+            {
+                text: "Go to Jail, do not pass go",
+                to: "jail_start_card",
+                action: () => jailForCard = true,
+            },
+            {
+                text: "Go to Jail, and pass go and collect $200",
+                to: null,
+                disabledText: true,
+                if: () => false,
+            },
+        ],
+        contributor: "Hunter"
     }
 });
