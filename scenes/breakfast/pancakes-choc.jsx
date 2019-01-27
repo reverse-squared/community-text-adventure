@@ -74,6 +74,7 @@ addScenes({
             { text: "Yell", to: "" },
             { text: "Cry because your breakfast was ruined", to: "" },
         ],
+        // TODO: Find Daniel's friend's name.
         contributor: null,
     },
     pancakes_white_chocolate: {
@@ -387,5 +388,16 @@ addScenes({
             description: "It's very tasety ( ͡° ͜ʖ ͡°)."
         },
         contributor: "Hunter"
+    },
+    pancakes_white_chocolate_cocaine_snort: {
+        prompt: () => <div>
+            <p>You snort the pancakes, what the heck!?</p>
+        </div>,
+        ending: {
+            id: "snort-pancakes",
+            name: "Pancakes are Drugs, I Guess?",
+            description: "What the heck man!?"
+        },
+        contributor: "Dave"
     }
 });

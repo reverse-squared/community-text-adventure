@@ -9,9 +9,9 @@ addFlag("collect200", false);
 
 function checkCreditCard() {
     if(checkCard(document.getElementById("cardid").value)) {
-        setScene("real_card");
+        setScene("meme_real_card");
     } else {
-        setScene("invalid_card");
+        setScene("meme_invalid_card");
     }
 }
 
@@ -21,10 +21,10 @@ addScenes({
             <p><b>HIT OR MISS, I NEVER HIT THAT VAPE! HUH?</b> You have become a <GreenGradient string="Level 100 Master"/>. Now this is epic. That's how <s>the mafia</s> school works.</p>
         </div>,
         options: [
-            { text: "Attention, all Fortnite gamers...", to: "attention_all_gamers" },
-            { text: "I wanna be tracer...", to: "overwatch" },
+            { text: "Attention, all Fortnite gamers...", to: "meme_attention_all_gamers" },
+            { text: "I wanna be tracer...", to: "meme_overwatch" },
             { text: "1 2 7 3...", to: "" },
-            { text: "I'm going to say the N-Word...", to: "nword" },
+            { text: "I'm going to say the N-Word...", to: "meme_word" },
             { text: "This is so sad... Alexa play...", to: "" },
             { text: "Wait. That's illegal...", to: "" },
             { text: "What even is this?", to: "" },
@@ -52,7 +52,7 @@ addScenes({
         ],
         contributor: "Hunter"
     },
-    attention_all_gamers: {
+    meme_attention_all_gamers: {
         prompt: () => <div>
             <p>
                 <span style={{ color: "red" }}>Attention all Community Text Adventure gamers!</span> Hunter is in great danger, and he needs your help.
@@ -70,21 +70,24 @@ addScenes({
                 {" "}
                 <button style={{ background: "black", color: "white", padding: "1em", border: "1px solid white" }} onClick={checkCreditCard}>Send</button>
                 <br/>
-                <SceneLink to="attention_all_gamers2" style={{ fontSize: "0.5em", textAlign: "center" }}>more info</SceneLink>
+                <SceneLink to="meme_attention_all_gamers2" style={{ fontSize: "0.5em", textAlign: "center" }}>more info</SceneLink>
             </div>
         </div>,
         options: [],
         excludeEmptyOptionsCheck: true,
         contributor: "Daniel (Phrotonz) and Dave"
     },
-    attention_all_gamers2: {
-        prompt: () => <div><p>it doesn't actually do anything with what you type in lmao.</p></div>,
+    meme_attention_all_gamers2: {
+        prompt: () => <div>
+            <p>It doesn't actually do anything with what you type in LMAO.</p>
+            <small>If you really don't believe us, check the source code at <a href="https://github.com/WeAreDevs/community-text-adventure" target="_blank">https://github.com/WeAreDevs/community-text-adventure</a></small>
+        </div>,
         options: [
-            { text: "Back", to: "attention_all_gamers" }
+            { text: "Back", to: "meme_attention_all_gamers" }
         ]
     },
 
-    nword: {
+    meme_nword: {
         prompt: () => <div>
             <code>The Devs: Actually let's not.</code><br/>
         </div>,
@@ -95,7 +98,7 @@ addScenes({
         }
     },
 
-    real_card: {
+    meme_real_card: {
         prompt: () => <div>
             <p>
                 The card gets accepted, and you have successfully helped Hunter work on CTA.
@@ -108,7 +111,7 @@ addScenes({
         },
         contributor: "Dave"
     },
-    invalid_card: {
+    meme_invalid_card: {
         prompt: () => <div>
             <p>
                 They find out that your didn't enter a credit card into it, and they send you to jail. (Who would even try entering a real card into it anyways?)
