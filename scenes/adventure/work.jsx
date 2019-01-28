@@ -8,11 +8,11 @@ addFlag("hasChosenToCommit", false);
 addScenes({
     work_pre: {
         prompt: () => <div>
-            <p>He explains to you that you haven't shown up to work yesterday which you were supposed to. Someone had to make up all the work you missed and missing something.</p>
+            <p>He explains to you that you haven't shown up to work yesterday which you were supposed to. Someone had to make up all the work you missed and missing something. He says that you need to come.</p>
         </div>,
         options: [
             { text: "Go to work", to: "work_start" },
-            { text: "Don't go to work", to: "" }
+            { text: "Don't go to work", to: "work_dont" }
             // TODO: Don't go to work path.
         ],
         contributor: "Hunter"
@@ -147,5 +147,15 @@ addScenes({
             { text: "Walk your dog", to: "dog_walk" }
         ],
         contributor: "Hunter"
+    },
+    work_dont: {
+        prompt: () => <div>
+            <p>You decide not to go to work, even after being told.</p>
+        </div>,
+        ending: {
+            id: "disobedient",
+            name: "Disobedient",
+            description: "Don't go to work, even after being told."
+        }
     }
 });
