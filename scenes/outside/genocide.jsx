@@ -140,7 +140,8 @@ addScenes({
             { text: "Stab him", to: "" },
             { text: "Go to work", to: "work_start" },
             { text: "Snap his neck", to: "" },
-        ]
+        ],
+        contributor: "Daniel (Phrotonz)"
     }
     //#region Lizard
     
