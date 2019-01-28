@@ -1,6 +1,8 @@
 import React from "react";
-import { } from "web-text-adventure/src/adventure";
+import { addFlag } from "web-text-adventure/src/adventure";
 import { addScenes } from "@src/ending";
+
+addFlag("hasCheckedLong", false);
 
 addScenes({
     dog_walk: {
@@ -63,7 +65,9 @@ addScenes({
         options: [
             { text: "Play Half Life 3", to: "hl3" },
             { text: "Play Minecraft", to: "minecraft_start" },
-            { text: "Play LEGO Sid Meier's Tom Clancy SUPER Fortnite V Modern of War Craft FIFA Remastered Metal Fallcry Special Edition", to: "" }
+            { text: "Play LEGO Sid Meier's Tom Clancy SUPER Fortnite V Modern of War Craft FIFA Remastered Metal Fallcry Special Edition", to: "" },
+            { text: "Play Discord", to: "play_discord" },
+            { text: "Play Sonic Team Presents: LEGO Tom Hideo Kojima Game Meier's Rise of the SUPER War for the NEW mini Mega Power Nintendo Dawn of the White Virtual Alpha Omega Sequel Final Smash 2 3 DS i lite Light of the Micro XL DD LL Mix Prequel of the e u Boy the Advance SP Player Master Reboot of the Disney Color Cube and Watch Entertainment System Planet Marvel of the Nomad Apes Game of the Year Edition and Knuckles Jam VS Sega Capcom Plus Version Episode Two Volume Two", if: () => !hasCheckedLong, disabledText: "Play Sonic Team Presents: LEGO Tom Hideo Kojima Game Meier's Rise of the SUPER War for the NEW mini Mega Power Nintendo Dawn of the White Virtual Alpha Omega Sequel Final Smash 2 3 DS i lite Light of the Micro XL DD LL Mix Prequel of the e u Boy the Advance SP Player Master Reboot of the Disney Color Cube and Watch Entertainment System Planet Marvel of the Nomad Apes Game of the Year Edition and Knuckles Jam VS Sega Capcom Plus Version Episode Two Volume Two (Already Checked!)", action: () => hasCheckedLong = true, to: "computer_big_boi" }
         ],
         contributor: "Hunter"
     },
@@ -78,6 +82,42 @@ addScenes({
             { text: "Candy Crush Friends Saga", to: "" },
             { text: "How About No", to: "" }
         ],
+        contributor: "Hunter"
+    },
+
+    // TODO: Maybe use Discord API for a chat client.
+    play_discord: {
+        prompt: () => <div>
+            <p>You decide to play your favorite game, <span style={{color: "#7289DA"}}><strong>Discord</strong></span></p>
+        </div>,
+        ending: {
+            id: "discord",
+            name: "The Anti-Anit-Social Person",
+            description: "Hang out with your friends... digitally."
+        }
+    },
+
+    computer_big_boi: {
+        prompt: () => <div>
+            <p>Before buying this game, you must know that this game is <strong>Only For Olympic Offical Video Game With Net Play Only On Games for Windows PlayStation Live Only For Nintendo 64 Only on Xbox Includes Your Own Mama Baby, Requires Kinect Sensor, Includes 50 Classic Atari Titles Includes Original Pac-Man Arcade Game, Platinum Hits Best Seller Award, Has the Official Nintendo Seal of Quality, Playable in 2D and 3D. 3D Mode for ages 7+. See back. Has the Official Genesis Seal of Quality, Nintendo WiFi connection, requires the Wii Motion Plus controller, Online Features available, learn with platinum the best of playstation 2, rated T for Teen, only for the gameboy color...</strong></p>
+            <p>Do you still want to buy the game?</p>
+            <a href="https://i.imgur.com/oNWsidw.png" target="_blank">Game Cover</a>
+        </div>,
+        options: [
+            { text: "Yes", to: "big_boi_buy" },
+            { text: "No", to: "computer_start" },
+        ],
+        contributor: "Hunter"
+    },
+    big_boi_buy: {
+        prompt: () => <div>
+            <p>You decide to buy the game. Yay!</p>
+        </div>,
+        ending: {
+            id: "big-boi",
+            name: "No Buyers Remorse with This One",
+            description: "On a scale from 1-10, how good was the game?"
+        },
         contributor: "Hunter"
     }
 });
