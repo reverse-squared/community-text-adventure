@@ -142,9 +142,9 @@ addScenes({
             <p>You leave work, now what do you do?</p>
         </div>,
         options: [
-            { text: "Go on your computer", to: "" },
-            { text: "Go on your phone", to: "" },
-            { text: "Walk your dog", to: "" }
+            { text: "Go on your computer", to: "computer_start" },
+            { text: "Go on your phone", to: "phone_start" },
+            { text: "Walk your dog", to: "dog_walk" }
         ],
         contributor: "Hunter"
     }
