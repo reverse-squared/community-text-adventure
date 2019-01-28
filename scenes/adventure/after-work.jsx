@@ -11,7 +11,7 @@ addScenes({
             <p>Where do you go to buy a leash.</p>
         </div>,
         options: [
-            { text: "The dark and not suspicious tunnel.", to: "dog_tunnel" },
+            { text: "The dark and not suspicious tunnel", to: "dog_tunnel" },
             { text: "The pet store.", to: "dog_pet_store" },
         ],
         contributor: "Hunter"
