@@ -80,12 +80,23 @@ addScenes({
             { text: "Candy Crush Soda Saga", to: "" },
             { text: "Candy Crush Jelly Saga", to: "" },
             { text: "Candy Crush Friends Saga", to: "" },
-            { text: "How About No", to: "" }
+            { text: "How About No", to: "phone_others" }
         ],
         contributor: "Hunter"
     },
 
-    // TODO: Maybe use Discord API for a chat client.
+    phone_others: {
+        prompt: () => <div>
+            <p>You decide not to play the <b>Amazing Games</b>, and instead want to sign-up for something, but what is it?</p>
+        </div>,
+        options: [
+            { text: "For Jeopardy", to: "jeopardy_pre" },
+            { text: "For The Price is Right", to: "price_pre" },
+            { text: "For Who Wants to be a Millionare", to: "mill_start" }
+        ],
+        contributor: "Hunter"
+    },
+
     play_discord: {
         prompt: () => <div>
             <p>You decide to play your favorite game, <span style={{color: "#7289DA"}}><strong>Discord</strong></span></p>
