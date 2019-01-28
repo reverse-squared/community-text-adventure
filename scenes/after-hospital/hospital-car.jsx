@@ -179,7 +179,7 @@ addScenes({
             id: "lmao-failed-route",
             name: "Ended up at Chuck E Cheese",
             description: "You almost got to the hospital, but you took a wrong turn and landed at Chuck E Cheese... so... okay.",
-        }
-        
+        },
+        contributor: "Dave"
     }
 });

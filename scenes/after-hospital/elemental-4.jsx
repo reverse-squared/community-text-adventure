@@ -64,6 +64,7 @@ addScenes({
             id: "furry-hunting",
             name: "Make Furry Hunting Legal Again",
             description: "That's kinda neat."
-        }
-    }
+        },
+        contributor: "Hunter"
+    },
 });

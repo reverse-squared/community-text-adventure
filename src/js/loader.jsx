@@ -38,6 +38,13 @@ if (module.hot) {
             sceneCtx(file);
         });
     });
+
+    window.$js = {
+        Ending: require("./ending"),
+        Card: require("./card").default,
+        WTA: require("web-text-adventure"),
+    };
+
 } else {
     // eslint-disable-next-line no-inner-declarations
     function loadSubBranch(branch) {

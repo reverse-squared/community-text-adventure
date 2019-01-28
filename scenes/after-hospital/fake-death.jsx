@@ -4,6 +4,7 @@ import { addScenes } from "@src/ending";
 
 addFlag("graveWaitTime", 0);
 addFlag("wrongPasswords", 0);
+addFlag("triedL1Crook", false);
 addFlag("passwords", [false, false, false, false, false, false]);
 
 function increaseGraveWait() {
@@ -61,7 +62,6 @@ addScenes({
         contributor: "Hunter",
     },
 
-    // TODO: Crook.
     grave_leave: {
         prompt: () => <div>
             <p>Now that you are "dead", and nobody knows that you are alive, what illegal crimes will you commit?</p>
@@ -69,7 +69,7 @@ addScenes({
         options: [
             { text: "Become a Hitman", to: "hitman" },
             { text: "Rob a Bank", to: "bank_rob" },
-            { text: "Become a Level 1 Crook", to: "level1_crook" }
+            { text: "Become a Level 1 Crook", to: "level1_crook", if: () => !triedL1Crook, disabledText: true }
         ],
         contributor: "Hunter"
     },
@@ -158,7 +158,8 @@ addScenes({
             id: "bank-vault",
             name: "Inside the Bank Vault",
             description: "Unlock the bank vault somehow.",
-        }
+        },
+        contributor: "Dave",
     },
     bank_caught: {
         prompt: () => <div>
@@ -170,18 +171,35 @@ addScenes({
             id: "bank-vault",
             name: "HACKERMAN",
             description: "Suck it up buttercup... better luck next time!",
-        }
+        },
+        contributor: "Hunter",
     },
 
     level1_crook: {
-        //TODO: Later
         prompt: () => <div>
             <p>
                 You enter the mafia as a level 1 crook, now what do you do.
             </p>
         </div>,
         options: [
-            { text: "Level Up", to: "" }
+            { text: "Level Up", to: "level2_crook" },
+            { text: "Walk around", to: "level1_crook_walk_around" },
+            { text: "Drop out of the mafia", to: "grave_leave", action: () => triedL1Crook = true },
+        ],
+        contributor: "Dave"
+    },
+
+    level1_crook_upgraded: {
+        prompt: () => <div>
+            <p>
+                <span style={{ color: "purple" }}>You are a Level 2 Crook</span>
+            </p>
+            <p>
+                You upgrade yourself to a Level 2 Crook. Now what?
+            </p>
+        </div>,
+        options: [
+            { text: "Level Up", to: "level3_crook" }
         ]
-    }
+    },
 });

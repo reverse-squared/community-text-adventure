@@ -192,7 +192,8 @@ addScenes({
             id: "windowescape",
             name: "Window Escape",
             description: "Escape jail thru a window."
-        }
+        },
+        contributor: "Dave",
     },
     jail_phase2_infirm: {
         prompt: () => <div>

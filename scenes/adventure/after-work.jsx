@@ -104,8 +104,10 @@ addScenes({
         ending: {
             id: "discord",
             name: "The Anti-Anit-Social Person",
-            description: "Hang out with your friends... digitally."
-        }
+            description: "Hang out with your friends... digitally.",
+            opensDiscord: true,
+        },
+        contributor: "Dave",
     },
 
     computer_big_boi: {

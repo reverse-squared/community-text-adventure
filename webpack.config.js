@@ -32,6 +32,10 @@ module.exports = (env = {production: false, extraDefines: {}}, argv) => ({
                 }
             },
             {
+                test: /\.txt$/,
+                use: "raw-loader"
+            },
+            {
                 test: /\.css$/,
                 use: [
                     "style-loader",

@@ -103,7 +103,8 @@ addScenes({
         </div>,
         options: [
             { text: "Back", to: "meme_attention_all_gamers" }
-        ]
+        ],
+        noContributor: true,
     },
 
     meme_nword: {
@@ -114,7 +115,8 @@ addScenes({
             id: "banned-by-devs",
             name: "Blocked by The Devs",
             description: "We can't say the N-Word in this game, says the devs."
-        }
+        },
+        contributor: "Dave (a dev)"
     },
 
     meme_real_card: {
