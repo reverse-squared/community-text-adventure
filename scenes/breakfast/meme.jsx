@@ -24,13 +24,13 @@ function checkCreditCard() {
 addScenes({
     hash_stop_novape: {
         prompt: () => <div>
-            <p><b>HIT OR MISS, I NEVER HIT THAT VAPE! HUH?</b> You have become a <GreenGradient string="Level 100 Master"/>. Now this is epic. That's how <s>the mafia</s> school works.</p>
+            <p><b><span style={{fontSize: "50px"}}><i>HIT</i> OR <i>MISS</i></span>, I NEVER HIT THAT VAPE! HUH?</b> You have become a <GreenGradient string="Level 100 Master"/>. Now this is epic. That's how <s>the mafia</s> school works.</p>
         </div>,
         options: [
             { text: "Attention, all Fortnite gamers...", to: "meme_attention_all_gamers" },
             { text: "I wanna be tracer...", to: "meme_overwatch" },
             { text: "1 2 7 3...", to: "meme_1273" },
-            { text: "I'm going to say the N-Word...", to: "meme_word" },
+            { text: "I'm going to say the N-Word...", to: "meme_nword" },
             { text: "This is so sad... Alexa play...", to: "meme_alexa" },
             { text: "Wait. That's illegal...", to: "" },
             { text: "What even is this?", to: "meme_whateven" },
@@ -323,7 +323,8 @@ addScenes({
             id: "crusade-stop",
             name: "Stopping the Crusades",
             description: "At least you know when to stop..."
-        }
+        },
+        contributor: "Hunter"
     },
     crusades_one_mil: {
         prompt: <div>
@@ -335,6 +336,17 @@ addScenes({
             id: "crusade-cheater",
             name: "Probably Cheater",
             description: "We will never know."
+        },
+        contributor: "Hunter"
+    },
+    meme_overwatch: {
+        prompt: () => <div>
+            <p>Well sucks to suck because <b>I'M ALREADY TRACER</b>!</p>
+        </div>,
+        ending: {
+            id: "tracer",
+            name: "Looks Like I'm Not Tracer",
+            description: "Tracer has been picked already..."
         },
         contributor: "Hunter"
     }
