@@ -128,8 +128,20 @@ addScenes({
             { text: "Ok", to: "genocide_main" },
         ],
         contributor: "Dave",
-    }
+    },
     //#endregion Chicken
+    genocide_human: {
+        prompt: () => <div>
+            <p>You walk up to the human. It’s your boss! He starts complaining about how you haven’t been at work the past few days. What do ya’ do?</p>
+            <p>(Ps. He has been a jerk towards you the past few weeks)</p>
+        </div>,
+        options: [
+            { text: "Dab on that hater", to: "" },
+            { text: "Stab him", to: "" },
+            { text: "Go to work", to: "work_start" },
+            { text: "Snap his neck", to: "" },
+        ]
+    }
     //#region Lizard
     
     //#endregion
