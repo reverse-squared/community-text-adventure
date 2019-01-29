@@ -13,7 +13,6 @@ addScenes({
         options: [
             { text: "Go to work", to: "work_start" },
             { text: "Don't go to work", to: "work_dont" }
-            // TODO: Don't go to work path.
         ],
         contributor: "Hunter"
     },  

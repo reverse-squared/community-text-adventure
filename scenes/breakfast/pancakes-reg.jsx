@@ -54,7 +54,9 @@ addScenes({
             <p>You put the nice {topping} on it. You eat the pancake and feel nice to go on with your day, what do you do?</p>
         </div>,
         options: [
-            // TODO: Options for regular_pancake_eat.
+            { text: "Go outstide", to: "wakeup_outside" },
+            { text: "Go skydiving", to: "skydive_pre" },
+            { text: "Play some Elemental 4", to: "elemental4" },
         ],
         contributor: "Hunter"
     },

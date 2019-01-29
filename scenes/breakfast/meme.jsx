@@ -4,12 +4,13 @@ import { addScenes } from "@src/ending";
 import { GreenGradient } from "@templates/FontStyles";
 import SceneLink from "@templates/SceneLink";
 import checkCard from "@src/card";
+import BeeMovie from "../../res/bee-movie.txt";
 
 addFlag("collect200", false);
 addFlag("scriptsRead", 0);
 addFlag("failedCrusades", 0);
 
-const CrusadeHeader= () => <div>
+const CrusadeHeader = () => <div>
     <p>Your Crusade's Have Failed {failedCrusades} time{(failedCrusades != 1) ? "s" : ""}!</p>
 </div>;
 
@@ -18,6 +19,32 @@ function checkCreditCard() {
         setScene("meme_real_card");
     } else {
         setScene("meme_invalid_card");
+    }
+}
+
+class Swear extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            root: null,
+        };
+        this.refRoot = (root) => {
+            this.root = root;
+            this.animate();
+        };
+        this.animate = () => {
+            let chars = "#$@&%*!".split("");
+            if(this.root) {
+                this.root.innerHTML = Array(6).fill(0).map(() => chars[Math.floor(Math.random() * (chars.length + 1))]).join("");
+                setTimeout(this.animate, 1000/18);
+            }
+        };
+    }
+    componentWillUnmount() {
+        this.root = null;
+    }
+    render() { 
+        return <span ref={this.refRoot} style={{fontFamily:"monospace"}}>#$@&%*!</span>;
     }
 }
 
@@ -234,7 +261,11 @@ addScenes({
     },
     meme_alexa2_grilled_cheese: {
         prompt: () => <div>
-            <p><b>Alexa</b>: Pathetic. You're 32 years of age, and you don't know how to make a grilled cheese sandwich. <b>IT'S NAME IS THE RECIPE YOU #$@&%*!</b></p>
+            <p><b>Alexa</b>: Pathetic. You're 32 years of age,
+            and you don't know how to make a grilled cheese sandwich.{" "}
+            <b>
+                IT'S NAME IS THE RECIPE YOU <Swear />
+            </b></p>
         </div>,
         ending: {
             id: "grilled-cheese",
@@ -330,7 +361,8 @@ addScenes({
     },
     crusades_one_mil: {
         prompt: <div>
-            <p><b>WOW!</b> We did not expect you to click that button one million times. In fact, you probably didn't you either used an autoclicker or you viewed
+            <p>
+                <b>WOW!</b> We did not expect you to click that button one million times. In fact, you probably didn't you either used an autoclicker or you viewed
                 the source code and set the variable in the developer tools console. You little cheater...
             </p>
         </div>,
@@ -351,5 +383,36 @@ addScenes({
             description: "Tracer has been picked already..."
         },
         contributor: "Hunter"
-    }
+    },
+    meme_alexa2_000: {
+        prompt: () => <div>
+            <p>
+                <b>Alexa</b>: One Quintillion to the Power of One Quintillion is <span style={{ wordWrap: "break-word" }}>1{"0".repeat(15400)}</span>
+            </p>
+        </div>,
+        ending: {
+            id: "000",
+            name: "000000000",
+            description: "0000000000000000000000000000000000000"
+        },
+        contributor: "Hunter"
+    },
+    meme_bee: {
+        prompt: () => <div>
+            <style>{"::-webkit-scrollbar{display:none}"}</style>
+            <pre
+                style={{ fontFamily: "inherit" }}
+            >{BeeMovie}</pre>
+        </div>,
+        options: [
+            { text: "DO IT AGAIN!", to: "meme_bee", action: () => scriptsRead++ },
+            { text: "no dont...", to: "meme_bee_dont" }
+        ],
+        action: () => {
+            if (scriptsRead > 5) {
+                setScene("bee_lover");
+            }
+        },
+        contributor: "Hunter"
+    },
 });

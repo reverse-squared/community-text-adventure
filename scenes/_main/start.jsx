@@ -24,10 +24,10 @@ addScenes({
             
             /*
             ...((getGameProgress().percentage >= 1) ? [
-                "seperator",
-                { text: () => <RainbowText string={"Brag about how you got all " + getGameProgress().totalEndings + " endings"}/>, to: "true_ending" }
+                {is: "seperator"},
+                { text: () => <RainbowText underline string={"Brag about how you got all " + getGameProgress().totalEndings + " endings"}/>, to: "true_ending" }
             ] : [])
-            */
+            //*/
         ],
 
         action: () => {

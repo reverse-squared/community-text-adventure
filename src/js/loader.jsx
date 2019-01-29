@@ -39,6 +39,10 @@ if (module.hot) {
         });
     });
 
+
+    // lmao if you want to get all endings run in devtools:
+    //  ((e)=>Object.keys(e).forEach((f)=>$js.Ending.achieveEnding(f)))($js.Ending.getAllEndings())
+
     window.$js = {
         Ending: require("./ending"),
         Card: require("./card").default,

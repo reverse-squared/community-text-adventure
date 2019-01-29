@@ -74,7 +74,6 @@ addScenes({
             { text: "Yell", to: "" },
             { text: "Cry because your breakfast was ruined", to: "" },
         ],
-        // TODO: Find Daniel's friend's name.
         contributor: null,
     },
     pancakes_white_chocolate: {
