@@ -263,5 +263,77 @@ addScenes({
             description: "Hahahahahahahahahahahahahah."
         },
         contributor: "Hunter"
+    },
+    hash_fuckingbig_version: {
+        prompt: () => <div>
+            <p>You make it, but then you get really tired when you are done. However, you are tempted to try it.</p>
+        </div>,
+        options: [
+            { text: "Go to bed", to: "" },
+            { text: "Have some coffee", to: "" },
+            { text: "Make a tiny potato kart", to: "" },
+            { text: "Play on it with friends", to: "" },
+            { text: "Throw it in the Trash Bin", to: "hash_fuckingbig_bin" }
+        ]
+    },
+    hash_fuckingbig_bin: {
+        prompt: () => <div>
+            <p>You throw it in, but you fell in by mistake, and you couldn't get out. You are now being transported in a dump truck.</p>
+        </div>,
+        options: [
+            { text: "Get out", to: "" },
+            { text: "Ask the driver about what the fuck is going on", to: "" },
+            { text: "Chill in there", to: "hash_truck_chill" },
+            { text: "Go on top of the truck", to: "" },
+            { text: "Find something in there", to: "hash_truck_find" }
+        ]
+    },
+    hash_truck_chill: {
+        prompt: () => <div>
+            <p>You stayed in, and now you are buried in a landfill.</p>
+        </div>,
+        ending: {
+            id: "landfill",
+            name: "Buried in the Landfill",
+            description: "Never trust trash cans."
+        }
+    },
+    hash_truck_find: {
+        prompt: () => <div>
+            <p>There is a lot in here. What do you get?</p>
+        </div>,
+        options: [
+            { text: "Coke bottle", to: "" },
+            { text: "\"Food\"", to: "" },
+            { text: "A computer", to: "hash_truck_find_computer" },
+            { text: "Your track", to: "" },
+            { text: "Your potato", to: "" },
+            { text: "Radioactive materials", to: "" },
+            { text: "A trash bin", to: "" }
+        ]
+    },
+    hash_truck_find_computer: {
+        prompt: () => <div>
+            <p>You have a lot to do and a lot of time. What do you do?</p>
+        </div>,
+        options: [
+            { text: "Play Half Life 3", to: "hl3" },
+            { text: "Play Minecraft", to: "minecraft_start" },
+            { text: "Play LEGO Sid Meier's Tom Clancy SUPER Fortnite V Modern of War Craft FIFA Remastered Metal Fallcry Special Edition", to: "" },
+            { text: "Play Discord", to: "play_discord" },
+            { text: "Play Sonic Team Presents: LEGO Tom Hideo Kojima Game Meier's Rise of the SUPER War for the NEW mini Mega Power Nintendo Dawn of the White Virtual Alpha Omega Sequel Final Smash 2 3 DS i lite Light of the Micro XL DD LL Mix Prequel of the e u Boy the Advance SP Player Master Reboot of the Disney Color Cube and Watch Entertainment System Planet Marvel of the Nomad Apes Game of the Year Edition and Knuckles Jam VS Sega Capcom Plus Version Episode Two Volume Two", if: () => !hasCheckedLong, disabledText: "Play Sonic Team Presents: LEGO Tom Hideo Kojima Game Meier's Rise of the SUPER War for the NEW mini Mega Power Nintendo Dawn of the White Virtual Alpha Omega Sequel Final Smash 2 3 DS i lite Light of the Micro XL DD LL Mix Prequel of the e u Boy the Advance SP Player Master Reboot of the Disney Color Cube and Watch Entertainment System Planet Marvel of the Nomad Apes Game of the Year Edition and Knuckles Jam VS Sega Capcom Plus Version Episode Two Volume Two (Already Checked!)", action: () => hasCheckedLong = true, to: "computer_big_boi" },
+            { text: "Watch YouTube", to: "" },
+            { text: "Watch PornHub", to: "hash_truck_ph" }
+        ]
+    },
+    hash_truck_ph: {
+        prompt: () => <div>
+            <p>Your wife finds out, and destroys the computer. Also, you are divorced now.</p>
+        </div>,
+        ending: {
+            id: "ph",
+            name: "You got Divorced",
+            description: "That was the end of a \"good\" relationship..."
+        }
     }
 });
