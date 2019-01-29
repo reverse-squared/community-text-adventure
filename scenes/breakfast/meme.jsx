@@ -4,7 +4,9 @@ import { addScenes } from "@src/ending";
 import { GreenGradient } from "@templates/FontStyles";
 import SceneLink from "@templates/SceneLink";
 import checkCard from "@src/card";
-import BeeMovie from "../../res/bee-movie.txt";
+
+let BeeMovie = "Bee Movie Script; This string should not be visible at game runtime.";
+if(typeof document !== "undefined") BeeMovie = require("../../res/bee-movie.txt");
 
 addFlag("collect200", false);
 addFlag("scriptsRead", 0);

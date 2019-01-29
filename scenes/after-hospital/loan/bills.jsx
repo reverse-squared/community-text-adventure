@@ -311,7 +311,7 @@ addScenes({
         ending: {
             id: "disqualified",
             name: "Disqualified",
-            description: "Smash Windows during a game of Who Wants to be a Millionare"
+            description: "Get Disqualified from How to be a Millionaire"
         },
         contributor: "Dave",
     },

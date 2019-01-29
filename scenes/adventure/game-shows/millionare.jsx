@@ -22,9 +22,10 @@ addScenes({
             <p>How shall you get a million dollars?</p>
         </div>,
         options: [
-            { text: "Pay bills", to: "loan_paybills" },
-            { text: "Invest in Bitcoin", to: "loan_bitcoin" },
-            { text: "Ask Bill Gates", to: "" }
+            { text: "Pay your bills", to: "loan_paybills" },
+            { text: "Invest in some Bitcoin", to: "loan_bitcoin" },
+            { text: "Ask Bill Gates", to: "" },
+            { text: "Rob a Bank", to: "bank_rob" }
         ],
         action: () => {
             isPlayingMillionaire = true;
@@ -44,9 +45,24 @@ addScenes({
         contributor: "Dave"
     },
     mill_win: {
-
+        prompt: () => <div>
+            You successfully got one million dollars and won <span style={{ color: "lime" }}>Who Wants to be a Millionare</span>
+            . Awesome!
+        </div>,
+        ending: {
+            id: "mill-win",
+            name: "How to be a Millionaire",
+            description: "You won Who Wants to be a Millionare!",
+        }
     },
     mill_lose: {
-
+        prompt: () => <div>
+            Time's up! Looks like you dont quite have enough money, so you do not win <span style={{ color: "lime" }}>Who Wants to be a Millionare</span>. Better luck next time.
+        </div>,
+        ending: {
+            id: "mill-win",
+            name: "How to NOT be a Millionaire",
+            description: "You couldn't do it!",
+        }
     }
 });

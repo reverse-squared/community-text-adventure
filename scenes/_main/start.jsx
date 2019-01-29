@@ -18,7 +18,7 @@ addScenes({
         </div>,
         
         options: () => [
-            { text: "Go outstide", to: "wakeup_outside" },
+            { text: "Go outside", to: "wakeup_outside" },
             { text: "Make some breakfast", to: "wakeup_breakfast" },
             { text: "Check the time", to: "wakeup_check_time" },
             

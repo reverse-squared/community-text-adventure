@@ -146,7 +146,7 @@ addScenes({
                     Object.keys(endings).filter(id => endings[id].achieved).map(id => {
                         const ending = endings[id];
 
-                        return <EndingCard ending={ending} />;
+                        return <EndingCard key={id} ending={ending} />;
                     })
                 }
                 <h2>Locked Endings <a href="#" style={{fontSize: "0.6em"}} onClick={toggleHideUnAchieved}>{hideUnAchieved ? "Unhide" : "Hide"}</a></h2>
@@ -155,7 +155,7 @@ addScenes({
                     Object.keys(endings).filter(id => !endings[id].achieved).map(id => {
                         const ending = endings[id];
 
-                        return <EndingCard ending={ending} />;
+                        return <EndingCard key={id} ending={ending} />;
                     })
                 }
             </div>;
