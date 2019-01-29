@@ -5,7 +5,7 @@ const splitter = new GraphemeSplitter();
 export const RainbowText = (props) => {
     return <span>
         {splitter.splitGraphemes(props.string || "").map((char, index) => {
-            return <span className="rainbow" style={{ animationDelay: "-" + (10 * index) + "ms" }} key={index.toString()}>{char}</span>;
+            return <span className={"rainbow" + (props.underline ? " underline" : "")} style={{ animationDelay: "-" + (10 * index) + "ms" }} key={index.toString()}>{char}</span>;
         })}
     </span>;
 };

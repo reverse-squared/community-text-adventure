@@ -18,16 +18,16 @@ addScenes({
         </div>,
         
         options: () => [
-            { text: "Go outstide", to: "wakeup_outside" },
+            { text: "Go outside", to: "wakeup_outside" },
             { text: "Make some breakfast", to: "wakeup_breakfast" },
             { text: "Check the time", to: "wakeup_check_time" },
             
             /*
             ...((getGameProgress().percentage >= 1) ? [
-                "seperator",
-                { text: () => <RainbowText string={"Brag about how you got all " + getGameProgress().totalEndings + " endings"}/>, to: "true_ending" }
+                {is: "seperator"},
+                { text: () => <RainbowText underline string={"Brag about how you got all " + getGameProgress().totalEndings + " endings"}/>, to: "true_ending" }
             ] : [])
-            */
+            //*/
         ],
 
         action: () => {

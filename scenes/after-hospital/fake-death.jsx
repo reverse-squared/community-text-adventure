@@ -1,9 +1,11 @@
 import React from "react";
 import { addFlag, setScene } from "web-text-adventure/src/adventure";
 import { addScenes } from "@src/ending";
+import { LoanHeader } from "./loan/loan";
 
 addFlag("graveWaitTime", 0);
 addFlag("wrongPasswords", 0);
+addFlag("triedL1Crook", false);
 addFlag("passwords", [false, false, false, false, false, false]);
 
 function increaseGraveWait() {
@@ -61,7 +63,6 @@ addScenes({
         contributor: "Hunter",
     },
 
-    // TODO: Crook.
     grave_leave: {
         prompt: () => <div>
             <p>Now that you are "dead", and nobody knows that you are alive, what illegal crimes will you commit?</p>
@@ -69,13 +70,14 @@ addScenes({
         options: [
             { text: "Become a Hitman", to: "hitman" },
             { text: "Rob a Bank", to: "bank_rob" },
-            { text: "Become a Level 1 Crook", to: "level1_crook" }
+            { text: "Become a Level 1 Crook", to: "level1_crook", if: () => !triedL1Crook, disabledText: true }
         ],
         contributor: "Hunter"
     },
 
     bank_rob: {
         prompt: () => <div>
+            { isPlayingMillionaire && <LoanHeader /> }
             <p>You want to enter a bank, but with the recent rising of bank robberies, they have password protected the bank. What is the <b>super secret password?</b></p>
         </div>,
         options: [
@@ -90,20 +92,25 @@ addScenes({
     },
     bank_rob_wrong: {
         prompt: () => <div>
+            {isPlayingMillionaire && <LoanHeader />}
             <p>The tiny little screen buzzes at you...</p>
             <h1 style={{color: "red"}}>WRONG PASSWORD!</h1>
         </div>,
-        options: [
+        options: () => [
             { text: "123456", to: "bank_rob_wrong", disabledText: true, if: () => !passwords[0], action: () => { wrongPasswords++; passwords[0] = true; } },
             { text: "password", to: "bank_rob_wrong", disabledText: true, if: () => !passwords[1], action: () => { wrongPasswords++; passwords[1] = true; } },
-            { text: "FUCKINGPASSWORD", to: "bank_rob_right" },
+            { text: "FUCKINGPASSWORD", to: isPlayingMillionaire ? "bank_rob_right_mill" : "bank_rob_right" },
             { text: "h*82fX&11P*c4p", to: "bank_rob_wrong", disabledText: true, if: () => !passwords[3], action: () => { wrongPasswords++; passwords[3] = true; } },
             { text: "Your SSN Number", to: "bank_rob_wrong", disabledText: true, if: () => !passwords[4], action: () => { wrongPasswords++; passwords[4] = true; } },
             { text: "All of the Above", to: "bank_rob_wrong", disabledText: true, if: () => !passwords[5], action: () => { wrongPasswords++; passwords[5] = true; } }
         ],
         action: () => {
             if(wrongPasswords === 5) {
-                setScene("bank_caught");
+                if(isPlayingMillionaire) {
+                    setScene("bank_caught_mill");
+                } else {
+                    setScene("bank_caught");
+                }
             }
         },
         contributor: "Hunter, Dave, and Colyderp"
@@ -158,7 +165,26 @@ addScenes({
             id: "bank-vault",
             name: "Inside the Bank Vault",
             description: "Unlock the bank vault somehow.",
-        }
+        },
+        contributor: "Dave",
+    },
+    bank_rob_right_mill: {
+        prompt: () => <div>
+            <LoanHeader />
+            <p>
+                You unlocked the bank vault and got out of it the <strong>$123,456,789.10</strong> that they had stored in it. Thats enough to win the game!
+                You win <span style={{ color: "lime" }}>Who Wants to be a Millionare</span>! Great Job
+            </p>
+        </div>,
+        action: () => {
+            loanMoney += 123456789.1;
+        },
+        ending: {
+            id: "mill-win",
+            name: "How to be a Millionaire",
+            description: "You won Who Wants to be a Millionare!",
+        },
+        contributor: "Dave",
     },
     bank_caught: {
         prompt: () => <div>
@@ -170,18 +196,51 @@ addScenes({
             id: "bank-vault",
             name: "HACKERMAN",
             description: "Suck it up buttercup... better luck next time!",
-        }
+        },
+        contributor: "Hunter",
+    },
+    bank_caught_mill: {
+        prompt: () => <div>
+            <p>
+                You got caught! If only you would have had one more chance you would have figured out that password! Going
+                to jail is against the rules of <span style={{ color: "lime" }}>Who Wants to be a Millionare</span>, so you
+                are disqualified!
+            </p>
+        </div>,
+        ending: {
+            id: "disqualified",
+            name: "Disqualified",
+            description: "Get Disqualified from How to be a Millionaire"
+        },
+        contributor: "Dave",
     },
 
     level1_crook: {
-        //TODO: Later
         prompt: () => <div>
             <p>
                 You enter the mafia as a level 1 crook, now what do you do.
             </p>
         </div>,
         options: [
-            { text: "Level Up", to: "" }
-        ]
-    }
+            { text: "Level Up", to: "level2_crook" },
+            { text: "Walk around", to: "level1_crook_walk_around" },
+            { text: "Drop out of the mafia", to: "grave_leave", action: () => triedL1Crook = true },
+        ],
+        contributor: "Dave"
+    },
+
+    level1_crook_upgraded: {
+        prompt: () => <div>
+            <p>
+                <span style={{ color: "purple" }}>You are a Level 2 Crook</span>
+            </p>
+            <p>
+                You upgrade yourself to a Level 2 Crook. Now what?
+            </p>
+        </div>,
+        options: [
+            { text: "Level Up", to: "level3_crook" }
+        ],
+        contributor: "Dave",
+    },
 });

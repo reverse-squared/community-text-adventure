@@ -58,13 +58,20 @@ const formatBTC = (num) => {
 
 const LoanBTCHeader = () => <div>
     {
-        !loan_payloan
-            ? <p className={"loan-header " + (loanTurns < 10 ? "loan-header-low" : "")} style={{ marginBottom: "10px" }}>
-                You need to pay off a loan of <strong>$4313</strong>. You have <strong>{loanTurns}</strong> turns left to pay it off.
-            </p>
-            : <p className={"loan-header " + (loanTurns < 10 ? "loan-header-low" : "")} style={{ marginBottom: "10px" }}>
-                You have <strong>{loanTurns}</strong> turns left to make as much money as possible.
-            </p>
+        isPlayingMillionaire
+            ? (
+                <LoanHeader />
+            )
+            : (
+                !loan_payloan
+                    ? <p className={"loan-header " + (loanTurns < 10 ? "loan-header-low" : "")} style={{ marginBottom: "10px" }}>
+                        You need to pay off a loan of <strong>$4313</strong>. You have <strong>{loanTurns}</strong> turns left to pay it off.
+                    </p>
+                    : <p className={"loan-header " + (loanTurns < 10 ? "loan-header-low" : "")} style={{ marginBottom: "10px" }}>
+                        You have <strong>{loanTurns}</strong> turns left to make as much money as possible.
+                    </p>
+            )
+        
     }
     <div className="bitcoin-status">
         <p>You have <strong>{formatMoney(loan_walletcash)}</strong> cash, and <strong>{formatBTC(loan_bitcoin)}</strong></p>
@@ -123,24 +130,30 @@ addScenes({
                 What do you do now?
             </p>
         </div>,
-        options: [
+        options: () => [
             { text: "Trade $$ --> BTC", to: "loan_bitcoin_deposit"},
             { text: "Trade BTC --> $$", to: "loan_bitcoin_withdraw"},
             { text: "Wait", to: "loan_bitcoin_main"},
-            "seperator",
-            {
-                text: "Pay Loan (-$4313)",
-                disabledText: () => {
-                    if(loan_payloan) {
-                        return "Pay Loan (Purchased)";
-                    } else {
-                        return "Pay Loan (-$4313)";
-                    }
-                },
-                action: () => loan_payloan = true,
-                to: "loan_bitcoin_main",
-                if:() => (loan_walletcash > 4313 && !loan_payloan)
-            }
+            ...(
+                isPlayingMillionaire
+                    ? []
+                    : [
+                        { is: "seperator" },
+                        {
+                            text: "Pay Loan (-$4313)",
+                            disabledText: () => {
+                                if (loan_payloan) {
+                                    return "Pay Loan (Purchased)";
+                                } else {
+                                    return "Pay Loan (-$4313)";
+                                }
+                            },
+                            action: () => loan_payloan = true,
+                            to: "loan_bitcoin_main",
+                            if: () => (loan_walletcash > 4313 && !loan_payloan)
+                        }
+                    ]
+            )
         ],
         action: decreaseTurn,
         contributor: "Dave"

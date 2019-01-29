@@ -33,6 +33,14 @@ a:not(:hover) {
     text-decoration: none;
 }
 
+span > .underline {
+    text-decoration: underline;
+}
+
+span:not(:hover) > .underline {
+    text-decoration: none;
+}
+
 .option-disabled {
     color: rgb(83, 83, 83);
 }

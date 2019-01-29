@@ -110,6 +110,7 @@ addScenes({
                         if (scene === "null") return false;
                         if (scenes[scene].noContributor) return false;
                         if (scenes[scene].contributor) return false;
+                        if (scenes[scene].contributor === null) return false;
                         return true;
                     }).map(x => {
                         return <li key={x}><SceneLink to={x}>{x}</SceneLink></li>;

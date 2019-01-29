@@ -13,7 +13,6 @@ addScenes({
         options: [
             { text: "Go to work", to: "work_start" },
             { text: "Don't go to work", to: "work_dont" }
-            // TODO: Don't go to work path.
         ],
         contributor: "Hunter"
     },  
@@ -156,6 +155,7 @@ addScenes({
             id: "disobedient",
             name: "Disobedient",
             description: "Don't go to work, even after being told."
-        }
+        },
+        contributor: "Hunter",
     }
 });

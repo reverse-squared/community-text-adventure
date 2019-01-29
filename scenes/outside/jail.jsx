@@ -162,7 +162,6 @@ addScenes({
             <p>You escaped from your cell. What do you do?</p>
         </div>,
         options: [
-            // TODO: more of this
             { text: "Search your Pockets", to: "jail_phase2_card_pockets" },
             { text: "Go to Egypt", to: "jail_gotofuckingEgypt" },
             { text: "Go out the Window", to: "escape_via_the_window_lmao" },
@@ -192,7 +191,8 @@ addScenes({
             id: "windowescape",
             name: "Window Escape",
             description: "Escape jail thru a window."
-        }
+        },
+        contributor: "Dave",
     },
     jail_phase2_infirm: {
         prompt: () => <div>
