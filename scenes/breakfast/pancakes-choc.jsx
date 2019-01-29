@@ -198,7 +198,7 @@ addScenes({
             </p>
         </div>,
         options: [
-            { text: "More cocaine", to: "pancakes_white_chocolate_cocaine2" },
+            { text: "More cocaine", to: "pancakes_white_chocolate_cocaine3" },
             { text: "Use the cocaine chocolate", to: "pancakes_white_chocolate_cocaine_make" },
             { text: "Snort the cocaine chocolate", to: "pancakes_white_chocolate_cocaine_snort" }
         ],
@@ -211,7 +211,7 @@ addScenes({
             </p>
         </div>,
         options: [
-            { text: "More cocaine", to: "pancakes_white_chocolate_cocaine2" },
+            { text: "More cocaine", to: "pancakes_white_chocolate_cocaine4" },
             { text: "Use the cocaine chocolate", to: "pancakes_white_chocolate_cocaine_make" },
             { text: "Snort the cocaine chocolate", to: "pancakes_white_chocolate_cocaine_snort" }
         ],
