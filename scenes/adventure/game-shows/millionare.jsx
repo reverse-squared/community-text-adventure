@@ -1,6 +1,9 @@
 import React from "react";
-import { } from "web-text-adventure/src/adventure";
+import { addFlag } from "web-text-adventure/src/adventure";
 import { addScenes } from "@src/ending";
+import { decreaseTurn, LoanHeader } from "@scenes/after-hospital/loan/loan";
+
+addFlag("isPlayingMillionaire", false);
 
 addScenes({
     mill_start: {
@@ -15,14 +18,18 @@ addScenes({
     },
     mill_yes: {
         prompt: () => <div>
+            <LoanHeader />
             <p>How shall you get a million dollars?</p>
         </div>,
         options: [
-            // TODO: Do links.
-            { text: "Pay bills", to: "" },
-            { text: "Invest in Bitcoin", to: "" },
+            { text: "Pay bills", to: "loan_paybills" },
+            { text: "Invest in Bitcoin", to: "loan_bitcoin" },
             { text: "Ask Bill Gates", to: "" }
         ],
+        action: () => {
+            isPlayingMillionaire = true;
+            decreaseTurn();
+        },
         contributor: "Dave"
     },
     mill_no: {
@@ -35,5 +42,11 @@ addScenes({
             description: "Who doesn't want a million dollars?"
         },
         contributor: "Dave"
+    },
+    mill_win: {
+
+    },
+    mill_lose: {
+
     }
 });
