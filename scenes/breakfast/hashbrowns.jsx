@@ -274,7 +274,8 @@ addScenes({
             { text: "Make a tiny potato kart", to: "" },
             { text: "Play on it with friends", to: "" },
             { text: "Throw it in the Trash Bin", to: "hash_fuckingbig_bin" }
-        ]
+        ],
+        contributor: "Durvenson"
     },
     hash_fuckingbig_bin: {
         prompt: () => <div>
@@ -286,7 +287,8 @@ addScenes({
             { text: "Chill in there", to: "hash_truck_chill" },
             { text: "Go on top of the truck", to: "" },
             { text: "Find something in there", to: "hash_truck_find" }
-        ]
+        ],
+        contributor: "Durvenson"
     },
     hash_truck_chill: {
         prompt: () => <div>
@@ -296,7 +298,8 @@ addScenes({
             id: "landfill",
             name: "Buried in the Landfill",
             description: "Never trust trash cans."
-        }
+        },
+        contributor: "Durvenson"
     },
     hash_truck_find: {
         prompt: () => <div>
@@ -310,7 +313,8 @@ addScenes({
             { text: "Your potato", to: "" },
             { text: "Radioactive materials", to: "" },
             { text: "A trash bin", to: "" }
-        ]
+        ],
+        contributor: "Durvenson"
     },
     hash_truck_find_computer: {
         prompt: () => <div>
@@ -324,7 +328,8 @@ addScenes({
             { text: "Play Sonic Team Presents: LEGO Tom Hideo Kojima Game Meier's Rise of the SUPER War for the NEW mini Mega Power Nintendo Dawn of the White Virtual Alpha Omega Sequel Final Smash 2 3 DS i lite Light of the Micro XL DD LL Mix Prequel of the e u Boy the Advance SP Player Master Reboot of the Disney Color Cube and Watch Entertainment System Planet Marvel of the Nomad Apes Game of the Year Edition and Knuckles Jam VS Sega Capcom Plus Version Episode Two Volume Two", if: () => !hasCheckedLong, disabledText: "Play Sonic Team Presents: LEGO Tom Hideo Kojima Game Meier's Rise of the SUPER War for the NEW mini Mega Power Nintendo Dawn of the White Virtual Alpha Omega Sequel Final Smash 2 3 DS i lite Light of the Micro XL DD LL Mix Prequel of the e u Boy the Advance SP Player Master Reboot of the Disney Color Cube and Watch Entertainment System Planet Marvel of the Nomad Apes Game of the Year Edition and Knuckles Jam VS Sega Capcom Plus Version Episode Two Volume Two (Already Checked!)", action: () => hasCheckedLong = true, to: "computer_big_boi" },
             { text: "Watch YouTube", to: "" },
             { text: "Watch PornHub", to: "hash_truck_ph" }
-        ]
+        ],
+        contributor: "Durvenson"
     },
     hash_truck_ph: {
         prompt: () => <div>
@@ -334,6 +339,7 @@ addScenes({
             id: "ph",
             name: "You got Divorced",
             description: "That was the end of a \"good\" relationship..."
-        }
+        },
+        contributor: "Durvenson"
     }
 });

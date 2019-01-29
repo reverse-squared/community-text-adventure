@@ -14,7 +14,8 @@ const contributors = [
     ["Daniel (Phrotonz)"],
     ["Neema",                   "https://www.youtube.com/channel/UCEBtKv5G3SKwbWjjmb1yOBA"],
     ["39cookies "],
-    ["Koz",                     "https://steamcommunity.com/id/kozco"]
+    ["Koz",                     "https://steamcommunity.com/id/kozco"].
+    ["Durvenson"]
     // People below this still need to say exactly how they want credit.
 ];
 
