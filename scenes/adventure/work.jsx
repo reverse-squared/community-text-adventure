@@ -155,6 +155,7 @@ addScenes({
             id: "disobedient",
             name: "Disobedient",
             description: "Don't go to work, even after being told."
-        }
+        },
+        contributor: "Hunter",
     }
 });

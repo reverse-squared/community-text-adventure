@@ -47,6 +47,7 @@ addScenes({
             id: "razor-scooter",
             name: "It Was Just a Tap",
             description: "Never trust those things."
-        }
+        },
+        contributor: "Hunter"
     }
 });

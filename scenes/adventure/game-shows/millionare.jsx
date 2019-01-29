@@ -53,7 +53,8 @@ addScenes({
             id: "mill-win",
             name: "How to be a Millionaire",
             description: "You won Who Wants to be a Millionare!",
-        }
+        },
+        contributor: "Dave",
     },
     mill_lose: {
         prompt: () => <div>
@@ -63,6 +64,7 @@ addScenes({
             id: "mill-win",
             name: "How to NOT be a Millionaire",
             description: "You couldn't do it!",
-        }
+        },
+        contributor: "Dave",
     }
 });

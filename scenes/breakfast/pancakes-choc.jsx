@@ -51,7 +51,7 @@ addScenes({
     make_chocolate_top_them: {
         prompt: () => <div>
             <p>
-                You top the Baker's choclate with...
+                You top the Baker's chocolate with...
             </p>
         </div>,
         options: [
@@ -150,7 +150,7 @@ addScenes({
         ending: {
             id: "edgy-death-mistake",
             name: "Mistaken as a Racist",
-            description: "You added so much dark choclate that you were mistaken as a racist.",
+            description: "You added so much dark chocolate that you were mistaken as a racist.",
         },
         contributor: "Alchemyking",
     },

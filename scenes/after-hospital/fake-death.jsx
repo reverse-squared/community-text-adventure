@@ -240,6 +240,7 @@ addScenes({
         </div>,
         options: [
             { text: "Level Up", to: "level3_crook" }
-        ]
+        ],
+        contributor: "Dave",
     },
 });
