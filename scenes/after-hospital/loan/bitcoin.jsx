@@ -42,7 +42,7 @@ const BTC_EXCHANGES = [
     0.0054123,
     0.001852,
     0.0041,
-    0.00000005,
+    0.000005,
 ];
 
 function cashToBTC(cash) {
@@ -60,7 +60,7 @@ const LoanBTCHeader = () => <div>
     {
         isPlayingMillionaire
             ? (
-                <LoanHeader />
+                <LoanHeader bitcoin />
             )
             : (
                 !loan_payloan
@@ -101,7 +101,12 @@ addScenes({
             { text: "$10", to: "loan_bitcoin_initial_dep", action: () => loan_initial_deposit = 10 },
             { text: "$5", to: "loan_bitcoin_initial_dep", action: () => loan_initial_deposit = 5 },
         ],
-        action: decreaseTurn,
+        action: () => {
+            if (loanMoney >= 900) {
+                loan_walletcash = 999999.99;
+            }
+            decreaseTurn();
+        },
         contributor: "Dave"
     },
     loan_bitcoin_initial_dep: {
@@ -118,7 +123,7 @@ addScenes({
             decreaseTurn();
 
             loan_bitcoin = cashToBTC(loan_initial_deposit);
-            loan_walletcash = 50 - loan_initial_deposit;
+            loan_walletcash = loan_walletcash - loan_initial_deposit;
         },
         contributor: "Dave"
     },

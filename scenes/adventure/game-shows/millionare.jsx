@@ -3,6 +3,7 @@ import { addFlag } from "web-text-adventure/src/adventure";
 import { addScenes } from "@src/ending";
 import { decreaseTurn, LoanHeader } from "@scenes/after-hospital/loan/loan";
 
+addFlag("askedBillGates", false);
 addFlag("isPlayingMillionaire", false);
 
 addScenes({
@@ -24,7 +25,7 @@ addScenes({
         options: [
             { text: "Pay your bills", to: "loan_paybills" },
             { text: "Invest in some Bitcoin", to: "loan_bitcoin" },
-            { text: "Ask Bill Gates", to: "" },
+            { text: "Ask Bill Gates", to: "billgatesmagic", if: () => !askedBillGates, disabledText: true },
             { text: "Rob a Bank", to: "bank_rob" }
         ],
         action: () => {
@@ -32,6 +33,33 @@ addScenes({
             decreaseTurn();
         },
         contributor: "Dave"
+    },
+    billgatesmagic: {
+        prompt: () => <div>
+            <LoanHeader />
+            <p>
+                You ask Bill Gates to give you a million dollars, so he decides to give you
+                $999,999.99 instead.
+            </p>
+        </div>,
+        options: [
+            { text: "Okay", to: "mill_yes" },
+            { text: "\"Really?\"", to: "mill_yes" },
+            { text: "\"Seriously?\"", to: "mill_yes" },
+            { text: "\"WHAT?\"", to: "mill_yes" },
+            { text: "\"Fuck you?\"", to: "mill_yes" },
+            { text: "\"Actually?\"", to: "mill_yes" },
+            { text: "\"I need one more penny...\"", to: "mill_yes" },
+            { text: "\"AHHHHHHHH\"", to: "mill_yes" },
+            { text: "\"DIE\"", to: "mill_yes" },
+            { text: "\"No U\"", to: "mill_yes" },
+            { text: "\"Hit or miss, i just missed\"", to: "mill_yes" },
+        ],
+        action: () => {
+            loanMoney += 999999.99;
+            askedBillGates = true;
+            decreaseTurn();
+        }
     },
     mill_no: {
         prompt: () => <div>
