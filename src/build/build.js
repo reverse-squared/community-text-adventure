@@ -18,6 +18,7 @@ function requireDirRecursive(folder) {
         if (fs.statSync(path.join(folder, x)).isDirectory()) {
             requireDirRecursive(path.join(folder, x));
         } else {
+            if(!x.endsWith(".jsx")) return;
             require(path.join(folder, x));
             sceneFiles.push(path.join(folder, x).substr(path.join(__dirname, "../../scenes").length + 1).replace(/\\/g,"/"));
         }

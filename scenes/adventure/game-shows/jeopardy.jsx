@@ -3,6 +3,7 @@ import { addFlag } from "web-text-adventure/src/adventure";
 import { addScenes } from "@src/ending";
 import Jeopardy from "./jeo-data";
 import SceneLink from "@templates/SceneLink";
+import { formatMoney } from "@scenes/after-hospital/loan/loan";
 
 addFlag("jeopardyMoney", 0);
 
@@ -16,6 +17,12 @@ function shuffle(a) {
     }
     return a;
 }
+
+const JeopardyHeader = () => <div>
+    <p className="jeo-header">
+        Jeopardy! You have {formatMoney(jeopardyMoney)}.
+    </p>
+</div>;
 
 addScenes({
     jeopardy_pre: {
@@ -42,7 +49,7 @@ addScenes({
                         [100, 200, 300, 400, 500].map(price => {
                             return <tr>
                                 {
-                                    [1,2,3,4,5].map(cata => {
+                                    [0,1,2,3,4].map(cata => {
                                         return <td style={{textAlign:"center"}}>
                                             <SceneLink to={`jeopardy_c${cata}_${price}`}>{price}</SceneLink>
                                         </td>;
@@ -62,7 +69,6 @@ addScenes({
         return [0, 1, 2, 3, 4].map(cata => {
             const catagory = Jeopardy[cata];
             const question = catagory.questions[price];
-
             return {
                 prompt: () => <div>
                     <p>
@@ -89,6 +95,6 @@ addScenes({
                 jeo_catagory: cata,
                 jeo_price: price,
             };
-        }).reduce((obj, next) => (obj[`jeopardy_c${next.jeo_catagory}_${next.jeo_price}`]=next,obj));
-    }).reduce((obj,next) => ({...obj, ...next}))
+        }).reduce((obj, next) => (obj[`jeopardy_c${next.jeo_catagory}_${next.jeo_price}`]=next,obj), {});
+    }).reduce((obj,next) => ({...obj, ...next}), {})
 });
