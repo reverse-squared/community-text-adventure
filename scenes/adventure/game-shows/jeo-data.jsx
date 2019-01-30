@@ -7,62 +7,71 @@ export default [
         questions: {
             200: {
                 question: () => <div>
-                    <p>Catagory 200</p>
+                    <p>How many npm packages exist</p>
                 </div>,
                 options: [
-                    { text: "What is correct" },
-                    { text: "What is incorrect" },
-                    { text: "What is incorrect" },
-                    { text: "What is incorrect" },
+                    { text: "What is more than one" },
+                    { text: "What is zero" },
+                    { text: "What is who cares" },
+                    { text: "What is 1000000" },
                 ],
-                contributor: undefined,
+                contributor: "Dave",
             },
             400: {
                 question: () => <div>
-                    <p>Catagory 400</p>
+                    <p>
+                        What will the code below output to the console and why?
+                    </p>
+
                 </div>,
                 options: [
-                    { text: "What is correct" },
-                    { text: "What is incorrect" },
-                    { text: "What is incorrect" },
-                    { text: "What is incorrect" },
+                    { text: () => <span>What is outer func:  this.foo = bar<br />outer func:  self.foo = bar<br />inner func:  this.foo = undefined<br />inner func:  self.foo = bar</span> },
+                    { text: () => <span>What is outer func:  this.bar = foo<br />outer func:  this.foo = bar<br />inner func:  self.foo = undefined<br />inner func:  self.foo = bar</span> },
+                    { text: () => <span>What is outer func:  this.bar = foo<br />outer func:  this.foo = bar<br />outer func:  self.foo = undefined<br />outer func:  self.bar = bar</span> },
+                    { text: () => <span>What is outer func:  self.bar = foo<br />outer func:  self.foo = bar<br />outer func:  self.foo = undefined<br />outer func:  self.bar = bar</span> },
                 ],
-                contributor: undefined,
-            },
-            600: {
-                question: () => <div>
-                    <p>Catagory 600</p>
-                </div>,
-                options: [
-                    { text: "What is correct" },
-                    { text: "What is incorrect" },
-                    { text: "What is incorrect" },
-                    { text: "What is incorrect" },
-                ],
-                contributor: undefined,
-            },
-            800: {
-                question: () => <div>
-                    <p>Catagory 800</p>
-                </div>,
-                options: [
-                    { text: "What is correct" },
-                    { text: "What is incorrect" },
-                    { text: "What is incorrect" },
-                    { text: "What is incorrect" },
-                ]
+                contributor: "Hunter",
             },
             1000: {
                 question: () => <div>
-                    <p>Catagory 1000</p>
+                    <p>Whats typeof null</p>
                 </div>,
                 options: [
-                    { text: "What is correct" },
-                    { text: "What is incorrect" },
-                    { text: "What is incorrect" },
-                    { text: "What is incorrect" },
+                    { text: "What is object" },
+                    { text: "What is number" },
+                    { text: "What is function" },
+                    { text: "What is string" },
+                    { text: "What is bigint" },
+                    { text: "What is symbol" },
+                    { text: "What is undefined" },
+                    { text: "What is boolean" },
+                    { text: "What is null" },
                 ],
-                contributor: undefined,
+                contributor: "Dave",
+            },
+            600: {
+                question: () => <div>
+                    <p>is react good</p>
+                </div>,
+                options: [
+                    { text: "What is yes" },
+                    { text: "What is no" },
+                ],
+                contributor: "Dave"
+            },
+            800: {
+                question: () => <div>
+                    <p>Async functions are part of ____</p>
+                </div>,
+                options: [
+                    { text: "What is ES2017" },
+                    { text: "What is ES6" },
+                    { text: "What is ES7" },
+                    { text: "What is ES5" },
+                    { text: "What is TypeScript" },
+                    { text: "What is Java" },
+                ],
+                contributor: "Dave"
             }
         }
     },
