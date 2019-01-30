@@ -75,7 +75,7 @@ addScenes({
     hash_potatokart_press1: {
         prompt: () => <div>
             <KartHeader />
-            <p>You are going super fast! You are in first place!</p>
+            <p>You are going super fast! You are in <span style={{color: "e5ff00"}}>1st Place</span>!</p>
         </div>,
         action: () => kartPlace = 1,
         options: [
@@ -89,7 +89,7 @@ addScenes({
     hash_potatokart_further: {
         prompt: () => <div>
             <KartHeader />
-            <p>You got hit by a <span color={{color: "#3549ff"}}>Blue Shell</span>! You are now in <span style={{color: "#d39a30"}}>3rd place</span>!</p>
+            <p>You got hit by a <span color={{color: "#3549ff"}}>Blue Shell</span>! You are now in <span style={{color: "#d39a30"}}>3rd Place</span>!</p>
         </div>,
         action: () => kartPlace = 3,
         options: [
