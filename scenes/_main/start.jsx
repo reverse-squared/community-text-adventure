@@ -174,7 +174,7 @@ addScenes({
         </div>,
         ending: {
             id: "breakfast-failure",
-            name: "Fail to make breakfast",
+            name: "Fail to Make Breakfast",
             description: "With so many options how did you fail a simple task."
         },
         contributor: "Dave",

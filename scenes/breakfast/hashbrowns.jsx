@@ -351,6 +351,7 @@ addScenes({
             { text: "Play something else", to: "" },
             { text: "Don't play anything", to: "" },
             { text: "Go to the neighborhood and make some friends there", to: "" }
-        ]
+        ],
+        contributor: "Durvenson"
     }
 });

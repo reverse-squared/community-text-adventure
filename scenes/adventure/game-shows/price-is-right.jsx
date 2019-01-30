@@ -4,6 +4,14 @@ import { addScenes } from "@src/ending";
 
 addFlag("bid", 0);
 
+function checkBid(bid, actual, win, lose) {
+    if(bid > actual) {
+        setScene(lose);
+    }else {
+        setScene(win);
+    }
+}
+
 addScenes({
     price_pre: {
         prompt: () => <div>
@@ -32,7 +40,7 @@ addScenes({
                     bid--;   
                 }
             } },
-            { text: "Bid", to: "" }
+            { text: "Bid", to: "price_start", if: () => bid > 0, action: () => checkBid(bid, 899, "price_stage", "price_start2") }
         ],
         contributor: "Hunter"
     }

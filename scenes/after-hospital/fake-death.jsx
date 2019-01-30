@@ -7,6 +7,8 @@ addFlag("graveWaitTime", 0);
 addFlag("wrongPasswords", 0);
 addFlag("triedL1Crook", false);
 addFlag("passwords", [false, false, false, false, false, false]);
+addFlag("mafiaLevel", 1);
+addFlag("mafiaTitle", "Crook");
 
 function increaseGraveWait() {
     graveWaitTime++;
@@ -218,7 +220,7 @@ addScenes({
     level1_crook: {
         prompt: () => <div>
             <p>
-                You enter the mafia as a level 1 crook, now what do you do.
+                You enter the mafia as a Level 1 Crook, now what do you do.
             </p>
         </div>,
         options: [
@@ -231,16 +233,50 @@ addScenes({
 
     level1_crook_upgraded: {
         prompt: () => <div>
-            <p>
-                <span style={{ color: "purple" }}>You are a Level 2 Crook</span>
-            </p>
-            <p>
-                You upgrade yourself to a Level 2 Crook. Now what?
-            </p>
+            <p><span style={{ color: "purple" }}>You are a Level {mafiaLevel} {mafiaTitle}</span></p>
+            <p>You upgrade yourself to a Level {mafiaLevel} {mafiaTitle}. Now what?</p>
         </div>,
         options: [
-            { text: "Level Up", to: "level3_crook" }
+            { text: "Level Up", to: "level1_crook_upgraded", action: () => {
+                mafiaLevel++;
+
+                if(mafiaLevel >= 10 && mafiaLevel < 35) {
+                    mafiaTitle = "Hitman";
+                }else if(mafiaLevel >= 35 && mafiaLevel < 100) {
+                    mafiaTitle = "Boss";
+                }else if(mafiaLevel >= 100 && mafiaLevel < 250) {
+                    mafiaTitle = "Master";
+                }else if(mafiaLevel > 250 && mafiaLevel < 1000) {
+                    mafiaTitle = "God";
+                }else if(mafiaLevel >= 1000) {
+                    setScene("mafia_leader")
+                }
+            } }
         ],
-        contributor: "Dave",
+        contributor: "Dave and Hunter",
     },
+    level1_crook_walk_around: {
+        prompt: () => <div>
+            <p>You start to walk around the city, and all of a sudden you are jumped by a bunch of Level 75 Bosses. They kill you for the XP of yours. Of course they didn;t get very much because you were a Level 1 Crook, but it was
+                still fun.
+            </p>
+        </div>,
+        ending: {
+            id: "killed-level-1",
+            name: "Level 1 Crook",
+            description: "You got a long way to become a leader..."
+        },
+        contributor: "Hunter"
+    },
+    mafia_leader: {
+        prompt: () => <div>
+            <p>Now athat you have become a Level 1000 Mafia member, you are now the leader of everyone else. Even all the bosses!</p>
+        </div>,
+        ending: {
+            id: "mafia-leader",
+            name: "Mafia Leader",
+            description: "Become the ultimate mafia leader."
+        },
+        contributor: "Hunter"
+    }
 });
