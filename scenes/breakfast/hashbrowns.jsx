@@ -295,7 +295,7 @@ addScenes({
             { text: "Go to bed", to: "" },
             { text: "Have some coffee", to: "" },
             { text: "Make a tiny potato kart", to: "" },
-            { text: "Play on it with friends", to: "" },
+            { text: "Play on it with friends", to: "hash_fuckingbig_friends" },
             { text: "Throw it in the Trash Bin", to: "hash_fuckingbig_bin" }
         ],
         contributor: "Durvenson"
@@ -626,6 +626,18 @@ addScenes({
             { text: "Go into a wall", to: "" },
             { text: "Go through the door", to: "hash_potatokart_blj_leave_outside_yolo_some_wall" },
             { text: "Wall jump out", to: "hash_potatokart_blj_leave_outside_yolo_some_wall_try_break" }
+        ],
+        contributor: "Durvenson"
+    },
+    hash_fuckingbig_friends: {
+        prompt: () => <div>
+            <p>Play on it with friends: You are lonely, and you have no friends. You start to feel kind of "depressed".</p>
+        </div>,
+        options: [
+            { text: "Hire robots to play with", to: "" },
+            { text: "Play something else", to: "" },
+            { text: "Don't play anything", to: "" },
+            { text: "Go to the neighborhood and make some friends there", to: "" }
         ]
     }
 });

@@ -253,7 +253,7 @@ addScenes({
             { text: "Add more blood", to: "" },
             { text: "Add pancake batter", to: "" },
             { text: "Throw it away", to: "" },
-            { text: "Puke", to: "" },
+            { text: "Puke", to: "pancakes_white_chocolate_butter_more_blood_puke" },
             { text: "Keep mixing", to: "" }
         ],
         contributor: "Durvenson"
@@ -425,5 +425,16 @@ addScenes({
             { text: "Lasagna", to: "" }
         ],
         contributor: "Durvenson and Neema"
+    },
+    pancakes_white_chocolate_butter_more_blood_puke: {
+        prompt: () => <div>
+            <p>You’ve vomited up your entire stomach contents. In fact, you’ve vomited up your stomach, period. You die.</p>
+        </div>,
+        ending: {
+            id: "puke-chocolate",
+            name: "Puke",
+            description: "How did you even manage to puke your OWN stomach?"
+        },
+        contributor: "Alchemyking and Hunter"
     }
 });
