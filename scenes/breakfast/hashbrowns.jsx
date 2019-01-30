@@ -1,7 +1,30 @@
 import React from "react";
-import { } from "web-text-adventure/src/adventure";
+import { addFlag } from "web-text-adventure/src/adventure";
 import { addScenes } from "@src/ending";
 import { CircleText } from "@templates/FontStyles";
+
+addFlag("bettedKart", "");
+addFlag("kartPlace", 0);
+
+const KartHeader = () => {
+    if(kartPlace === 1) {
+        return <div>
+            <p style={{color: "#e5ff00"}}>You Are 1st Place</p>
+        </div>;
+    }else if(kartPlace === 2) {
+        return <div>
+            <p style={{color: "#dddddd"}}>You Are 2nd Place</p>
+        </div>;
+    }else if(kartPlace === 3) {
+        return <div>
+            <p style={{color: "#d39a30"}}>You Are 3rd Place</p>
+        </div>;
+    }else {
+        return <div>
+            <p>You Are {kartPlace}th Place</p>
+        </div>;
+    }
+};
 
 addScenes({
     make_hashbrowns: {
@@ -340,6 +363,94 @@ addScenes({
             name: "You got Divorced",
             description: "That was the end of a \"good\" relationship..."
         },
+        contributor: "Durvenson"
+    },
+    hash_potatokart: {
+        prompt: <div>
+            <p>You make some tiny, somehow fully functional racekarts out of potatos (don't question it) and put them at the start of the track. Which kart do you bet on?</p>
+        </div>,
+        options: [
+            { text: "The reddish one", to: "hash_potatokart_bet", action: () => bettedKart = "The reddish one" },
+            { text: "The yellow one", to: "hash_potatokart_bet", action: () => bettedKart = "The yellow one" },
+            { text: "The brown one", to: "hash_potatokart_bet", action: () => bettedKart = "The brown one" },
+            { text: "The one with a tiny stalk in it", to: "hash_potatokart_bet", action: () => bettedKart = "The one with a tiny stalk in it" },
+            { text: "Your kart", to: "hash_potatokart_bet", action: () => bettedKart = "Your kart" }
+        ],
+        contributor: "Neema and Durvenson"
+    },
+    hash_potatokart_bet: {
+        prompt: () => <div>
+            <p>You placed your bet!</p>
+            <h1>3...</h1>
+        </div>,
+        options: [
+            { text: "Press it", to: "" },
+            { text: "not yet", to: "hash_potatokart_bet_2" }
+        ],
+        contributor: "Durvenson"
+    },
+    hash_potatokart_bet_2: {
+        prompt: () => <div>
+            <p>You placed your bet!</p>
+            <h1>2...</h1>
+        </div>,
+        options: [
+            { text: "Press it", to: "" },
+            { text: "not yet", to: "hash_potatokart_bet_1" }
+        ],
+        contributor: "Durvenson"
+    },
+    hash_potatokart_bet_1: {
+        prompt: () => <div>
+            <p>You placed your bet!</p>
+            <h1>1...</h1>
+        </div>,
+        options: [
+            { text: "Press it", to: "hash_potatokart_press1" },
+            { text: "not yet", to: "hash_potatokart_bet_1" }
+        ],
+        contributor: "Durvenson"
+    },
+    hash_potatokart_press1: {
+        prompt: () => <div>
+            <KartHeader />
+            <p>You are going super fast! You are in first place!</p>
+        </div>,
+        action: () => kartPlace = 1,
+        options: [
+            { text: "Go further", to: "hash_potatokart_further" },
+            { text: "Nah", to: "" },
+            { text: "Backwards", to: "" },
+            { text: "Disconnect", to: "" }
+        ],
+        contributor: "Durvenson"
+    },
+    hash_potatokart_further: {
+        prompt: () => <div>
+            <p>You got hit by a <span color={{color: "#3549ff"}}>Blue Shell</span>! You are now in <span style={{color: "#d39a30"}}>3rd place</span>!</p>
+        </div>,
+        action: () => kartPlace = 3,
+        options: [
+            { text: "Go further", to: "" },
+            { text: "Say F R I C C", to: "hash_potatokart_fricc" },
+            { text: "N O", to: "" },
+            { text: "Backwards", to: "" },
+            { text: "Disconnect", to: "" }
+        ],
+        contributor: "Durvenson"
+    },
+    hash_potatokart_fricc: {
+        prompt: () => <div>
+            <p>It turns out that this is a christian race. You get kicked into a painting, and you are in Bomb Omb Battlefield.</p>
+        </div>,
+        options: [
+            { text: "Say FRICK again", to: "" },
+            { text: "Speak to the bomb dudes", to: "" },
+            { text: "Go forward", to: "" },
+            { text: "Try to do a BLJ", to: "" },
+            { text: "Leave the level", to: "" },
+            { text: "Stand there", to: "" }
+        ],
         contributor: "Durvenson"
     }
 });

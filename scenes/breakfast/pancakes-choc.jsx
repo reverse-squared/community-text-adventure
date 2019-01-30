@@ -68,7 +68,7 @@ addScenes({
             </p>
         </div>,
         options: [
-            { text: "Sue the Baking Chocolate company", to: "" },
+            { text: "Sue the Baking Chocolate company", to: "baker_chocolate_sue" },
             { text: "Throw away the pancakes", to: "" },
             { text: "Top the pancakes with actual chocolate to hide it’s disgustingness", to: "make_chocolate_top_them" },
             { text: "Yell", to: "" },
@@ -238,11 +238,25 @@ addScenes({
         </div>,
         options: [
             { text: "Add more butter", to: "" },
-            { text: "Add more blood", to: "" },
+            { text: "Add more blood", to: "pancakes_white_chocolate_butter_more_blood" },
             { text: "Add pancake batter", to: "" },
             { text: "Keep mixing", to: "" }
         ],
         contributor: "Neema"
+    },
+    pancakes_white_chocolate_butter_more_blood: {
+        prompt: () => <div>
+            <p>You realize how disgusting it is to have blood in a pancake mix. What do you do?</p>
+        </div>,
+        options: [
+            { text: "Add more butter so you don't notice as much", to: "" },
+            { text: "Add more blood", to: "" },
+            { text: "Add pancake batter", to: "" },
+            { text: "Throw it away", to: "" },
+            { text: "Puke", to: "" },
+            { text: "Keep mixing", to: "" }
+        ],
+        contributor: "Durvenson"
     },
     pancakes_white_chocolate_milk: {
         prompt: () => <div>
@@ -398,5 +412,18 @@ addScenes({
             description: "What the heck man!?"
         },
         contributor: "Dave"
+    },
+    baker_chocolate_sue: {
+        prompt: () => <div>
+            <p>Your lawsuit didn't do anything, because you were stupid and didn't realize that it was expired. Also, you didn't heat the pancakes correctly.The case was dismissed. How will you handle this?</p>
+        </div>,
+        options: [
+            { text: "Protest against the court", to: "" },
+            { text: "Question your intelligence", to: "" },
+            { text: "Try again", to: "" },
+            { text: "Just move on", to: "" },
+            { text: "Lasagna", to: "" }
+        ],
+        contributor: "Durvenson and Neema"
     }
 });

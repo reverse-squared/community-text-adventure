@@ -2,7 +2,7 @@
 // (which get randomly shuffled)
 export default [
     {
-        catagoryName: "Catagory",
+        catagoryName: "JavaScript",
         questions: {
             100: {
                 question: () => <div>
@@ -62,7 +62,7 @@ export default [
         }
     },
     {
-        catagoryName: "Catagory",
+        catagoryName: "Video Games",
         questions: {
             100: {
                 question: () => <div>
@@ -122,7 +122,7 @@ export default [
         }
     },
     {
-        catagoryName: "Catagory",
+        catagoryName: "Pancakes",
         questions: {
             100: {
                 question: () => <div>
