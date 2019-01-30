@@ -395,7 +395,7 @@ addScenes({
         ending: {
             id: "000",
             name: "000000000",
-            description: "0000000000000000000000000000000000000"
+            description: "0000000000000000000000000000000000000."
         },
         contributor: "Hunter"
     },

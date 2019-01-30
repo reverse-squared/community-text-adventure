@@ -12,7 +12,7 @@ addScenes({
         </div>,
         options: [
             { text: "The dark and not suspicious tunnel", to: "dog_tunnel" },
-            { text: "The pet store.", to: "dog_pet_store" },
+            { text: "The pet store", to: "dog_pet_store" },
         ],
         contributor: "Hunter"
     },

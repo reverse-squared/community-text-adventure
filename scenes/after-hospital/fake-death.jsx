@@ -210,7 +210,7 @@ addScenes({
         ending: {
             id: "disqualified",
             name: "Disqualified",
-            description: "Get Disqualified from How to be a Millionaire"
+            description: "Get Disqualified from How to be a Millionaire."
         },
         contributor: "Dave",
     },
