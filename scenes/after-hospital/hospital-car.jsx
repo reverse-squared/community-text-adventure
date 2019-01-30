@@ -58,7 +58,7 @@ const mapDirectionKeyToName = {
     "roundabout right": "Turn right at the roundabout",
     "destination right": "The destination is on your right",
     "destination left": "The destination is on your left",
-    ...[...new Array(99)].map((x, i) => i + 1).reduce((obj, i) => {obj["exit"+i] = "Take Exit " + i;return obj;},{})
+    ...[...new Array(99)].map((x, i) => i + 1).reduce((obj, i) => {obj["exit" + i] = "Take Exit " + i;return obj;},{})
 };
 
 const options = {
@@ -120,7 +120,7 @@ addScenes({
                     if(id === correct_answer) {
                         hospital_car_step++;
                         if(hospital_car_step >= directions.length) {
-                            if(wrongturns>0) {
+                            if(wrongturns > 0) {
                                 setScene("hospital_car_fail_almost");
                             } else {
                                 setScene("hospital_car_success");

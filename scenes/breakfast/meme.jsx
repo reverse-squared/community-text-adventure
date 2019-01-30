@@ -38,7 +38,7 @@ class Swear extends React.Component {
             let chars = "#$@&%*!".split("");
             if(this.root) {
                 this.root.innerHTML = Array(6).fill(0).map(() => chars[Math.floor(Math.random() * (chars.length + 1))]).join("");
-                setTimeout(this.animate, 1000/18);
+                setTimeout(this.animate, 1000 / 18);
             }
         };
     }

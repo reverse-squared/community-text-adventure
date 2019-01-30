@@ -249,7 +249,7 @@ addScenes({
                 }else if(mafiaLevel > 250 && mafiaLevel < 1000) {
                     mafiaTitle = "God";
                 }else if(mafiaLevel >= 1000) {
-                    setScene("mafia_leader")
+                    setScene("mafia_leader");
                 }
             } }
         ],

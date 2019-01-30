@@ -1,43 +1,19 @@
-// list of catagories, questions 100-500, options is array with first being correct
+// list of catagories, questions 200-1000, options is array with first being What is correct
 // (which get randomly shuffled)
 import React from "react";
 export default [
     {
         catagoryName: "JavaScript",
         questions: {
-            100: {
-                question: () => <div>
-                    <p>Catagory 100</p>
-                </div>,
-                options: [
-                    { text: "correct" },
-                    { text: "wrong" },
-                    { text: "wrong" },
-                    { text: "wrong" },
-                ],
-                contributor: undefined,
-            },
             200: {
                 question: () => <div>
                     <p>Catagory 200</p>
                 </div>,
                 options: [
-                    { text: "correct" },
-                    { text: "wrong" },
-                    { text: "wrong" },
-                    { text: "wrong" },
-                ],
-                contributor: undefined,
-            },
-            300: {
-                question: () => <div>
-                    <p>Catagory 300</p>
-                </div>,
-                options: [
-                    { text: "correct" },
-                    { text: "wrong" },
-                    { text: "wrong" },
-                    { text: "wrong" },
+                    { text: "What is correct" },
+                    { text: "What is incorrect" },
+                    { text: "What is incorrect" },
+                    { text: "What is incorrect" },
                 ],
                 contributor: undefined,
             },
@@ -46,21 +22,45 @@ export default [
                     <p>Catagory 400</p>
                 </div>,
                 options: [
-                    { text: "correct" },
-                    { text: "wrong" },
-                    { text: "wrong" },
-                    { text: "wrong" },
-                ]
+                    { text: "What is correct" },
+                    { text: "What is incorrect" },
+                    { text: "What is incorrect" },
+                    { text: "What is incorrect" },
+                ],
+                contributor: undefined,
             },
-            500: {
+            600: {
                 question: () => <div>
-                    <p>Catagory 500</p>
+                    <p>Catagory 600</p>
                 </div>,
                 options: [
-                    { text: "correct" },
-                    { text: "wrong" },
-                    { text: "wrong" },
-                    { text: "wrong" },
+                    { text: "What is correct" },
+                    { text: "What is incorrect" },
+                    { text: "What is incorrect" },
+                    { text: "What is incorrect" },
+                ],
+                contributor: undefined,
+            },
+            800: {
+                question: () => <div>
+                    <p>Catagory 800</p>
+                </div>,
+                options: [
+                    { text: "What is correct" },
+                    { text: "What is incorrect" },
+                    { text: "What is incorrect" },
+                    { text: "What is incorrect" },
+                ]
+            },
+            1000: {
+                question: () => <div>
+                    <p>Catagory 1000</p>
+                </div>,
+                options: [
+                    { text: "What is correct" },
+                    { text: "What is incorrect" },
+                    { text: "What is incorrect" },
+                    { text: "What is incorrect" },
                 ],
                 contributor: undefined,
             }
@@ -69,39 +69,15 @@ export default [
     {
         catagoryName: "Video Games",
         questions: {
-            100: {
-                question: () => <div>
-                    <p>Catagory 100</p>
-                </div>,
-                options: [
-                    { text: "correct" },
-                    { text: "wrong" },
-                    { text: "wrong" },
-                    { text: "wrong" },
-                ],
-                contributor: undefined,
-            },
             200: {
                 question: () => <div>
                     <p>Catagory 200</p>
                 </div>,
                 options: [
-                    { text: "correct" },
-                    { text: "wrong" },
-                    { text: "wrong" },
-                    { text: "wrong" },
-                ],
-                contributor: undefined,
-            },
-            300: {
-                question: () => <div>
-                    <p>Catagory 300</p>
-                </div>,
-                options: [
-                    { text: "correct" },
-                    { text: "wrong" },
-                    { text: "wrong" },
-                    { text: "wrong" },
+                    { text: "What is correct" },
+                    { text: "What is incorrect" },
+                    { text: "What is incorrect" },
+                    { text: "What is incorrect" },
                 ],
                 contributor: undefined,
             },
@@ -110,22 +86,46 @@ export default [
                     <p>Catagory 400</p>
                 </div>,
                 options: [
-                    { text: "correct" },
-                    { text: "wrong" },
-                    { text: "wrong" },
-                    { text: "wrong" },
+                    { text: "What is correct" },
+                    { text: "What is incorrect" },
+                    { text: "What is incorrect" },
+                    { text: "What is incorrect" },
                 ],
                 contributor: undefined,
             },
-            500: {
+            600: {
                 question: () => <div>
-                    <p>Catagory 500</p>
+                    <p>Catagory 600</p>
                 </div>,
                 options: [
-                    { text: "correct" },
-                    { text: "wrong" },
-                    { text: "wrong" },
-                    { text: "wrong" },
+                    { text: "What is correct" },
+                    { text: "What is incorrect" },
+                    { text: "What is incorrect" },
+                    { text: "What is incorrect" },
+                ],
+                contributor: undefined,
+            },
+            800: {
+                question: () => <div>
+                    <p>Catagory 800</p>
+                </div>,
+                options: [
+                    { text: "What is correct" },
+                    { text: "What is incorrect" },
+                    { text: "What is incorrect" },
+                    { text: "What is incorrect" },
+                ],
+                contributor: undefined,
+            },
+            1000: {
+                question: () => <div>
+                    <p>Catagory 1000</p>
+                </div>,
+                options: [
+                    { text: "What is correct" },
+                    { text: "What is incorrect" },
+                    { text: "What is incorrect" },
+                    { text: "What is incorrect" },
                 ],
                 contributor: undefined,
             }
@@ -134,39 +134,15 @@ export default [
     {
         catagoryName: "Pancakes",
         questions: {
-            100: {
-                question: () => <div>
-                    <p>Catagory 100</p>
-                </div>,
-                options: [
-                    { text: "correct" },
-                    { text: "wrong" },
-                    { text: "wrong" },
-                    { text: "wrong" },
-                ],
-                contributor: undefined,
-            },
             200: {
                 question: () => <div>
                     <p>Catagory 200</p>
                 </div>,
                 options: [
-                    { text: "correct" },
-                    { text: "wrong" },
-                    { text: "wrong" },
-                    { text: "wrong" },
-                ],
-                contributor: undefined,
-            },
-            300: {
-                question: () => <div>
-                    <p>Catagory 300</p>
-                </div>,
-                options: [
-                    { text: "correct" },
-                    { text: "wrong" },
-                    { text: "wrong" },
-                    { text: "wrong" },
+                    { text: "What is correct" },
+                    { text: "What is incorrect" },
+                    { text: "What is incorrect" },
+                    { text: "What is incorrect" },
                 ],
                 contributor: undefined,
             },
@@ -175,63 +151,63 @@ export default [
                     <p>Catagory 400</p>
                 </div>,
                 options: [
-                    { text: "correct" },
-                    { text: "wrong" },
-                    { text: "wrong" },
-                    { text: "wrong" },
+                    { text: "What is correct" },
+                    { text: "What is incorrect" },
+                    { text: "What is incorrect" },
+                    { text: "What is incorrect" },
                 ],
                 contributor: undefined,
             },
-            500: {
+            600: {
                 question: () => <div>
-                    <p>Catagory 500</p>
+                    <p>Catagory 600</p>
                 </div>,
                 options: [
-                    { text: "correct" },
-                    { text: "wrong" },
-                    { text: "wrong" },
-                    { text: "wrong" },
+                    { text: "What is correct" },
+                    { text: "What is incorrect" },
+                    { text: "What is incorrect" },
+                    { text: "What is incorrect" },
+                ],
+                contributor: undefined,
+            },
+            800: {
+                question: () => <div>
+                    <p>Catagory 800</p>
+                </div>,
+                options: [
+                    { text: "What is correct" },
+                    { text: "What is incorrect" },
+                    { text: "What is incorrect" },
+                    { text: "What is incorrect" },
+                ],
+                contributor: undefined,
+            },
+            1000: {
+                question: () => <div>
+                    <p>Catagory 1000</p>
+                </div>,
+                options: [
+                    { text: "What is correct" },
+                    { text: "What is incorrect" },
+                    { text: "What is incorrect" },
+                    { text: "What is incorrect" },
                 ],
                 contributor: undefined,
             }
         }
     },
     {
-        catagoryName: "Catagory",
+        catagoryName: "Catagory4",
         questions: {
-            100: {
-                question: () => <div>
-                    <p>Catagory 100</p>
-                </div>,
-                options: [
-                    { text: "correct" },
-                    { text: "wrong" },
-                    { text: "wrong" },
-                    { text: "wrong" },
-                ],
-                contributor: undefined,
-            },
             200: {
                 question: () => <div>
                     <p>Catagory 200</p>
                 </div>,
                 options: [
-                    { text: "correct" },
-                    { text: "wrong" },
-                    { text: "wrong" },
-                    { text: "wrong" },
-                ],
-                contributor: undefined,
-            },
-            300: {
-                question: () => <div>
-                    <p>Catagory 300</p>
-                </div>,
-                options: [
-                    { text: "correct" },
-                    { text: "wrong" },
-                    { text: "wrong" },
-                    { text: "wrong" },
+                    { text: "What is correct" },
+                    { text: "What is incorrect" },
+                    { text: "What is incorrect" },
+                    { text: "What is incorrect" },
                 ],
                 contributor: undefined,
             },
@@ -240,63 +216,63 @@ export default [
                     <p>Catagory 400</p>
                 </div>,
                 options: [
-                    { text: "correct" },
-                    { text: "wrong" },
-                    { text: "wrong" },
-                    { text: "wrong" },
+                    { text: "What is correct" },
+                    { text: "What is incorrect" },
+                    { text: "What is incorrect" },
+                    { text: "What is incorrect" },
                 ],
                 contributor: undefined,
             },
-            500: {
+            600: {
                 question: () => <div>
-                    <p>Catagory 500</p>
+                    <p>Catagory 600</p>
                 </div>,
                 options: [
-                    { text: "correct" },
-                    { text: "wrong" },
-                    { text: "wrong" },
-                    { text: "wrong" },
+                    { text: "What is correct" },
+                    { text: "What is incorrect" },
+                    { text: "What is incorrect" },
+                    { text: "What is incorrect" },
+                ],
+                contributor: undefined,
+            },
+            800: {
+                question: () => <div>
+                    <p>Catagory 800</p>
+                </div>,
+                options: [
+                    { text: "What is correct" },
+                    { text: "What is incorrect" },
+                    { text: "What is incorrect" },
+                    { text: "What is incorrect" },
+                ],
+                contributor: undefined,
+            },
+            1000: {
+                question: () => <div>
+                    <p>Catagory 1000</p>
+                </div>,
+                options: [
+                    { text: "What is correct" },
+                    { text: "What is incorrect" },
+                    { text: "What is incorrect" },
+                    { text: "What is incorrect" },
                 ],
                 contributor: undefined,
             }
         }
     },
     {
-        catagoryName: "Catagory",
+        catagoryName: "Catagory5",
         questions: {
-            100: {
-                question: () => <div>
-                    <p>Catagory 100</p>
-                </div>,
-                options: [
-                    { text: "correct" },
-                    { text: "wrong" },
-                    { text: "wrong" },
-                    { text: "wrong" },
-                ],
-                contributor: undefined,
-            },
             200: {
                 question: () => <div>
                     <p>Catagory 200</p>
                 </div>,
                 options: [
-                    { text: "correct" },
-                    { text: "wrong" },
-                    { text: "wrong" },
-                    { text: "wrong" },
-                ],
-                contributor: undefined,
-            },
-            300: {
-                question: () => <div>
-                    <p>Catagory 300</p>
-                </div>,
-                options: [
-                    { text: "correct" },
-                    { text: "wrong" },
-                    { text: "wrong" },
-                    { text: "wrong" },
+                    { text: "What is correct" },
+                    { text: "What is incorrect" },
+                    { text: "What is incorrect" },
+                    { text: "What is incorrect" },
                 ],
                 contributor: undefined,
             },
@@ -305,22 +281,111 @@ export default [
                     <p>Catagory 400</p>
                 </div>,
                 options: [
-                    { text: "correct" },
-                    { text: "wrong" },
-                    { text: "wrong" },
-                    { text: "wrong" },
+                    { text: "What is correct" },
+                    { text: "What is incorrect" },
+                    { text: "What is incorrect" },
+                    { text: "What is incorrect" },
                 ],
                 contributor: undefined,
             },
-            500: {
+            600: {
                 question: () => <div>
-                    <p>Catagory 500</p>
+                    <p>Catagory 600</p>
                 </div>,
                 options: [
-                    { text: "correct" },
-                    { text: "wrong" },
-                    { text: "wrong" },
-                    { text: "wrong" },
+                    { text: "What is correct" },
+                    { text: "What is incorrect" },
+                    { text: "What is incorrect" },
+                    { text: "What is incorrect" },
+                ],
+                contributor: undefined,
+            },
+            800: {
+                question: () => <div>
+                    <p>Catagory 800</p>
+                </div>,
+                options: [
+                    { text: "What is correct" },
+                    { text: "What is incorrect" },
+                    { text: "What is incorrect" },
+                    { text: "What is incorrect" },
+                ],
+                contributor: undefined,
+            },
+            1000: {
+                question: () => <div>
+                    <p>Catagory 1000</p>
+                </div>,
+                options: [
+                    { text: "What is correct" },
+                    { text: "What is incorrect" },
+                    { text: "What is incorrect" },
+                    { text: "What is incorrect" },
+                ],
+                contributor: undefined,
+            }
+        }
+    },
+    {
+        catagoryName: "Catagory6",
+        questions: {
+            200: {
+                question: () => <div>
+                    <p>Catagory 200</p>
+                </div>,
+                options: [
+                    { text: "What is correct" },
+                    { text: "What is incorrect" },
+                    { text: "What is incorrect" },
+                    { text: "What is incorrect" },
+                ],
+                contributor: undefined,
+            },
+            400: {
+                question: () => <div>
+                    <p>Catagory 400</p>
+                </div>,
+                options: [
+                    { text: "What is correct" },
+                    { text: "What is incorrect" },
+                    { text: "What is incorrect" },
+                    { text: "What is incorrect" },
+                ],
+                contributor: undefined,
+            },
+            600: {
+                question: () => <div>
+                    <p>Catagory 600</p>
+                </div>,
+                options: [
+                    { text: "What is correct" },
+                    { text: "What is incorrect" },
+                    { text: "What is incorrect" },
+                    { text: "What is incorrect" },
+                ],
+                contributor: undefined,
+            },
+            800: {
+                question: () => <div>
+                    <p>Catagory 800</p>
+                </div>,
+                options: [
+                    { text: "What is correct" },
+                    { text: "What is incorrect" },
+                    { text: "What is incorrect" },
+                    { text: "What is incorrect" },
+                ],
+                contributor: undefined,
+            },
+            1000: {
+                question: () => <div>
+                    <p>Catagory 1000</p>
+                </div>,
+                options: [
+                    { text: "What is correct" },
+                    { text: "What is incorrect" },
+                    { text: "What is incorrect" },
+                    { text: "What is incorrect" },
                 ],
                 contributor: undefined,
             }
