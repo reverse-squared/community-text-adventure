@@ -1,5 +1,6 @@
 // list of catagories, questions 100-500, options is array with first being correct
 // (which get randomly shuffled)
+import React from "react";
 export default [
     {
         catagoryName: "JavaScript",
@@ -13,7 +14,8 @@ export default [
                     { text: "wrong" },
                     { text: "wrong" },
                     { text: "wrong" },
-                ]
+                ],
+                contributor: undefined,
             },
             200: {
                 question: () => <div>
@@ -24,7 +26,8 @@ export default [
                     { text: "wrong" },
                     { text: "wrong" },
                     { text: "wrong" },
-                ]
+                ],
+                contributor: undefined,
             },
             300: {
                 question: () => <div>
@@ -35,7 +38,8 @@ export default [
                     { text: "wrong" },
                     { text: "wrong" },
                     { text: "wrong" },
-                ]
+                ],
+                contributor: undefined,
             },
             400: {
                 question: () => <div>
@@ -57,7 +61,8 @@ export default [
                     { text: "wrong" },
                     { text: "wrong" },
                     { text: "wrong" },
-                ]
+                ],
+                contributor: undefined,
             }
         }
     },
@@ -73,7 +78,8 @@ export default [
                     { text: "wrong" },
                     { text: "wrong" },
                     { text: "wrong" },
-                ]
+                ],
+                contributor: undefined,
             },
             200: {
                 question: () => <div>
@@ -84,7 +90,8 @@ export default [
                     { text: "wrong" },
                     { text: "wrong" },
                     { text: "wrong" },
-                ]
+                ],
+                contributor: undefined,
             },
             300: {
                 question: () => <div>
@@ -95,7 +102,8 @@ export default [
                     { text: "wrong" },
                     { text: "wrong" },
                     { text: "wrong" },
-                ]
+                ],
+                contributor: undefined,
             },
             400: {
                 question: () => <div>
@@ -106,7 +114,8 @@ export default [
                     { text: "wrong" },
                     { text: "wrong" },
                     { text: "wrong" },
-                ]
+                ],
+                contributor: undefined,
             },
             500: {
                 question: () => <div>
@@ -117,7 +126,8 @@ export default [
                     { text: "wrong" },
                     { text: "wrong" },
                     { text: "wrong" },
-                ]
+                ],
+                contributor: undefined,
             }
         }
     },
@@ -133,7 +143,8 @@ export default [
                     { text: "wrong" },
                     { text: "wrong" },
                     { text: "wrong" },
-                ]
+                ],
+                contributor: undefined,
             },
             200: {
                 question: () => <div>
@@ -144,7 +155,8 @@ export default [
                     { text: "wrong" },
                     { text: "wrong" },
                     { text: "wrong" },
-                ]
+                ],
+                contributor: undefined,
             },
             300: {
                 question: () => <div>
@@ -155,7 +167,8 @@ export default [
                     { text: "wrong" },
                     { text: "wrong" },
                     { text: "wrong" },
-                ]
+                ],
+                contributor: undefined,
             },
             400: {
                 question: () => <div>
@@ -166,7 +179,8 @@ export default [
                     { text: "wrong" },
                     { text: "wrong" },
                     { text: "wrong" },
-                ]
+                ],
+                contributor: undefined,
             },
             500: {
                 question: () => <div>
@@ -177,7 +191,8 @@ export default [
                     { text: "wrong" },
                     { text: "wrong" },
                     { text: "wrong" },
-                ]
+                ],
+                contributor: undefined,
             }
         }
     },
@@ -193,7 +208,8 @@ export default [
                     { text: "wrong" },
                     { text: "wrong" },
                     { text: "wrong" },
-                ]
+                ],
+                contributor: undefined,
             },
             200: {
                 question: () => <div>
@@ -204,7 +220,8 @@ export default [
                     { text: "wrong" },
                     { text: "wrong" },
                     { text: "wrong" },
-                ]
+                ],
+                contributor: undefined,
             },
             300: {
                 question: () => <div>
@@ -215,7 +232,8 @@ export default [
                     { text: "wrong" },
                     { text: "wrong" },
                     { text: "wrong" },
-                ]
+                ],
+                contributor: undefined,
             },
             400: {
                 question: () => <div>
@@ -226,7 +244,8 @@ export default [
                     { text: "wrong" },
                     { text: "wrong" },
                     { text: "wrong" },
-                ]
+                ],
+                contributor: undefined,
             },
             500: {
                 question: () => <div>
@@ -237,7 +256,8 @@ export default [
                     { text: "wrong" },
                     { text: "wrong" },
                     { text: "wrong" },
-                ]
+                ],
+                contributor: undefined,
             }
         }
     },
@@ -253,7 +273,8 @@ export default [
                     { text: "wrong" },
                     { text: "wrong" },
                     { text: "wrong" },
-                ]
+                ],
+                contributor: undefined,
             },
             200: {
                 question: () => <div>
@@ -264,7 +285,8 @@ export default [
                     { text: "wrong" },
                     { text: "wrong" },
                     { text: "wrong" },
-                ]
+                ],
+                contributor: undefined,
             },
             300: {
                 question: () => <div>
@@ -275,7 +297,8 @@ export default [
                     { text: "wrong" },
                     { text: "wrong" },
                     { text: "wrong" },
-                ]
+                ],
+                contributor: undefined,
             },
             400: {
                 question: () => <div>
@@ -286,7 +309,8 @@ export default [
                     { text: "wrong" },
                     { text: "wrong" },
                     { text: "wrong" },
-                ]
+                ],
+                contributor: undefined,
             },
             500: {
                 question: () => <div>
@@ -297,7 +321,8 @@ export default [
                     { text: "wrong" },
                     { text: "wrong" },
                     { text: "wrong" },
-                ]
+                ],
+                contributor: undefined,
             }
         }
     },
