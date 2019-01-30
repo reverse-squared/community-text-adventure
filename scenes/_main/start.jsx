@@ -18,16 +18,16 @@ addScenes({
         </div>,
         
         options: () => [
-            { text: "Go outstide", to: "wakeup_outside" },
+            { text: "Go outside", to: "wakeup_outside" },
             { text: "Make some breakfast", to: "wakeup_breakfast" },
             { text: "Check the time", to: "wakeup_check_time" },
             
             /*
             ...((getGameProgress().percentage >= 1) ? [
-                "seperator",
-                { text: () => <RainbowText string={"Brag about how you got all " + getGameProgress().totalEndings + " endings"}/>, to: "true_ending" }
+                {is: "seperator"},
+                { text: () => <RainbowText underline string={"Brag about how you got all " + getGameProgress().totalEndings + " endings"}/>, to: "true_ending" }
             ] : [])
-            */
+            //*/
         ],
 
         action: () => {
@@ -60,6 +60,7 @@ addScenes({
             { text: "Touch the lizard", to: "touch_lizard" },
             { text: "Touch the spider", to: "touch_spider" },
             { text: "Touch the human", to: "touch_human" },
+            { text: "Get in your car", to: "touch_car" }
         ],
         contributor: "Hunter"
     },
@@ -239,6 +240,28 @@ addScenes({
             { text: "Peanut butter", to: "make_pb_pancakes" }
         ],
         contributor: "Dave"
+    },
+    touch_car: {
+        prompt: () => <div>
+            <p>You get in your car and realize you robbed a bank yesterday and the police are here. What do you do now?</p>,
+        </div>,
+        options: [
+            { text: "Drive away", to: "" },
+            { text: "Surrender", to: "" },
+            { text: "Suicide", to: "touch_car_sui" }
+        ],
+        contributor: "torinpotato"
+    },
+    touch_car_sui: {
+        prompt: () => <div>
+            <p>Good job! You have now suicided yourself.</p>
+        </div>,
+        ending: {
+            id: "touch_car_sui",
+            name: "Sucidal",
+            description: "You have suicided. And now you are in hell."
+        },
+        contributor: "torinpotato and Hunter"
     },
 
     true_ending: {

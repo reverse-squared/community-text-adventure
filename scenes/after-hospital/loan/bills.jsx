@@ -18,7 +18,7 @@ addScenes({
         prompt: () => <div>
             <LoanHeader />
             <div>
-                You decide to pay your bills{(loanBills1[0] && loanBills1[1] && loanBills1[2]) ? ", and go even further into debt." : "..."}
+                You decide to pay your bills{(!isPlayingMillionaire && loanBills1[0] && loanBills1[1] && loanBills1[2]) ? ", and go even further into debt." : "..."}
             </div>
         </div>,
         options: [
@@ -229,10 +229,10 @@ addScenes({
                 After replacing the windows on your house, you notice your neighbour has more windows than you. <strong>Do you buy more windows?</strong>
             </p>
         </div>,
-        options: [
+        options: () => [
             { text: "Oh, hell yeah (-$1500)", to: "loan_paybills_windows_buymore", action: () => loanMoney -= 1500 },
             { text: "No", to: "loan_paybills_house" },
-            { text: "Smash neighbour's windows", to: "loan_paybills_smashwindow" },
+            { text: "Smash neighbour's windows", to: isPlayingMillionaire ? "loan_paybills_smashwindow_millionaire" : "loan_paybills_smashwindow" },
         ],
         action: () => {
             loanWindows = true;
@@ -300,6 +300,20 @@ addScenes({
             description: "Spend half a million dollars instead of paying your loan."
         },
         contributor: "Dave"
+    },
+    loan_paybills_smashwindow_millionaire: {
+        prompt: () => <div>
+            <p>
+                As part of the <span style={{ color: "lime" }}>Who Wants to be a Millionare</span> rules, you cannot destroy property. You
+                smashed this person's windows, so you got disqualified.
+            </p>
+        </div>,
+        ending: {
+            id: "disqualified",
+            name: "Disqualified",
+            description: "Get Disqualified from How to be a Millionaire."
+        },
+        contributor: "Dave",
     },
     loan_paybills_smashwindow: {
         prompt: () => <div>

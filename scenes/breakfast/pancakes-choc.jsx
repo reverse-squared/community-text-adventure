@@ -51,7 +51,7 @@ addScenes({
     make_chocolate_top_them: {
         prompt: () => <div>
             <p>
-                You top the Baker's choclate with...
+                You top the Baker's chocolate with...
             </p>
         </div>,
         options: [
@@ -68,13 +68,12 @@ addScenes({
             </p>
         </div>,
         options: [
-            { text: "Sue the Baking Chocolate company", to: "" },
+            { text: "Sue the Baking Chocolate company", to: "baker_chocolate_sue" },
             { text: "Throw away the pancakes", to: "" },
             { text: "Top the pancakes with actual chocolate to hide it’s disgustingness", to: "make_chocolate_top_them" },
             { text: "Yell", to: "" },
             { text: "Cry because your breakfast was ruined", to: "" },
         ],
-        // TODO: Find Daniel's friend's name.
         contributor: null,
     },
     pancakes_white_chocolate: {
@@ -151,7 +150,7 @@ addScenes({
         ending: {
             id: "edgy-death-mistake",
             name: "Mistaken as a Racist",
-            description: "You added so much dark choclate that you were mistaken as a racist.",
+            description: "You added so much dark chocolate that you were mistaken as a racist.",
         },
         contributor: "Alchemyking",
     },
@@ -199,7 +198,7 @@ addScenes({
             </p>
         </div>,
         options: [
-            { text: "More cocaine", to: "pancakes_white_chocolate_cocaine2" },
+            { text: "More cocaine", to: "pancakes_white_chocolate_cocaine3" },
             { text: "Use the cocaine chocolate", to: "pancakes_white_chocolate_cocaine_make" },
             { text: "Snort the cocaine chocolate", to: "pancakes_white_chocolate_cocaine_snort" }
         ],
@@ -212,7 +211,7 @@ addScenes({
             </p>
         </div>,
         options: [
-            { text: "More cocaine", to: "pancakes_white_chocolate_cocaine2" },
+            { text: "More cocaine", to: "pancakes_white_chocolate_cocaine4" },
             { text: "Use the cocaine chocolate", to: "pancakes_white_chocolate_cocaine_make" },
             { text: "Snort the cocaine chocolate", to: "pancakes_white_chocolate_cocaine_snort" }
         ],
@@ -239,11 +238,25 @@ addScenes({
         </div>,
         options: [
             { text: "Add more butter", to: "" },
-            { text: "Add more blood", to: "" },
+            { text: "Add more blood", to: "pancakes_white_chocolate_butter_more_blood" },
             { text: "Add pancake batter", to: "" },
             { text: "Keep mixing", to: "" }
         ],
         contributor: "Neema"
+    },
+    pancakes_white_chocolate_butter_more_blood: {
+        prompt: () => <div>
+            <p>You realize how disgusting it is to have blood in a pancake mix. What do you do?</p>
+        </div>,
+        options: [
+            { text: "Add more butter so you don't notice as much", to: "" },
+            { text: "Add more blood", to: "" },
+            { text: "Add pancake batter", to: "" },
+            { text: "Throw it away", to: "" },
+            { text: "Puke", to: "pancakes_white_chocolate_butter_more_blood_puke" },
+            { text: "Keep mixing", to: "" }
+        ],
+        contributor: "Durvenson"
     },
     pancakes_white_chocolate_milk: {
         prompt: () => <div>
@@ -399,5 +412,29 @@ addScenes({
             description: "What the heck man!?"
         },
         contributor: "Dave"
+    },
+    baker_chocolate_sue: {
+        prompt: () => <div>
+            <p>Your lawsuit didn't do anything, because you were stupid and didn't realize that it was expired. Also, you didn't heat the pancakes correctly.The case was dismissed. How will you handle this?</p>
+        </div>,
+        options: [
+            { text: "Protest against the court", to: "" },
+            { text: "Question your intelligence", to: "" },
+            { text: "Try again", to: "" },
+            { text: "Just move on", to: "" },
+            { text: "Lasagna", to: "" }
+        ],
+        contributor: "Durvenson and Neema"
+    },
+    pancakes_white_chocolate_butter_more_blood_puke: {
+        prompt: () => <div>
+            <p>You’ve vomited up your entire stomach contents. In fact, you’ve vomited up your stomach, period. You die.</p>
+        </div>,
+        ending: {
+            id: "puke-chocolate",
+            name: "Puke",
+            description: "How did you even manage to puke your OWN stomach?"
+        },
+        contributor: "Alchemyking and Hunter"
     }
 });

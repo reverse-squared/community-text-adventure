@@ -26,7 +26,9 @@ function requireDirRecursive(folder) {
 requireDirRecursive(path.join(__dirname, "../../scenes"));
 
 const scenes = WTA.getAllScenes();
-const endingScenes = Object.keys(scenes).filter(x=>scenes[x].ending).length;
+const endingScenes = Object.keys(scenes).filter(x => scenes[x].ending).map(x => scenes[x].ending.id).filter(function (elem, index, self) {
+    return index === self.indexOf(elem);
+}).length;
 
 // make `dist` folder
 const dist_folder = path.join(__dirname, "../../", p_output_directory);

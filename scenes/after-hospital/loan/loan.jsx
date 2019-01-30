@@ -11,19 +11,39 @@ addFlag("askedOldMan", false);
 addFlag("askedLawyer", false);
 addFlag("askedTeen", false);
 
-export const LoanHeader = () => <div>
-    <p className={"loan-header " + (loanTurns < 10 ? "loan-header-low" : "")}>
-        Money: <strong>{formatMoney(loanMoney)}</strong>. You have <strong>{loanTurns}</strong> turns left to pay it off.
-    </p>
-</div>;
+export const LoanHeader = () => {
+    if(isPlayingMillionaire) {
+        return <div>
+            <p className={"loan-header " + (loanTurns < 10 ? "loan-header-low" : "")}>
+                Money: <strong>{formatMoney(loanMoney + 4313)}</strong>. You have <strong>{loanTurns}</strong> turns to get a million dollars.
+            </p>
+        </div>;
+    } else {
+        return <div>
+            <p className={"loan-header " + (loanTurns < 10 ? "loan-header-low" : "")}>
+                Money: <strong>{formatMoney(loanMoney)}</strong>. You have <strong>{loanTurns}</strong> turns left to pay it off.
+            </p>
+        </div>;
+    }
+};
 
 export const decreaseTurn = () => {
     loanTurns--;
     if(loanTurns <= 0) {
+        if (isPlayingMillionaire) {
+            if (loan_walletcash >= 1000000) {
+                setScene("mill_win");
+            } else {
+                setScene("mill_lose");
+            }
+
+            return;
+        } 
         if (loan_initial_deposit > 0) {
-            
+
+            // Bit Coin
             if(loan_walletcash >= 4313 || loan_payloan) {
-                if(loan_walletcash>=1000000000) {
+                if(loan_walletcash>=1000000) {
                     setScene("loan_bitcoin_win");
                 } else {
                     setScene("loan_bitcoin_win_sortof");
@@ -31,15 +51,11 @@ export const decreaseTurn = () => {
             } else {
                 setScene("loan_bitcoin_lose");
             }
-            // Bit Coin
         } else {
             // Lose
             if(loanBills1[0]) {
                 // spend more money, go 500k in debt.
                 setScene("loan_debt_house_ending");
-            } else {
-                // unknown situation
-                setScene("loan_lose_generic");
             }
         }
     }
@@ -79,6 +95,7 @@ addScenes({
     },
     loan_back_to_hospital: {
         prompt: () => <div>
+            <LoanHeader />
             <p>You walk back into the hospital with the possibility that someone will pay off your loan for you. Who do you ask first.</p>
         </div>,
         options: [
@@ -91,6 +108,7 @@ addScenes({
     },
     loan_lawyer: {
         prompt: () => <div>
+            <LoanHeader />
             <p>The lawyer kept talking totally disregarding you.</p>
         </div>,
         options: [
@@ -103,6 +121,7 @@ addScenes({
     },
     loan_old_man: {
         prompt: () => <div>
+            <LoanHeader />
             <p>The old man was sleeping so you left him alone.</p>
         </div>,
         options: [
@@ -115,6 +134,7 @@ addScenes({
     },
     loan_teen: {
         prompt: () => <div>
+            <LoanHeader />
             <p>"dONt TAlK tO mE UnTIl I HaD MY CoFFeE," she says. You leave the room pretending you heard and saw nothing.</p>
         </div>,
         options: [
@@ -127,6 +147,7 @@ addScenes({
     },
     loan_jebus: {
         prompt: () => <div>
+            <LoanHeader />
             <p>You enter the elevator to go to the highly talked about Je🅱us. All your friends say that he helped them, so he must help you.</p>
             <p>You arrive in Je🅱us' office and he offers you to pay your loan. He gives you the...
             </p>
@@ -145,6 +166,7 @@ addScenes({
     },
     loan_jebus_2: {
         prompt: () => <div>
+            <LoanHeader />
             <p>You went to your local jewler, and he said you can get $258,394,798,753,983 for it. You agree and he gives you the money as long as you keep
                 this transaction a secret.
             </p>
@@ -171,6 +193,7 @@ addScenes({
     },
     luck_ending: {
         prompt: () => <div>
+            <LoanHeader />
             <p>You pickup the $200 and keep it for yourself. It didn't pay off your loan, but you were lucky!</p>
         </div>,
         ending: {

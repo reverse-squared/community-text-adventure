@@ -69,7 +69,16 @@ addScenesReal({
             </div>;
         },
         options: () => [
-            { text: "Continue", to: endingFirst ? "\"tutorial\"" : "start", action: () => { endingFlag = null; endingFirst = null;} }
+            { text: "Continue", to: endingFirst ? "\"tutorial\"" : "start", action: () => {
+                if (sceneStorage[endingFlag].ending.opensDiscord) {
+                    setScene("BLANKSCENE");
+                    setTimeout(() => {
+                        location = "https://discordapp.com/channels/@me";
+                    }, 100);
+                }
+                endingFlag = null;
+                endingFirst = null;
+            }}
         ],
         action: () => {
             if(endingFlag === null) {

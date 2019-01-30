@@ -14,8 +14,10 @@ const contributors = [
     ["Daniel (Phrotonz)"],
     ["Neema",                   "https://www.youtube.com/channel/UCEBtKv5G3SKwbWjjmb1yOBA"],
     ["39cookies "],
-    ["Koz",                     "https://steamcommunity.com/id/kozco"]
+    ["Koz",                     "https://steamcommunity.com/id/kozco"],
+    ["Durvenson"],
     // People below this still need to say exactly how they want credit.
+    ["torinpotato"]
 ];
 
 export default hot(module)(() => <div>
@@ -30,7 +32,7 @@ export default hot(module)(() => <div>
         {
             contributors.sort().map((contributor, i) => {
                 if(contributor.length === 1) {
-                    return <li key={i}>{contributor[0]}</li>;
+                    return <li key={i}>{contributor[0]}</li>;   
                 } else {
                     return <li key={i}><a rel="noopener" target="_blank" href={contributor[1]}>{contributor[0]}</a></li>;
                 }

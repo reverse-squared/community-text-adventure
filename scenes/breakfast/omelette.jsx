@@ -27,8 +27,8 @@ addScenes({
     },
     omelette_ending_1: {
         prompt: () => <div>
-            <p>The omelet is a breakfast classic!  Protein-rich eggs delicately cooked with a variety of tantalizing ingredients and folded into a pillow of tasty 
-                goodness, omelets are usually a top seller at restaurants.  With so many ways to make this favorite dish, your question is a good one to ask.\
+            <p>The omelette is a breakfast classic!  Protein-rich eggs delicately cooked with a variety of tantalizing ingredients and folded into a pillow of tasty 
+                goodness, omelettes are usually a top seller at restaurants.  With so many ways to make this favorite dish, your question is a good one to ask.
             </p>
         </div>,
         options: [
@@ -38,9 +38,9 @@ addScenes({
     },
     omelette_ending_2: {
         prompt: () => <div>
-            <p>The first question that usually comes up when it comes to omelets and eggs is whether or not egg whites are healthier than whole eggs. Egg whites 
+            <p>The first question that usually comes up when it comes to omelettes and eggs is whether or not egg whites are healthier than whole eggs. Egg whites 
                 can be a lower fat, calorie and cholesterol option for protein, but the yolk of a whole egg holds many of the vitamins and minerals. Choose the 
-                option that works best for your tastes and dietary needs when ordering an omelet.
+                option that works best for your tastes and dietary needs when ordering an omelette.
             </p>
         </div>,
         options: [
@@ -50,11 +50,11 @@ addScenes({
     },
     omelette_ending_3: {
         prompt: () => <div>
-            <p>Beyond the eggs themselves, follow these dietitian tips for ordering the healthiest omelet:</p>
+            <p>Beyond the eggs themselves, follow these dietitian tips for ordering the healthiest omelette:</p>
             <ul>
-                <li>Include veggies – A wide variety of vegetables, including bell peppers, onions, zucchini, tomatoes, artichokes and more, can add flavor and nutrition to your omelet.</li>
-                <li>Request less cheese – Omelets are known for being loaded with gooey cheese.  Requesting less or none at all can help cut down on calories and saturated fat.</li>
-                <li>Opt for lean meats – Lean meats such as ham, turkey bacon or sausage and Canadian bacon in small servings can all be lower fat and calorie choices to add more flavor to your omelet.</li>
+                <li>Include veggies – A wide variety of vegetables, including bell peppers, onions, zucchini, tomatoes, artichokes and more, can add flavor and nutrition to your omelette.</li>
+                <li>Request less cheese – Omelettes are known for being loaded with gooey cheese.  Requesting less or none at all can help cut down on calories and saturated fat.</li>
+                <li>Opt for lean meats – Lean meats such as ham, turkey bacon or sausage and Canadian bacon in small servings can all be lower fat and calorie choices to add more flavor to your omelette.</li>
                 <li>Pair them well – Whole grain toast and fresh fruit can help round out your meal.  These sides add filling fiber, vitamins and minerals to your healthy diet.</li>
             </ul>
         </div>,
@@ -98,7 +98,7 @@ addScenes({
     omelette_ending_final: {
         prompt: () => <div>
             <p>After reading all of this, you feel really good about yourself. You tell all your friends and you even ate an entire cake and 5 brownies to 
-                celebrate yourhealthy decision.
+                celebrate your healthy decision.
             </p>
         </div>,
         ending: {

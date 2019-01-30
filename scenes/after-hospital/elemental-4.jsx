@@ -13,6 +13,7 @@ addScenes({
             { text: "It's time to stop", to: "elem_tts" },
             { text: "1000000000x Earth's Water", to: "elem_water" },
             { text: "somebody once told me", to: "elem_shrak" },
+            { text: "OwO", to: "elem_owo" }
         ],
         contributor: "Alchemyking"
     },
@@ -54,5 +55,16 @@ addScenes({
             description: "I was only nine years old. I loved Shrek so much, I had all the merchandise and movies. I'd pray to Shrek every night before I go to bed, thanking for the life I've been given. \"Shrek is love\", I would say, \"Shrek is life\"."
         },
         contributor: "Alchemyking"
+    },
+    elem_owo: {
+        prompt: () => <div>
+            <p>You said OwO which automatically makes you a furry. Nobody likes furries. Turns out it is hunting season for furries and you just got shot. RIP</p>
+        </div>,
+        ending: {
+            id: "furry-hunting",
+            name: "Make Furry Hunting Legal Again",
+            description: "That's kinda neat."
+        },
+        contributor: "Hunter"
     },
 });
