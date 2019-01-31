@@ -1,29 +1,29 @@
 import React from "react";
 import { addFlag } from "web-text-adventure/src/adventure";
 import { addScenes } from "@src/ending";
+import neverGiveUp from "@res/nggyu.txt";
 
 addFlag("bettedKart", "");
 addFlag("kartPlace", 0);
 
 const KartHeader = () => {
-    if(kartPlace === 1) {
-        return <div>
-            <p style={{color: "#e5ff00"}}>You Are 1st Place</p>
-        </div>;
-    }else if(kartPlace === 2) {
-        return <div>
-            <p style={{color: "#dddddd"}}>You Are 2nd Place</p>
-        </div>;
-    }else if(kartPlace === 3) {
-        return <div>
-            <p style={{color: "#d39a30"}}>You Are 3rd Place</p>
-        </div>;
+    return <p>
+        You are in <Place place={kartPlace}/>.
+    </p>;
+};
+const Place = (props) => {
+    const place = Number(props.place);
+    if (place === 1) {
+        return <span style={{color: "#e5ff00"}}>1st Place</span>;
+    } else if (place === 2) {
+        return <span style={{color: "#dddddd"}}>2nd Place</span>;
+    } else if (place === 3) {
+        return <span style={{color: "#d39a30"}}>3rd Place</span>;
     }else {
-        return <div>
-            <p>You Are {kartPlace}th Place</p>
-        </div>;
+        return <span>You Are {place}th Place</span>;
     }
 };
+const BlueShell = () => <span color={{ color: "#3549ff" }}>Blue Shell</span>;
 
 addScenes({
     hash_potatokart: {
@@ -46,7 +46,7 @@ addScenes({
         </div>,
         options: [
             { text: "Press it", to: "" },
-            { text: "not yet", to: "hash_potatokart_bet_2" }
+            { text: "Not yet", to: "hash_potatokart_bet_2" }
         ],
         contributor: "Durvenson"
     },
@@ -57,7 +57,7 @@ addScenes({
         </div>,
         options: [
             { text: "Press it", to: "" },
-            { text: "not yet", to: "hash_potatokart_bet_1" }
+            { text: "Not yet", to: "hash_potatokart_bet_1" }
         ],
         contributor: "Durvenson"
     },
@@ -68,14 +68,61 @@ addScenes({
         </div>,
         options: [
             { text: "Press it", to: "hash_potatokart_press1" },
-            { text: "not yet", to: "hash_potatokart_bet_1" }
+            { text: "Not yet", to: "hash_potatokart_bet_0" }
         ],
         contributor: "Durvenson"
+    },
+    hash_potatokart_bet_0: {
+        prompt: () => <div>
+            <p>You placed your bet!</p>
+            <h1>0...</h1>
+        </div>,
+        options: [
+            { text: "Press it", to: "hash_potatokart_press1" },
+            { text: "Not yet", to: "hash_potatokart_bet_neg1" }
+        ],
+        contributor: "Dave"
+    },
+    ...(Array(25).fill(0).map((x, i) => -i - 1).map((num) => ({
+        [`hash_potatokart_bet_neg${-num}`]: {
+            prompt: () => <div>
+                <p>You placed your bet!</p>
+                <h1>{num}...</h1>
+            </div>,
+            options: [
+                { text: "Press it", to: num <= -3 ? "game_ended_without_it_starting" : "hash_potatokart_press_late" },
+                { text: "Not yet", to: `hash_potatokart_bet_neg${(-num) + 1}` }
+            ],
+            contributor: "Dave"
+        },
+    })).reduce((a,b)=>({...a,...b}),{})),
+    hash_potatokart_bet_neg26: {
+        prompt: () => <div>
+            <p>You placed your bet!</p>
+            <h1>{num}...</h1>
+        </div>,
+        options: [
+            { text: "Press it", to: "game_ended_without_it_starting" },
+            { text: "Not yet", to: "game_ended_without_it_starting" }
+        ],
+        contributor: "Dave"
+    },
+    game_ended_without_it_starting: {
+        prompt: () => <div>
+            <p>
+                You start the race but the race is already over.
+            </p>
+        </div>,
+        ending: {
+            id: "endracenegativelmao",
+            name: "The Race is Already Over",
+            description: "Start the race after it ends."
+        }
     },
     hash_potatokart_press1: {
         prompt: () => <div>
             <KartHeader />
-            <p>You are going super fast! You are in <span style={{color: "e5ff00"}}>1st Place</span>!</p>
+            <p>You are going super fast! You are in <Place place='1'/>!</p>
         </div>,
         action: () => kartPlace = 1,
         options: [
@@ -86,10 +133,24 @@ addScenes({
         ],
         contributor: "Durvenson"
     },
+    hash_potatokart_press_late: {
+        prompt: () => <div>
+            <KartHeader />
+            <p>You mistimed! You are in <Place place='8' />!!</p>
+        </div>,
+        action: () => kartPlace = 8,
+        options: [
+            { text: "Go further", to: "" },
+            { text: "Nah", to: "" },
+            { text: "Backwards", to: "" },
+            { text: "Disconnect", to: "" }
+        ],
+        contributor: "Durvenson"
+    },
     hash_potatokart_further: {
         prompt: () => <div>
             <KartHeader />
-            <p>You got hit by a <span color={{color: "#3549ff"}}>Blue Shell</span>! You are now in <span style={{color: "#d39a30"}}>3rd Place</span>!</p>
+            <p>You got hit by a <BlueShell />! You are now in <Place place='3' /></p>
         </div>,
         action: () => kartPlace = 3,
         options: [
@@ -199,19 +260,31 @@ addScenes({
         </div>,
         options: [
             { text: "Yes", to: "hash_potatokart_blj_leave_outside_yolo_yes" },
-            { text: "Maybe", to: "" },
+            { text: "Maybe", to: "hash_potatokart_blj_leave_outside_yolo_yes" },
             { text: "Some of them", to: "hash_potatokart_blj_leave_outside_yolo_some" },
             { text: "I guess", to: "" },
             { text: "A little bit of them", to: "" },
             { text: "No", to: "" },
             { text: "Nope", to: "" },
-            { text: "Never", to: "" },
-            { text: "WHY", to: "" },
-            { text: "It's time to stop", to: "" },
-            { text: "GET OUT OF MY SWAMP", to: "" },
-            { text: "These are supicious", to: "" }
+            { text: "Never", to: "nevergonnagiveyoufuckingup" },
+            { text: "WHY", to: "hash_potatokart_blj_leave_outside_yolo_yes" },
+            { text: "It's time to stop", to: "elem_tts" },
+            { text: "GET OUT OF MY SWAMP", to: "elem_shrak" },
+            { text: "These are supicious", to: "hash_potatokart_blj_leave_outside_yolo_yes" }
         ],
         contributor: "Durvenson"
+    },
+    nevergonnagiveyoufuckingup: {
+        prompt: () => <div>
+            <p style={{ whiteSpace: "pre" }}>
+                {neverGiveUp}
+            </p>
+        </div>,
+        ending: {
+            id: "nevergive",
+            name: "Never Going to What?",
+            description: "rickroll",
+        }
     },
     hash_potatokart_blj_leave_outside_yolo_yes: {
         prompt: () => <div>

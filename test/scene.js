@@ -16,6 +16,7 @@ function requireDirRecursive(folder) {
         } else {
             const file = path.join(folder, x).substring(path.join(__dirname, "../scenes/").length).replace(/\\/g, "/");
             if(file === "template.jsx") return;
+            if(file.endsWith(".ts")) return;
             if(file === "after-hospital/loan/loan.jsx") return;
             files.push(file);
             require(path.join(folder, x));

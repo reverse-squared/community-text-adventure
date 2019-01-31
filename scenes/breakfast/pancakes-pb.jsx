@@ -28,7 +28,7 @@ function QuickTimeHandlers(extra = {}) {
                 } else {
                     document.getElementById("inner-progress").style.width = progress + "%";
                 }
-            }, 1000/45);
+            }, 1000 / 45);
             progress = 100;
             if (extra.action) extra.action();
         },

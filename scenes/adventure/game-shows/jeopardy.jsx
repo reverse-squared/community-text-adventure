@@ -1,11 +1,12 @@
 import React from "react";
-import { addFlag } from "web-text-adventure/src/adventure";
+import { addFlag, setScene } from "web-text-adventure/src/adventure";
 import { addScenes } from "@src/ending";
 import Jeopardy from "./jeo-data";
 import SceneLink from "@templates/SceneLink";
 import { formatMoney } from "@scenes/after-hospital/loan/loan";
 
 addFlag("jeopardyMoney", 0);
+addFlag("jeopardyQuestionsAnswered", []);
 
 function shuffle(a) {
     var j, x, i;
@@ -20,7 +21,7 @@ function shuffle(a) {
 
 const JeopardyHeader = () => <div>
     <p className="jeo-header">
-        Jeopardy! You have {formatMoney(jeopardyMoney)}.
+        <em>This is Jeopardy!</em> You have {formatMoney(jeopardyMoney)}.
     </p>
 </div>;
 
@@ -36,8 +37,18 @@ addScenes({
     },
     jeopardy_start: {
         prompt: () => <div>
-            <p>You stand behind your podium as Alex Trebek names off the categories...</p>
-            <p>Which do you go for first?</p>
+            <JeopardyHeader />
+            {
+                jeopardyQuestionsAnswered.length === 0
+                    ? <React.Fragment>
+                        <p>You stand behind your podium as Alex Trebek names off the categories...</p>
+                        <p>Which do you go for first?</p>
+                    </React.Fragment>
+                    : <React.Fragment>
+                        <p>Which do you go for next?</p>
+                    </React.Fragment>    
+            }
+            
             <table>
                 <thead>
                     <tr>
@@ -46,12 +57,17 @@ addScenes({
                         }
                     </tr>
                     {
-                        [100, 200, 300, 400, 500].map(price => {
+                        [200, 400, 600, 800, 1000].map(price => {
                             return <tr>
                                 {
-                                    [0,1,2,3,4].map(cata => {
+                                    [0,1,2,3,4,5].map(cata => {
                                         return <td style={{textAlign:"center"}}>
-                                            <SceneLink to={`jeopardy_c${cata}_${price}`}>{price}</SceneLink>
+                                            <SceneLink
+                                                disabled={jeopardyQuestionsAnswered.includes(`jeopardy_c${cata}_${price}`)}
+                                                to={`jeopardy_c${cata}_${price}`}
+                                            >
+                                                {price}
+                                            </SceneLink>
                                         </td>;
                                     })
                                 }
@@ -65,36 +81,76 @@ addScenes({
         excludeEmptyOptionsCheck: true,
         contributor: "Dave"
     },
-    ...[100, 200, 300, 400, 500].map(price => {
-        return [0, 1, 2, 3, 4].map(cata => {
+    ...[200, 400, 600, 800, 1000].map(price => {
+        return [0, 1, 2, 3, 4, 5].map(cata => {
             const catagory = Jeopardy[cata];
             const question = catagory.questions[price];
             return {
+                [`jeopardy_c${cata}_${price}`]: {
+                    prompt: () => <div>
+                        <JeopardyHeader />
+                        <p>
+                            You choose {catagory.catagoryName} for ${price}.
+                        </p>
+                        <p>
+                            <question.question />
+                        </p>
+                    </div>,
+                    options: shuffle(question.options.map((opt, i) => ({
+                        text: opt.text,
+                        to: null,
+                        action: () => {
+                            // sure
+                            if (i === 0) {
+                                // correct
+                                jeopardyMoney += price;
+                                setScene(`answer_correct_${price}`);
+                            } else {
+                                // wrong
+                                jeopardyMoney -= price;
+                                setScene(`jeopardy_incorrect_c${cata}_${price}`);
+
+                            }
+                        },
+                        contributor: opt.contributor,
+                    }))),
+                    action: () => {
+                        jeopardyQuestionsAnswered.push(`jeopardy_c${cata}_${price}`);
+                    }
+                },
+                [`jeopardy_incorrect_c${cata}_${price}`]: {
+                    prompt: () => <div>
+                        <JeopardyHeader />
+                        <p>
+                            And that would be '{question.options[0].text.replace(/^(What|Who|Where) is /g, "")}'.
+                        </p>
+                        <p>
+                            <span style={{ color: "red" }}>-{formatMoney(price)}</span>
+                        </p>
+                    </div>,
+                    options: [
+                        { text: "Continue", to: "jeopardy_start" },
+                    ]
+                },
+            };
+        }).reduce((obj, next) => ({ ...obj, ...next }), {});
+    }).reduce((obj,next) => ({...obj, ...next}), {}),
+    ...[200, 400, 600, 800, 1000].map(price => {
+        return {
+            [`answer_correct_${price}`]: {
                 prompt: () => <div>
+                    <JeopardyHeader />
                     <p>
-                        You choose {catagory.catagoryName} for ${price}.
+                        Correct!
                     </p>
                     <p>
-                        <question.question />
+                        <span style={{ color: "lime" }}>+{formatMoney(price)}</span>
                     </p>
                 </div>,
-                options: shuffle(question.options.map((opt, i) => ({
-                    text: opt.text,
-                    to: null,
-                    action: () => {
-                        // sure
-                        if(i===0) {
-                            // correct
-                        } else {
-                            // wrong
-                        }
-                    },
-                    contributor: opt.contributor,
-                }))),
-
-                jeo_catagory: cata,
-                jeo_price: price,
-            };
-        }).reduce((obj, next) => (obj[`jeopardy_c${next.jeo_catagory}_${next.jeo_price}`]=next,obj), {});
-    }).reduce((obj,next) => ({...obj, ...next}), {})
+                options: [
+                    { text: "Continue", to: "jeopardy_start" },
+                ]
+            }
+        };
+    }).reduce((obj,next) => ({...obj, ...next}), {}),
 });

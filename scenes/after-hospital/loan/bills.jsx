@@ -72,7 +72,7 @@ addScenes({
             </p>
         </div>,
         options: [
-            { text: "Buy Car (-$17,000)", to: "loan_paybills3", action: () => loanMoney-=17000 }
+            { text: "Buy Car (-$17,000)", to: "loan_paybills3", action: () => loanMoney -= 17000 }
         ],
         action: decreaseTurn,
         contributor: "Dave"
@@ -128,7 +128,7 @@ addScenes({
         </div>,
         options: [
             { text: "Buy another house (-$159,839)", to: "BLANKSCENE", disabledText: true, if: () => false },
-            { text: "Pay More Shipping (-$0.50)", to: "loan_paybills7", action: () => loanMoney-=0.50},
+            { text: "Pay More Shipping (-$0.50)", to: "loan_paybills7", action: () => loanMoney -= 0.50},
             // { text: "Pay Handling (-$0.45)", to: "loan_paybills5", action: () => loanMoney -= 98 },
         ],
         action: decreaseTurn,
@@ -213,7 +213,7 @@ addScenes({
             { text: "Buy all the Milk (-$482)", disabledText: "Buy all the Milk (Purchased)", to: "loan_paybills_groceries", action: () => { loanMoney -= 482; loanGroceries[5] = true; }, if: () => !loanGroceries[5] },
             { text: "Buy all the Dog Toys (-$1)", disabledText: "Buy all the Dog Toys (Purchased)", to: "loan_paybills_groceries", action: () => { loanMoney -= 1; loanGroceries[6] = true; }, if: () => !loanGroceries[6] },
             "seperator",
-            { text: "Leave", disabledText: true, to: "loan_paybills_house", if: () => loanGroceries.reduce((x,y) => x&&y, true) },
+            { text: "Leave", disabledText: true, to: "loan_paybills_house", if: () => loanGroceries.reduce((x,y) => x && y, true) },
             
         ],
         action: () => {

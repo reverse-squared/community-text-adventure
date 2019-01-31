@@ -11,13 +11,21 @@ addFlag("askedOldMan", false);
 addFlag("askedLawyer", false);
 addFlag("askedTeen", false);
 
-export const LoanHeader = () => {
+export const LoanHeader = ({ bitcoin }) => {
     if(isPlayingMillionaire) {
-        return <div>
-            <p className={"loan-header " + (loanTurns < 10 ? "loan-header-low" : "")}>
+        if(bitcoin) {
+            return <div>
+                <p className={"loan-header " + (loanTurns < 10 ? "loan-header-low" : "")}>
+                    You have <strong>{loanTurns}</strong> turns to get a million dollars.
+                </p>
+            </div>;
+        } else {
+            return <div>
+                <p className={"loan-header " + (loanTurns < 10 ? "loan-header-low" : "")}>
                 Money: <strong>{formatMoney(loanMoney + 4313)}</strong>. You have <strong>{loanTurns}</strong> turns to get a million dollars.
-            </p>
-        </div>;
+                </p>
+            </div>;
+        }
     } else {
         return <div>
             <p className={"loan-header " + (loanTurns < 10 ? "loan-header-low" : "")}>
@@ -43,7 +51,7 @@ export const decreaseTurn = () => {
 
             // Bit Coin
             if(loan_walletcash >= 4313 || loan_payloan) {
-                if(loan_walletcash>=1000000) {
+                if(loan_walletcash >= 1000000) {
                     setScene("loan_bitcoin_win");
                 } else {
                     setScene("loan_bitcoin_win_sortof");

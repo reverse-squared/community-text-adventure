@@ -80,9 +80,9 @@ addScenes({
                 }
                 {
                     progress.percentage > 0
-                        ?<div>
+                        ? <div>
                             <p className="ending-status">
-                                You have gotten {progress.achievedEndings} of {progress.totalEndings} endings ({(progress.percentage*100).toFixed(0)}% Completion)
+                                You have gotten {progress.achievedEndings} of {progress.totalEndings} endings ({(progress.percentage * 100).toFixed(0)}% Completion)
                             </p>
                             <a href="#" className="resetgame" onClick={() => setScene("reset")}>Reset</a>
                         </div>

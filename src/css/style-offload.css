@@ -11,6 +11,12 @@
     margin-top: 0;
     margin-bottom: 2em;
 }
+.jeo-header {
+    color: rgb(109, 96, 190);
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 2em;
+}
 
 .bitcoin-status, .bitcoin-exchange {
     text-align: center;
