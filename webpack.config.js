@@ -1,14 +1,19 @@
+const createConfig = require("./src/build/webpack-config-types");
 const path = require("path");
 const webpack = require("webpack");
 const packageJson = require("./package.json");
 const TerserPlugin = require("terser-webpack-plugin");
 const HTMLWebpackPlugin = require("html-webpack-plugin");
+const ChunkRenamePlugin = require("./src/build/webpack-emoji-plugin");
+const loaderUtils = require("loader-utils");
 
-module.exports = (env = {production: false, extraDefines: {}}, argv) => ({
+module.exports = (env = { production: false, extraDefines: {} }, argv) => createConfig({
     entry: "./src/js/loader.jsx",
     output: {
         path: path.resolve(__dirname, "dist"),
-        filename: "game.js"
+        filename: "cta🔥🔥🔥.js",
+        // filename: "cta.js",
+        chunkFilename: "cta🔥🔥🔥[name].js"
     },
     devServer: {
         hot: true,
@@ -22,7 +27,10 @@ module.exports = (env = {production: false, extraDefines: {}}, argv) => ({
             $buildtime: JSON.stringify(Date.now()),
             ...env.extraDefines,
         }),
-        new HTMLWebpackPlugin({ template: "./src/index.html" })
+        new HTMLWebpackPlugin({ template: "./src/index.html" }),
+        new ChunkRenamePlugin({
+            chunkFilename: "[emoji:7].js",
+        }),
     ],
     module: {
         rules: [
@@ -53,6 +61,7 @@ module.exports = (env = {production: false, extraDefines: {}}, argv) => ({
         ]
     },
     mode: env.production ? "production" : "development",
+    devtool: env.production ? "none" : "inline-source-map",
     optimization: {
         minimizer: [
             new TerserPlugin({
@@ -97,7 +106,6 @@ module.exports = (env = {production: false, extraDefines: {}}, argv) => ({
                 },
             }),
         ],
-        runtimeChunk: "single",
     },
     resolve: {
         alias: {
@@ -108,5 +116,5 @@ module.exports = (env = {production: false, extraDefines: {}}, argv) => ({
             "@res": __dirname + "/res/"
         },
         extensions: [".js", ".jsx", ".json"]
-    }
+    },
 });

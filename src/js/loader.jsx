@@ -57,6 +57,7 @@ if (module.hot) {
             /* webpackPreload: true */
             /* webpackInclude: /\.jsx$/ */
             /* webpackExclude: /(_main\/menu)\.jsx$/ */
+            /* webpackChunkName: "scenes" */
             `@scenes/${branch}`
         );
     }
