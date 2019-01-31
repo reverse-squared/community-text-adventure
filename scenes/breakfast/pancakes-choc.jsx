@@ -104,7 +104,7 @@ addScenes({
             description: "Become infamous for dying because you ate chocolate chip cookie dough."
         },
         contributor: "Durvenson"
-    }
+    },
     pancakes_baker_chocolate: {
         prompt: () => <div>
             <p>
