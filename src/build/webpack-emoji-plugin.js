@@ -17,14 +17,20 @@ class ChunksRenamePlugin {
                     "ChunksRenamePlugin",
                     (result, options) => {
                         const chunk = options.chunk;
+                        
+                        if (chunk.name === "CSSLOAD") {
+                            chunk.name = "all-the-css-in-the-entire-game.css [actually not all of it is in here].js";
+                            return;
+                        }
+
                         if (
                             this.filename &&
                             chunk.hasEntryModule() &&
                             chunk.isOnlyInitial()
                         ) {
-                            chunk.filenameTemplate = loaderUtils.interpolateName({}, this.filename, { content: chunk.hash });
+                            chunk.name = loaderUtils.interpolateName({}, this.filename, { content: chunk.hash });
                         } else if (this.chunkFilename) {
-                            chunk.filenameTemplate = loaderUtils.interpolateName({}, this.chunkFilename, { content: chunk.hash });
+                            chunk.name = loaderUtils.interpolateName({}, this.chunkFilename, { content: chunk.hash });
                         }
                     }
                 );

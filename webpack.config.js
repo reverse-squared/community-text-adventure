@@ -11,8 +11,7 @@ module.exports = (env = { production: false, extraDefines: {} }, argv) => create
     output: {
         path: path.resolve(__dirname, "dist"),
         filename: "cta🔥🔥🔥.js",
-        // filename: "cta.js",
-        chunkFilename: "cta🔥🔥🔥[name].js"
+        chunkFilename: "[name]"
     },
     devServer: {
         hot: true,
@@ -28,7 +27,7 @@ module.exports = (env = { production: false, extraDefines: {} }, argv) => create
         }),
         new HTMLWebpackPlugin({ template: "./src/index.html" }),
         new ChunkRenamePlugin({
-            chunkFilename: "[emoji:7].js",
+            chunkFilename: "[emoji:6].js",
         }),
     ],
     module: {

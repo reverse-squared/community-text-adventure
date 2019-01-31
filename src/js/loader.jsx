@@ -6,7 +6,7 @@ import { setScene } from "web-text-adventure/src/adventure";
 
 // CSS Loading
 import "@css/style.css";
-import(/* webpackPrefetch: true, webpackPreload: true */ "../css/style-offload.css");
+import(/* webpackPrefetch: true, webpackPreload: true, webpackChunkName: "CSSLOAD" */ "../css/style-offload.css");
 
 upgrade();
 
