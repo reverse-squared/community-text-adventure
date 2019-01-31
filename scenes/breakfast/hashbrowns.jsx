@@ -6,6 +6,7 @@ import { CircleText } from "@templates/FontStyles";
 addFlag("hasTriedCoke", false);
 
 addScenes({
+    // #region Hashbrowns
     make_hashbrowns: {
         prompt: () => <div>
             <p>Hashbrowns are pretty neat. Lets make some! Pick your flavor.</p>
@@ -27,6 +28,8 @@ addScenes({
         },
         contributor: "Colyderp"
     },
+
+    // #region Hashbrownies
     hashbrownies: {
         prompt: () => <div>
             <p>
@@ -47,6 +50,8 @@ addScenes({
         ],
         contributor: "Toshiyuki and Hunter"
     },
+
+    // #region Instant Endings
     hash_failtounderstand: {
         prompt: () => <div>
             <p>
@@ -71,20 +76,31 @@ addScenes({
             description: "You half-forgot how to read so you went to reading school."
         }
     },
-    hash_ofcourse: {
+    hash_no: {
         prompt: () => <div>
-            <p>
-                Of course you can read what's on them. They say nothing! It's just a Mario Kart track layout. 🤔
-            </p>
+            <p>You ate the brownie instead.</p>
         </div>,
-        options: [
-            { text: "Make a really fucking big version", to: "hash_fuckingbig_version" },
-            { text: "Make a tiny potato kart", to: "hash_potatokart" },
-            { text: "Eat it", to: "hash_eat" },
-            { text: "Smoke it", to: "hash_smokeit" },
-        ],
-        contributor: "Neema"
+        ending: {
+            id: "ate-brownie",
+            name: "Eated Unhealthy",
+            description: "You ate a brownie."
+        },
+        contributor: "Hunter"
     },
+    hash_allright: {
+        prompt: () => <div>
+            <p>You got your left arm and leg cut off trying to say alright. I guess you were <strong>ALL RIGHT</strong>. <em>ba dum tss...</em></p>
+        </div>,
+        ending: {
+            id: "all-right",
+            name: "All Right",
+            description: "Looks like you are right handed... Let me take care of the left..."
+        },
+        contributor: "Hunter"
+    },
+    // #endregion
+
+    // #region Vaping
     hash_smokeit: {
         prompt: () => <div>
             <p>
@@ -144,7 +160,23 @@ addScenes({
         },
         contributor: "Hunter"
     },
+    // #endregion
 
+    // #region Kart Choices
+    hash_ofcourse: {
+        prompt: () => <div>
+            <p>
+                Of course you can read what's on them. They say nothing! It's just a Mario Kart track layout. 🤔
+            </p>
+        </div>,
+        options: [
+            { text: "Make a really fucking big version", to: "hash_fuckingbig_version" },
+            { text: "Make a tiny potato kart", to: "hash_potatokart" },
+            { text: "Eat it", to: "hash_eat" },
+            { text: "Smoke it", to: "hash_smokeit" },
+        ],
+        contributor: "Neema"
+    },
     hash_definetly: {
         prompt: () => <div>
             <p>
@@ -173,28 +205,9 @@ addScenes({
         ],
         contributor: "Neema"
     },
-    hash_no: {
-        prompt: () => <div>
-            <p>You ate the brownie instead.</p>
-        </div>,
-        ending: {
-            id: "ate-brownie",
-            name: "Eated Unhealthy",
-            description: "You ate a brownie."
-        },
-        contributor: "Hunter"
-    },
-    hash_allright: {
-        prompt: () => <div>
-            <p>You got your left arm and leg cut off trying to say alright. I guess you were <strong>ALL RIGHT</strong>. <em>ba dum tss...</em></p>
-        </div>,
-        ending: {
-            id: "all-right",
-            name: "All Right",
-            description: "Looks like you are right handed... Let me take care of the left..."
-        },
-        contributor: "Hunter"
-    },
+    // #endregion
+
+    // #region Sue
     hash_sure: {
         prompt: () => <div>
             <p>You say sure, but the person neat you heard you say "sue". He decideds to sue you for "threatening" to sue him. What do you do?</p>
@@ -266,6 +279,8 @@ addScenes({
         },
         contributor: "Hunter"
     },
+    // #endregion
+    
     hash_fuckingbig_version: {
         prompt: () => <div>
             <p>You make it, but then you get really tired when you are done. However, you are tempted to try it.</p>
@@ -279,6 +294,8 @@ addScenes({
         ],
         contributor: "Durvenson"
     },
+
+    // #region Bin
     hash_fuckingbig_bin: {
         prompt: () => <div>
             <p>You throw it in, but you fell in by mistake, and you couldn't get out. You are now being transported in a dump truck.</p>
@@ -412,4 +429,9 @@ addScenes({
         },
         contributor: "Durvenson"
     }
+    // #endregion
+
+    // #endregion
+
+    // #endregion
 });
