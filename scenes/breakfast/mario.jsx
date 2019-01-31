@@ -63,6 +63,7 @@ const throwAwayThe = (item) => ((item === "The Universe") ? (
 ));
 
 addScenes({
+    // #region Mario
     hash_potatokart: {
         prompt: <div>
             <p>You make some tiny, somehow fully functional racekarts out of potatos (don't question it) and put them at the start of the track. Which kart do you bet on?</p>
@@ -76,6 +77,8 @@ addScenes({
         ],
         contributor: "Neema and Durvenson"
     },
+
+    // #region Countdown
     hash_potatokart_bet: {
         prompt: () => <div>
             <p>You placed your bet!</p>
@@ -156,6 +159,9 @@ addScenes({
             description: "Start the race after it ends."
         }
     },
+    // #endregion
+
+    // #region The Race
     hash_potatokart_press1: {
         prompt: () => <div>
             <KartHeader />
@@ -213,6 +219,9 @@ addScenes({
         ],
         contributor: "Durvenson"
     },
+    // #endregion
+    
+    // #region Mario 64 Stuff
     hash_potatokart_fricc2: {
         prompt: () => <div>
             <p>No one cares.</p>
@@ -227,6 +236,8 @@ addScenes({
         ],
         contributor: "Durvenson"
     },
+
+    // #region BLJ
     hash_potatokart_blj: {
         prompt: () => <div>
             <p>You find a parallel universe.</p>
@@ -364,30 +375,6 @@ addScenes({
         ],
         contributor: "Durvenson"
     },
-    smoke_the_one_ups_fbi: {
-        prompt: () => <div>
-            <p>
-                Thats right, you don't want the FBI here, so you decide to throw them all away.
-            </p>
-        </div>,
-        options: [
-            throwAwayThe("1-Ups"),
-            throwAwayThe("Shoes"),
-            throwAwayThe("Pineapples"),
-            throwAwayThe("Cloths"),
-            throwAwayThe("Drugs"),
-            throwAwayThe("Keys"),
-            throwAwayThe("VSCode"),
-            throwAwayThe("Stuff"),
-            throwAwayThe("Instrument that you play"),
-            throwAwayThe("Wallet"),
-            throwAwayThe("Games"),
-            throwAwayThe("Tables"),
-            throwAwayThe("Phone"),
-            throwAwayThe("The Universe"),
-        ],
-        contributor: "Dave"
-    },
     hash_potatokart_blj_leave_outside_yolo_some: {
         prompt: () => <div>
             <p>You decide to split them in half. You still realize that it is cocaine, but it isn't as bad, and you don't eat it. Instead, you try to escape.</p>
@@ -445,44 +432,10 @@ addScenes({
         ],
         contributor: "Durvenson"
     },
-    bill_wurtz: {
-        prompt: () => <div>
-            <p>
-                <a href="https://www.youtube.com/watch?v=OwkoShhtoGs">
-                    Gonna throw my wallet away,
-                    <br/><br/>
-                    ...and my phone
-                    <br/><br/>
-                    ...and my keys
-                    <br/><br/>
-                    ...and my shoes
-                    <br/><br/>
-                    <em><b>
-                    ...and the Instrument that I play!
-                    </b></em>
-                </a>
-            </p>
-        </div>,
-        ending: {
-            id: "billwurtz",
-            name: "Bill Wurtz",
-            description: "Throw away the right things.",
-        },
-        contributor: "Dave"
-    },
-    threw_it_all_away: {
-        prompt: () => <div>
-            <p>
-                You threw the universe away how did it even fit lmao
-            </p>
-        </div>,
-        ending: {
-            id: "throw-univsres-away",
-            name: "Throw Away the Universe",
-            description: "i mean what?",
-        },
-        contributor: "Dave"
-    },
+
+    // #endregion
+
+    // #region Standing
     stand: {
         prompt: () => <div>
             <p>
@@ -521,5 +474,75 @@ addScenes({
             description: "You acted like a statue so good that the Garbage Company threw you away",
         },
         contributor: "Dave"
-    }
+    },
+    // #endregion
+
+    // #region FBI
+    smoke_the_one_ups_fbi: {
+        prompt: () => <div>
+            <p>
+                Thats right, you don't want the FBI here, so you decide to throw them all away.
+            </p>
+        </div>,
+        options: [
+            throwAwayThe("1-Ups"),
+            throwAwayThe("Shoes"),
+            throwAwayThe("Pineapples"),
+            throwAwayThe("Cloths"),
+            throwAwayThe("Drugs"),
+            throwAwayThe("Keys"),
+            throwAwayThe("VSCode"),
+            throwAwayThe("Stuff"),
+            throwAwayThe("Instrument that you play"),
+            throwAwayThe("Wallet"),
+            throwAwayThe("Games"),
+            throwAwayThe("Tables"),
+            throwAwayThe("Phone"),
+            throwAwayThe("The Universe"),
+        ],
+        contributor: "Dave"
+    },
+    bill_wurtz: {
+        prompt: () => <div>
+            <p>
+                <a href="https://www.youtube.com/watch?v=OwkoShhtoGs">
+                    Gonna throw my wallet away,
+                    <br/><br/>
+                    ...and my phone
+                    <br/><br/>
+                    ...and my keys
+                    <br/><br/>
+                    ...and my shoes
+                    <br/><br/>
+                    <em><b>
+                    ...and the Instrument that I play!
+                    </b></em>
+                </a>
+            </p>
+        </div>,
+        ending: {
+            id: "billwurtz",
+            name: "Bill Wurtz",
+            description: "Throw away the right things.",
+        },
+        contributor: "Dave"
+    },
+    threw_it_all_away: {
+        prompt: () => <div>
+            <p>
+                You threw the universe away how did it even fit lmao
+            </p>
+        </div>,
+        ending: {
+            id: "throw-univsres-away",
+            name: "Throw Away the Universe",
+            description: "i mean what?",
+        },
+        contributor: "Dave"
+    },
+    // #endregion
+
+    // #endregion
+    
+    // #endregion
 });
