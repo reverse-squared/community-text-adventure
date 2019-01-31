@@ -59,7 +59,8 @@ addScenes({
             loanMoney += 999999.99;
             askedBillGates = true;
             decreaseTurn();
-        }
+        },
+        contributor: "Dave"
     },
     mill_no: {
         prompt: () => <div>

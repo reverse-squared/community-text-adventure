@@ -174,7 +174,7 @@ addScenes({
             { text: "Cancel", to: "loan_bitcoin_main"},
             "seperator",
             { text: "", disabledText: () => (loan_walletcash < 1) ? "(You need at least $1 to buy bitcoin)" : null, if: () => false, to: "loan_bitcoin_main" },  
-            ...[1, 2, 3, 4, 5, 10, 25, 50, 80, 100, 200, 300, 400, 500, 1000, 5000, 10000, 50000, 100000].map(cash => {
+            ...[1, 2, 3, 4, 5, 10, 25, 50, 80, 100, 200, 300, 400, 500, 1000, 5000, 10000, 50000, 100000, 200000, 500000, 999999.99 - 50].map(cash => {
                 return {
                     text: () => `${formatMoney(cash)} for ${formatBTC(cashToBTC(cash))}`,
                     action: () => {
@@ -199,7 +199,7 @@ addScenes({
             { text: "Cancel", to: "loan_bitcoin_main"},
             "seperator",
             { text: "", disabledText: () => (loan_bitcoin < 0.5) ? "(You need at least 0.5 BTC to sell bitcoin)" : null, if: () => false, to: "loan_bitcoin_main" },  
-            ...[0.5, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20, 25, 30, 40, 50, 60, 70, 80, 90, 100, 250, 300, 350, 400, 450, 500, 600, 650, 700, 750, 800, 850, 900, 950, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000].map(price => {
+            ...[0.5, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20, 25, 30, 40, 50, 60, 70, 80, 90, 100, 250, 300, 350, 400, 450, 500, 600, 650, 700, 750, 800, 850, 900, 950, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000, 20000, 30000,50000,100000,200000,500000,1000000,2000000,3000000,4000000,5000000].map(price => {
                 return {
                     text: () => `${formatBTC(price)} for ${formatMoney(btcToCash(price))}`,
                     action: () => {
