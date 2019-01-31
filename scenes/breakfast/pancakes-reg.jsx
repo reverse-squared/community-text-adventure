@@ -21,6 +21,7 @@ const pizzaTopping = (id) => ({
 });
 
 addScenes({
+    // #region Regular Pancakes
     make_regular_pancakes: {
         prompt: () => <div>
             <p>You start making a pancake. What do you do with it.</p>
@@ -60,6 +61,7 @@ addScenes({
         ],
         contributor: "Hunter"
     },
+    
     regular_pancake_leave: {
         prompt: () => <div>
             <p>You leave the pancake as is, and eat it. All of a sudden, you start to choke on it. Turns out the pancake was super dry. Should of put some toppings
@@ -99,4 +101,5 @@ addScenes({
         },
         contributor: "Helvetica"
     }
+    // #endregion
 });
