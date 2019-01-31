@@ -300,11 +300,9 @@ addScenes({
             <p>Some guy hears you say B R O W N I E. You become a brownie, and then he eats you.</p>
         </div>,
         ending: {
-            prompt: {
-                id: "brownie",
-                name: "Is This Cannibalism?",
-                description: "Turn into a brownie then get eaten."
-            }
+            id: "brownie",
+            name: "Is This Cannibalism?",
+            description: "Turn into a brownie then get eaten."
         },
         contributor: "Durvenson"
     }
