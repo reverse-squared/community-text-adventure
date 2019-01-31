@@ -3,7 +3,7 @@ import { } from "web-text-adventure/src/adventure";
 import { addScenes } from "@src/ending";
 
 addScenes({
-    // Pokemon
+    // #region Pokemon
     adventure_pokemon_start: {
         prompt: () => <div>
             <p>You carefully step into the tall grass. Then suddenly a Pokemon appears! You can't run from trainer battles, so you send out your Charmander to fight the 
@@ -16,6 +16,7 @@ addScenes({
         contributor: "Hunter"
     },
 
+    // #region Pokemon Fight
     adventure_pokemon_main: {
         prompt: () => <div>
             <p>What does Charmander do?</p>
@@ -28,7 +29,6 @@ addScenes({
         ],
         contributor: "Hunter"
     },
-
     adventure_pokemon_fight: {
         prompt: () => <div>
             <p>What does Charmander do?</p>
@@ -42,7 +42,6 @@ addScenes({
         ],
         contributor: "Alchemyking and Hunter"
     },
-
     adventure_pokemon_bag: {
         prompt: () => <div>
             <p>You have no items in your bag.</p>
@@ -52,7 +51,6 @@ addScenes({
         ],
         contributor: "Hunter"
     },
-
     adventure_pokemon_pokemon: {
         prompt: () => <div>
             <p>You only own one pokemon!</p>
@@ -62,7 +60,6 @@ addScenes({
         ],
         contributor: "Hunter"
     },
-
     adventure_pokemon_run: {
         prompt: () => <div>
             <p>You can't run from trainer battles!</p>
@@ -72,7 +69,6 @@ addScenes({
         ],
         contributor: "Hunter"
     },
-
     adventure_pokemon_ember: {
         prompt: () => <div>
             <p>Opponent: You though this was a REAL battle? Get lost.</p>
@@ -111,6 +107,9 @@ addScenes({
         ],
         contributor: "Hunter"
     },
+    // #endregion
+
+    // #region After Fight
     pokemon_feed: {
         prompt: () => <div>
             <p>You scramble through your pocket to find anything that could be used as food. After three minutes of digging, you find a raw piece of meat.
@@ -121,6 +120,18 @@ addScenes({
             { text: "Yes", to: "pokemon_yes_feed" },
             { text: "No", to: "pokemon_no_feed" }
         ],
+        contributor: "Hunter"
+    },
+    pokemon_yes_feed: {
+        prompt: () => <div>
+            <p>You feed the Charizard the raw meat. SUPRISE, pokemon can't eat raw meat, and your Charizard is dead.</p>
+            <p><a href="https://youtu.be/AGMGe3jQNjY" target="_blank">"It's probably just playing possum."</a></p>
+        </div>,
+        ending: {
+            id: "raw-meat-pokemon",
+            name: "IT'S RAW!",
+            description: "It's the kind of stuff you'd expect Tiger Woods to tee of it.",
+        },
         contributor: "Hunter"
     },
     pokemon_no_feed: {
@@ -135,17 +146,6 @@ addScenes({
         ],
         contributor: "Hunter"
     },
-    pokemon_no_come_back: {
-        prompt: () => <div>
-            <p>You decide to not come back. You now live on this island for ever.</p>
-        </div>,
-        ending: {
-            id: "island-banished",
-            name: "Banished to an Island",
-            description: "You got banished to an island and stayed there for the rest of you're life.",
-        },
-        contributor: "Hunter"
-    },
     pokemon_yes_come_back: {
         prompt: () => <div>
             <p>Remember what I said about nanoCams? Yeah, Professor Oak found out you came back and banished you to a large island.</p>
@@ -157,16 +157,18 @@ addScenes({
         },
         contributor: "Hunter"
     },
-    pokemon_yes_feed: {
+    pokemon_no_come_back: {
         prompt: () => <div>
-            <p>You feed the Charizard the raw meat. SUPRISE, pokemon can't eat raw meat, and your Charizard is dead.</p>
-            <p><a href="https://youtu.be/AGMGe3jQNjY" target="_blank">"It's probably just playing possum."</a></p>
+            <p>You decide to not come back. You now live on this island for ever.</p>
         </div>,
         ending: {
-            id: "raw-meat-pokemon",
-            name: "IT'S RAW!",
-            description: "It's the kind of stuff you'd expect Tiger Woods to tee of it.",
+            id: "island-banished",
+            name: "Banished to an Island",
+            description: "You got banished to an island and stayed there for the rest of you're life.",
         },
         contributor: "Hunter"
     }
+    // #endregion
+    
+    // #endregion
 });

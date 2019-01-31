@@ -72,6 +72,7 @@ const options = {
 addFlag("hospital_car_step", 0);
 
 addScenes({
+    // #region Hospital Car
     touch_lizard_treat: {
         prompt: () => <div>
             <p>
@@ -182,4 +183,5 @@ addScenes({
         },
         contributor: "Dave"
     }
+    // #endregion
 });

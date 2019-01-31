@@ -11,7 +11,7 @@ addFlag("startedOmelette", false);
 addFlag("startedHashbrowns", false);
 
 addScenes({
-    // Start. Level 1.
+    // #region Wake Up
     wakeup: {
         prompt: () => <div>
             <p>You wake up in a room. <strong>What do you do?</strong></p>
@@ -50,8 +50,9 @@ addScenes({
 
         contributor: "Dave"
     },
+    // #endregion
 
-    // Go outside. Level 2.
+    // #region Outside
     wakeup_outside: {
         prompt: () => <div>
             <p>You walk outside from sleeping. You spot multiple different animals such as lizards, spiders, and humans. <strong>What do you do?</strong></p>
@@ -64,7 +65,19 @@ addScenes({
         ],
         contributor: "Hunter"
     },
-
+    touch_lizard: {
+        prompt: () => <div>
+            <p>
+                You reach for the lizard but it bites you right in the arm. You need to...
+            </p>
+        </div>,
+        options: [
+            { text: "Get it treated", to: "touch_lizard_treat"},
+            { text: "Punch that lizard", to: "jail_start"},
+            { text: "Not care, and don't do anything", to: ""},
+        ],
+        contributor: "Alchemyking"
+    },
     touch_spider: {
         prompt: () => <div>
             You touch the spider, it's surprisingly soft, <strong>what do you do?</strong>
@@ -76,7 +89,6 @@ addScenes({
         ],
         contributor: "Adr"
     },
-
     pocket_spider: {
         prompt: () => <div>
             <p>You pocketed the spider, it seems to like being in the pocket.</p>
@@ -89,7 +101,6 @@ addScenes({
         ],
         contributor: "Adr"
     },
-
     smash_spider: {
         prompt: () => <div>
             <p>
@@ -105,7 +116,6 @@ addScenes({
         ],
         contributor: "Adr"
     },
-
     touch_human: {
         prompt: () => <div>
             <p>
@@ -119,23 +129,31 @@ addScenes({
         ],
         contributor: "Hunter"
     },
-    
-    touch_lizard: {
+    touch_car: {
         prompt: () => <div>
-            <p>
-                You reach for the lizard but it bites you right in the arm. You need to...
-            </p>
+            <p>You get in your car and realize you robbed a bank yesterday and the police are here. What do you do now?</p>,
         </div>,
         options: [
-            { text: "Get it treated", to: "touch_lizard_treat"},
-            { text: "Punch that lizard", to: "jail_start"},
-            { text: "Not care, and don't do anything", to: ""},
+            { text: "Drive away", to: "" },
+            { text: "Surrender", to: "" },
+            { text: "Suicide", to: "touch_car_sui" }
         ],
-        contributor: "Alchemyking"
+        contributor: "torinpotato"
     },
+    touch_car_sui: {
+        prompt: () => <div>
+            <p>Good job! You have now suicided yourself.</p>
+        </div>,
+        ending: {
+            id: "touch_car_sui",
+            name: "Sucidal",
+            description: "You have suicided. And now you are in hell."
+        },
+        contributor: "torinpotato and Hunter"
+    },
+    //#endregion
     
-
-    // Eat breakfast. Level 2.
+    // #region Breakfast
     wakeup_breakfast: {
         prompt: () => <div>
             <p>You walk downstairs to make some breakfast.What do you make?</p>
@@ -179,8 +197,21 @@ addScenes({
         },
         contributor: "Dave",
     },
+    make_pancakes: {
+        prompt: () => <div>
+            <p>You want to make pancakes, but you have a few types to choose from.</p>
+        </div>,
+        options: [
+            { text: "Regular", to: "make_regular_pancakes" },
+            { text: "McDonalds™ brand", to: "make_mcd_pancakes" },
+            { text: "Chocolate", to: "make_chocolate_pancakes" },
+            { text: "Peanut butter", to: "make_pb_pancakes" }
+        ],
+        contributor: "Dave"
+    },
+    //#endregion
 
-    // Check time. Level 2.
+    //#region Check Time
     wakeup_check_time: {
         prompt: () => <div>
             <p>You look at your clock to check the time and realize...</p>
@@ -192,8 +223,6 @@ addScenes({
         ],
         contributor: "Toshiyuki"
     },
-
-    // Sleep. Level 3.
     sleep: {
         prompt: () => <div>
             <p>You go to bed and get more rest.</p>
@@ -226,43 +255,8 @@ addScenes({
             description: "Sleep until a tornado kills you.",
         },
         contributor: "Hunter"
-    },  
-
-    // Pancakes. Level 3.
-    make_pancakes: {
-        prompt: () => <div>
-            <p>You want to make pancakes, but you have a few types to choose from.</p>
-        </div>,
-        options: [
-            { text: "Regular", to: "make_regular_pancakes" },
-            { text: "McDonalds™ brand", to: "make_mcd_pancakes" },
-            { text: "Chocolate", to: "make_chocolate_pancakes" },
-            { text: "Peanut butter", to: "make_pb_pancakes" }
-        ],
-        contributor: "Dave"
     },
-    touch_car: {
-        prompt: () => <div>
-            <p>You get in your car and realize you robbed a bank yesterday and the police are here. What do you do now?</p>,
-        </div>,
-        options: [
-            { text: "Drive away", to: "" },
-            { text: "Surrender", to: "" },
-            { text: "Suicide", to: "touch_car_sui" }
-        ],
-        contributor: "torinpotato"
-    },
-    touch_car_sui: {
-        prompt: () => <div>
-            <p>Good job! You have now suicided yourself.</p>
-        </div>,
-        ending: {
-            id: "touch_car_sui",
-            name: "Sucidal",
-            description: "You have suicided. And now you are in hell."
-        },
-        contributor: "torinpotato and Hunter"
-    },
+    // #endregion
 
     true_ending: {
         prompt: () => <div>

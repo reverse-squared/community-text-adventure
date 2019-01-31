@@ -118,6 +118,7 @@ function addRecipes() {
 addFlag("treesPunched", 0);
 
 addScenes({
+    // #region Minecraft
     minecraft_start: {
         prompt: <div></div>,
         options: [],
@@ -188,4 +189,5 @@ addScenes({
         },
         contributor: "Hunter"
     }
+    // #endregion
 });

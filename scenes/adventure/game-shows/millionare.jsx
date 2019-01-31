@@ -34,6 +34,7 @@ addScenes({
         },
         contributor: "Dave"
     },
+    
     billgatesmagic: {
         prompt: () => <div>
             <LoanHeader />
@@ -62,6 +63,8 @@ addScenes({
         },
         contributor: "Dave"
     },
+
+    // #region Endings
     mill_no: {
         prompt: () => <div>
             <p>Oh... okay.</p>
@@ -96,4 +99,5 @@ addScenes({
         },
         contributor: "Dave",
     }
+    // #endregion
 });

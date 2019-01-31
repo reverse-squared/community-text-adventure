@@ -19,6 +19,7 @@ addScenes({
         contributor: "Hunter"
     },
 
+    // #region Africa
     adventure_africa_pre: {
         prompt: () => <div>
             You decide to take a plane to Africa since planes are "the safest way of travel". But which airline do you take to get there?
@@ -34,7 +35,6 @@ addScenes({
         ],
         contributor: "Dave"
     },
-
     spirit_airlines: {
         prompt: () => <div>
             <p>
@@ -49,8 +49,6 @@ addScenes({
         },
         contributor: "Dave"
     },
-    
-    // Africa
     adventure_africa_start: {
         prompt: () => <div>
             <p>
@@ -65,7 +63,6 @@ addScenes({
         ],
         contributor: "Hunter"
     },
-
     adventure_africa_sleep: {
         prompt: () => <div>
             <p>
@@ -80,7 +77,6 @@ addScenes({
         },
         contributor: "Hunter"
     },
-
     adventure_africa_crash_start: {
         prompt: () => <div>
             <p>Staying awake is fun. You got a sprite cranberry, seven packs of pretzels and even used the bathroom a couple times. The flight is fun until you crashed into
@@ -95,7 +91,6 @@ addScenes({
         ],
         contributor: "Hunter"
     },
-
     adventure_africa_crash_wait: {
         prompt: () => <div>
             <p>You waited for rescue to come, but nobody came. Waiting inside a burning plane. The plane later exploded because of the leaking jet fuel.</p>
@@ -107,7 +102,6 @@ addScenes({
         },
         contributor: "Hunter"
     },
-
     adventure_island_start: {
         prompt: () => <div>
             <p>You escape the plane without any harm done. With only you as the survivor that you know of, and with the plane about to explode, what do you do?</p>
@@ -119,7 +113,6 @@ addScenes({
         ],
         contributor: "Hunter"
     },
-
     adventure_africa_crash_eat: {
         prompt: () => <div>
             <p>You carefully take out the uncooked turkey out of your bag and start to eat it. When you eat the turkey, you are satisfied.</p>
@@ -128,5 +121,6 @@ addScenes({
             { text: "Continue", to: "adventure_island_start", action: () => hasEatenTurkey =  true }
         ],
         contributor: "Hunter"
-    }
+    },
+    // #endregion
 });

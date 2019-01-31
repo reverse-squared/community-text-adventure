@@ -24,6 +24,38 @@ const decreaseSkydiveTurn = () => {
 };
 
 addScenes({
+    // #region Skydive
+
+    // #region Skydive Start
+    skydive_pre: {
+        prompt: () => <div>
+            <SkydiveHeader />
+            <p>Skydiving is nice. Right out of the hospital, you board the plane and climb to 12,500 feet. The guy opens
+                the door and tells you to jump. You jump and he tells you to open your parachute when you think it right.
+            </p>
+        </div>,
+        options: [
+            { text: "Open the parachute...", to: "skydive_start" },
+        ],
+        contributor: "Hunter"
+    },
+    skydive_start: {
+        prompt: () => <div>
+            <SkydiveHeader />
+            <p>Okay, so your parachute just failed.</p>
+            <h6>CALM DOWN</h6>
+            <h3>CALM DOWN</h3>
+            <h1>CALM DOWN</h1>
+            <p><strong>What do you do.</strong></p>
+        </div>,
+        options: [
+            { text: "Try the paracute again", to: "skydive_parachute_try_again" },
+            { text: "Try the backup paracute", to: "skydive_backup_parachute" },
+            { text: "Use your phone to post to Snapchat that you're about to die", to: "skydive_snapchat" },
+        ],
+        action: decreaseSkydiveTurn,
+        contributor: "Hunter"
+    },
     skydive_no_parachute: {
         prompt: () => <div>
             <p>You jump out the plane when you are not supposed to, and you also have no idea how to skydive.</p>
@@ -56,6 +88,9 @@ addScenes({
         action: decreaseSkydiveTurn,
         contributor: "Dave",
     },
+    // #endregion
+
+    // #region Parachute Tries
     skydive_no_parachute_start1: {
         prompt: <div>
             <SkydiveHeader />
@@ -68,37 +103,6 @@ addScenes({
         action: decreaseSkydiveTurn,
         contributor: "Dave",
     },
-
-    skydive_pre: {
-        prompt: () => <div>
-            <SkydiveHeader />
-            <p>Skydiving is nice. Right out of the hospital, you board the plane and climb to 12,500 feet. The guy opens
-                the door and tells you to jump. You jump and he tells you to open your parachute when you think it right.
-            </p>
-        </div>,
-        options: [
-            { text: "Open the parachute...", to: "skydive_start" },
-        ],
-        contributor: "Hunter"
-    },
-    skydive_start: {
-        prompt: () => <div>
-            <SkydiveHeader />
-            <p>Okay, so your parachute just failed.</p>
-            <h6>CALM DOWN</h6>
-            <h3>CALM DOWN</h3>
-            <h1>CALM DOWN</h1>
-            <p><strong>What do you do.</strong></p>
-        </div>,
-        options: [
-            { text: "Try the paracute again", to: "skydive_parachute_try_again" },
-            { text: "Try the backup paracute", to: "skydive_backup_parachute" },
-            { text: "Use your phone to post to Snapchat that you're about to die", to: "skydive_snapchat" },
-        ],
-        action: decreaseSkydiveTurn,
-        contributor: "Hunter"
-    },
-
     skydive_parachute_try_again: {
         prompt: () => <div>
             <SkydiveHeader />
@@ -126,7 +130,9 @@ addScenes({
         action: decreaseSkydiveTurn,
         contributor: "Hunter"
     },
+    // #endregion
 
+    // #region Snapchat
     skydive_snapchat: {
         prompt: () => <div>
             <SkydiveHeader />
@@ -139,7 +145,6 @@ addScenes({
         action: decreaseSkydiveTurn,
         contributor: "Hunter"
     },
-
     skydive_snapchat_2: {
         prompt: () => <div>
             <SkydiveHeader />
@@ -151,8 +156,6 @@ addScenes({
         action: decreaseSkydiveTurn,
         contributor: "Hunter"
     },
-
-
     skydive_wait: {
         prompt: () => <div>
             <SkydiveHeader />
@@ -175,7 +178,6 @@ addScenes({
         },
         contributor: "Hunter"
     },
-
     skydive_wait_2: {
         prompt: () => <div>
             <p>
@@ -189,7 +191,6 @@ addScenes({
         },
         contributor: "Hunter"
     },
-
     skydive_snapchat_ending: {
         prompt: () => <div>
             <p>Even with all your attempts to save yourself from death, and all the safety features on your parachute, you still somehow died.</p>
@@ -201,7 +202,8 @@ addScenes({
         },
         contributor: "Hunter"
     },
-    
+    // #endregion
+
     skydive_die: {
         prompt: () => <div>
             <p>Even with all your attempts to save yourself from death, and all the safety features on your parachute, you still somehow died.</p>
@@ -213,4 +215,5 @@ addScenes({
         },
         contributor: "Hunter"
     }
+    // #endregion
 }); 

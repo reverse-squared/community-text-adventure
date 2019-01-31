@@ -26,6 +26,7 @@ const JeopardyHeader = () => <div>
 </div>;
 
 addScenes({
+    // #region Jeopardy
     jeopardy_pre: {
         prompt: () => <div>
             <p>Your application to play Jeopardy on LIVE national TV has been approved!</p>
@@ -152,5 +153,6 @@ addScenes({
                 ]
             }
         };
-    }).reduce((obj,next) => ({...obj, ...next}), {}),
+    }).reduce((obj,next) => ({...obj, ...next}), {})
+    // #endregion
 });

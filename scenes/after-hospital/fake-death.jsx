@@ -19,6 +19,7 @@ function increaseGraveWait() {
 }
 
 addScenes({
+    // #region Fake Death
     fake_your_death: {
         prompt: () => <div>
             <p>You fake your death by pretending you died on the street. Nobody cared to check your pulse so they assumed you were dead. They placed you in a
@@ -31,6 +32,8 @@ addScenes({
         ],
         contributor: "Hunter"
     },
+
+    // #region Grave
     grave_death_leave: {
         prompt: () => <div>
             <p>When you left your grave, the burrial ceremony wasn't over. People though you were a zombie and shot you down.</p>
@@ -64,7 +67,6 @@ addScenes({
         },
         contributor: "Hunter",
     },
-
     grave_leave: {
         prompt: () => <div>
             <p>Now that you are "dead", and nobody knows that you are alive, what illegal crimes will you commit?</p>
@@ -76,7 +78,50 @@ addScenes({
         ],
         contributor: "Hunter"
     },
+    // #endregion
 
+    // #region Hitman
+    hitman: {
+        prompt: () => <div>
+            <p>
+                Your first job is to kill someone named... Wait... thats your name!? Your first job is to kill Yourself.
+            </p>
+        </div>,
+        options: [
+            { text: "Die", to: "hitman_do" },
+            { text: "Don't", to: "hitman_dont" },
+        ],
+        contributor: "Dave"
+    },
+    hitman_dont: {
+        prompt: () => <div>
+            <p>
+                You decide not to take the job, but within a day someone else was hired in your place, and they have killed you.
+            </p>
+        </div>,
+        ending: {
+            id: "death-by-hitman",
+            name: "Killed by Hitman",
+            description: "Refuse to take a hitman job to kill yourself, then someone else gets the job.",
+        },
+        contributor: "Dave"
+    },
+    hitman_do: {
+        prompt: () => <div>
+            <p>
+                You take the job, and kill yourself... uhhh... They weren't able to pay you since you weren't alive to verify the transaction.
+            </p>
+        </div>,
+        ending: {
+            id: "paid-suicide",
+            name: "Paid Suicide",
+            description: "Become a hitman for yourself.",
+        },
+        contributor: "Dave"
+    },
+    // #endregion
+
+    // #region Bank Rob
     bank_rob: {
         prompt: () => <div>
             { isPlayingMillionaire && <LoanHeader /> }
@@ -117,46 +162,6 @@ addScenes({
         },
         contributor: "Hunter, Dave, and Colyderp"
     },
-
-    hitman: {
-        prompt: () => <div>
-            <p>
-                Your first job is to kill someone named... Wait... thats your name!? Your first job is to kill Yourself.
-            </p>
-        </div>,
-        options: [
-            { text: "Die", to: "hitman_do" },
-            { text: "Don't", to: "hitman_dont" },
-        ],
-        contributor: "Dave"
-    },
-    hitman_dont: {
-        prompt: () => <div>
-            <p>
-                You decide not to take the job, but within a day someone else was hired in your place, and they have killed you.
-            </p>
-        </div>,
-        ending: {
-            id: "death-by-hitman",
-            name: "Killed by Hitman",
-            description: "Refuse to take a hitman job to kill yourself, then someone else gets the job.",
-        },
-        contributor: "Dave"
-    },
-    hitman_do: {
-        prompt: () => <div>
-            <p>
-                You take the job, and kill yourself... uhhh... They weren't able to pay you since you weren't alive to verify the transaction.
-            </p>
-        </div>,
-        ending: {
-            id: "paid-suicide",
-            name: "Paid Suicide",
-            description: "Become a hitman for yourself.",
-        },
-        contributor: "Dave"
-    },
-
     bank_rob_right: {
         prompt: () => <div>
             <p>
@@ -216,7 +221,9 @@ addScenes({
         },
         contributor: "Dave",
     },
+    // #endregion
 
+    // #region Mafia
     level1_crook: {
         prompt: () => <div>
             <p>
@@ -279,4 +286,7 @@ addScenes({
         },
         contributor: "Hunter"
     }
+    // #endregion
+    
+    // #endregion
 });

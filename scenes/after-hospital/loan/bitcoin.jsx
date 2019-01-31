@@ -86,6 +86,7 @@ const LoanBTCHeader = () => <div>
 </div>;
 
 addScenes({
+    // #region Bitcoin 
     loan_bitcoin: {
         prompt: () => <div>
             <LoanHeader />
@@ -213,6 +214,9 @@ addScenes({
         ],
         contributor: "Dave",
     },
+    // #endregion
+
+    // #region Endings
     loan_bitcoin_lose: {
         prompt: () => <div>
             <p>You were not able to make enough money from Bitcoin to pay off the loan, and fell even farther into debt. First time huh?</p>
@@ -246,5 +250,6 @@ addScenes({
             description: "Pay off your loan by getting money from Bitcoin."
         },
         contributor: "Dave",
-    },
+    }
+    // #endregion
 });

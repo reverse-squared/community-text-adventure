@@ -39,9 +39,7 @@ addScenes({
     },
     price_lmao: {
         prompt: () => <div>
-            <p>
-                Your bid was wrong. The correct price was {formatMoney(bid - 0.01)}.
-            </p>
+            <p>Your bid was wrong. The correct price was {formatMoney(bid - 0.01)}.</p>
         </div>,
         ending: {
             id: "price",

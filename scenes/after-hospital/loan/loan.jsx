@@ -101,6 +101,8 @@ addScenes({
         action: decreaseTurn,
         contributor: "Dave and Hunter"
     },
+
+    // #region Back to Hospital
     loan_back_to_hospital: {
         prompt: () => <div>
             <LoanHeader />
@@ -187,6 +189,9 @@ addScenes({
         },
         contributor: "Hunter"
     },
+    // #endregion
+
+    // #region $200 Ending
     monopoly_200_ending: {
         prompt: () => <div>
             <LoanHeader />
@@ -211,4 +216,5 @@ addScenes({
         },
         contributor: "Hunter"
     }
+    // #endregion
 });

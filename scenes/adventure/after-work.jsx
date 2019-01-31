@@ -5,6 +5,7 @@ import { addScenes } from "@src/ending";
 addFlag("hasCheckedLong", false);
 
 addScenes({
+    // #region Dog
     dog_walk: {
         prompt: () => <div>
             <p>You want to take your nice little <strong>Pug</strong> for a walk, but WHOOPS, you don't have a <span style={{color: "#ffbaa3", fontWeight: "bold"}}>Leash</span>...</p>
@@ -57,7 +58,9 @@ addScenes({
         },
         contributor: "Hunter"
     },
+    // #endregion
 
+    // #region Computer
     computer_start: {
         prompt: () => <div>
             <p>You have time to play only one game on your computer before you must leave. What game do you play?</p>
@@ -71,32 +74,6 @@ addScenes({
         ],
         contributor: "Hunter"
     },
-    phone_start: {
-        prompt: () => <div>
-            <p>You have time to play only one game on your phone before you must leave. What game do you play?</p>
-        </div>,
-        options: [
-            { text: "Candy Crush Saga", to: "" },
-            { text: "Candy Crush Soda Saga", to: "" },
-            { text: "Candy Crush Jelly Saga", to: "" },
-            { text: "Candy Crush Friends Saga", to: "" },
-            { text: "How About No", to: "phone_others" }
-        ],
-        contributor: "Hunter"
-    },
-
-    phone_others: {
-        prompt: () => <div>
-            <p>You decide not to play the <b>Amazing Games</b>, and instead want to sign-up for something, but what is it?</p>
-        </div>,
-        options: [
-            { text: "For Jeopardy", to: "jeopardy_pre" },
-            { text: "For The Price is Right", to: "price_pre" },
-            { text: "For Who Wants to be a Millionare", to: "mill_start" }
-        ],
-        contributor: "Hunter"
-    },
-
     play_discord: {
         prompt: () => <div>
             <p>You decide to play your favorite game, <span style={{color: "#7289DA"}}><strong>Discord</strong></span></p>
@@ -109,7 +86,6 @@ addScenes({
         },
         contributor: "Dave",
     },
-
     computer_big_boi: {
         prompt: () => <div>
             <p>Before buying this game, you must know that this game is <strong>Only For Olympic Offical Video Game With Net Play Only On Games for Windows PlayStation Live Only For Nintendo 64 Only on Xbox Includes Your Own Mama Baby, Requires Kinect Sensor, Includes 50 Classic Atari Titles Includes Original Pac-Man Arcade Game, Platinum Hits Best Seller Award, Has the Official Nintendo Seal of Quality, Playable in 2D and 3D. 3D Mode for ages 7+. See back. Has the Official Genesis Seal of Quality, Nintendo WiFi connection, requires the Wii Motion Plus controller, Online Features available, learn with platinum the best of playstation 2, rated T for Teen, only for the gameboy color...</strong></p>
@@ -132,5 +108,33 @@ addScenes({
             description: "On a scale from 1-10, how good was the game?"
         },
         contributor: "Hunter"
+    },
+    // #endregion
+
+    // #region Phone
+    phone_start: {
+        prompt: () => <div>
+            <p>You have time to play only one game on your phone before you must leave. What game do you play?</p>
+        </div>,
+        options: [
+            { text: "Candy Crush Saga", to: "" },
+            { text: "Candy Crush Soda Saga", to: "" },
+            { text: "Candy Crush Jelly Saga", to: "" },
+            { text: "Candy Crush Friends Saga", to: "" },
+            { text: "How About No", to: "phone_others" }
+        ],
+        contributor: "Hunter"
+    },
+    phone_others: {
+        prompt: () => <div>
+            <p>You decide not to play the <b>Amazing Games</b>, and instead want to sign-up for something, but what is it?</p>
+        </div>,
+        options: [
+            { text: "For Jeopardy", to: "jeopardy_pre" },
+            { text: "For The Price is Right", to: "price_pre" },
+            { text: "For Who Wants to be a Millionare", to: "mill_start" }
+        ],
+        contributor: "Hunter"
     }
+    // #endregion
 });

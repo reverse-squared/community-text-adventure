@@ -14,6 +14,7 @@ addFlag("loanWindowsSoldOut", false);
 addFlag("loan_visitedStore", false);
 
 addScenes({
+    // #region Bills
     loan_paybills: {
         prompt: () => <div>
             <LoanHeader />
@@ -166,6 +167,8 @@ addScenes({
         action: decreaseTurn,
         contributor: "many people"
     },
+    // #endregion
+
     loan_paybills_iphone: {
         prompt: () => <div>
             <LoanHeader />
@@ -188,6 +191,7 @@ addScenes({
         },
         contributor: "Dave"
     },
+
     loan_paybills_groceries: {
         prompt: () => <div>
             <LoanHeader />
@@ -222,6 +226,8 @@ addScenes({
         },
         contributor: "Hunter",
     },
+    
+    // #region Windows
     loan_paybills_windows: {
         prompt: () => <div>
             <LoanHeader />
@@ -283,24 +289,6 @@ addScenes({
         },
         contributor: "Toshiyuki",
     },
-    loan_debt_house_ending: {
-        prompt: () => <div>
-            <p>
-                Time's Up!
-            </p>
-            <p>
-                Instead of trying to pay off the loan, you got so focused on having the best house
-                that you went <strong style={{color:"red"}}>{formatMoney(-loanMoney)}</strong> into debt. You have been sent to jail for
-                spending so much money, but at least you had fun in the moment.
-            </p>
-        </div>,
-        ending: {
-            id: "loan-500k debt",
-            name: "500k in Debt",
-            description: "Spend half a million dollars instead of paying your loan."
-        },
-        contributor: "Dave"
-    },
     loan_paybills_smashwindow_millionaire: {
         prompt: () => <div>
             <p>
@@ -343,4 +331,24 @@ addScenes({
         },
         contributor: "Dave"
     },
+    // #endregion
+
+    loan_debt_house_ending: {
+        prompt: () => <div>
+            <p>
+                Time's Up!
+            </p>
+            <p>
+                Instead of trying to pay off the loan, you got so focused on having the best house
+                that you went <strong style={{color:"red"}}>{formatMoney(-loanMoney)}</strong> into debt. You have been sent to jail for
+                spending so much money, but at least you had fun in the moment.
+            </p>
+        </div>,
+        ending: {
+            id: "loan-500k debt",
+            name: "500k in Debt",
+            description: "Spend half a million dollars instead of paying your loan."
+        },
+        contributor: "Dave"
+    }
 });

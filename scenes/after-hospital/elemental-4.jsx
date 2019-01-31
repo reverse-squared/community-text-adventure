@@ -3,6 +3,7 @@ import { } from "web-text-adventure/src/adventure";
 import { addScenes } from "@src/ending";
 
 addScenes({
+    // #region Elemental 4
     elemental4: {
         prompt: () => <div>
             <p>
@@ -66,5 +67,6 @@ addScenes({
             description: "That's kinda neat."
         },
         contributor: "Hunter"
-    },
+    }
+    // #endregion
 });

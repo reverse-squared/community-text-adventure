@@ -4,6 +4,7 @@ import { addScenes } from "@src/ending";
 import { Color } from "@templates/FontStyles";
 
 addScenes({
+    // #region Waffles
     make_waffles: {
         prompt: () => <div>
             <p>You start making the waffles, but you dont have any <Color color="orange">Waffle Mix</Color> so you decide to go to the Grocery Store.</p>
@@ -16,7 +17,8 @@ addScenes({
         action: () => startedWaffles = true,
         contributor: "Dave",
     },
-    // #region debate over which one
+    
+    // #region Choices
     waffles_charms: {
         prompt: () => <div>
             <p>Right as you start grabbing the Lucky Charms waffle mix, Frosted Flakes decides to place out an advertisement on the new Frosted Waffles 
@@ -143,7 +145,7 @@ addScenes({
     },
     // #endregion
 
-    // starting
+    // #region Starting
     waffles_start_making_lc: {
         prompt: () => <div>
             <p>You start making the Lucky Charms Waffles...</p>
@@ -166,6 +168,7 @@ addScenes({
         ],
         contributor: "Dave",
     },
+    // #endregion
 
     waffles_raw_ending: {
         prompt: () => <div>
@@ -179,6 +182,7 @@ addScenes({
         contributor: "Colyderp"
     },
 
+    // #region Wait
     waffles_wait: {
         prompt: () => <div>
             <p>You Wait for the waffles to cook...</p>
@@ -424,6 +428,8 @@ addScenes({
         contributor: "Dave",
         excludeEmptyOptionsCheck: true,
     },
+    // #endregion
+
     throw_away_waffle: {
         prompt: () => <div>
             <p>Without tasting the waffle, you throw it away, and a homeless person goes off with it. Well, you still need breakfast so you should start 
@@ -450,4 +456,5 @@ addScenes({
         contributor: "Dave",
         excludeEmptyOptionsCheck: true,
     }
+    // #endregion
 });
