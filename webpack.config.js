@@ -5,7 +5,6 @@ const packageJson = require("./package.json");
 const TerserPlugin = require("terser-webpack-plugin");
 const HTMLWebpackPlugin = require("html-webpack-plugin");
 const ChunkRenamePlugin = require("./src/build/webpack-emoji-plugin");
-const loaderUtils = require("loader-utils");
 
 module.exports = (env = { production: false, extraDefines: {} }, argv) => createConfig({
     entry: "./src/js/loader.jsx",
