@@ -1,5 +1,5 @@
 import React from "react";
-import { addFlag } from "web-text-adventure/src/adventure";
+import { addFlag, setScene } from "web-text-adventure/src/adventure";
 import { addScenes } from "@src/ending";
 import neverGiveUp from "@res/nggyu.txt";
 
@@ -24,6 +24,27 @@ const Place = (props) => {
     }
 };
 const BlueShell = () => <span color={{ color: "#3549ff" }}>Blue Shell</span>;
+
+addFlag("garbage_pail", []);
+const throwAway = (item) => {
+    garbage_pail.push(item);
+    if(
+        garbage_pail[0] === "Wallet"
+        && garbage_pail[1] === "Phone"
+        && garbage_pail[2] === "Keys"
+        && garbage_pail[3] === "Shoes"
+        && garbage_pail[4] === "Instrument that you play"    
+    ) {
+        setScene("bill_wurtz");
+    }
+};
+const throwAwayThe = (item) => ({
+    text: "Throw away your " + item,
+    to: null,
+    if: () => !garbage_pail.includes(item),
+    disabledText: true,
+    action: () => throwAway(item),
+});
 
 addScenes({
     hash_potatokart: {
@@ -262,10 +283,10 @@ addScenes({
             { text: "Yes", to: "hash_potatokart_blj_leave_outside_yolo_yes" },
             { text: "Maybe", to: "hash_potatokart_blj_leave_outside_yolo_yes" },
             { text: "Some of them", to: "hash_potatokart_blj_leave_outside_yolo_some" },
-            { text: "I guess", to: "" },
+            { text: "I guess", to: "i_guess" },
             { text: "A little bit of them", to: "" },
-            { text: "No", to: "" },
-            { text: "Nope", to: "" },
+            { text: "No", to: "hash_potatokart_blj_leave_outside_yolo_no" },
+            { text: "Nope", to: "hash_potatokart_blj_leave_outside_yolo_no" },
             { text: "Never", to: "nevergonnagiveyoufuckingup" },
             { text: "WHY", to: "hash_potatokart_blj_leave_outside_yolo_yes" },
             { text: "It's time to stop", to: "elem_tts" },
@@ -273,6 +294,21 @@ addScenes({
             { text: "These are supicious", to: "hash_potatokart_blj_leave_outside_yolo_yes" }
         ],
         contributor: "Durvenson"
+    },
+    i_guess: {
+        prompt: () => <div>
+            <p>
+                <b>"I GUESS"?1st</b>, <em>YOU GUESS!?</em>, <b><em>Y O U  G U E S S????</em></b>
+            </p>
+            <p>
+                what the hell is your guess then?
+            </p>
+        </div>,
+        options: [
+            { text: "Yes", to: "hash_potatokart_blj_leave_outside_yolo_yes" },
+            { text: "No", to: "hash_potatokart_blj_leave_outside_yolo_no" },
+        ],
+        contributor: "Dave"
     },
     nevergonnagiveyoufuckingup: {
         prompt: () => <div>
@@ -284,27 +320,41 @@ addScenes({
             id: "nevergive",
             name: "Never Going to What?",
             description: "rickroll",
-        }
+        },
+        contributor: "Dave"
     },
     hash_potatokart_blj_leave_outside_yolo_yes: {
         prompt: () => <div>
             <p>Actually, you find out that they are cocaine after eating one. Will you smoke the rest?</p>
         </div>,
         options: [
-            { text: "Yes", to: "" },
-            { text: "Maybe", to: "" },
-            { text: "Some of them", to: "" },
-            { text: "I guess", to: "" },
-            { text: "A little bit of them", to: "" },
-            { text: "No", to: "" },
-            { text: "Nope", to: "" },
-            { text: "Never", to: "" },
-            { text: "WHY", to: "" },
-            { text: "It's time to stop", to: "" },
-            { text: "I DON'T WANT THE FBI TO BE HERE", to: "" },
-            { text: "This is dumb", to: "" }
+            { text: "Yes", to: "smoke_the_one_ups_yes" },
+            { text: "No", to: "smoke_the_one_ups_nah" },
+            { text: "I DON'T WANT THE FBI TO BE HERE", to: "smoke_the_one_ups_fbi" },
         ],
         contributor: "Durvenson"
+    },
+    smoke_the_one_ups_fbi: {
+        prompt: () => <div>
+            <p>
+                Thats right, you don't want the FBI here, so you decide to throw them all away.
+            </p>
+        </div>,
+        options: [
+            throwAwayThe("1-Ups"),
+            throwAwayThe("Shoes"),
+            throwAwayThe("Pineapples"),
+            throwAwayThe("Cloths"),
+            throwAwayThe("Drugs"),
+            throwAwayThe("Keys"),
+            throwAwayThe("VSCode"),
+            throwAwayThe("Stuff"),
+            throwAwayThe("Instrument that you play"),
+            throwAwayThe("Wallet"),
+            throwAwayThe("Games"),
+            throwAwayThe("Tables"),
+            throwAwayThe("Phone"),
+        ]
     },
     hash_potatokart_blj_leave_outside_yolo_some: {
         prompt: () => <div>
@@ -362,5 +412,29 @@ addScenes({
             { text: "Wall jump out", to: "hash_potatokart_blj_leave_outside_yolo_some_wall_try_break" }
         ],
         contributor: "Durvenson"
+    },
+    bill_wurtz: {
+        prompt: () => <div>
+            <p>
+                <a href="https://www.youtube.com/watch?v=OwkoShhtoGs">
+                    Gonna throw my wallet away,
+                    <br/><br/>
+                    ...and my phone
+                    <br/><br/>
+                    ...and my keys
+                    <br/><br/>
+                    ...and my shoes
+                    <br/><br/>
+                    <em><b>
+                    ...and the Instrument that I play!
+                    </b></em>
+                </a>
+            </p>
+        </div>,
+        ending: {
+            id: "billwurtz",
+            name: "Bill Wurtz",
+            description: "Throw away the right things.",
+        }
     }
 });
