@@ -2,6 +2,7 @@ const path = require("path");
 const webpack = require("webpack");
 const packageJson = require("./package.json");
 const TerserPlugin = require("terser-webpack-plugin");
+const HTMLWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = (env = {production: false, extraDefines: {}}, argv) => ({
     entry: "./src/js/loader.jsx",
@@ -21,6 +22,7 @@ module.exports = (env = {production: false, extraDefines: {}}, argv) => ({
             $buildtime: JSON.stringify(Date.now()),
             ...env.extraDefines,
         }),
+        new HTMLWebpackPlugin({ template: "./src/index.html" })
     ],
     module: {
         rules: [
@@ -95,6 +97,7 @@ module.exports = (env = {production: false, extraDefines: {}}, argv) => ({
                 },
             }),
         ],
+        runtimeChunk: "single",
     },
     resolve: {
         alias: {

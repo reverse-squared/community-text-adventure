@@ -28,6 +28,7 @@
     "eslint-plugin-react": "^7.12.3",
     "fs-extra": "^7.0.1",
     "html-minifier": "^3.5.21",
+    "html-webpack-plugin": "^3.2.0",
     "mocha": "^5.2.0",
     "mocha-eslint": "^5.0.0",
     "mockery": "^2.1.0",
@@ -36,6 +37,7 @@
     "postcss": "^7.0.7",
     "postcss-loader": "^3.0.0",
     "raw-loader": "^1.0.0",
+    "run-script-os": "^1.0.5",
     "style-loader": "^0.23.1",
     "terser-webpack-plugin": "^1.2.1",
     "true": "0.0.2",
@@ -46,11 +48,13 @@
   "scripts": {
     "start": "webpack-dev-server",
     "build": "node src/build/build.js",
-    "broken-links": "node src/build/list-broken-links.js",
     "lint": "eslint . --ext .js,.jsx --ignore-path .eslintignore || true",
     "lint-fix": "eslint . --ext .js,.jsx --ignore-path .eslintignore --fix || true",
+    "test": "mocha",
     "cloc": "cloc scenes/ src/ templates/ res/",
-    "test": "mocha"
+    "gource": "run-script-os",
+    "gource:win32": "make-gource-mp4.bat",
+    "gource:linux": "./make-gource-mp4.sh"
   },
   "license": "MIT",
   "output_directory": "dist",
