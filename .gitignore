@@ -8,3 +8,4 @@ coverage
 # Gource
 gource.ppm
 gource.mp4
+*.log
