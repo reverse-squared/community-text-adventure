@@ -294,7 +294,7 @@ addScenes({
             description: "Never gonna let you down..."
         },
         contributor: "Durvenson"
-    }
+    },
     genocide_unicorn_bronie: {
         prompt: () => <div>
             <p>Some guy hears you say B R O W N I E. You become a brownie, and then he eats you.</p>
