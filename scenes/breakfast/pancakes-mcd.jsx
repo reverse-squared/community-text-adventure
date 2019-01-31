@@ -5,6 +5,7 @@ import { addScenes } from "@src/ending";
 addFlag("mcDonaldsWaitTime", 0);
 
 addScenes({
+    // #region McDonalds Pancakes
     make_mcd_pancakes: {
         prompt: () => <div>
             <p>You order your pancakes and they tell you to wait at table A4. You sit down waiting for your meal. What do you do now?</p>
@@ -24,6 +25,20 @@ addScenes({
         contributor: "Hunter",
     },
 
+    mcd_death: {
+        prompt: () => <div>
+            <p>After a <strong><em>very long</em></strong> wait, you recieved your McDonald's pancakes and you eat them. Unfortunately, the pancakes 
+            were loaded with sugar, and you just happen to be diabetic. It doesn't take a doctor to figure out what happens next.</p>
+        </div>,
+        contributor: "Alchemyking",
+        ending: {
+            id: "mcd-death",
+            name: "Captain Novolin Was Right",
+            description: "Now that's a lot of SUGAR!"
+        }
+    },
+
+    // #region Pancake House
     pancake_house: {
         prompt: () => <div>
             <p>You arrive at the pancake house after the bad service at McDonalds. You order your water and you realize that the ice cold glass of 
@@ -59,18 +74,10 @@ addScenes({
             description: "Inspired from all the prank YouTube channels, you thought it was easy and you tried it, and failed."
         },
         contributor: "Hunter"
-    },
-
-    mcd_death: {
-        prompt: () => <div>
-            <p>After a <strong><em>very long</em></strong> wait, you recieved your McDonald's pancakes and you eat them. Unfortunately, the pancakes 
-            were loaded with sugar, and you just happen to be diabetic. It doesn't take a doctor to figure out what happens next.</p>
-        </div>,
-        contributor: "Alchemyking",
-        ending: {
-            id: "mcd-death",
-            name: "Captain Novolin Was Right",
-            description: "Now that's a lot of SUGAR!"
-        }
     }
+    // #endregion
+
+    // #endregion
+
+    // #endregion
 });

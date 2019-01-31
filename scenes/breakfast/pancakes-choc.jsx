@@ -34,6 +34,7 @@ function EvaluateEdgyness() {
 }
 
 addScenes({
+    // #region Chocolate Pancakes
     make_chocolate_pancakes: {
         prompt: () => <div>
             <p>
@@ -48,19 +49,8 @@ addScenes({
         ],
         contributor: "Alchemyking"
     },
-    make_chocolate_top_them: {
-        prompt: () => <div>
-            <p>
-                You top the Baker's chocolate with...
-            </p>
-        </div>,
-        options: [
-            { text: "Dark chocolate", to: "edgy_pancakes" },
-            { text: "Milk Chocolate", to: "pancakes_milk_chocolate" },
-            { text: "White Chocolate", to: "pancakes_white_chocolate" },
-        ],
-        contributor: "Dave"
-    },
+
+    // #region Milk Chocolate
     pancakes_milk_chocolate: {
         prompt: () => <div>
             <p>You go for the not edgy not disgusting not vegetable-like chocolate. However, they are chocolate chips, and they didn't melt.</p>
@@ -105,6 +95,9 @@ addScenes({
         },
         contributor: "Durvenson"
     },
+    // #endregion
+
+    // #region Baker's Chocolate
     pancakes_baker_chocolate: {
         prompt: () => <div>
             <p>
@@ -120,6 +113,35 @@ addScenes({
         ],
         contributor: null,
     },
+    baker_chocolate_sue: {
+        prompt: () => <div>
+            <p>Your lawsuit didn't do anything, because you were stupid and didn't realize that it was expired. Also, you didn't heat the pancakes correctly.The case was dismissed. How will you handle this?</p>
+        </div>,
+        options: [
+            { text: "Protest against the court", to: "" },
+            { text: "Question your intelligence", to: "" },
+            { text: "Try again", to: "" },
+            { text: "Just move on", to: "" },
+            { text: "Lasagna", to: "" }
+        ],
+        contributor: "Durvenson and Neema"
+    },
+    make_chocolate_top_them: {
+        prompt: () => <div>
+            <p>
+                You top the Baker's chocolate with...
+            </p>
+        </div>,
+        options: [
+            { text: "Dark chocolate", to: "edgy_pancakes" },
+            { text: "Milk Chocolate", to: "pancakes_milk_chocolate" },
+            { text: "White Chocolate", to: "pancakes_white_chocolate" },
+        ],
+        contributor: "Dave"
+    },
+    // #endregion
+
+    // #region White Chocolate
     pancakes_white_chocolate: {
         prompt: () => <div>
             <p>
@@ -135,6 +157,8 @@ addScenes({
         ],
         contributor: "Neema"
     },
+    
+    // #region Edgy
     edgy_pancakes: {
         prompt: () => <div>
             <p>
@@ -224,6 +248,8 @@ addScenes({
         },
         contributor: "Helvetica",
     },
+    // #endregion
+
     pancakes_white_chocolate_cocaine: {
         prompt: () => <div>
             <p>Sure, because apparently cocaine is like white cocoa powder. You mix the melted chocolate with the "cocoa" and it turns a lighter shade of brown, but not white.</p>
@@ -302,6 +328,17 @@ addScenes({
         ],
         contributor: "Durvenson"
     },
+    pancakes_white_chocolate_butter_more_blood_puke: {
+        prompt: () => <div>
+            <p>You’ve vomited up your entire stomach contents. In fact, you’ve vomited up your stomach, period. You die.</p>
+        </div>,
+        ending: {
+            id: "puke-chocolate",
+            name: "Puke",
+            description: "How did you even manage to puke your OWN stomach?"
+        },
+        contributor: "Alchemyking and Hunter"
+    },
     pancakes_white_chocolate_milk: {
         prompt: () => <div>
             <p>You decide that you want to add milk to the chocolate to make it whiter. Turns out, it <strong>DIDN'T</strong> make it whiter, and instead made it taste better. Do you taste it?</p>
@@ -323,6 +360,8 @@ addScenes({
         },
         contributor: "Hunter"
     },
+
+    // #region Wait for Cook
     pancakes_white_chocolate_milk_no: {
         prompt: () => <div>
             <p>You don't taste the chocolate. Instead of tasting the chocolate, put the new chocolate inside of the pancakes that you were baking, and wait for them to cook.</p>
@@ -402,6 +441,8 @@ addScenes({
         ],
         contributor: "Hunter"
     },
+    // #endregion
+
     pancakes_white_chocolate_milk_no_wait_8: {
         prompt: () => <div>
             <p>The pancakes caught on fire.</p>
@@ -457,28 +498,7 @@ addScenes({
         },
         contributor: "Dave"
     },
-    baker_chocolate_sue: {
-        prompt: () => <div>
-            <p>Your lawsuit didn't do anything, because you were stupid and didn't realize that it was expired. Also, you didn't heat the pancakes correctly.The case was dismissed. How will you handle this?</p>
-        </div>,
-        options: [
-            { text: "Protest against the court", to: "" },
-            { text: "Question your intelligence", to: "" },
-            { text: "Try again", to: "" },
-            { text: "Just move on", to: "" },
-            { text: "Lasagna", to: "" }
-        ],
-        contributor: "Durvenson and Neema"
-    },
-    pancakes_white_chocolate_butter_more_blood_puke: {
-        prompt: () => <div>
-            <p>You’ve vomited up your entire stomach contents. In fact, you’ve vomited up your stomach, period. You die.</p>
-        </div>,
-        ending: {
-            id: "puke-chocolate",
-            name: "Puke",
-            description: "How did you even manage to puke your OWN stomach?"
-        },
-        contributor: "Alchemyking and Hunter"
-    }
+    // #endregion
+
+    // #endregion
 });
