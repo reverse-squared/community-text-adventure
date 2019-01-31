@@ -1,7 +1,9 @@
 import React from "react";
-import { } from "web-text-adventure/src/adventure";
+import { addFlag } from "web-text-adventure/src/adventure";
 import { addScenes } from "@src/ending";
 import { CircleText } from "@templates/FontStyles";
+
+addFlag("hasTriedCoke", false);
 
 addScenes({
     make_hashbrowns: {
@@ -306,12 +308,12 @@ addScenes({
             <p>There is a lot in here. What do you get?</p>
         </div>,
         options: [
-            { text: "Coke bottle", to: "" },
+            { text: "Coke bottle", to: "hash_truck_find_coke", disabledText: "Already inspected...", if: () => !hasTriedCoke, action: () => hasTriedCoke = true },
             { text: "\"Food\"", to: "" },
             { text: "A computer", to: "hash_truck_find_computer" },
             { text: "Your track", to: "" },
             { text: "Your potato", to: "" },
-            { text: "Radioactive materials", to: "" },
+            { text: "Radioactive materials", to: "hash_truck_find_radio" },
             { text: "A trash bin", to: "" }
         ],
         contributor: "Durvenson"
@@ -352,6 +354,62 @@ addScenes({
             { text: "Don't play anything", to: "" },
             { text: "Go to the neighborhood and make some friends there", to: "" }
         ],
+        contributor: "Durvenson"
+    },
+    hash_truck_find_coke: {
+        prompt: () => <div>
+            <p>It has some coke in it, and it is diet.</p>
+        </div>,
+        options: [
+            { text: "Drink it", to: "" },
+            { text: "Throw it into the water", to: "" },
+            { text: "Do nothing", to: "" },
+            { text: "M E N T O S", to: "hash_truck_find_coke_mentos" }
+        ],
+        contributor: "Durvenson"
+    },
+    hash_truck_find_coke_mentos: {
+        prompt: () => <div>
+            <p>You get diet coke all over the truck.</p>
+        </div>,
+        options: [
+            { text: "Clean it", to: "" },
+            { text: "Make a fucking nuke out of the diet coke bottles", to: "hash_truck_find_coke_mentos_nuke" },
+            { text: "Find something else", to: "hash_truck_find" }
+        ],
+        contributor: "Durvenson"
+    },
+    hash_truck_find_coke_mentos_nuke: {
+        prompt: () => <div>
+            <p>It made the truck slip. You fell, and got injured. You are 100 miles away from home.</p>
+        </div>,
+        options: [
+            { text: "Call the hospital", to: "" },
+            { text: "Go explore town", to: "" },
+            { text: "Find your way back home", to: "" }
+        ],
+        contributor: "Durvenson"
+    },
+    hash_truck_find_radio: {
+        prompt: () => <div>
+            <p>Radium, along with other stuff, is in here for some reason. Your hands are fucked up.</p>
+        </div>,
+        options: [
+            { text: "Yell at whoever put that in there", to: "" },
+            { text: "Make a fucking nuke", to: "hash_truck_find_radio_nuke" },
+            { text: "Find something else", to: "" }
+        ],
+        contributor: "Durvenson"
+    },
+    hash_truck_find_radio_nuke: {
+        prompt: () => <div>
+            <p>You blew up the world, and you also killed yourself.</p>
+        </div>,
+        ending: {
+            id: "end-of-world",
+            name: "End of the World",
+            description: "Nuke the world."
+        },
         contributor: "Durvenson"
     }
 });

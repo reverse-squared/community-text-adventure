@@ -61,6 +61,50 @@ addScenes({
         ],
         contributor: "Dave"
     },
+    pancakes_milk_chocolate: {
+        prompt: () => <div>
+            <p>You go for the not edgy not disgusting not vegetable-like chocolate. However, they are chocolate chips, and they didn't melt.</p>
+        </div>,
+        options: [
+            { text: "Make a chocolate chip pancake", to: "pancakes_milk_chocolate_make" },
+            { text: "Question your intelligence", to: "" },
+            { text: "Go to the store and buy milk chocolate that is not in chip form", to: "" }
+        ],
+        contributor: "Durvenson"
+    },
+    pancakes_milk_chocolate_make: {
+        prompt: () => <div>
+            <p>You have multiple flavors to choose from.</p>
+        </div>,
+        options: [
+            { text: "Chocolate Chip Pancake", to: "" },
+            { text: "Chocolate Chip Cookie", to: "pancakes_milk_chocolate_make_cookie" },
+            { text: "Chocolate Chips straight out of the bag", to: "" },
+            { text: "Chocolate Chip Cookie Dough", to: "pancakes_milk_chocolate_make_raw" }
+        ],
+        contributor: "Durvenson"
+    },
+    pancakes_milk_chocolate_make_cookie: {
+        prompt: () => <div>
+            <p>Your grandmom is so annoyed that you won Best Cookie. It's an amazing achievement!</p>
+        </div>,
+        ending: {
+            id: "mad-grandma",
+            name: "Grandma is TRIGGERED",
+            description: "Win the Best Cookie Award."
+        }
+    },
+    pancakes_milk_chocolate_make_raw: {
+        prompt: () => <div>
+            <p>It has lots of raw eggs, and you ate it, so you died and became imfamous for being that stupid.</p>
+        </div>,
+        ending: {
+            id: "raw-dough",
+            name: "Bad Ending",
+            description: "Become infamous for dying because you ate chocolate chip cookie dough."
+        },
+        contributor: "Durvenson"
+    }
     pancakes_baker_chocolate: {
         prompt: () => <div>
             <p>
