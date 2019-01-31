@@ -26,5 +26,15 @@
 		"prefix": "end",
 		"scope": "javascriptreact",
 		"description": "ending template"
+	},
+	"Prompt": {
+		"body": [
+			"prompt: () => <div>",
+			"    <p>",
+			"        $1",
+			"    </p>",
+			"</div>",
+		],
+		"prefix": "pro"
 	}
 }
