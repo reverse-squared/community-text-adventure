@@ -1,10 +1,14 @@
 import React from "react";
 import { addFlag, setScene } from "web-text-adventure/src/adventure";
 import { addScenes } from "@src/ending";
-import neverGiveUp from "@res/nggyu.txt";
+
+let neverGiveUp = null;
+if (typeof document !== "undefined") neverGiveUp = require("@res/nggyu.txt");
 
 addFlag("bettedKart", "");
 addFlag("kartPlace", 0);
+addFlag("__rerender", undefined);
+addFlag("standingtime", 0);
 
 const KartHeader = () => {
     return <p>
@@ -37,14 +41,26 @@ const throwAway = (item) => {
     ) {
         setScene("bill_wurtz");
     }
+    if (garbage_pail.length >= 14) {
+        setScene("");
+    }
+    __rerender = undefined;
 };
-const throwAwayThe = (item) => ({
-    text: "Throw away your " + item,
-    to: null,
-    if: () => !garbage_pail.includes(item),
-    disabledText: true,
-    action: () => throwAway(item),
-});
+const throwAwayThe = (item) => ((item === "The Universe") ? (
+    {
+        text: "Throw away your " + item,
+        if: () => garbage_pail.length >= 13,
+        to: "threw_it_all_away",
+    }
+) : (
+    {
+        text: "Throw away your " + item,
+        to: null,
+        if: () => !garbage_pail.includes(item),
+        disabledText: true,
+        action: () => throwAway(item),
+    }
+));
 
 addScenes({
     hash_potatokart: {
@@ -188,12 +204,26 @@ addScenes({
             <p>It turns out that this is a christian race. You get kicked into a painting, and you are in Bomb Omb Battlefield.</p>
         </div>,
         options: [
-            { text: "Say FRICK again", to: "" },
-            { text: "Speak to the bomb dudes", to: "" },
-            { text: "Go forward", to: "" },
+            { text: "Say FRICK again", to: "hash_potatokart_fricc2" },
+            { text: "Speak to the bomb dudes", to: "speak_to_bomb_dudes" },
+            { text: "Go forward", to: "hash_potatokart_fricc_foward" },
             { text: "Try to do a BLJ", to: "hash_potatokart_blj" },
-            { text: "Leave the level", to: "" },
-            { text: "Stand there", to: "" }
+            { text: "Leave the level", to: "leave_the_level" },
+            { text: "Stand there", to: "stand" }
+        ],
+        contributor: "Durvenson"
+    },
+    hash_potatokart_fricc2: {
+        prompt: () => <div>
+            <p>No one cares.</p>
+        </div>,
+        options: [
+            { text: "Say FRICK again", to: null, disabledText: true, if: ()=>false },
+            { text: "Speak to the bomb dudes", to: "speak_to_bomb_dudes" },
+            { text: "Go forward", to: "hash_potatokart_fricc_foward" },
+            { text: "Try to do a BLJ", to: "hash_potatokart_blj" },
+            { text: "Leave the level", to: "leave_the_level" },
+            { text: "Stand there", to: "stand" }
         ],
         contributor: "Durvenson"
     },
@@ -354,7 +384,9 @@ addScenes({
             throwAwayThe("Games"),
             throwAwayThe("Tables"),
             throwAwayThe("Phone"),
-        ]
+            throwAwayThe("The Universe"),
+        ],
+        contributor: "Dave"
     },
     hash_potatokart_blj_leave_outside_yolo_some: {
         prompt: () => <div>
@@ -435,6 +467,59 @@ addScenes({
             id: "billwurtz",
             name: "Bill Wurtz",
             description: "Throw away the right things.",
-        }
+        },
+        contributor: "Dave"
+    },
+    threw_it_all_away: {
+        prompt: () => <div>
+            <p>
+                You threw the universe away how did it even fit lmao
+            </p>
+        </div>,
+        ending: {
+            id: "throw-univsres-away",
+            name: "Throw Away the Universe",
+            description: "i mean what?",
+        },
+        contributor: "Dave"
+    },
+    stand: {
+        prompt: () => <div>
+            <p>
+                You stand still...
+            </p>
+        </div>,
+        options: [
+            { text: "Stand", to: "stand2" },
+        ]
+    },
+    stand2: {
+        prompt: () => <div>
+            <p>
+                You stand {"very ".repeat(standingtime)} still...
+            </p>
+        </div>,
+        options: [
+            { text: "Stand", to: null, action: () => {
+                standingtime++;
+                if(standingtime >= 11) {
+                    setScene("stand_long_timeowo");
+                }
+            }},
+        ]
+    },
+    stand_long_timeowo: {
+        prompt: () => <div>
+            <p>
+                You stood so still someone thought you were a statue and decided to yeet it into the
+                garbage. RIP
+            </p>
+        </div>,
+        ending: {
+            id: "get-thrown-away",
+            name: "They Threw you Away",
+            description: "You acted like a statue so good that the Garbage Company threw you away",
+        },
+        contributor: "Dave"
     }
 });
