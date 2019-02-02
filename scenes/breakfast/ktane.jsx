@@ -54,9 +54,14 @@ function endsInOdd(serial) {
     return (arraySplit[arraySplit.length - 1] % 2) === 0;
 }
 
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.substring(1);
+}
+
 //#endregion
 
 addFlag("wires", false);
+addFlag("wireCut", []);
 addFlag("buttom", false);
 addFlag("symbols", false);
 addFlag("symbolsProgress", 1);
@@ -125,10 +130,9 @@ function BombScene(scene) {
 let t1, t2, t3;
 function IncorrectOption(option) {
     let action = option.action;
-    option.to = "ktane_main";
+    option.to = null;
     option.action = () => {
         if (action) action();
-        ktmaintext = "You got that module wrong, try again.";
         // BG
         if(t1) clearTimeout(t1);
         if(t2) clearTimeout(t2);
@@ -149,7 +153,6 @@ function IncorrectOption(option) {
             }, 100);
             document.body.style.background = "red";
         }, 100);
-        
     };
     return option;
 }
@@ -159,6 +162,8 @@ function CorrectOption(option) {
     option.to = "ktane_correct";
     option.action = () => {
         if (action) action();
+
+        ktmaintext = "Now what module do you want to solve.";
 
         const scene = getSceneInfo(getScene());
         let options = scene.options;
@@ -194,7 +199,7 @@ class BombHeader extends React.Component {
                 </b>
                 {
                     !this.props.hideLink &&
-                    <SceneLink to="bombinfo">View Bomb Information</SceneLink>
+                    <SceneLink to="ktane_info">View Bomb Information</SceneLink>
                 }
             </p>
         </div>;
@@ -224,10 +229,10 @@ addFlag("theMorse", "");
 addFlag("theMorseAnswer", "");
 
 addFlag("wiresData", null);
-const allWireColors = ["yellow", "blue", "white", "black"];
+const allWireColors = ["yellow", "blue", "white", "black", "red"];
 function generateWires() {
     const correct = true;
-    const wireCount = randomOf([3, 4, 5, 6]);
+    const wireCount = randomOf([3, /*4, 5, 6*/]);
     if (wireCount === 3) {
         // 3 Wires
         switch (randomOf([1,2,3,4])) {
@@ -353,6 +358,7 @@ addScenes({
     ktane_morse: BombScene({
         prompt: () => <div>
             <BombHeader />
+            <SceneLink to='ktane_main'>Go Back</SceneLink>            
             <p>
                 The light flashes <code>{theMorse}</code> at you. Which MHz do you enter?
             </p>
@@ -372,6 +378,7 @@ addScenes({
     ktane_symbols1: {
         prompt: () => <div>
             <BombHeader />
+            <SceneLink to='ktane_main'>Go Back</SceneLink>            
             <p>
                 There are four keypads with symbols on them. Press them in the right order.
             </p>
@@ -388,6 +395,7 @@ addScenes({
     ktane_symbols2: {
         prompt: () => <div>
             <BombHeader />
+            <SceneLink to='ktane_main'>Go Back</SceneLink>            
             <p>
                 There are four keypads with symbols on them. Press them in the right order.
             </p>
@@ -404,6 +412,7 @@ addScenes({
     ktane_symbols3: {
         prompt: () => <div>
             <BombHeader />
+            <SceneLink to='ktane_main'>Go Back</SceneLink>            
             <p>
                 There are four keypads with symbols on them. Press them in the right order.
             </p>
@@ -420,6 +429,7 @@ addScenes({
     ktane_symbols4: {
         prompt: () => <div>
             <BombHeader />
+            <SceneLink to='ktane_main'>Go Back</SceneLink>            
             <p>
                 There are four keypads with symbols on them. Press them in the right order.
             </p>
@@ -433,6 +443,25 @@ addScenes({
         action: () => symbolsProgress = 4,
         contributor: "Hunter"
     },
+    // #endregion
+
+    // #region Wires
+    ktane_wires: BombScene({
+        prompt: () => <div>
+            <BombHeader />
+            <SceneLink to='ktane_main'>Go Back</SceneLink>            
+            <p>
+                You look at the wires modules, you need to cut exactly one wire, which one do you cut.
+            </p>
+        </div>,
+        options: () => wiresData.map((wire, i) => {
+            if (wire.correct) {
+                return CorrectOption({ text: capitalizeFirstLetter(wire.color) + " wire", action: () => { wires = true; } });
+            } else {
+                return IncorrectOption({ text: capitalizeFirstLetter(wire.color) + " wire", if: () => !wireCut[i], action: () => wireCut[i] = true, disabledText: true });
+            }
+        })
+    }),
     // #endregion
 
     // #region Endings
