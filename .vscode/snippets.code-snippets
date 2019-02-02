@@ -88,9 +88,9 @@
 	"Region + EndRegion": {
 		"prefix": "reg",
 		"body": [
-			"//#region",
+			"// #region $1",
 			"$0",
-			"//#endregion",
+			"// #endregion",
 		]
 	}
 }
