@@ -276,7 +276,7 @@ addScenes({
             </p>
         </div>,
         options: () => morseOptions.map((item) => {
-            if(theMorse === item.code)  {
+            if (theMorse === item.code) {
                 return CorrectOption({ text: item.mhz, action: () => morse = true });
             } else {
                 return IncorrectOption({ text: item.mhz });
@@ -284,6 +284,66 @@ addScenes({
         }),
         contributor: "Hunter"
     }),
+    // #endregion
+
+    // #region Symbols
+    ktane_symbols: {
+        prompt: () => <div>
+            TODO: make sure this works properly
+            <p>
+                There are four keypads with symbols on them. Press them in the right order.
+            </p>
+        </div>,
+        options: [
+            { text: "Copyright", to: "ktane_symbols2" },
+            { text: "Hallow Star", to: "ktane_fail" },
+            { text: "Curly Thing", to: "ktane_fail" },
+            { text: "A Weird Looking Broken Three Thing", to: "ktane_fail" }
+        ],
+        contributor: "Hunter"
+    },
+    ktane_symbols2: {
+        prompt: () => <div>
+            <p>
+                There are four keypads with symbols on them. Press them in the right order.
+            </p>
+        </div>,
+        options: [
+            { text: "Copyright", disabledText: "Pressed", if: () => false, to: "ktane_symbols2" },
+            { text: "Hallow Star", to: "ktane_fail" },
+            { text: "Curly Thing", to: "ktane_symbols3" },
+            { text: "A Weird Looking Broken Three Thing", to: "ktane_fail" }
+        ],
+        contributor: "Hunter"
+    },
+    ktane_symbols3: {
+        prompt: () => <div>
+            <p>
+                There are four keypads with symbols on them. Press them in the right order.
+            </p>
+        </div>,
+        options: [
+            { text: "Copyright", disabledText: "Pressed", if: () => false, to: "ktane_symbols2" },
+            { text: "Hallow Star", to: "ktane_fail" },
+            { text: "Curly Thing", disabledText: "Pressed", if: () => false, to: "ktane_symbols3" },
+            { text: "A Weird Looking Broken Three Thing", to: "ktane_symbols4" }
+        ],
+        contributor: "Hunter"
+    },
+    ktane_symbols4: {
+        prompt: () => <div>
+            <p>
+                There are four keypads with symbols on them. Press them in the right order.
+            </p>
+        </div>,
+        options: [
+            { text: "Copyright", disabledText: "Pressed", if: () => false, to: "ktane_symbols2" },
+            { text: "Hallow Star", to: "ktane_select", action: () => symbols = true },
+            { text: "Curly Thing", disabledText: "Pressed", if: () => false, to: "ktane_symbols3" },
+            { text: "A Weird Looking Broken Three Thing", disabledText: "Pressed", if: () => false, to: "ktane_symbols4" }
+        ],
+        contributor: "Hunter"
+    },
     // #endregion
 
     // #region Endings
@@ -297,7 +357,8 @@ addScenes({
             id: "bad-bomb-defused",
             name: "Bad Bomb Defuser",
             description: "You failed at defusing a simple bomb...-",
-        }
-    },
+        },
+        contributor: "Hunter"
+    }
     // #endregion
 });
