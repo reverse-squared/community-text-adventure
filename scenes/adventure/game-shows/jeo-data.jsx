@@ -347,31 +347,29 @@ export default [
                     { text: "What is feeding the dog pancakes" },
                     { text: "What is selling the dog to pay for a loan" },
                 ],
-                contributor: undefined,
+                contributor: "Dave",
             },
             400: {
                 question: () => <div>
-                    <p>Catagory 400</p>
+                    <p>Is it possible to go to Egypt</p>
                 </div>,
                 options: [
-                    { text: "What is correct" },
-                    { text: "What is incorrect" },
-                    { text: "What is incorrect" },
-                    { text: "What is incorrect" },
+                    { text: "What is No" },
+                    { text: "What is Yes" },
                 ],
-                contributor: undefined,
+                contributor: "Dave",
             },
             600: {
                 question: () => <div>
-                    <p>Catagory 600</p>
+                    <p>
+                        I don't know how jeopardy works but heres a free question
+                    </p>
                 </div>,
                 options: [
-                    { text: "What is correct" },
-                    { text: "What is incorrect" },
-                    { text: "What is incorrect" },
-                    { text: "What is incorrect" },
+                    { text: "What is Thank You" },
+                    { text: "What is no Thank You" },
                 ],
-                contributor: undefined,
+                contributor: "Dave",
             },
             800: {
                 question: () => <div>
@@ -384,7 +382,7 @@ export default [
                     { text: "What is escaping jail" },
                  
                 ],
-                contributor: undefined,
+                contributor: "Dave",
             },
             1000: {
                 question: () => <div>
@@ -396,7 +394,7 @@ export default [
                     { text: "What is buying eleven bottles of water" },
                     { text: "What is reading the Bee Movie script 11 times" },
                 ],
-                contributor: undefined,
+                contributor: "Dave",
             }
         }
     },

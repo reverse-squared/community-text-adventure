@@ -114,16 +114,45 @@ addScenes({
     // #region Phone
     phone_start: {
         prompt: () => <div>
-            <p>You have time to play only one game on your phone before you must leave. What game do you play?</p>
+            <p>
+                {
+                    phoneFromSafe
+                        ? "You get our your phone to play something. What game do you play?"
+                        : "You have time to play only one game on your phone before you must leave. What game do you play?"
+                }
+                
+            </p>
         </div>,
         options: [
-            { text: "Candy Crush Saga", to: "" },
-            { text: "Candy Crush Soda Saga", to: "" },
-            { text: "Candy Crush Jelly Saga", to: "" },
-            { text: "Candy Crush Friends Saga", to: "" },
+            { text: "Candy Crush Saga", to: "candy_crushghsfdifsan" },
+            { text: "Candy Crush Soda Saga", to: "candy_crushghsfdifsan" },
+            { text: "Candy Crush Jelly Saga", to: "candy_crushghsfdifsan" },
+            { text: "Candy Crush Friends Saga", to: "candy_crushghsfdifsan" },
             { text: "How About No", to: "phone_others" }
         ],
         contributor: "Hunter"
+    },
+    candy_crushghsfdifsan: {
+        prompt: () => <div>
+            <p>
+                You open up Candy Crush, but since they all look the same, all those paths lead to this one :). You play through a game.
+            </p>
+        </div>,
+        options: [
+            { text: "win", to: "winthecandy" }
+        ]
+    },
+    winthecandy: {
+        prompt: () => <div>
+            <p>
+                You won candy crush, good job... I mean it's not too hard.
+            </p>
+        </div>,
+        ending: {
+            id: "winnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn",
+            name: "Winner Winner Candy Dinner",
+            description: "Win a game of candy crush.",
+        }
     },
     phone_others: {
         prompt: () => <div>

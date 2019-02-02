@@ -119,12 +119,58 @@ addScenes({
         </div>,
         options: [
             { text: "Protest against the court", to: "" },
-            { text: "Question your intelligence", to: "" },
+            { text: "Question your intelligence", to: "question_existance" },
             { text: "Try again", to: "" },
             { text: "Just move on", to: "" },
             { text: "Lasagna", to: "" }
         ],
         contributor: "Durvenson and Neema"
+    },
+    question_existance: {
+        prompt: () => <div>
+            <p>
+                You Question your intelligence, what better way to do it with an IQ Test.
+            </p>
+        </div>,
+        options: [
+            { text: "Take a online IQ test", to: "iq_test" }
+        ],
+        contributor: "Durvenson"
+    },
+    iq_test: {
+        prompt: () => <div>
+            <p>
+                Wow you got a 500,000 IQ on the IQ Test.
+            </p>
+        </div>,
+        options: [
+            { text: "Try to get into MIT", to: "mit" },
+        ],
+        contributor: "Durvenson"
+    },
+    mit: {
+        prompt: () => <div>
+            <p>
+                MIT Rejected you since they said that 500KIQ is impossible.
+            </p>
+        </div>,
+        options: [
+            { text: "Destroy the MIT", to: "mit_destroy" },
+        ],
+        contributor: "Durvenson"
+    },
+    mit_destroy: {
+        prompt: () => <div>
+            <p>
+                You destroy the MIT, how sad.
+            </p>
+        </div>,
+        ending: {
+            id: "destroying-property",
+            name: "Destroying Property",
+            description: "Not just any property, you destroyed the MIT.",
+        },
+        contributor: "Durvenson"
     },
     make_chocolate_top_them: {
         prompt: () => <div>

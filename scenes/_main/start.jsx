@@ -134,11 +134,27 @@ addScenes({
             <p>You get in your car and realize you robbed a bank yesterday and the police are here. What do you do now?</p>,
         </div>,
         options: [
-            { text: "Drive away", to: "" },
-            { text: "Surrender", to: "" },
+            { text: "Drive away", to: "hospital_car" },
+            { text: "Surrender", to: "surrender_to_noone" },
             { text: "Suicide", to: "touch_car_sui" }
         ],
+        action: () => carFromRobbery = true,
         contributor: "torinpotato"
+    },
+    surrender_to_noone: {
+        prompt: () => <div>
+            <p>
+                You surrender, but they dont care and send you to jail.
+            </p>
+        </div>,
+        options: [
+            {
+                text: "Go to Jail",
+                to: "jail_start_card",
+                action: () => jailForCard = true,
+            },
+        ],
+        contributor: "Dave",
     },
     touch_car_sui: {
         prompt: () => <div>

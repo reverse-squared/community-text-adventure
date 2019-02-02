@@ -360,7 +360,7 @@ addScenes({
         ending: {
             id: "nevergive",
             name: "Never Going to What?",
-            description: "rickroll",
+            description: "rickroll.",
         },
         contributor: "Dave"
     },
@@ -471,7 +471,7 @@ addScenes({
         ending: {
             id: "get-thrown-away",
             name: "They Threw you Away",
-            description: "You acted like a statue so good that the Garbage Company threw you away",
+            description: "You acted like a statue so good that the Garbage Company threw you away.",
         },
         contributor: "Dave"
     },

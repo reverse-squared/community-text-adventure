@@ -26,6 +26,7 @@ describe("Jeopardy Data", () => {
 
                     it("has options with `What is`", () => {
                         question.options.forEach((opt) => {
+                            if (typeof opt.text === "function") return;
                             if(opt.text.startsWith("What is ")) return;
                             if(opt.text.startsWith("Who is ")) return;
                             if(opt.text.startsWith("Where is ")) return;
