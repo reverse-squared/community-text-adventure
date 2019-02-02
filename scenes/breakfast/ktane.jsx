@@ -89,15 +89,32 @@ function generatePort() {
     }
 }
 
+/**
+ * Sets the value of hasFRK.
+ */
+function generateFRK() {
+    var number = Math.floor(Math.random() * 2);
+
+    // Bad Code
+    if(number === 1) {
+        hasFRK = "true";
+    }else {
+        hasFRK = "false";
+    }
+}
+
 addFlag("batteries", null);
 addFlag("serial", "");
 addFlag("parallelPort", null);
+addFlag("hasFRK", null);
 const BombHeader = () => <div>
     <b>Bomb Information:</b>
     <ul>
+        <li>Strikes: 0</li>
         <li>Batteries: {batteries}</li>
         <li>Serial Number: {serial}</li>
         <li>Parallel Port: {parallelPort}</li>
+        <li>Has a LIT Indicator of FRK: {hasFRK}</li>
     </ul>
 </div>;
 
@@ -187,10 +204,12 @@ addScenes({
             { text: "Morse", to: "ktane_morse", disabledText: "Morse (defused)", if: () =>  !morse}
         ],
         action: () => {
+            // Generate bomb information.
             batteries = Math.floor(Math.random() * Math.floor(7));
 
             generateSerial();
             generatePort();
+            generateFRK();
         },
         contributor: "Hunter"
     },
