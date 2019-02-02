@@ -74,9 +74,14 @@ addScenes({
     missingno_getout4: {
         prompt: () => <div>
             <p>
-                You get caught in the Ball
+                Oh no he's out of balls. You escape.
             </p>
-        </div>
+        </div>,
+        ending: {
+            id: "missingno-outofballs",
+            name: "Ran out of Balls",
+            description: "lmao he has no balls.",
+        }
     },
     missingno_chill: {
         prompt: () => <div>
