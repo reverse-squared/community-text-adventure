@@ -35,12 +35,103 @@ addScenes({
             </p>
         </div>,
         options: [
-            { text: "Pretend that it was a virus", to: "missingno_pretendvirus"},
-            { text: "Suicide", to: "missingno_pretendvirus"},
-            { text: "Delete your entry in the pokedex", to: "missingno_pretendvirus"},
-            { text: "Look around for stuff", to: "missingno_pretendvirus"},
-            { text: "Do nothing", to: "missingno_pretendvirus"},
+            { text: "Pretend that it was a virus", to: "missingno_pretendvirus" },
+            { text: "Suicide", to: "missingno_suicide" },
+            { text: "Delete your entry in the pokedex", to: "missingno_deletepokedex" },
+            { text: "Look around for stuff", to: "missingno_look" },
+            { text: "Do nothing", to: "missingno_nothing" },
         ],
         contributor: "Durvenson"
     },
+    missingno_suicide: {
+        prompt: () => <div>
+            <p>
+                <span style={{ color: "lime" }}>dev: im done adding suicide endings. chooose something else</span>
+            </p>
+        </div>,
+        options: [
+            { text: "Pretend that it was a virus", to: "missingno_pretendvirus" },
+            { text: "Delete your entry in the pokedex", to: "missingno_deletepokedex" },
+            { text: "Look around for stuff", to: "missingno_look" },
+            { text: "Do nothing", to: "missingno_nothing2" },
+        ],
+        contributor: "Dave"
+    },
+    missingno_suicide2: {
+        prompt: () => <div>
+            <p>
+                <span style={{ color: "lime" }}>dev: im done adding suicide endings. chooose something else</span>
+            </p>
+        </div>,
+        options: [
+            { text: "Pretend that it was a virus", to: "missingno_pretendvirus" },
+            { text: "Delete your entry in the pokedex", to: "missingno_deletepokedex" },
+            { text: "Look around for stuff", to: "missingno_look" },
+        ],
+        contributor: "Dave"
+    },
+    missingno_nothing: {
+        prompt: () => <div>
+            <p>
+                <span style={{ color: "gray" }}>.......</span>
+            </p>
+        </div>,
+        options: [
+            { text: "Pretend that it was a virus", to: "missingno_pretendvirus" },
+            { text: "Delete your entry in the pokedex", to: "missingno_deletepokedex" },
+            { text: "Look around for stuff", to: "missingno_look" },
+            { text: "Suicide", to: "missingno_suicide2" },
+        ],
+        contributor: "Dave"
+    },
+    missingno_nothing2: {
+        prompt: () => <div>
+            <p>
+                <span style={{ color: "gray" }}>....</span>
+            </p>
+        </div>,
+        options: [
+            { text: "Pretend that it was a virus", to: "missingno_pretendvirus" },
+            { text: "Delete your entry in the pokedex", to: "missingno_deletepokedex" },
+            { text: "Look around for stuff", to: "missingno_look" },
+        ],
+        contributor: "Dave"
+    },
+    missingno_look: {
+        prompt: () => <div>
+            <p>
+                Noice! You found a computer!
+            </p>
+        </div>,
+        options: [
+            { text: "Delete your entry in the pokedex", to: "missingno_deletepokedex" },
+            { text: "Search on Google", to: "missingno_google" },
+        ]
+    },
+    missingno_search: {
+        prompt: () => <div>
+            <p>
+                You search...
+            </p>
+        </div>,
+        options: [
+            { text: "how to escape a pokeball", to: "google_poke" },
+            { text: "how to break a wall", to: "google_wall" },
+            { text: "how to use google", to: "google_goolge" },
+            { text: "how to make people not think that you are missingno", to: "google_missingno" },
+            { text: "how to watch pornhub without anyone knowing", to: "google_pornhub" },
+        ]
+    },
+    google_pornhub: {
+        prompt: () => <div>
+            <p>
+                SafeSearch™™™™™™™™™™™™™™™™™™™™™™™™™™™ blocked that search
+            </p>
+        </div>,
+        ending: {
+            id: "safe-search",
+            name: "SafeSearch™",
+            description: "Get blocked™ by™ (Safe™Search™)™.",
+        }
+    }
 });
