@@ -3,11 +3,10 @@ import { } from "web-text-adventure/src/adventure";
 import { addScenes, achieveEnding } from "@src/ending";
 
 addScenes({
-    // #region MissingNo
     missingno: {
         prompt: () => <div>
             <p>
-                While saying it, he thinks you are MissingNo. He catches you in a attempt to get items
+                While saying it, he thinks you are MissingNo. He catches you in a attempt to get items.
             </p>
         </div>,
         options: [
@@ -28,7 +27,63 @@ addScenes({
             id: "wrong-word",
             name: "It's 2019 Get it Right",
             description: "You can't be saying those words these days.",
-        }
+        },
+        contributor: "Hunter"
+    },
+    missingno_getout: {
+        prompt: () => <div>
+            <p>
+                You got out of the pokeball, the guy notices and throws another pokeball, it traps you back inside.
+            </p>
+        </div>,
+        options: [
+            { text: "I AIN'T MISSINGNO YOU RETARD", to: "missingno_yell" },
+            { text: "Get out of the pokeball", to: "missingno_getout2" },
+            { text: "Chill in the pokeball", to: "missingno_chill" },
+            { text: "Pretend to have fainted", to: "missingno_faint" },
+        ],
+        contributor: "Dave"
+    },
+    missingno_getout2: {
+        prompt: () => <div>
+            <p>
+                You got out of the pokeball, the guy notices and throws another pokeball, MissingNo was caught!
+            </p>
+        </div>,
+        options: [
+            { text: "I AIN'T MISSINGNO YOU RETARD", to: "missingno_yell" },
+            { text: "Get out of the pokeball", to: "missingno_getout3" },
+            { text: "Chill in the pokeball", to: "missingno_chill" },
+            { text: "Pretend to have fainted", to: "missingno_faint" },
+        ],
+        contributor: "Dave"
+    },
+    missingno_getout3: {
+        prompt: () => <div>
+            <p>
+                You got out of the pokeball, the guy notices and throws another pokeball, and you get trapped!
+            </p>
+        </div>,
+        options: [
+            { text: "I AIN'T MISSINGNO YOU RETARD", to: "missingno_yell" },
+            { text: "Get out of the pokeball", to: "missingno_getout4" },
+            { text: "Chill in the pokeball", to: "missingno_chill" },
+            { text: "Pretend to have fainted", to: "missingno_faint" },
+        ],
+        contributor: "Dave"
+    },
+    missingno_getout4: {
+        prompt: () => <div>
+            <p>
+                Oh no he's out of balls. You escape.
+            </p>
+        </div>,
+        ending: {
+            id: "missingno-outofballs",
+            name: "Ran out of Balls",
+            description: "lmao he has no balls.",
+        },
+        contributor: "Dave"
     },
     missingno_chill: {
         prompt: () => <div>
@@ -83,6 +138,19 @@ addScenes({
         ],
         contributor: "Dave"
     },
+    missingno_pretendvirus: {
+        prompt: () => <div>
+            <p>
+                You pretend it's a virus, but since it actually is, you die.
+            </p>
+        </div>,
+        ending: {
+            id: "virusend",
+            name: "Virus",
+            description: "Don't pretend it's a virus when it actually is.",
+        },
+        contributor: "Dave"
+    },
     missingno_nothing: {
         prompt: () => <div>
             <p>
@@ -119,10 +187,9 @@ addScenes({
         options: [
             { text: "Delete your entry in the pokedex", to: "missingno_deletepokedex" },
             { text: "Search on Google", to: "missingno_search" },
-        ]
+        ],
+        contributor: "Durvenson"
     },
-
-    // #region Google Search
     missingno_search: {
         prompt: () => <div>
             <p>
@@ -134,7 +201,22 @@ addScenes({
             { text: "how to use google", to: "google_goolge" },
             { text: "how to make people not think that you are missingno", to: "google_missingno" },
             { text: "how to watch pornhub without anyone knowing", to: "google_pornhub" },
-        ]
+        ],
+        contributor: "Durvenson"
+    },
+    google_poke: {
+        prompt: () => <div>
+            <p>
+                It says you press the button to open a pokeball, but that only works when you're on the outside.
+            </p>
+        </div>,
+        options: [
+            { text: "how to escape a pokeball", to: null, if: () => false, disabledText: true },
+            { text: "how to use google", to: "google_goolge" },
+            { text: "how to make people not think that you are missingno", to: "google_missingno" },
+            { text: "how to watch pornhub without anyone knowing", to: "google_pornhub" },
+        ],
+        contributor: "Durvenson"
     },
     google_goolge: {
         prompt: () => <div>
@@ -160,20 +242,6 @@ addScenes({
             { text: "Potato", to: "gsearch_potato" },
             { text: "Community Text Adventure", to: "gsearch_cta" },
             { text: "Cary Teaches You How To Time Travel", to: "gsearch_timetravel" },
-        ]
-    },
-    gsearch_potato: {
-        prompt: () => <div>
-            <p>
-                The potato thing is very strange. The computer couldn't handle it, so it became a potato, but in the process, you escaped the Pokeball.
-            </p>
-        </div>,
-        options: [
-            { text: "Vape it", to: "hash_smokeit_potato" },
-            { text: "Make potato salad ", to: "" },
-            { text: "Make french fries", to: "" },
-            { text: "Make potato chips", to: "gsearch_potato_chips" },
-            { text: "Make a delicious potato dinner", to: "" }
         ],
         contributor: "Durvenson"
     },
@@ -213,8 +281,55 @@ addScenes({
             name: "SafeSearch™",
             description: "Get blocked™ by™ (Safe™Search™)™.",
         }
-    }
-    // #endregion
+    },
+    gsearch_potato: {
+        prompt: () => <div>
+            <p>
+                TODO: Potato Search
+            </p>
+        </div>,
+        options: [
 
-    // #endregion
+        ],
+        contributor: null,
+    },
+    missingno_deletepokedex: {
+        prompt: () => <div>
+            <h3>Are you sure you want to permanently delete "missingno.pkdx"?</h3>
+            <p>
+                If you delete an item, it will be permanetly lost.
+            </p>
+        </div>,
+        options: [
+            { text: "Cancel", to: "delete_pokedex_dont" },
+            { text: "Delete", to: "delete_pokedex" },
+        ],
+        contributor: "Dave"
+    },
+    delete_pokedex: {
+        prompt: () => <div>
+            <p>
+                You delete the pokedex entry, then the game crashes...
+            </p>
+        </div>,
+        ending: {
+            id: "pokedex-delete",
+            name: "Crashed Pokemon...",
+            description: "Don't delete important files!",
+        },
+        contributor: "Dave"
+    },
+    delete_pokedex_dont: {
+        prompt: () => <div>
+            <p>
+                You dont delete the pokedex entry, yay!
+            </p>
+        </div>,
+        ending: {
+            id: "pokedex-delete-dnont",
+            name: "dOn't Delete mY stUFF",
+            description: "Cancel deleting the missingno pokedex entry.",
+        },
+        contributor: "Dave"
+    }
 });
