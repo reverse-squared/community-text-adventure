@@ -8,6 +8,72 @@ addFlag("symbols", false);
 addFlag("complexWires", false);
 addFlag("morse", false);
 
+const letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J,", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+const numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
+
+/**
+ * A function to generate a serial number for a KTanE bombs.
+ * @returns {string} A six character string including numbers and letters in uppercase in the format of NUMBER LETTER NUMBER LETTER LETTER NUMBER.
+ */
+function generateSerial() {
+    serial = "";
+    serial += numbers[Math.floor(Math.random() * numbers.length)];
+    serial += letters[Math.floor(Math.random() * letters.length)];
+    serial += numbers[Math.floor(Math.random() * numbers.length)];
+    serial += letters[Math.floor(Math.random() * letters.length)];
+    serial += letters[Math.floor(Math.random() * letters.length)];
+    serial += numbers[Math.floor(Math.random() * numbers.length)];
+}
+
+/**
+ * Returns true or false if a string contains a vowel. 
+ * @param {string} string The a string to check.
+ * @returns {boolean} A true or false value whether or not the string contains a vowel.
+ */
+function hasVowels(string) {
+    var arraySplit = serial.split(string.toLowerCase);
+
+    return arraySplit.includes("a") || arraySplit.includes("a") || arraySplit.includes("i") || arraySplit.includes("o") || arraySplit.includes("u");
+}
+
+/**
+ * Returns true or false if the serial number ends in a odd number.
+ * @param {string} serial The a serial number to check.
+ * @returns {boolean} Returns true if the serial number ends with an odd number/
+ */
+function endsInOdd(serial) {
+    var arraySplit = serial.split(serial.toLowerCase);
+
+    return (arraySplit[arraySplit.length - 1] % 2) === 0;
+}
+
+/**
+ * Sets the value of parallelPort.
+ */
+function generatePort() {
+    var number = Math.floor(Math.random() * 2);
+
+    // Bad Code
+    if(number === 1) {
+        parallelPort = "true";
+    }else {
+        parallelPort = "false";
+    }
+}
+
+addFlag("batteries", null);
+addFlag("serial", "");
+addFlag("parallelPort", null);
+const BombHeader = () => <div>
+    <b>Bomb Information:</b>
+    <ul>
+        <li>Batteries: {batteries}</li>
+        <li>Serial Number: {serial}</li>
+        <li>Parallel Port: {parallelPort}</li>
+    </ul>
+</div>;
+
+// Morse
 const morseOptions = [
     {code: "... .... . -..", mhz: "3.505"},
     {code: ".... .- .-.. .-.. ...", mhz: "3.515"},
@@ -26,7 +92,6 @@ const morseOptions = [
     {code: "...- . -.-. - --- .-.", mhz: "3.595"},
     {code: "-... . .- - ...", mhz: "3.600"}
 ];
-
 addFlag("theMorse", "");
 addFlag("theMorseAnswer", "");
 
@@ -34,6 +99,7 @@ addScenes({
     // #region KTANE
     ktane_start: {
         prompt: () => <div>
+            <BombHeader />
             <p>
                 There are five modules... which do you defuse first?
             </p>
@@ -45,10 +111,17 @@ addScenes({
             { text: "Complex Wires", to: "ktane_complex_wires", disabledText: "Complex Wires (defused)", if: () =>  !complexWires},
             { text: "Morse", to: "ktane_morse", disabledText: "Morse (defused)", if: () =>  !morse}
         ],
+        action: () => {
+            batteries = Math.floor(Math.random() * Math.floor(7));
+
+            generateSerial();
+            generatePort();
+        },
         contributor: "Hunter"
     },
     ktane_select: {
         prompt: () => <div>
+            <BombHeader />
             <p>
                 Which next?
             </p>
@@ -64,6 +137,7 @@ addScenes({
     },
     ktane_morse: {
         prompt: () => <div>
+            <BombHeader />
             <p>
                 The light flashes <code>{theMorse}</code> at you. Which MHz do you enter?
             </p>
