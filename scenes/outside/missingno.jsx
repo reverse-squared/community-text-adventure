@@ -116,7 +116,6 @@ addScenes({
         </div>,
         options: [
             { text: "how to escape a pokeball", to: "google_poke" },
-            { text: "how to break a wall", to: "google_wall" },
             { text: "how to use google", to: "google_goolge" },
             { text: "how to make people not think that you are missingno", to: "google_missingno" },
             { text: "how to watch pornhub without anyone knowing", to: "google_pornhub" },
@@ -142,9 +141,6 @@ addScenes({
             </p>
         </div>,
         options: [
-            { text: "Windows 93", to: "gsearch_windows_93" },
-            { text: "How to Change Your Facebook Color", to: "gsearch_facebook_color" },
-            { text: "Youtube - HowToBasic", to: null, action: () => { location.href = "https://www.youtube.com/channel/UCR4s1DE9J4DHzZYXMltSMAg"; } },
             { text: "bee movie meme xd", to: "meme_bee_end" },
             { text: "Potato", to: "gsearch_potato" },
             { text: "Community Text Adventure", to: "gsearch_cta" },
@@ -187,5 +183,16 @@ addScenes({
             name: "SafeSearch™",
             description: "Get blocked™ by™ (Safe™Search™)™.",
         }
+    },
+    gsearch_potato: {
+        prompt: () => <div>
+            <p>
+                TODO: Potato Search
+            </p>
+        </div>,
+        options: [
+
+        ],
+        contributor: null,
     }
 });
