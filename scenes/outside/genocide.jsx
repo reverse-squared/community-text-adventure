@@ -11,6 +11,8 @@ addFlag("touch_alive", {
 addFlag("geno_haschickencorpse", false);
 addFlag("geno_hasspidercorpse", true);
 
+addFlag("chan", false);
+
 addScenes({
     genocide_main: {
         prompt: () => <div>
@@ -266,7 +268,7 @@ addScenes({
             { text: "Twitter", to: "" },
             { text: "Facebook", to: "" },
             { text: "YouTube", to: "" },
-            { text: "4chan", to: "genocide_unicorn_no_4chan" },
+            { text: "4chan", to: "genocide_unicorn_no_4chan", disabledText: "4chan", if: () => !chan, action: () => chan = true },
             { text: "Discord", to: "" },
             { text: "Write It", to: "" },
             { text: "Snapchat", to: "" },
@@ -280,7 +282,7 @@ addScenes({
         </div>,
         options: [
             { text: "Yes", to: "genocide_unicorn_no_4chan_yes" },
-            { text: "No", to: "" }
+            { text: "No", to: "genocide_unicorn_no" }
         ],
         contributor: "Durvenson"
     },

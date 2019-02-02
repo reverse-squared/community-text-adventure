@@ -67,11 +67,87 @@ addScenes({
             <p>You have multiple flavors to choose from.</p>
         </div>,
         options: [
-            { text: "Chocolate Chip Pancake", to: "" },
+            { text: "Chocolate Chip Pancake", to: "pancakes_milk_chocolate_make_cc_pancakes" },
             { text: "Chocolate Chip Cookie", to: "pancakes_milk_chocolate_make_cookie" },
-            { text: "Chocolate Chips straight out of the bag", to: "" },
+            { text: "Chocolate Chips straight out of the bag", to: "pancakes_milk_chocolate_make_eat" },
             { text: "Chocolate Chip Cookie Dough", to: "pancakes_milk_chocolate_make_raw" }
         ],
+        contributor: "Durvenson"
+    },
+    pancakes_milk_chocolate_make_cc_pancakes: {
+        prompt: () => <div>
+            <p>
+                i t ' s n o i c e. Will you top it with extra chocolate?
+            </p>
+        </div>,
+        options: [
+            { text: "Yes", to: "pancakes_milk_chocolate_make_cc_pancakes_yes" },
+            { text: "No", to: "pancakes_milk_chocolate_make_cc_pancakes_no" }
+        ],
+        contributor: "Durvenson"
+    },
+    pancakes_milk_chocolate_make_cc_pancakes_yes: {
+        prompt: () => <div>
+            <p>
+                You used homemade chocolate. You put so much chocolate that you become the chocolate.
+            </p>
+        </div>,
+        ending: {
+            id: "become-the-choc",
+            name: "Becoming a Chocolate",
+            description: "Eat so much chocolate that you become a chocolate.",
+        },
+        contributor: "Durvenson"
+    },
+    pancakes_milk_chocolate_make_cc_pancakes_no: {
+        prompt: () => <div>
+            <p>
+                You eat some chocolate chip pancakes. It's really good, and you want more, but you don't have any more chocolate chips. What do you do instead?
+            </p>
+        </div>,
+        options: [
+            { text: "Chocolate + Chips", to: "pancakes_milk_chocolate_make_cc_pancakes_no_cc" },
+            { text: "D a r k  chocolate", to: "edgy_pancakes" },
+            { text: "Cocoa", to: "pancakes_milk_chocolate_make_cc_pancakes_no_cocoa" },
+            { text: "Coconut", to: "pancakes_milk_chocolate_make_cc_pancakes_no_coconut" },
+        ],
+        contributor: "Durvenson"
+    },
+    pancakes_milk_chocolate_make_cc_pancakes_no_cc: {
+        prompt: () => <div>
+            <p>
+                You created salted chocolate... how do you even?
+            </p>
+        </div>,
+        ending: {
+            id: "salt-sweet",
+            name: "Salty and Sweet Don’t Mix",
+            description: "Created salted chocolate. That’s one thing that they won’t put in the recipe books.",
+        },
+        contributor: "Alchemyking"
+    },
+    pancakes_milk_chocolate_make_cc_pancakes_no_cocoa: {
+        prompt: () => <div>
+            <p>
+                It seems to work... but you then find out that the coco is ground feces.
+            </p>
+        </div>,
+        options: [
+            { text: "Puke", to: "pancakes_white_chocolate_butter_more_blood_puke" },
+        ],
+        contributor: "Durvenson"
+    },
+    pancakes_milk_chocolate_make_cc_pancakes_no_coconut: {
+        prompt: () => <div>
+            <p>
+                You break the coconut to make some coconut pancakes, but your fist is bleeding, and you collapse from spending all night breaking the coconuts.
+            </p>
+        </div>,
+        ending: {
+            id: "waste-of-time",
+            name: "Waste of Time",
+            description: "Try to break a coconut.",
+        },
         contributor: "Durvenson"
     },
     pancakes_milk_chocolate_make_cookie: {
@@ -82,7 +158,21 @@ addScenes({
             id: "mad-grandma",
             name: "Grandma is TRIGGERED",
             description: "Win the Best Cookie Award."
-        }
+        },
+        contributor: "Durvenson"
+    },
+    pancakes_milk_chocolate_make_eat: {
+        prompt: () => <div>
+            <p>
+                You eat them right out of the bag... They taste so good, you keep eating them. And eating them. And eating them... WOW! Thaey are completely gone. You fall into a deep deep deep depression.
+            </p>
+        </div>,
+        ending: {
+            id: "deep-deep-depress",
+            name: "Chocolate Induced Depression",
+            description: "I NEED IT...",
+        },
+        contributor: "Hunter"
     },
     pancakes_milk_chocolate_make_raw: {
         prompt: () => <div>
