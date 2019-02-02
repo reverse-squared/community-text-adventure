@@ -15,6 +15,7 @@ const KartHeader = () => {
         You are in <Place place={kartPlace}/>.
     </p>;
 };
+
 const Place = (props) => {
     const place = Number(props.place);
     if (place === 1) {
@@ -27,9 +28,12 @@ const Place = (props) => {
         return <span>You Are {place}th Place</span>;
     }
 };
-const BlueShell = () => <span color={{ color: "#3549ff" }}>Blue Shell</span>;
+
+const BlueShell = () => <span style={{ color: "#4286f4" }}>Blue Shell</span>;
 
 addFlag("garbage_pail", []);
+addFlag("blueShellHits", 0);
+
 const throwAway = (item) => {
     garbage_pail.push(item);
     if(
@@ -85,7 +89,7 @@ addScenes({
             <h1>3...</h1>
         </div>,
         options: [
-            { text: "Press it", to: "" },
+            { text: "Press it", to: "hash_potatokart_bet_cheating" },
             { text: "Not yet", to: "hash_potatokart_bet_2" }
         ],
         contributor: "Durvenson"
@@ -96,7 +100,7 @@ addScenes({
             <h1>2...</h1>
         </div>,
         options: [
-            { text: "Press it", to: "" },
+            { text: "Press it", to: "hash_potatokart_bet_cheating" },
             { text: "Not yet", to: "hash_potatokart_bet_1" }
         ],
         contributor: "Durvenson"
@@ -170,11 +174,26 @@ addScenes({
         action: () => kartPlace = 1,
         options: [
             { text: "Go further", to: "hash_potatokart_further" },
-            { text: "Nah", to: "" },
-            { text: "Backwards", to: "" },
-            { text: "Disconnect", to: "" }
+            { text: "Nah", to: "hash_potatokart_nah" },
+            { text: "Backwards", to: "hash_potatokart_backwards" },
+            { text: "Disconnect", to: "hash_potatokart_disconnect" }
         ],
         contributor: "Durvenson"
+    },
+    hash_potatokart_nah: {
+        prompt: () => <div>
+            <KartHeader />
+            <p>
+                You drop to second place to dodge the incomming <BlueShell />. You are still in <Place place='1'/>.
+            </p>
+        </div>,
+        options: [
+            { text: "Go further", to: "hash_potatokart_further" },
+            { text: "Nah", to: "hash_potatokart_nah" },
+            { text: "Backwards", to: "hash_potatokart_backwards" },
+            { text: "Disconnect", to: "hash_potatokart_disconnect" }
+        ],
+        contributor: "Hunter"
     },
     hash_potatokart_press_late: {
         prompt: () => <div>
@@ -183,10 +202,10 @@ addScenes({
         </div>,
         action: () => kartPlace = 8,
         options: [
-            { text: "Go further", to: "" },
-            { text: "Nah", to: "" },
-            { text: "Backwards", to: "" },
-            { text: "Disconnect", to: "" }
+            { text: "Go further", to: "hash_potatokart_press1" },
+            { text: "Nah", to: "hash_potatokart_disconnect" },
+            { text: "Backwards", to: "hash_potatokart_backwards" },
+            { text: "Disconnect", to: "hash_potatokart_disconnect" }
         ],
         contributor: "Durvenson"
     },
@@ -195,16 +214,80 @@ addScenes({
             <KartHeader />
             <p>You got hit by a <BlueShell />! You are now in <Place place='3' /></p>
         </div>,
-        action: () => kartPlace = 3,
+        action: () => {
+            kartPlace = 3;
+            blueShellHits++;
+        },
         options: [
-            { text: "Go further", to: "" },
+            { text: "Go further", to: "hash_potatokart_further2" },
             { text: "Say F R I C C", to: "hash_potatokart_fricc" },
-            { text: "N O", to: "" },
-            { text: "Backwards", to: "" },
-            { text: "Disconnect", to: "" }
+            { text: "N O", to: "hash_potatokart_disconnect" },
+            { text: "Backwards", to: "hash_potatokart_backwards" },
+            { text: "Disconnect", to: "hash_potatokart_disconnect" }
         ],
         contributor: "Durvenson"
     },
+    hash_potatokart_further2: {
+        prompt: () => <div>
+            <KartHeader />
+            <p>You zoom to <Place place='1'/> then you got hit by a <BlueShell />! You are now in <Place place='3' /></p>
+        </div>,
+        options: [
+            { text: "Go further", to: "hash_potatokart_further2" },
+            { text: "Say F R I C C", to: "hash_potatokart_fricc" },
+            { text: "Disconnect", to: "hash_potatokart_disconnect" }
+        ],
+        action: () => {
+            blueShellHits++;
+            
+            if(blueShellHits > 5) {
+                setScene("blue_shell_mag");
+            }
+        },
+        contributor: "Hunter"
+    },
+    blue_shell_mag: {
+        prompt: () => <div>
+            <p>
+                You got hit by the <BlueShell /> so many times, you rage quit.
+            </p>
+            <p>Happens to all of us.</p>
+        </div>,
+        ending: {
+            id: "blue-shell-mag",
+            name: "Blue Shell Magnet",
+            description: "How did Baby Mario have a Blue Shell in 4th?!?!?!",
+        },
+        contributor: "Hunter"
+    },
+    hash_potatokart_backwards: {
+        prompt: () => <div>
+            <KartHeader />
+            <p>You start going backwards and you so you are in <Place place='12'/>. Everyone thinks you are stupid and votes to kick you out of the game. All 11 votes pass and you are K I C K E D.</p>
+        </div>,
+        ending: {
+            id: "kicked-from-game",
+            name: "Kicked From Game",
+            description: "Rule 1: No griefing.",
+        },
+        contributor: "Hunter"
+    },
+    hash_potatokart_disconnect: {
+        prompt: () => <div>
+            <p>
+                You disconnected from the game, and as a result, you got a <span style={{color: "red"}}><strong>12 Hour BAN</strong></span>.
+            </p>
+        </div>,
+        ending: {
+            id: "banned-mario",
+            name: "Struck By the Ban Hammer",
+            description: "Lesson: Don't disconnect from multiplayer games...",
+        },
+        contributor: "Hunter"
+    },
+    // #endregion
+    
+    // #region Mario 64 Stuff
     hash_potatokart_fricc: {
         prompt: () => <div>
             <p>It turns out that this is a christian race. You get kicked into a painting, and you are in Bomb Omb Battlefield.</p>
@@ -219,9 +302,44 @@ addScenes({
         ],
         contributor: "Durvenson"
     },
-    // #endregion
-    
-    // #region Mario 64 Stuff
+    speak_to_bomb_dudes: {
+        prompt: () => <div>
+            <p>
+                You try to talk to they are going to explode... You must defuse the bomb without any mistakes...
+            </p>
+        </div>,
+        options: [
+            { text: "Okay lets start", to: "ktane_start" },
+            { text: "No don't", to: "speak_to_bomb_dudes_die" },
+        ],
+        contributor: "Hunter"
+    },
+    speak_to_bomb_dudes_die: {
+        prompt: () => <div>
+            <p>
+                You decide not to defuse the bomb dudes and die from an explosion...
+            </p>
+        </div>,
+        ending: {
+            id: "bomboomb-die",
+            name: "The Poor Bomb",
+            description: "The poor bomb did nothing wrong and you let it kill itself.",
+        } 
+    },
+    hash_potatokart_fricc_foward: {
+        prompt: () => <div>
+            <p>You walk.</p>
+        </div>,
+        options: [
+            { text: "Say FRICK again", to: "hash_potatokart_fricc2" },
+            { text: "Speak to the bomb dudes", to: "speak_to_bomb_dudes" },
+            { text: "Go forward", to: "hash_potatokart_fricc_foward" },
+            { text: "Try to do a BLJ", to: "hash_potatokart_blj" },
+            { text: "Leave the level", to: "leave_the_level" },
+            { text: "Stand there", to: "stand" }
+        ],
+        contributor: "Durvenson"
+    },
     hash_potatokart_fricc2: {
         prompt: () => <div>
             <p>No one cares.</p>
@@ -544,5 +662,18 @@ addScenes({
 
     // #endregion
     
+    hash_potatokart_bet_cheating: {
+        prompt: () => <div>
+            <p>
+                You pressed the start button too early and got disqualified for cheating.
+            </p>
+        </div>,
+        ending: {
+            id: "mario-cheat",
+            name: "False Start",
+            description: "Thats like illegal in every sport...",
+        },
+        contributor: "Hunter"
+    }
     // #endregion
 });

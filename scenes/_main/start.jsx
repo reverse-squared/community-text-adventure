@@ -175,7 +175,6 @@ addScenes({
             <p>You walk downstairs to make some breakfast.What do you make?</p>
         </div>,
         options: () => {
-
             if (startedWaffles || startedOmelette || startedHashbrowns || startedPancakes) {
                 return [
                     { text: "Pancakes", disabledText: true, if: () => !startedPancakes, to: "make_pancakes" },
@@ -199,6 +198,37 @@ addScenes({
             }
         },
         contributor: "Colyderp"
+    },
+    leave_the_level: {
+        prompt: () => <div>
+            <p>
+                You warp out of the level. Turns out to traveled back to before you made breakfast... What do you do?
+            </p>
+        </div>,
+        options: () => {
+            if (startedWaffles || startedOmelette || startedHashbrowns || startedPancakes) {
+                return [
+                    { text: "Pancakes", disabledText: true, if: () => !startedPancakes, to: "make_pancakes" },
+                    { text: "Waffles", disabledText: true, if: () => !startedWaffles, to: "make_waffles" },
+                    { text: "Hashbrowns", disabledText: true, if: () => !startedHashbrowns, to: "make_hashbrowns" },
+                    { text: "Omelette", disabledText: true, if: () => !startedOmelette, to: "make_omelette_fail" },
+                    // "seperator",
+                    {
+                        text: "Give up and Starve...",
+                        to: "breakfast_fail_ending",
+                        if: () => startedWaffles && startedOmelette && startedHashbrowns && startedPancakes ,
+                    },
+                ];
+            } else {
+                return [
+                    { text: "Pancakes", to: "make_pancakes" },
+                    { text: "Waffles", to: "make_waffles" },
+                    { text: "Hashbrowns", to: "make_hashbrowns" },
+                    { text: "Omelette", to: "make_omelette" },
+                ];
+            }
+        },
+        contributor: "Dave"
     },
     breakfast_fail_ending: {
         prompt: () => <div>
