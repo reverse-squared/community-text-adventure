@@ -213,17 +213,6 @@ addScenes({
             name: "SafeSearch™",
             description: "Get blocked™ by™ (Safe™Search™)™.",
         }
-    },
-    gsearch_potato: {
-        prompt: () => <div>
-            <p>
-                TODO: Potato Search
-            </p>
-        </div>,
-        options: [
-
-        ],
-        contributor: null,
     }
     // #endregion
 
