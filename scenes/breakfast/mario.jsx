@@ -324,7 +324,8 @@ addScenes({
             id: "bomboomb-die",
             name: "The Poor Bomb",
             description: "The poor bomb did nothing wrong and you let it kill itself.",
-        } 
+        },
+        contributor: "Hunter" 
     },
     hash_potatokart_fricc_foward: {
         prompt: () => <div>

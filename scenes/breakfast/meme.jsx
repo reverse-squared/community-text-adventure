@@ -62,24 +62,102 @@ addScenes({
             { text: "1 2 7 3...", to: "meme_1273" },
             { text: "I'm going to say the N-Word...", to: "meme_nword" },
             { text: "This is so sad... Alexa play...", to: "meme_alexa" },
-            { text: "Wait. That's illegal...", to: "" },
+            { text: "Wait. That's illegal...", to: "meme_illegal" },
             { text: "What even is this?", to: "meme_whateven" },
             { text: "Kris, is that a weed...", to: "meme_weed" },
-            { text: "I smell pennies...", to: "" },
+            { text: "I smell pennies...", to: "meme_penny" },
             { text: "Mary, is that a police...", to: "meme_police" },
             { text: "It's time for a crusade...", to: "meme_crusade" },
-            { text: "Yeetus yeetus...", to: "" },
-            { text: "You're gonna have a bad time...", to: "" },
-            { text: "NANI?!?!", to: "" },
-            { text: "That's what she said...", to: "" },
+            { text: "Yeetus yeetus...", to: "meme_yeet" },
+            { text: "You're gonna have a bad time...", to: "touch_car_sui" },
+            { text: "NANI?!?!", to: "meme_nani" },
+            { text: "That's what she said...", to: "meme_twss" },
             { text: "I play Pokemon Go...", to: "meme_pokemon_go" },
             { text: "TURN IT UP TO 11...", to: "meme_turn11" },
-            { text: "Wake me up inside...", to: "" }
+            { text: "Wake me up inside...", to: "meme_wakeup" }
         ],
         contributor: "Hunter, Helvetica, and Dave"
     },
 
     // #region Instant Endings
+    meme_twss: {
+        prompt: () => <div>
+            <p>
+                It's not funny... Get out...
+            </p>
+        </div>,
+        ending: {
+            id: "twss",
+            name: "No God",
+            description: "No god please no no. No. Noooooooooo.",
+        },
+        contributor: "Hunter"
+    },
+    meme_wakeup: {
+        prompt: () => <div>
+            <p>
+                You can't wake up. You are assumed dead.
+            </p>
+        </div>,
+        ending: {
+            id: "wake-me-up",
+            name: "Trying to Wake Up",
+            description: "Can't Wake Up",
+        },
+        contributor: "Hunter"
+    },
+    meme_nani: {
+        prompt: () => <div>
+            <p>
+                The man suddenly teleports behind you and kills you.
+            </p>
+        </div>,
+        ending: {
+            id: "nanani",
+            name: "NANI?!?!",
+            description: "Omae wa mou shindeiru.",
+        },
+        contributor: "Hunter"
+    },
+    meme_yeet: {
+        prompt: () => <div>
+            <p>
+                YEET!
+            </p>
+        </div>,
+        ending: {
+            id: "yeetet",
+            name: "Yeet",
+            description: "Let's yeet this wheat.",
+        },
+        contributor: "Hunter"
+    },
+    meme_penny: {
+        prompt: () => <div>
+            <p>
+                Since everyone is carrying money, you do smell pennies. Turns out you have the above average smelling ability.
+            </p>
+        </div>,
+        ending: {
+            id: "good-nose",
+            name: "Good Nose",
+            description: "Maybe the TSA can hire you to S N I F F the drugs.",
+        },
+        contributor: "Hunter"
+    },
+    meme_illegal: {
+        prompt: () => <div>
+            <p>
+                Yes. It is illegal. And there was a police officer standing right next to you... He arrested you.
+            </p>
+        </div>,
+        ending: {
+            id: "turn-int",
+            name: "Turn In Yourself",
+            description: "Admit to your crimes and be arrested.",
+        },
+        contributor: "Hunter"
+    },
     meme_pokemon_go: {
         prompt: () => <div>
             <p>Get out this is too old, like what? 2015?</p>
