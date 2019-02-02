@@ -1,5 +1,5 @@
 import React from "react";
-import { addFlag, setScene } from "web-text-adventure/src/adventure";
+import { addFlag, setScene, getScene } from "web-text-adventure/src/adventure";
 import { addScenes } from "@src/ending";
 import SceneLink from "@templates/SceneLink";
 
@@ -63,6 +63,7 @@ addFlag("complexWires", false);
 addFlag("morse", false);
 
 addFlag("prevScene", "");
+addFlag("ktmaintext", "There are five modules... which do you defuse first?");
 
 const letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J,", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 const numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
@@ -111,10 +112,51 @@ function generateFRK() {
 
 /** Adds some extra things to a scene to make it handler the Bomb Timer and strikes and some other thing */
 function BombScene(scene) {
+    let action = scene.action;
+    scene.action = () => {
+        if(action) action();
+        if(!scene.isInfoPage) prevScene = getScene();
+    };
     return scene;
 }
 /** Adds some extra things to an option to make it cause a strike */
+let t1, t2, t3;
 function IncorrectOption(option) {
+    let action = option.action;
+    option.to = "ktane_main";
+    option.action = () => {
+        if (action) action();
+        ktmaintext = "You got that module wrong, try again.";
+        // BG
+        if(t1) clearTimeout(t1);
+        if(t2) clearTimeout(t2);
+        if(t3) clearTimeout(t3);
+
+        document.body.style.transition = "";
+        document.body.style.background = "red";
+        t1 = setTimeout(() => {
+            t1 = undefined;
+            t2 = setTimeout(() => {
+                t2 = undefined;
+                document.body.style.transition = "background 1.5s linear";
+                document.body.style.background = "";
+                t3 = setTimeout(() => {
+                    t3 = undefined;
+                    document.body.style.transition = "";
+                }, 1500);
+            }, 100);
+            document.body.style.background = "red";
+        }, 100);
+        
+    };
+    return option;
+}
+/** Adds some extra things to an option to make it cause a strike */
+function CorrectOption(option) {
+    let action = option.action;    
+    option.action = () => {
+        if (action) action();
+    };
     return option;
 }
 
@@ -236,7 +278,7 @@ addScenes({
         prompt: () => <div>
             <BombHeader />
             <p>
-                There are five modules... which do you defuse first?
+                {ktmaintext}
             </p>
         </div>,
         options: [
@@ -250,6 +292,8 @@ addScenes({
     }),
     ktane_info: BombScene({
         prompt: () => <div>
+            <BombHeader hideLink />
+            <SceneLink to={prevScene}>Go Back</SceneLink>            
             <p>
                 <b>Bomb Information:</b>
                 <ul>
@@ -264,6 +308,15 @@ addScenes({
         options: () => [
             { text: "Back", to: prevScene },
         ]
+    }),
+    ktane_correct: BombScene({
+        prompt: () => <div>
+            <BombHeader hideLink />
+            <p>
+                You defused this module!
+            </p>
+        </div>,
+        options: () => defusedOptions
     }),
     //#endregion
 
@@ -289,16 +342,15 @@ addScenes({
     // #region Symbols
     ktane_symbols: {
         prompt: () => <div>
-            TODO: make sure this works properly
             <p>
                 There are four keypads with symbols on them. Press them in the right order.
             </p>
         </div>,
         options: [
             { text: "Copyright", to: "ktane_symbols2" },
-            { text: "Hallow Star", to: "ktane_fail" },
-            { text: "Curly Thing", to: "ktane_fail" },
-            { text: "A Weird Looking Broken Three Thing", to: "ktane_fail" }
+            IncorrectOption({ text: "Hallow Star" }),
+            IncorrectOption({ text: "Curly Thing" }),
+            IncorrectOption({ text: "A Weird Looking Broken Three Thing", to: "ktane_fail" }),
         ],
         contributor: "Hunter"
     },
@@ -310,9 +362,9 @@ addScenes({
         </div>,
         options: [
             { text: "Copyright", disabledText: "Pressed", if: () => false, to: "ktane_symbols2" },
-            { text: "Hallow Star", to: "ktane_fail" },
+            IncorrectOption({ text: "Hallow Star" }),
             { text: "Curly Thing", to: "ktane_symbols3" },
-            { text: "A Weird Looking Broken Three Thing", to: "ktane_fail" }
+            IncorrectOption({ text: "A Weird Looking Broken Three Thing" })
         ],
         contributor: "Hunter"
     },
@@ -324,7 +376,7 @@ addScenes({
         </div>,
         options: [
             { text: "Copyright", disabledText: "Pressed", if: () => false, to: "ktane_symbols2" },
-            { text: "Hallow Star", to: "ktane_fail" },
+            IncorrectOption({ text: "Hallow Star", to: "ktane_fail" }),
             { text: "Curly Thing", disabledText: "Pressed", if: () => false, to: "ktane_symbols3" },
             { text: "A Weird Looking Broken Three Thing", to: "ktane_symbols4" }
         ],
@@ -338,7 +390,7 @@ addScenes({
         </div>,
         options: [
             { text: "Copyright", disabledText: "Pressed", if: () => false, to: "ktane_symbols2" },
-            { text: "Hallow Star", to: "ktane_select", action: () => symbols = true },
+            CorrectOption({ text: "Hallow Star", action: () => symbols = true }),
             { text: "Curly Thing", disabledText: "Pressed", if: () => false, to: "ktane_symbols3" },
             { text: "A Weird Looking Broken Three Thing", disabledText: "Pressed", if: () => false, to: "ktane_symbols4" }
         ],
