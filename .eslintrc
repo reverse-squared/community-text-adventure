@@ -20,10 +20,7 @@
             "error",
             4
         ],
-        "linebreak-style": [
-            "error",
-            "windows"
-        ],
+        "linebreak-style": "off",
         "quotes": [
             "error",
             "double"
@@ -34,6 +31,7 @@
         ],
         "no-undef": "off",
         "no-unused-vars": "off",
-        "no-unreachable": "off"
+        "no-unreachable": "off",
+        "space-infix-ops": "error"
     }
 }

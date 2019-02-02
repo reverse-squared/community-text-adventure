@@ -4,3 +4,8 @@ package-lock.json
 
 .nyc_output/
 coverage
+
+# Gource
+gource.ppm
+gource.mp4
+*.log

@@ -42,7 +42,7 @@ const BTC_EXCHANGES = [
     0.0054123,
     0.001852,
     0.0041,
-    0.00000005,
+    0.000005,
 ];
 
 function cashToBTC(cash) {
@@ -60,7 +60,7 @@ const LoanBTCHeader = () => <div>
     {
         isPlayingMillionaire
             ? (
-                <LoanHeader />
+                <LoanHeader bitcoin />
             )
             : (
                 !loan_payloan
@@ -86,6 +86,7 @@ const LoanBTCHeader = () => <div>
 </div>;
 
 addScenes({
+    // #region Bitcoin 
     loan_bitcoin: {
         prompt: () => <div>
             <LoanHeader />
@@ -101,7 +102,12 @@ addScenes({
             { text: "$10", to: "loan_bitcoin_initial_dep", action: () => loan_initial_deposit = 10 },
             { text: "$5", to: "loan_bitcoin_initial_dep", action: () => loan_initial_deposit = 5 },
         ],
-        action: decreaseTurn,
+        action: () => {
+            if (loanMoney >= 900) {
+                loan_walletcash = 999999.99;
+            }
+            decreaseTurn();
+        },
         contributor: "Dave"
     },
     loan_bitcoin_initial_dep: {
@@ -118,7 +124,7 @@ addScenes({
             decreaseTurn();
 
             loan_bitcoin = cashToBTC(loan_initial_deposit);
-            loan_walletcash = 50 - loan_initial_deposit;
+            loan_walletcash = loan_walletcash - loan_initial_deposit;
         },
         contributor: "Dave"
     },
@@ -169,7 +175,7 @@ addScenes({
             { text: "Cancel", to: "loan_bitcoin_main"},
             "seperator",
             { text: "", disabledText: () => (loan_walletcash < 1) ? "(You need at least $1 to buy bitcoin)" : null, if: () => false, to: "loan_bitcoin_main" },  
-            ...[1, 2, 3, 4, 5, 10, 25, 50, 80, 100, 200, 300, 400, 500, 1000, 5000, 10000, 50000, 100000].map(cash => {
+            ...[1, 2, 3, 4, 5, 10, 25, 50, 80, 100, 200, 300, 400, 500, 1000, 5000, 10000, 50000, 100000, 200000, 500000, 999999.99 - 50].map(cash => {
                 return {
                     text: () => `${formatMoney(cash)} for ${formatBTC(cashToBTC(cash))}`,
                     action: () => {
@@ -194,7 +200,7 @@ addScenes({
             { text: "Cancel", to: "loan_bitcoin_main"},
             "seperator",
             { text: "", disabledText: () => (loan_bitcoin < 0.5) ? "(You need at least 0.5 BTC to sell bitcoin)" : null, if: () => false, to: "loan_bitcoin_main" },  
-            ...[0.5, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20, 25, 30, 40, 50, 60, 70, 80, 90, 100, 250, 300, 350, 400, 450, 500, 600, 650, 700, 750, 800, 850, 900, 950, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000].map(price => {
+            ...[0.5, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20, 25, 30, 40, 50, 60, 70, 80, 90, 100, 250, 300, 350, 400, 450, 500, 600, 650, 700, 750, 800, 850, 900, 950, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000, 20000, 30000,50000,100000,200000,500000,1000000,2000000,3000000,4000000,5000000].map(price => {
                 return {
                     text: () => `${formatBTC(price)} for ${formatMoney(btcToCash(price))}`,
                     action: () => {
@@ -208,6 +214,9 @@ addScenes({
         ],
         contributor: "Dave",
     },
+    // #endregion
+
+    // #region Endings
     loan_bitcoin_lose: {
         prompt: () => <div>
             <p>You were not able to make enough money from Bitcoin to pay off the loan, and fell even farther into debt. First time huh?</p>
@@ -241,5 +250,6 @@ addScenes({
             description: "Pay off your loan by getting money from Bitcoin."
         },
         contributor: "Dave",
-    },
+    }
+    // #endregion
 });

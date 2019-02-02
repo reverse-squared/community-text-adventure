@@ -1,13 +1,17 @@
+const createConfig = require("./src/build/webpack-config-types");
 const path = require("path");
 const webpack = require("webpack");
 const packageJson = require("./package.json");
 const TerserPlugin = require("terser-webpack-plugin");
+const HTMLWebpackPlugin = require("html-webpack-plugin");
+const ChunkRenamePlugin = require("./src/build/webpack-emoji-plugin");
 
-module.exports = (env = {production: false, extraDefines: {}}, argv) => ({
+module.exports = (env = { production: false, extraDefines: {} }, argv) => createConfig({
     entry: "./src/js/loader.jsx",
     output: {
         path: path.resolve(__dirname, "dist"),
-        filename: "game.js"
+        filename: "cta🔥🔥🔥.js",
+        chunkFilename: "[name]"
     },
     devServer: {
         hot: true,
@@ -20,6 +24,10 @@ module.exports = (env = {production: false, extraDefines: {}}, argv) => ({
             $version: JSON.stringify(packageJson.version),
             $buildtime: JSON.stringify(Date.now()),
             ...env.extraDefines,
+        }),
+        new HTMLWebpackPlugin({ template: "./src/index.html" }),
+        new ChunkRenamePlugin({
+            chunkFilename: "[emoji:6].js",
         }),
     ],
     module: {
@@ -51,6 +59,7 @@ module.exports = (env = {production: false, extraDefines: {}}, argv) => ({
         ]
     },
     mode: env.production ? "production" : "development",
+    devtool: env.production ? "none" : "inline-source-map",
     optimization: {
         minimizer: [
             new TerserPlugin({
@@ -105,5 +114,5 @@ module.exports = (env = {production: false, extraDefines: {}}, argv) => ({
             "@res": __dirname + "/res/"
         },
         extensions: [".js", ".jsx", ".json"]
-    }
+    },
 });

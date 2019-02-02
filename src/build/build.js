@@ -18,6 +18,7 @@ function requireDirRecursive(folder) {
         if (fs.statSync(path.join(folder, x)).isDirectory()) {
             requireDirRecursive(path.join(folder, x));
         } else {
+            if(!x.endsWith(".jsx")) return;
             require(path.join(folder, x));
             sceneFiles.push(path.join(folder, x).substr(path.join(__dirname, "../../scenes").length + 1).replace(/\\/g,"/"));
         }
@@ -69,33 +70,6 @@ webpack(config, (err, stats) => {
         // eslint-disable-next-line no-console
         console.warn(info.warnings.join("\n"));
     }
-
-    // copy index.production.html
-    const input_html = fs.readFileSync(path.join(__dirname, "../../src/index.html")).toString();
-    const output_html = minifier.minify(input_html, {
-        caseSensitive: true,
-        collapseInlineTagWhitespace: true,
-        collapseWhitespace: true,
-        minifyURLs: true,
-        minifyCSS: true,
-        minifyJS: {
-            ie8: false,
-            mangle: {
-                toplevel: true,
-                keep_fnames: false
-            },
-
-        },
-        removeComments: true,
-        removeAttributeQuotes: true,
-        removeRedundantAttributes: true,
-        removeScriptTypeAttributes: true,
-        removeStyleLinkTypeAttributes: true,
-        removeTagWhitespace: true,
-        useShortDoctype: true
-    });
-    fs.writeFileSync(path.join(dist_folder, "index.html"), output_html);
-
 
     // eslint-disable-next-line no-console
     console.log("build completed!");

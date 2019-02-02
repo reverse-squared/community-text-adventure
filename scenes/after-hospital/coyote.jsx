@@ -3,6 +3,7 @@ import { addScenes } from "@src/ending";
 import { addFlag } from "web-text-adventure/src/adventure";
 
 addScenes({
+    // #region Coyote
     sting_start: {
         prompt: () => <div>
             <p>You have now become a Coyote. Specifically Coyote Peterson. Now... <strong>IT'S TIME TO ENTER THE STING ZONE WITH THE...</strong></p>
@@ -50,4 +51,5 @@ addScenes({
         },
         contributor: "Hunter"
     }
+    // #endregion
 });

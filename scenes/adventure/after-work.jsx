@@ -5,6 +5,7 @@ import { addScenes } from "@src/ending";
 addFlag("hasCheckedLong", false);
 
 addScenes({
+    // #region Dog
     dog_walk: {
         prompt: () => <div>
             <p>You want to take your nice little <strong>Pug</strong> for a walk, but WHOOPS, you don't have a <span style={{color: "#ffbaa3", fontWeight: "bold"}}>Leash</span>...</p>
@@ -57,7 +58,9 @@ addScenes({
         },
         contributor: "Hunter"
     },
+    // #endregion
 
+    // #region Computer
     computer_start: {
         prompt: () => <div>
             <p>You have time to play only one game on your computer before you must leave. What game do you play?</p>
@@ -65,38 +68,25 @@ addScenes({
         options: [
             { text: "Play Half Life 3", to: "hl3" },
             { text: "Play Minecraft", to: "minecraft_start" },
-            { text: "Play LEGO Sid Meier's Tom Clancy SUPER Fortnite V Modern of War Craft FIFA Remastered Metal Fallcry Special Edition", to: "" },
+            { text: "Play LEGO Sid Meier's Tom Clancy SUPER Fortnite V Modern of War Craft FIFA Remastered Metal Fallcry Special Edition", to: "computer_small_boi" },
             { text: "Play Discord", to: "play_discord" },
             { text: "Play Sonic Team Presents: LEGO Tom Hideo Kojima Game Meier's Rise of the SUPER War for the NEW mini Mega Power Nintendo Dawn of the White Virtual Alpha Omega Sequel Final Smash 2 3 DS i lite Light of the Micro XL DD LL Mix Prequel of the e u Boy the Advance SP Player Master Reboot of the Disney Color Cube and Watch Entertainment System Planet Marvel of the Nomad Apes Game of the Year Edition and Knuckles Jam VS Sega Capcom Plus Version Episode Two Volume Two", if: () => !hasCheckedLong, disabledText: "Play Sonic Team Presents: LEGO Tom Hideo Kojima Game Meier's Rise of the SUPER War for the NEW mini Mega Power Nintendo Dawn of the White Virtual Alpha Omega Sequel Final Smash 2 3 DS i lite Light of the Micro XL DD LL Mix Prequel of the e u Boy the Advance SP Player Master Reboot of the Disney Color Cube and Watch Entertainment System Planet Marvel of the Nomad Apes Game of the Year Edition and Knuckles Jam VS Sega Capcom Plus Version Episode Two Volume Two (Already Checked!)", action: () => hasCheckedLong = true, to: "computer_big_boi" }
         ],
         contributor: "Hunter"
     },
-    phone_start: {
+    computer_small_boi: {
         prompt: () => <div>
-            <p>You have time to play only one game on your phone before you must leave. What game do you play?</p>
+            <p>
+                You play <b>LEGO Sid Meier's Tom Clancy SUPER Fortnite V Modern of War Craft FIFA Remastered Metal Fallcry Special Edition</b>, and it was the best game you ever played.
+            </p>
         </div>,
-        options: [
-            { text: "Candy Crush Saga", to: "" },
-            { text: "Candy Crush Soda Saga", to: "" },
-            { text: "Candy Crush Jelly Saga", to: "" },
-            { text: "Candy Crush Friends Saga", to: "" },
-            { text: "How About No", to: "phone_others" }
-        ],
+        ending: {
+            id: "small-boi",
+            name: "10/10 IGN",
+            description: "When does the sequel come out?",
+        },
         contributor: "Hunter"
     },
-
-    phone_others: {
-        prompt: () => <div>
-            <p>You decide not to play the <b>Amazing Games</b>, and instead want to sign-up for something, but what is it?</p>
-        </div>,
-        options: [
-            { text: "For Jeopardy", to: "jeopardy_pre" },
-            { text: "For The Price is Right", to: "price_pre" },
-            { text: "For Who Wants to be a Millionare", to: "mill_start" }
-        ],
-        contributor: "Hunter"
-    },
-
     play_discord: {
         prompt: () => <div>
             <p>You decide to play your favorite game, <span style={{color: "#7289DA"}}><strong>Discord</strong></span></p>
@@ -109,7 +99,6 @@ addScenes({
         },
         contributor: "Dave",
     },
-
     computer_big_boi: {
         prompt: () => <div>
             <p>Before buying this game, you must know that this game is <strong>Only For Olympic Offical Video Game With Net Play Only On Games for Windows PlayStation Live Only For Nintendo 64 Only on Xbox Includes Your Own Mama Baby, Requires Kinect Sensor, Includes 50 Classic Atari Titles Includes Original Pac-Man Arcade Game, Platinum Hits Best Seller Award, Has the Official Nintendo Seal of Quality, Playable in 2D and 3D. 3D Mode for ages 7+. See back. Has the Official Genesis Seal of Quality, Nintendo WiFi connection, requires the Wii Motion Plus controller, Online Features available, learn with platinum the best of playstation 2, rated T for Teen, only for the gameboy color...</strong></p>
@@ -132,5 +121,62 @@ addScenes({
             description: "On a scale from 1-10, how good was the game?"
         },
         contributor: "Hunter"
+    },
+    // #endregion
+
+    // #region Phone
+    phone_start: {
+        prompt: () => <div>
+            <p>
+                {
+                    phoneFromSafe
+                        ? "You get our your phone to play something. What game do you play?"
+                        : "You have time to play only one game on your phone before you must leave. What game do you play?"
+                }
+                
+            </p>
+        </div>,
+        options: [
+            { text: "Candy Crush Saga", to: "candy_crushghsfdifsan" },
+            { text: "Candy Crush Soda Saga", to: "candy_crushghsfdifsan" },
+            { text: "Candy Crush Jelly Saga", to: "candy_crushghsfdifsan" },
+            { text: "Candy Crush Friends Saga", to: "candy_crushghsfdifsan" },
+            { text: "How About No", to: "phone_others" }
+        ],
+        contributor: "Hunter"
+    },
+    candy_crushghsfdifsan: {
+        prompt: () => <div>
+            <p>
+                You open up Candy Crush, but since they all look the same, all those paths lead to this one :). You play through a game.
+            </p>
+        </div>,
+        options: [
+            { text: "win", to: "winthecandy" }
+        ]
+    },
+    winthecandy: {
+        prompt: () => <div>
+            <p>
+                You won candy crush, good job... I mean it's not too hard.
+            </p>
+        </div>,
+        ending: {
+            id: "winnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn",
+            name: "Winner Winner Candy Dinner",
+            description: "Win a game of candy crush.",
+        }
+    },
+    phone_others: {
+        prompt: () => <div>
+            <p>You decide not to play the <b>Amazing Games</b>, and instead want to sign-up for something, but what is it?</p>
+        </div>,
+        options: [
+            { text: "For Jeopardy", to: "jeopardy_pre" },
+            { text: "For The Price is Right", to: "price_pre" },
+            { text: "For Who Wants to be a Millionare", to: "mill_start" }
+        ],
+        contributor: "Hunter"
     }
+    // #endregion
 });

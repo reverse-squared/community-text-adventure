@@ -17,6 +17,6 @@ export default function() {
     if (find) {
         localStorage.endings = localStorage.endings || "";
         const endings = localStorage.endings.split(";").filter(x => x !== "");
-        location = "https://" + find[1] + (endings.length >= 1 ? "/#upgrade=" + endings.join(";") : "/");
+        location.href = "https://" + find[1] + (endings.length >= 1 ? "/#upgrade=" + endings.join(";") : "/");
     }
 }

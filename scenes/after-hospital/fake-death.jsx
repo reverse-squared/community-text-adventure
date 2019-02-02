@@ -7,6 +7,8 @@ addFlag("graveWaitTime", 0);
 addFlag("wrongPasswords", 0);
 addFlag("triedL1Crook", false);
 addFlag("passwords", [false, false, false, false, false, false]);
+addFlag("mafiaLevel", 2);
+addFlag("mafiaTitle", "Crook");
 
 function increaseGraveWait() {
     graveWaitTime++;
@@ -17,6 +19,7 @@ function increaseGraveWait() {
 }
 
 addScenes({
+    // #region Fake Death
     fake_your_death: {
         prompt: () => <div>
             <p>You fake your death by pretending you died on the street. Nobody cared to check your pulse so they assumed you were dead. They placed you in a
@@ -29,6 +32,8 @@ addScenes({
         ],
         contributor: "Hunter"
     },
+
+    // #region Grave
     grave_death_leave: {
         prompt: () => <div>
             <p>When you left your grave, the burrial ceremony wasn't over. People though you were a zombie and shot you down.</p>
@@ -62,7 +67,6 @@ addScenes({
         },
         contributor: "Hunter",
     },
-
     grave_leave: {
         prompt: () => <div>
             <p>Now that you are "dead", and nobody knows that you are alive, what illegal crimes will you commit?</p>
@@ -74,7 +78,50 @@ addScenes({
         ],
         contributor: "Hunter"
     },
+    // #endregion
 
+    // #region Hitman
+    hitman: {
+        prompt: () => <div>
+            <p>
+                Your first job is to kill someone named... Wait... thats your name!? Your first job is to kill Yourself.
+            </p>
+        </div>,
+        options: [
+            { text: "Die", to: "hitman_do" },
+            { text: "Don't", to: "hitman_dont" },
+        ],
+        contributor: "Dave"
+    },
+    hitman_dont: {
+        prompt: () => <div>
+            <p>
+                You decide not to take the job, but within a day someone else was hired in your place, and they have killed you.
+            </p>
+        </div>,
+        ending: {
+            id: "death-by-hitman",
+            name: "Killed by Hitman",
+            description: "Refuse to take a hitman job to kill yourself, then someone else gets the job.",
+        },
+        contributor: "Dave"
+    },
+    hitman_do: {
+        prompt: () => <div>
+            <p>
+                You take the job, and kill yourself... uhhh... They weren't able to pay you since you weren't alive to verify the transaction.
+            </p>
+        </div>,
+        ending: {
+            id: "paid-suicide",
+            name: "Paid Suicide",
+            description: "Become a hitman for yourself.",
+        },
+        contributor: "Dave"
+    },
+    // #endregion
+
+    // #region Bank Rob
     bank_rob: {
         prompt: () => <div>
             { isPlayingMillionaire && <LoanHeader /> }
@@ -115,46 +162,6 @@ addScenes({
         },
         contributor: "Hunter, Dave, and Colyderp"
     },
-
-    hitman: {
-        prompt: () => <div>
-            <p>
-                Your first job is to kill someone named... Wait... thats your name!? Your first job is to kill Yourself.
-            </p>
-        </div>,
-        options: [
-            { text: "Die", to: "hitman_do" },
-            { text: "Don't", to: "hitman_dont" },
-        ],
-        contributor: "Dave"
-    },
-    hitman_dont: {
-        prompt: () => <div>
-            <p>
-                You decide not to take the job, but within a day someone else was hired in your place, and they have killed you.
-            </p>
-        </div>,
-        ending: {
-            id: "death-by-hitman",
-            name: "Killed by Hitman",
-            description: "Refuse to take a hitman job to kill yourself, then someone else gets the job.",
-        },
-        contributor: "Dave"
-    },
-    hitman_do: {
-        prompt: () => <div>
-            <p>
-                You take the job, and kill yourself... uhhh... They weren't able to pay you since you weren't alive to verify the transaction.
-            </p>
-        </div>,
-        ending: {
-            id: "paid-suicide",
-            name: "Paid Suicide",
-            description: "Become a hitman for yourself.",
-        },
-        contributor: "Dave"
-    },
-
     bank_rob_right: {
         prompt: () => <div>
             <p>
@@ -214,15 +221,17 @@ addScenes({
         },
         contributor: "Dave",
     },
+    // #endregion
 
+    // #region Mafia
     level1_crook: {
         prompt: () => <div>
             <p>
-                You enter the mafia as a level 1 crook, now what do you do.
+                You enter the mafia as a Level 1 Crook, now what do you do.
             </p>
         </div>,
         options: [
-            { text: "Level Up", to: "level2_crook" },
+            { text: "Level Up", to: "level1_crook_upgraded" },
             { text: "Walk around", to: "level1_crook_walk_around" },
             { text: "Drop out of the mafia", to: "grave_leave", action: () => triedL1Crook = true },
         ],
@@ -231,16 +240,53 @@ addScenes({
 
     level1_crook_upgraded: {
         prompt: () => <div>
-            <p>
-                <span style={{ color: "purple" }}>You are a Level 2 Crook</span>
-            </p>
-            <p>
-                You upgrade yourself to a Level 2 Crook. Now what?
-            </p>
+            <p><span style={{ color: "purple" }}>You are a Level {mafiaLevel} {mafiaTitle}</span></p>
+            <p>You upgrade yourself to a Level {mafiaLevel} {mafiaTitle}. Now what?</p>
         </div>,
         options: [
-            { text: "Level Up", to: "level3_crook" }
+            { text: "Level Up", to: "level1_crook_upgraded", action: () => {
+                mafiaLevel++;
+
+                if(mafiaLevel >= 10 && mafiaLevel < 35) {
+                    mafiaTitle = "Hitman";
+                }else if(mafiaLevel >= 35 && mafiaLevel < 100) {
+                    mafiaTitle = "Boss";
+                }else if(mafiaLevel >= 100 && mafiaLevel < 250) {
+                    mafiaTitle = "Master";
+                }else if(mafiaLevel > 250 && mafiaLevel < 1000) {
+                    mafiaTitle = "God";
+                }else if(mafiaLevel >= 1000) {
+                    setScene("mafia_leader");
+                }
+            } }
         ],
-        contributor: "Dave",
+        contributor: "Dave and Hunter",
     },
+    level1_crook_walk_around: {
+        prompt: () => <div>
+            <p>You start to walk around the city, and all of a sudden you are jumped by a bunch of Level 75 Bosses. They kill you for the XP of yours. Of course they didn;t get very much because you were a Level 1 Crook, but it was
+                still fun.
+            </p>
+        </div>,
+        ending: {
+            id: "killed-level-1",
+            name: "Level 1 Crook",
+            description: "You got a long way to become a leader..."
+        },
+        contributor: "Hunter"
+    },
+    mafia_leader: {
+        prompt: () => <div>
+            <p>Now athat you have become a Level 1000 Mafia member, you are now the leader of everyone else. Even all the bosses!</p>
+        </div>,
+        ending: {
+            id: "mafia-leader",
+            name: "Mafia Leader",
+            description: "Become the ultimate mafia leader."
+        },
+        contributor: "Hunter"
+    }
+    // #endregion
+    
+    // #endregion
 });

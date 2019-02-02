@@ -1,9 +1,12 @@
 import React from "react";
-import { } from "web-text-adventure/src/adventure";
+import { addFlag } from "web-text-adventure/src/adventure";
 import { addScenes } from "@src/ending";
 import { CircleText } from "@templates/FontStyles";
 
+addFlag("hasTriedCoke", false);
+
 addScenes({
+    // #region Hashbrowns
     make_hashbrowns: {
         prompt: () => <div>
             <p>Hashbrowns are pretty neat. Lets make some! Pick your flavor.</p>
@@ -25,6 +28,8 @@ addScenes({
         },
         contributor: "Colyderp"
     },
+
+    // #region Hashbrownies
     hashbrownies: {
         prompt: () => <div>
             <p>
@@ -35,7 +40,7 @@ addScenes({
         options: [
             { text: "Yes", to: "hash_failtounderstand" },
             { text: "Sure", to: "hash_sure" },
-            { text: "Absolutely", to: "" },
+            { text: "Absolutely", to: "hash_absolutely" },
             { text: "By All Means", to: "hash_byallmeans" },
             { text: "Okey Dokey", to: "hash_okaydokey" },
             { text: "Alright", to: "hash_allright" },
@@ -45,7 +50,20 @@ addScenes({
         ],
         contributor: "Toshiyuki and Hunter"
     },
+
+    // #region Instant Endings
     hash_failtounderstand: {
+        prompt: () => <div>
+            <p>
+                You try to understand what it means, but it's too hard to understand... You end up deciding that you should not eat this as it may be dangerous to your health.
+            </p>
+        </div>,
+        options: [
+            { text: "Find something else to eat", to: "wakeup_breakfast", action: () => startedHashbrowns = true }
+        ],
+        contributor: "Dave"
+    },
+    hash_absolutely: {
         prompt: () => <div>
             <p>
                 You try to understand what it means, but it's too hard to understand... You end up deciding that you should not eat this as it may be dangerous to your health.
@@ -69,24 +87,60 @@ addScenes({
             description: "You half-forgot how to read so you went to reading school."
         }
     },
-    hash_ofcourse: {
+    hash_no: {
+        prompt: () => <div>
+            <p>You ate the brownie instead.</p>
+        </div>,
+        ending: {
+            id: "ate-brownie",
+            name: "Eated Unhealthy",
+            description: "You ate a brownie."
+        },
+        contributor: "Hunter"
+    },
+    hash_allright: {
+        prompt: () => <div>
+            <p>You got your left arm and leg cut off trying to say alright. I guess you were <strong>ALL RIGHT</strong>. <em>ba dum tss...</em></p>
+        </div>,
+        ending: {
+            id: "all-right",
+            name: "All Right",
+            description: "Looks like you are right handed... Let me take care of the left..."
+        },
+        contributor: "Hunter"
+    },
+    // #endregion
+
+    hash_eat: {
         prompt: () => <div>
             <p>
-                Of course you can read what's on them. They say nothing! It's just a Mario Kart track layout. 🤔
+                Om nom nom...
             </p>
         </div>,
-        options: [
-            { text: "Make a really fucking big version", to: "hash_fuckingbig_version" },
-            { text: "Make a tiny potato kart", to: "hash_potatokart" },
-            { text: "Eat it", to: "hash_eat" },
-            { text: "Smoke it", to: "hash_smokeit" },
-        ],
-        contributor: "Neema"
+        ending: {
+            id: "eat-mario",
+            name: "It Wasn't That Bad",
+            description: "It could use a little more butter...",
+        }
     },
+
+    // #region Vaping
     hash_smokeit: {
         prompt: () => <div>
             <p>
                 You shred the hashbrownies and shove them into your vaporiser. Time to vape some potato brownies!
+            </p>
+        </div>,
+        options: [
+            { text: "Inhale", to: "hash_smokeit2" },
+            { text: "Stop Vaping", to: "hash_stop_novape" },
+        ],
+        contributor: "Neema"
+    },
+    hash_smokeit_potato: {
+        prompt: () => <div>
+            <p>
+                You shred the potato and shove them into your vaporiser. Time to vape some potatos!
             </p>
         </div>,
         options: [
@@ -142,7 +196,23 @@ addScenes({
         },
         contributor: "Hunter"
     },
+    // #endregion
 
+    // #region Kart Choices
+    hash_ofcourse: {
+        prompt: () => <div>
+            <p>
+                Of course you can read what's on them. They say nothing! It's just a Mario Kart track layout. 🤔
+            </p>
+        </div>,
+        options: [
+            { text: "Make a really fucking big version", to: "hash_fuckingbig_version" },
+            { text: "Make a tiny potato kart", to: "hash_potatokart" },
+            { text: "Eat it", to: "hash_eat" },
+            { text: "Smoke it", to: "hash_smokeit" },
+        ],
+        contributor: "Neema"
+    },
     hash_definetly: {
         prompt: () => <div>
             <p>
@@ -171,28 +241,9 @@ addScenes({
         ],
         contributor: "Neema"
     },
-    hash_no: {
-        prompt: () => <div>
-            <p>You ate the brownie instead.</p>
-        </div>,
-        ending: {
-            id: "ate-brownie",
-            name: "Eated Unhealthy",
-            description: "You ate a brownie."
-        },
-        contributor: "Hunter"
-    },
-    hash_allright: {
-        prompt: () => <div>
-            <p>You got your left arm and leg cut off trying to say alright. I guess you were <strong>ALL RIGHT</strong>. <em>ba dum tss...</em></p>
-        </div>,
-        ending: {
-            id: "all-right",
-            name: "All Right",
-            description: "Looks like you are right handed... Let me take care of the left..."
-        },
-        contributor: "Hunter"
-    },
+    // #endregion
+
+    // #region Sue
     hash_sure: {
         prompt: () => <div>
             <p>You say sure, but the person neat you heard you say "sue". He decideds to sue you for "threatening" to sue him. What do you do?</p>
@@ -264,12 +315,14 @@ addScenes({
         },
         contributor: "Hunter"
     },
+    // #endregion
+    
     hash_fuckingbig_version: {
         prompt: () => <div>
             <p>You make it, but then you get really tired when you are done. However, you are tempted to try it.</p>
         </div>,
         options: [
-            { text: "Go to bed", to: "" },
+            { text: "Go to bed", to: "sleep_eat" },
             { text: "Have some coffee", to: "" },
             { text: "Make a tiny potato kart", to: "" },
             { text: "Play on it with friends", to: "hash_fuckingbig_friends" },
@@ -277,6 +330,8 @@ addScenes({
         ],
         contributor: "Durvenson"
     },
+
+    // #region Bin
     hash_fuckingbig_bin: {
         prompt: () => <div>
             <p>You throw it in, but you fell in by mistake, and you couldn't get out. You are now being transported in a dump truck.</p>
@@ -306,12 +361,12 @@ addScenes({
             <p>There is a lot in here. What do you get?</p>
         </div>,
         options: [
-            { text: "Coke bottle", to: "" },
+            { text: "Coke bottle", to: "hash_truck_find_coke", disabledText: "Already inspected...", if: () => !hasTriedCoke, action: () => hasTriedCoke = true },
             { text: "\"Food\"", to: "" },
             { text: "A computer", to: "hash_truck_find_computer" },
             { text: "Your track", to: "" },
             { text: "Your potato", to: "" },
-            { text: "Radioactive materials", to: "" },
+            { text: "Radioactive materials", to: "hash_truck_find_radio" },
             { text: "A trash bin", to: "" }
         ],
         contributor: "Durvenson"
@@ -351,6 +406,94 @@ addScenes({
             { text: "Play something else", to: "" },
             { text: "Don't play anything", to: "" },
             { text: "Go to the neighborhood and make some friends there", to: "" }
-        ]
+        ],
+        contributor: "Durvenson"
+    },
+    hash_truck_find_coke: {
+        prompt: () => <div>
+            <p>It has some coke in it, and it is diet.</p>
+        </div>,
+        options: [
+            { text: "Drink it", to: "" },
+            { text: "Throw it into the water", to: "" },
+            { text: "Do nothing", to: "" },
+            { text: "M E N T O S", to: "hash_truck_find_coke_mentos" }
+        ],
+        contributor: "Durvenson"
+    },
+    hash_truck_find_coke_mentos: {
+        prompt: () => <div>
+            <p>You get diet coke all over the truck.</p>
+        </div>,
+        options: [
+            { text: "Clean it", to: "" },
+            { text: "Make a fucking nuke out of the diet coke bottles", to: "hash_truck_find_coke_mentos_nuke" },
+            { text: "Find something else", to: "hash_truck_find" }
+        ],
+        contributor: "Durvenson"
+    },
+    hash_truck_find_coke_mentos_nuke: {
+        prompt: () => <div>
+            <p>It made the truck slip. You fell, and got injured. You are 100 miles away from home.</p>
+        </div>,
+        options: [
+            { text: "Call the hospital", to: "hash_truck_find_coke_mentos_nuke_CAR" },
+            { text: "Go explore town", to: "town" },
+            { text: "Find your way back home", to: "hash_truck_find_coke_mentos_nuke_back" }
+        ],
+        contributor: "Durvenson"
+    },
+    hash_truck_find_coke_mentos_nuke_back: {
+        prompt: () => <div>
+            <p>
+                Your car is out of gas, you could maybe find some around here.
+            </p>
+        </div>,
+        options: [
+            { text: "Call the hospital", to: "hash_truck_find_coke_mentos_nuke_CAR" },
+            { text: "Go explore town", to: "town" },
+            { text: "Find your way back home", to: null, if: () => false, disabledText: true },
+        ],
+        contributor: "Dave"
+    },
+    town: {
+        prompt: () => <div>
+            <p>
+                You start exploring the town... but you fall down as you didnt get that injury treated.
+            </p>
+        </div>,
+        ending: {
+            id: "fall-down",
+            name: "Fall Down",
+            description: "Fall down while exploring the town.",
+        },
+        contributor: "Dave",
+    },
+    hash_truck_find_radio: {
+        prompt: () => <div>
+            <p>Radium, along with other stuff, is in here for some reason. Your hands are fucked up.</p>
+        </div>,
+        options: [
+            { text: "Yell at whoever put that in there", to: "" },
+            { text: "Make a fucking nuke", to: "hash_truck_find_radio_nuke" },
+            { text: "Find something else", to: "" }
+        ],
+        contributor: "Durvenson"
+    },
+    hash_truck_find_radio_nuke: {
+        prompt: () => <div>
+            <p>You blew up the world, and you also killed yourself.</p>
+        </div>,
+        ending: {
+            id: "end-of-world",
+            name: "End of the World",
+            description: "Nuke the world."
+        },
+        contributor: "Durvenson"
     }
+    // #endregion
+
+    // #endregion
+
+    // #endregion
 });

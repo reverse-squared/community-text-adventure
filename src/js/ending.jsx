@@ -14,6 +14,9 @@ if (typeof localStorage !== "undefined") {
 }
 
 export function addEnding(endingInfo) {
+    if (!(typeof endingInfo === "object" && endingInfo.id && typeof endingInfo.id === "string")) {
+        throw new Error("This scene has a ending which is not formatted correctly.");
+    }
     if(endingInfo.id.includes(";")) throw new Error("Ending ID cannot have a ;");
 
     endingInfo.achieved = false;
@@ -95,7 +98,12 @@ export function addScenes(scenes) {
     Object.keys(scenes).forEach(id => {
         if (scenes[id].ending) {
             sceneStorage[id] = scenes[id];
-            addEnding(scenes[id].ending);
+            try {
+                addEnding(scenes[id].ending);
+            } catch (error) {
+                throw new Error("Scene `" + id + "`'s ending could not be added.", error.message);
+                
+            }
             
             const scenePrompt = scenes[id].prompt;
             scenes[id].prompt = () => <div>

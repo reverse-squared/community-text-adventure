@@ -38,7 +38,7 @@ class Swear extends React.Component {
             let chars = "#$@&%*!".split("");
             if(this.root) {
                 this.root.innerHTML = Array(6).fill(0).map(() => chars[Math.floor(Math.random() * (chars.length + 1))]).join("");
-                setTimeout(this.animate, 1000/18);
+                setTimeout(this.animate, 1000 / 18);
             }
         };
     }
@@ -51,6 +51,7 @@ class Swear extends React.Component {
 }
 
 addScenes({
+    // #region Meme
     hash_stop_novape: {
         prompt: () => <div>
             <p><b><span style={{fontSize: "50px"}}><i>HIT</i> OR <i>MISS</i></span>, I NEVER HIT THAT VAPE! HUH?</b> You have become a <GreenGradient string="Level 100 Master"/>. Now this is epic. That's how <s>the mafia</s> school works.</p>
@@ -61,27 +62,105 @@ addScenes({
             { text: "1 2 7 3...", to: "meme_1273" },
             { text: "I'm going to say the N-Word...", to: "meme_nword" },
             { text: "This is so sad... Alexa play...", to: "meme_alexa" },
-            { text: "Wait. That's illegal...", to: "" },
+            { text: "Wait. That's illegal...", to: "meme_illegal" },
             { text: "What even is this?", to: "meme_whateven" },
             { text: "Kris, is that a weed...", to: "meme_weed" },
-            { text: "I smell pennies...", to: "" },
+            { text: "I smell pennies...", to: "meme_penny" },
             { text: "Mary, is that a police...", to: "meme_police" },
             { text: "It's time for a crusade...", to: "meme_crusade" },
-            { text: "Yeetus yeetus...", to: "" },
-            { text: "You're gonna have a bad time...", to: "" },
-            { text: "NANI?!?!", to: "" },
-            { text: "That's what she said...", to: "" },
+            { text: "Yeetus yeetus...", to: "meme_yeet" },
+            { text: "You're gonna have a bad time...", to: "touch_car_sui" },
+            { text: "NANI?!?!", to: "meme_nani" },
+            { text: "That's what she said...", to: "meme_twss" },
             { text: "I play Pokemon Go...", to: "meme_pokemon_go" },
             { text: "TURN IT UP TO 11...", to: "meme_turn11" },
-            { text: "Wake me up inside...", to: "" }
+            { text: "Wake me up inside...", to: "meme_wakeup" }
         ],
         contributor: "Hunter, Helvetica, and Dave"
     },
-    meme_pokemon_go: {
+
+    // #region Instant Endings
+    meme_twss: {
         prompt: () => <div>
             <p>
-                Get out this is too old, like what? 2015?
+                It's not funny... Get out...
             </p>
+        </div>,
+        ending: {
+            id: "twss",
+            name: "No God",
+            description: "No god please no no. No. Noooooooooo.",
+        },
+        contributor: "Hunter"
+    },
+    meme_wakeup: {
+        prompt: () => <div>
+            <p>
+                You can't wake up. You are assumed dead.
+            </p>
+        </div>,
+        ending: {
+            id: "wake-me-up",
+            name: "Trying to Wake Up",
+            description: "Can't Wake Up",
+        },
+        contributor: "Hunter"
+    },
+    meme_nani: {
+        prompt: () => <div>
+            <p>
+                The man suddenly teleports behind you and kills you.
+            </p>
+        </div>,
+        ending: {
+            id: "nanani",
+            name: "NANI?!?!",
+            description: "Omae wa mou shindeiru.",
+        },
+        contributor: "Hunter"
+    },
+    meme_yeet: {
+        prompt: () => <div>
+            <p>
+                YEET!
+            </p>
+        </div>,
+        ending: {
+            id: "yeetet",
+            name: "Yeet",
+            description: "Let's yeet this wheat.",
+        },
+        contributor: "Hunter"
+    },
+    meme_penny: {
+        prompt: () => <div>
+            <p>
+                Since everyone is carrying money, you do smell pennies. Turns out you have the above average smelling ability.
+            </p>
+        </div>,
+        ending: {
+            id: "good-nose",
+            name: "Good Nose",
+            description: "Maybe the TSA can hire you to S N I F F the drugs.",
+        },
+        contributor: "Hunter"
+    },
+    meme_illegal: {
+        prompt: () => <div>
+            <p>
+                Yes. It is illegal. And there was a police officer standing right next to you... He arrested you.
+            </p>
+        </div>,
+        ending: {
+            id: "turn-int",
+            name: "Turn In Yourself",
+            description: "Admit to your crimes and be arrested.",
+        },
+        contributor: "Hunter"
+    },
+    meme_pokemon_go: {
+        prompt: () => <div>
+            <p>Get out this is too old, like what? 2015?</p>
         </div>,
         ending: {
             id: "2015",
@@ -135,7 +214,6 @@ addScenes({
         ],
         noContributor: true,
     },
-
     meme_nword: {
         prompt: () => <div>
             <code>The Devs: Actually let's not.</code><br/>
@@ -147,7 +225,43 @@ addScenes({
         },
         contributor: "Dave (a dev)"
     },
+    meme_whateven: {
+        prompt: () => <div>
+            <p>To be honest, we don't even know either.</p>
+        </div>,
+        ending: {
+            id: "meme-agree",
+            name: "Finally We Agree on Something",
+            description: "This is total nonsense!"
+        },
+        contributor: "Hunter"
+    },
+    meme_police: {
+        prompt: () => <div>
+            <p>You see that Mary has a police officer next to her, so you decide to call the <span style={{color: "green"}}><i>420 Gang</i></span> to warn them of their presence. Thanks loyal gang member.</p>
+        </div>,
+        ending: {
+            id: "gang-member",
+            name: "Loyal Gang Member",
+            description: "Give a good warning of the \"Bad Guys\"..."
+        },
+        contributor: "Hunter"
+    },
 
+    meme_overwatch: {
+        prompt: () => <div>
+            <p>Well sucks to suck because <b>I'M ALREADY TRACER</b>!</p>
+        </div>,
+        ending: {
+            id: "tracer",
+            name: "Looks Like I'm Not Tracer",
+            description: "Tracer has been picked already..."
+        },
+        contributor: "Hunter"
+    },
+    // #endregion
+
+    // #region Card
     meme_real_card: {
         prompt: () => <div>
             <p>
@@ -182,28 +296,9 @@ addScenes({
         ],
         contributor: "Hunter"
     },
-    meme_weed: {
-        prompt: () => <div>
-            <p>I don't know about you, but it looks <i style={{fontWeight: "bold"}}>A LOT</i> like <span style={{color: "green"}}>weed</span> to me.</p>
-        </div>,
-        options: [
-            { text: "Call the Police", to: "" },
-            { text: "Do Literally Nothing", to: "" },
-            { text: "\"Officer, He's Over Here\"", to: "" } 
-        ],
-        contributor: "Hunter"
-    },
-    meme_whateven: {
-        prompt: () => <div>
-            <p>To be honest, we don't even know either.</p>
-        </div>,
-        ending: {
-            id: "meme-agree",
-            name: "Finally We Agree on Something",
-            description: "This is total nonsense!"
-        },
-        contributor: "Hunter"
-    },
+    // #endregion
+
+    // #region Alexa
     meme_alexa: {
         prompt: () => <div>
             <p>You tell Alexa to play a song for you. Which song is it?</p>
@@ -226,6 +321,49 @@ addScenes({
         ],
         contributor: "Hunter"
     },
+    meme_bee: {
+        prompt: () => <div>
+            <style>{"::-webkit-scrollbar{display:none}"}</style>
+            <pre
+                style={{ fontFamily: "inherit" }}
+            >{BeeMovie}</pre>
+        </div>,
+        options: [
+            { text: "DO IT AGAIN!", to: "meme_bee", action: () => scriptsRead++ },
+            { text: "no dont...", to: "meme_bee_dont" }
+        ],
+        action: () => {
+            if (scriptsRead > 5) {
+                setScene("bee_lover");
+            }
+        },
+        contributor: "Hunter"
+    },
+    meme_bee_end: {
+        prompt: () => <div>
+            <style>{"::-webkit-scrollbar{display:none}"}</style>
+            <pre
+                style={{ fontFamily: "inherit" }}
+            >{BeeMovie}</pre>
+        </div>,
+        ending: {
+            id: "beeeeeeeeeeeeeeeeeeafousdifdsio",
+            name: "Bee Movie XD",
+            description: "Wait why...",
+        },
+        contributor: "Hunter and Dave"
+    },
+    bee_lover: {
+        prompt: () => <div>
+            <p>You heard <span style={{color:"yellow"}}>The Bee Movie</span> so many times, you decided you spend the rest of your life protecting the life of bees.</p>
+        </div>,
+        ending: {
+            id: "bee-lover",
+            name: "Bee Lover",
+            description: "You like jazz?"
+        },
+        contributor: "Hunter"
+    },
     meme_the_entire_ice: {
         prompt: () => <div>
             <p>You told the Alexa to play <b>The Entire Ice Age Pentology but Every Syllable Is Replaced With the Entire Toy Story Trilogy but Every Second That the Color Green Is in the Frame It Is Replaced Withevery Video Ever Uploaded on Youtube but Every 10 Seconds Every Episode of the Simpsons Plays but Every Word With a Vowel Is Replaced With the Bee Movie but Every Time a Bee Is Shown It Is Replaced With Every Episode of SpongeBob Played Backwards</b>, 
@@ -239,17 +377,6 @@ addScenes({
         },
         contributor: "Colyderp"
     },
-    bee_lover: {
-        prompt: () => <div>
-            <p>You heard <span style={{color:"yellow"}}>The Bee Movie</span> so many times, you decided you spend the rest of your life protecting the life of bees.</p>
-        </div>,
-        ending: {
-            id: "bee-lover",
-            name: "Bee Lover",
-            description: "You like jazz?"
-        },
-        contributor: "Hunter"
-    },
     meme_bee_dont: {
         prompt: () => <div>
             <p>As a smart person, you did not waste your time hearing the <span style={{color:"yellow"}}>The Bee Movie</span> script even more. What now do you ask Alexa?</p>
@@ -259,6 +386,31 @@ addScenes({
             { text: "What does the fox say?", to: "meme_alexa2_fox" },
             { text: "Show me a recipe for a grilled cheese sandwich", to: "meme_alexa2_grilled_cheese" }
         ],
+        contributor: "Hunter"
+    },
+    meme_alexa2_000: {
+        prompt: () => <div>
+            <p>
+                <b>Alexa</b>: One Quintillion to the Power of One Quintillion is <span style={{ wordWrap: "break-word" }}>1{"0".repeat(15400)}</span>
+            </p>
+        </div>,
+        ending: {
+            id: "000",
+            name: "000000000",
+            description: "0000000000000000000000000000000000000."
+        },
+        contributor: "Hunter"
+    },
+    meme_alexa2_fox: {
+        prompt: () => <div>
+            <p><b>Alexa</b>: The fox goes <em>YIP</em>.</p>
+            <p>I don't know what you were expecting.</p>
+        </div>,
+        ending: {
+            id: "fox",
+            name: "The Fox Goes Yip",
+            description: "Pow wow wow..."
+        },
         contributor: "Hunter"
     },
     meme_alexa2_grilled_cheese: {
@@ -276,18 +428,9 @@ addScenes({
         },
         contributor: "Hunter"
     },
-    meme_alexa2_fox: {
-        prompt: () => <div>
-            <p><b>Alexa</b>: The fox goes <em>YIP</em>.</p>
-            <p>I don't know what you were expecting.</p>
-        </div>,
-        ending: {
-            id: "fox",
-            name: "The Fox Goes Yip",
-            description: "Pow wow wow..."
-        },
-        contributor: "Hunter"
-    },
+    // #endregion
+
+    // #region 1273
     meme_1273: {
         prompt: () => <div>
             <p>That’s not how counting works! You get sent to Baldi’s Basics, where you have to endure the toughest question of all...</p>
@@ -321,17 +464,9 @@ addScenes({
         },
         contributor: "Alchemyking"
     },
-    meme_police: {
-        prompt: () => <div>
-            <p>You see that Mary has a police officer next to her, so you decide to call the <span style={{color: "green"}}><i>420 Gang</i></span> to warn them of their presence. Thanks loyal gang member.</p>
-        </div>,
-        ending: {
-            id: "gang-member",
-            name: "Loyal Gang Member",
-            description: "Give a good warning of the \"Bad Guys\"..."
-        },
-        contributor: "Hunter"
-    },
+    // #endregion
+
+    // #region Crusades
     meme_crusade: {
         prompt: () => <div>
             <CrusadeHeader />
@@ -375,46 +510,18 @@ addScenes({
         },
         contributor: "Hunter"
     },
-    meme_overwatch: {
+    // #endregion
+
+    meme_weed: {
         prompt: () => <div>
-            <p>Well sucks to suck because <b>I'M ALREADY TRACER</b>!</p>
-        </div>,
-        ending: {
-            id: "tracer",
-            name: "Looks Like I'm Not Tracer",
-            description: "Tracer has been picked already..."
-        },
-        contributor: "Hunter"
-    },
-    meme_alexa2_000: {
-        prompt: () => <div>
-            <p>
-                <b>Alexa</b>: One Quintillion to the Power of One Quintillion is <span style={{ wordWrap: "break-word" }}>1{"0".repeat(15400)}</span>
-            </p>
-        </div>,
-        ending: {
-            id: "000",
-            name: "000000000",
-            description: "0000000000000000000000000000000000000."
-        },
-        contributor: "Hunter"
-    },
-    meme_bee: {
-        prompt: () => <div>
-            <style>{"::-webkit-scrollbar{display:none}"}</style>
-            <pre
-                style={{ fontFamily: "inherit" }}
-            >{BeeMovie}</pre>
+            <p>I don't know about you, but it looks <i style={{fontWeight: "bold"}}>A LOT</i> like <span style={{color: "green"}}>weed</span> to me.</p>
         </div>,
         options: [
-            { text: "DO IT AGAIN!", to: "meme_bee", action: () => scriptsRead++ },
-            { text: "no dont...", to: "meme_bee_dont" }
+            { text: "Call the Police", to: "" },
+            { text: "Do Literally Nothing", to: "" },
+            { text: "\"Officer, He's Over Here\"", to: "" } 
         ],
-        action: () => {
-            if (scriptsRead > 5) {
-                setScene("bee_lover");
-            }
-        },
         contributor: "Hunter"
-    },
+    }
+    // #endregion
 });

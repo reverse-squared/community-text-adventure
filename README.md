@@ -16,3 +16,24 @@ A text adventure game decided by the people.
 
 ## Contributors
 [View Here](http://text-adventure.netlify.com/#credits)
+
+## NPM Scripts
+Basic Development
+  - `npm start` starts a development server
+
+Production Build
+  - `npm run build` builds a production build into `./dist`
+
+ESLint and Code Style
+  - `npm run lint` runs eslint
+  - `npm run lint-fix` runs eslint with auto-fix
+
+Unit Testing
+  - `npm run test` runs the tests
+
+There are a couple extra NPM Scripts which do useful things, but they require extra dependencies installed:
+  - `npm run cloc` runs Count Lines of Code, which can be installed with `npm i -g cloc` (requires perl also)
+  - `npm run gource` runs Gource, a visualization tool, and outputs a mp4 at `gource.mp4`
+    - It requires Gource to be installed already
+    - If running on windows, you need to also install ffmpeg
+    - If running on linux, you need to install libav, details inside `make-gource-mp4.sh`

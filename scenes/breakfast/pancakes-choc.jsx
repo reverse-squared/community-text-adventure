@@ -34,6 +34,7 @@ function EvaluateEdgyness() {
 }
 
 addScenes({
+    // #region Chocolate Pancakes
     make_chocolate_pancakes: {
         prompt: () => <div>
             <p>
@@ -48,19 +49,145 @@ addScenes({
         ],
         contributor: "Alchemyking"
     },
-    make_chocolate_top_them: {
+
+    // #region Milk Chocolate
+    pancakes_milk_chocolate: {
+        prompt: () => <div>
+            <p>You go for the not edgy not disgusting not vegetable-like chocolate. However, they are chocolate chips, and they didn't melt.</p>
+        </div>,
+        options: [
+            { text: "Make a chocolate chip pancake", to: "pancakes_milk_chocolate_make" },
+            { text: "Question your intelligence", to: "" },
+            { text: "Go to the store and buy milk chocolate that is not in chip form", to: "" }
+        ],
+        contributor: "Durvenson"
+    },
+    pancakes_milk_chocolate_make: {
+        prompt: () => <div>
+            <p>You have multiple flavors to choose from.</p>
+        </div>,
+        options: [
+            { text: "Chocolate Chip Pancake", to: "pancakes_milk_chocolate_make_cc_pancakes" },
+            { text: "Chocolate Chip Cookie", to: "pancakes_milk_chocolate_make_cookie" },
+            { text: "Chocolate Chips straight out of the bag", to: "pancakes_milk_chocolate_make_eat" },
+            { text: "Chocolate Chip Cookie Dough", to: "pancakes_milk_chocolate_make_raw" }
+        ],
+        contributor: "Durvenson"
+    },
+    pancakes_milk_chocolate_make_cc_pancakes: {
         prompt: () => <div>
             <p>
-                You top the Baker's chocolate with...
+                i t ' s n o i c e. Will you top it with extra chocolate?
             </p>
         </div>,
         options: [
-            { text: "Dark chocolate", to: "edgy_pancakes" },
-            { text: "Milk Chocolate", to: "pancakes_milk_chocolate" },
-            { text: "White Chocolate", to: "pancakes_white_chocolate" },
+            { text: "Yes", to: "pancakes_milk_chocolate_make_cc_pancakes_yes" },
+            { text: "No", to: "pancakes_milk_chocolate_make_cc_pancakes_no" }
         ],
-        contributor: "Dave"
+        contributor: "Durvenson"
     },
+    pancakes_milk_chocolate_make_cc_pancakes_yes: {
+        prompt: () => <div>
+            <p>
+                You used homemade chocolate. You put so much chocolate that you become the chocolate.
+            </p>
+        </div>,
+        ending: {
+            id: "become-the-choc",
+            name: "Becoming a Chocolate",
+            description: "Eat so much chocolate that you become a chocolate.",
+        },
+        contributor: "Durvenson"
+    },
+    pancakes_milk_chocolate_make_cc_pancakes_no: {
+        prompt: () => <div>
+            <p>
+                You eat some chocolate chip pancakes. It's really good, and you want more, but you don't have any more chocolate chips. What do you do instead?
+            </p>
+        </div>,
+        options: [
+            { text: "Chocolate + Chips", to: "pancakes_milk_chocolate_make_cc_pancakes_no_cc" },
+            { text: "D a r k  chocolate", to: "edgy_pancakes" },
+            { text: "Cocoa", to: "pancakes_milk_chocolate_make_cc_pancakes_no_cocoa" },
+            { text: "Coconut", to: "pancakes_milk_chocolate_make_cc_pancakes_no_coconut" },
+        ],
+        contributor: "Durvenson"
+    },
+    pancakes_milk_chocolate_make_cc_pancakes_no_cc: {
+        prompt: () => <div>
+            <p>
+                You created salted chocolate... how do you even?
+            </p>
+        </div>,
+        ending: {
+            id: "salt-sweet",
+            name: "Salty and Sweet Don’t Mix",
+            description: "Created salted chocolate. That’s one thing that they won’t put in the recipe books.",
+        },
+        contributor: "Alchemyking"
+    },
+    pancakes_milk_chocolate_make_cc_pancakes_no_cocoa: {
+        prompt: () => <div>
+            <p>
+                It seems to work... but you then find out that the coco is ground feces.
+            </p>
+        </div>,
+        options: [
+            { text: "Puke", to: "pancakes_white_chocolate_butter_more_blood_puke" },
+        ],
+        contributor: "Durvenson"
+    },
+    pancakes_milk_chocolate_make_cc_pancakes_no_coconut: {
+        prompt: () => <div>
+            <p>
+                You break the coconut to make some coconut pancakes, but your fist is bleeding, and you collapse from spending all night breaking the coconuts.
+            </p>
+        </div>,
+        ending: {
+            id: "waste-of-time",
+            name: "Waste of Time",
+            description: "Try to break a coconut.",
+        },
+        contributor: "Durvenson"
+    },
+    pancakes_milk_chocolate_make_cookie: {
+        prompt: () => <div>
+            <p>Your grandmom is so annoyed that you won Best Cookie. It's an amazing achievement!</p>
+        </div>,
+        ending: {
+            id: "mad-grandma",
+            name: "Grandma is TRIGGERED",
+            description: "Win the Best Cookie Award."
+        },
+        contributor: "Durvenson"
+    },
+    pancakes_milk_chocolate_make_eat: {
+        prompt: () => <div>
+            <p>
+                You eat them right out of the bag... They taste so good, you keep eating them. And eating them. And eating them... WOW! Thaey are completely gone. You fall into a deep deep deep depression.
+            </p>
+        </div>,
+        ending: {
+            id: "deep-deep-depress",
+            name: "Chocolate Induced Depression",
+            description: "I NEED IT...",
+        },
+        contributor: "Hunter"
+    },
+    pancakes_milk_chocolate_make_raw: {
+        prompt: () => <div>
+            <p>It has lots of raw eggs, and you ate it, so you died and became imfamous for being that stupid.</p>
+        </div>,
+        ending: {
+            id: "raw-dough",
+            name: "Bad Ending",
+            description: "Become infamous for dying because you ate chocolate chip cookie dough."
+        },
+        contributor: "Durvenson"
+    },
+    // #endregion
+
+    // #region Baker's Chocolate
     pancakes_baker_chocolate: {
         prompt: () => <div>
             <p>
@@ -76,6 +203,81 @@ addScenes({
         ],
         contributor: null,
     },
+    baker_chocolate_sue: {
+        prompt: () => <div>
+            <p>Your lawsuit didn't do anything, because you were stupid and didn't realize that it was expired. Also, you didn't heat the pancakes correctly.The case was dismissed. How will you handle this?</p>
+        </div>,
+        options: [
+            { text: "Protest against the court", to: "" },
+            { text: "Question your intelligence", to: "question_existance" },
+            { text: "Try again", to: "" },
+            { text: "Just move on", to: "" },
+            { text: "Lasagna", to: "" }
+        ],
+        contributor: "Durvenson and Neema"
+    },
+    question_existance: {
+        prompt: () => <div>
+            <p>
+                You Question your intelligence, what better way to do it with an IQ Test.
+            </p>
+        </div>,
+        options: [
+            { text: "Take a online IQ test", to: "iq_test" }
+        ],
+        contributor: "Durvenson"
+    },
+    iq_test: {
+        prompt: () => <div>
+            <p>
+                Wow you got a 500,000 IQ on the IQ Test.
+            </p>
+        </div>,
+        options: [
+            { text: "Try to get into MIT", to: "mit" },
+        ],
+        contributor: "Durvenson"
+    },
+    mit: {
+        prompt: () => <div>
+            <p>
+                MIT Rejected you since they said that 500KIQ is impossible.
+            </p>
+        </div>,
+        options: [
+            { text: "Destroy the MIT", to: "mit_destroy" },
+        ],
+        contributor: "Durvenson"
+    },
+    mit_destroy: {
+        prompt: () => <div>
+            <p>
+                You destroy the MIT, how sad.
+            </p>
+        </div>,
+        ending: {
+            id: "destroying-property",
+            name: "Destroying Property",
+            description: "Not just any property, you destroyed the MIT.",
+        },
+        contributor: "Durvenson"
+    },
+    make_chocolate_top_them: {
+        prompt: () => <div>
+            <p>
+                You top the Baker's chocolate with...
+            </p>
+        </div>,
+        options: [
+            { text: "Dark chocolate", to: "edgy_pancakes" },
+            { text: "Milk Chocolate", to: "pancakes_milk_chocolate" },
+            { text: "White Chocolate", to: "pancakes_white_chocolate" },
+        ],
+        contributor: "Dave"
+    },
+    // #endregion
+
+    // #region White Chocolate
     pancakes_white_chocolate: {
         prompt: () => <div>
             <p>
@@ -91,6 +293,8 @@ addScenes({
         ],
         contributor: "Neema"
     },
+    
+    // #region Edgy
     edgy_pancakes: {
         prompt: () => <div>
             <p>
@@ -180,6 +384,8 @@ addScenes({
         },
         contributor: "Helvetica",
     },
+    // #endregion
+
     pancakes_white_chocolate_cocaine: {
         prompt: () => <div>
             <p>Sure, because apparently cocaine is like white cocoa powder. You mix the melted chocolate with the "cocoa" and it turns a lighter shade of brown, but not white.</p>
@@ -258,6 +464,17 @@ addScenes({
         ],
         contributor: "Durvenson"
     },
+    pancakes_white_chocolate_butter_more_blood_puke: {
+        prompt: () => <div>
+            <p>You’ve vomited up your entire stomach contents. In fact, you’ve vomited up your stomach, period. You die.</p>
+        </div>,
+        ending: {
+            id: "puke-chocolate",
+            name: "Puke",
+            description: "How did you even manage to puke your OWN stomach?"
+        },
+        contributor: "Alchemyking and Hunter"
+    },
     pancakes_white_chocolate_milk: {
         prompt: () => <div>
             <p>You decide that you want to add milk to the chocolate to make it whiter. Turns out, it <strong>DIDN'T</strong> make it whiter, and instead made it taste better. Do you taste it?</p>
@@ -279,6 +496,8 @@ addScenes({
         },
         contributor: "Hunter"
     },
+
+    // #region Wait for Cook
     pancakes_white_chocolate_milk_no: {
         prompt: () => <div>
             <p>You don't taste the chocolate. Instead of tasting the chocolate, put the new chocolate inside of the pancakes that you were baking, and wait for them to cook.</p>
@@ -358,6 +577,8 @@ addScenes({
         ],
         contributor: "Hunter"
     },
+    // #endregion
+
     pancakes_white_chocolate_milk_no_wait_8: {
         prompt: () => <div>
             <p>The pancakes caught on fire.</p>
@@ -413,28 +634,7 @@ addScenes({
         },
         contributor: "Dave"
     },
-    baker_chocolate_sue: {
-        prompt: () => <div>
-            <p>Your lawsuit didn't do anything, because you were stupid and didn't realize that it was expired. Also, you didn't heat the pancakes correctly.The case was dismissed. How will you handle this?</p>
-        </div>,
-        options: [
-            { text: "Protest against the court", to: "" },
-            { text: "Question your intelligence", to: "" },
-            { text: "Try again", to: "" },
-            { text: "Just move on", to: "" },
-            { text: "Lasagna", to: "" }
-        ],
-        contributor: "Durvenson and Neema"
-    },
-    pancakes_white_chocolate_butter_more_blood_puke: {
-        prompt: () => <div>
-            <p>You’ve vomited up your entire stomach contents. In fact, you’ve vomited up your stomach, period. You die.</p>
-        </div>,
-        ending: {
-            id: "puke-chocolate",
-            name: "Puke",
-            description: "How did you even manage to puke your OWN stomach?"
-        },
-        contributor: "Alchemyking and Hunter"
-    }
+    // #endregion
+
+    // #endregion
 });

@@ -2,6 +2,7 @@ import React from "react";
 import { addScenes } from "@src/ending";
 
 addScenes({
+    // #region Omelette
     make_omelette: {
         prompt: () => <div>
             <p>You make yourself an omelette. You heard on the news that they have a lot of protein in them. You are proud of yourself. You are part of the 25% of 
@@ -108,4 +109,5 @@ addScenes({
         },
         contributor: "Colyderp (Idea) and Hunter (Facts)"
     }
+    // #endregion
 });

@@ -2,6 +2,7 @@ import React from "react";
 import { addFlag, setScene } from "web-text-adventure/src/adventure";
 import { addScenes } from "@src/ending";
 import { GreenGradient } from "@templates/FontStyles";
+import { Z_ASCII } from "zlib";
 
 addFlag("wallHealth", 40);
 addFlag("hasMetalBar", false);
@@ -257,10 +258,23 @@ addScenes({
             <p>You start running. Which one of your tools do you use?</p>
         </div>,
         options: [
-            { text: "Tool Gun", to: "" },
+            { text: "Tool Gun", to: "jail_run_tool_gun" },
             { text: "Teleporter", to: "jail_run_teleport" },
             { text: "Invisability Cloak", to: "jail_run_invis" }
         ],
+        contributor: "Hunter"
+    },
+    jail_run_tool_gun: {
+        prompt: () => <div>
+            <p>
+                You use the Tool Gun to spawn a million props to kill the police, but you accidentally killed yourself with all the prop collisions.
+            </p>
+        </div>,
+        ending: {
+            id: "prop-killing",
+            name: "Prop Killing",
+            description: "\"Stop griefing!!!!\" - Last words of the server admin.",
+        },
         contributor: "Hunter"
     },
     jail_run_invis: {
@@ -379,11 +393,78 @@ addScenes({
             <p>You climb into the vent to avoid the incoming helicopter. Now you are in the trash compactor. What now?</p>
         </div>,
         options: [
-            { text: "Try to jam it", to: "" },
-            { text: "Do nothing", to: "" },
-            { text: "Call Threepio", to: "" }
+            { text: "Try to jam it", disabledText: "Try to jam it", if: () => !trashTries[0], to: "jail_out_vent_jam" },
+            { text: "Do nothing", disabledText: "Try to jam it", if: () => !trashTries[1], to: "jail_out_vent_nothing" },
+            { text: "Call Threepio", disabledText: "Try to jam it", if: () => !trashTries[2], to: "jail_out_vent_threepio" },
+            { text: "Try to jam it again", if: () => trashTries[0] && trashTries[1] && trashTries[2], to: "jail_out_vent_jam2" }
         ],
         action: () => decreasePoliceTurn(),
         contributor: "Hunter"
+    },
+    jail_out_vent_jam: {
+        prompt: () => <div>
+            <JailRunHeader />
+            <p>It did nothing...</p>
+        </div>,
+        options: [
+            { text: "Try to jam it", disabledText: "Try to jam it", if: () => !trashTries[0], to: "jail_out_vent_jam" },
+            { text: "Do nothing", disabledText: "Try to jam it", if: () => !trashTries[1], to: "jail_out_vent_nothing" },
+            { text: "Call Threepio", disabledText: "Try to jam it", if: () => !trashTries[2], to: "jail_out_vent_threepio" },
+            { text: "Try to jam it again", if: () => trashTries[0] && trashTries[1] && trashTries[2], to: "jail_out_vent_jam2" }
+        ],
+        action: () => {
+            decreasePoliceTurn();
+            trashTries[0] = true;
+        },
+        contributor: "Hunter"
+    },
+    jail_out_vent_nothing: {
+        prompt: () => <div>
+            <JailRunHeader />
+            <p>You did nothing...</p>
+        </div>,
+        options: [
+            { text: "Try to jam it", disabledText: "Try to jam it", if: () => !trashTries[0], to: "jail_out_vent_jam" },
+            { text: "Do nothing", disabledText: "Try to jam it", if: () => !trashTries[1], to: "jail_out_vent_nothing" },
+            { text: "Call Threepio", disabledText: "Try to jam it", if: () => !trashTries[2], to: "jail_out_vent_threepio" },
+            { text: "Try to jam it again", if: () => trashTries[0] && trashTries[1] && trashTries[2], to: "jail_out_vent_jam2" }
+        ],
+        action: () => {
+            decreasePoliceTurn();
+            trashTries[1] = true;
+        },
+        contributor: "Hunter"
+    },
+    jail_out_vent_threepio: {
+        prompt: () => <div>
+            <JailRunHeader />
+            <p>He didn't do anything...</p>
+        </div>,
+        options: [
+            { text: "Try to jam it", disabledText: "Try to jam it", if: () => !trashTries[0], to: "jail_out_vent_jam" },
+            { text: "Do nothing", disabledText: "Try to jam it", if: () => !trashTries[1], to: "jail_out_vent_nothing" },
+            { text: "Call Threepio", disabledText: "Try to jam it", if: () => !trashTries[2], to: "jail_out_vent_threepio" },
+            { text: "Try to jam it again", if: () => trashTries[0] && trashTries[1] && trashTries[2], to: "jail_out_vent_jam2" }
+        ],
+        action: () => {
+            decreasePoliceTurn();
+            trashTries[2] = true;
+        },
+        contributor: "Hunter"
+    },
+    jail_out_vent_jam2: {
+        prompt: () => <div>
+            <p>
+                It worked! Annd you escaped!
+            </p>
+        </div>,
+        ending: {
+            id: "escape-trash",
+            name: "Escape the Trash Compactor",
+            description: "I had a bad feeling about that...",
+        },
+        contributor: "Hunter"
     }
 });
+
+addFlag("trashTries", [false, false, false]);

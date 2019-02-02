@@ -1,6 +1,7 @@
 import React from "react";
 import { addFlag, setScene } from "web-text-adventure/src/adventure";
 import { addScenes } from "@src/ending";
+import { formatMoney } from "@scenes/after-hospital/loan/loan";
 
 addFlag("bid", 0);
 
@@ -21,7 +22,7 @@ addScenes({
             </p>
             <div style={{ textAlign: "center" }}>
                 <span>
-                    ${bid}
+                    {formatMoney(bid)}
                 </span>                
             </div>
         </div>,
@@ -32,8 +33,19 @@ addScenes({
                     bid--;   
                 }
             } },
-            { text: "Bid", to: "" }
+            { text: "Bid", to: "price_lmao", if: () => bid > 0, action: () => checkBid(bid, 899, "price_stage", "price_start2") }
         ],
         contributor: "Hunter"
+    },
+    price_lmao: {
+        prompt: () => <div>
+            <p>Your bid was wrong. The correct price was {formatMoney(bid - 0.01)}.</p>
+        </div>,
+        ending: {
+            id: "price",
+            name: "One Cent Off",
+            description: "Your bid was SO close, just once cent less and you'd be right!"
+        },
+        contributor: "Dave"
     }
 });

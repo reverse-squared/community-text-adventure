@@ -11,6 +11,8 @@ addFlag("touch_alive", {
 addFlag("geno_haschickencorpse", false);
 addFlag("geno_hasspidercorpse", true);
 
+addFlag("chan", false);
+
 addScenes({
     genocide_main: {
         prompt: () => <div>
@@ -130,20 +132,181 @@ addScenes({
         contributor: "Dave",
     },
     //#endregion Chicken
+
+    // #region Human
     genocide_human: {
         prompt: () => <div>
             <p>You walk up to the human. It’s your boss! He starts complaining about how you haven’t been at work the past few days. What do ya’ do?</p>
             <p>(Ps. He has been a jerk towards you the past few weeks)</p>
         </div>,
         options: [
-            { text: "Dab on that hater", to: "" },
-            { text: "Stab him", to: "" },
+            { text: "Dab on that hater", to: "genocide_human_dab" },
+            { text: "Stab him", to: "genocide_human_stab" },
             { text: "Go to work", to: "work_start" },
-            { text: "Snap his neck", to: "" },
+            { text: "Snap his neck", to: "genocide_human_snap" },
         ],
         contributor: "Daniel (Phrotonz)"
-    }
+    },
+    genocide_human_stab: {
+        prompt: () => <div>
+            <p>Oh shit! The FBI is here and they are ready to kick your ass! What do you do?</p>
+        </div>,
+        options: [
+            { text: "Get arrested", to: "" },
+            { text: "Run away", to: "" },
+            { text: "Kill 'em", to: "genocide_human_stab_killem" }
+        ],
+        contributor: "Durvenson"
+    },
+    genocide_human_stab_killem: {
+        prompt: () => <div>
+            <p>The FBI are gone... I guess. More police officers are here however, and you get arrested. You then are in Death Row, so you die.</p>
+        </div>,
+        ending: {
+            id: "triple-death",
+            name: "Triple Death",
+            description: "Murder your boss, murder the FBI police officers, and die on Death Row."
+        },
+        contributor: "Durvenson"
+    },
+    genocide_human_snap: {
+        prompt: () => <div>
+            <p>His neck is <b>U N S N A P P A B L E</b>. He makes you go back to school.</p>
+            <br />
+            <p>Answer this simple question:</p>
+            <p>2 + 2</p>
+        </div>,
+        options: [
+            { text: "4", to: "genocide_human_snap_correct" },
+            { text: "5", to: "genocide_human_snap_fail" },
+            { text: "2", to: "genocide_human_snap_fail" },
+            { text: "22", to: "genocide_human_snap_fail" },
+            { text: "0", to: "genocide_human_snap_fail" }
+        ],
+        contributor: "Durvenson"
+    },
+    genocide_human_snap_correct: {
+        prompt: () => <div>
+            <p>That's right! How about 5 - 3?</p>
+        </div>,
+        options: [
+            { text: "2", to: "genocide_human_snap_correct2" },
+            { text: "8", to: "genocide_human_snap_fail" },
+            { text: "10", to: "genocide_human_snap_fail" }
+        ],
+        contributor: "Durvenson"
+    },
+    genocide_human_snap_correct2: {
+        prompt: () => <div>
+            <p>Now solve <em>@#%@@^%$%@&$&^</em></p>
+        </div>,
+        options: [
+            { text: "2", to: "genocide_human_snap_fail" },
+            { text: "91", to: "genocide_human_snap_fail" },
+            { text: "-23", to: "genocide_human_snap_fail" },
+            { text: "I fucking give up", to: "genocide_human_snap_correct2_giveup" }
+        ],
+        contributor: "Durvenson"
+    },
+    genocide_human_snap_fail: {
+        prompt: () => <div>
+            <p>BALDI M U R D E R S YOUR FAMILY FOR FAILNG THE M A T HS TEST!</p>
+        </div>,
+        ending: {
+            id: "maths-fail",
+            name: "Baldi's Basics Completed...?",
+            description: "You failure..."
+        },
+        contributor: "Durvenson and Hunter"
+    },
+    genocide_human_snap_correct2_giveup: {
+        prompt: () => <div>
+            <p>You will fucking give up live now.</p>
+        </div>,
+        ending: {
+            id: "math-giveup",
+            name: "Bye Cruel World",
+            description: "Give up life."
+        },
+        contributor: "Durvenson"
+    },
+    genocide_human_dab: {
+        prompt: () => <div>
+            <p>Dabbing is a dead meme, and people hate dead memes, so you die from the dead meme.</p>
+        </div>,
+        ending: {
+            id: "dab-hater",
+            name: "Contagious Dead Meme",
+            description: "Die from a dead meme."
+        },
+        contributor: "Durvenson"
+    },
+    //#endregion
+    
     //#region Lizard
     
+    //#endregion
+
+    // #region Unicorn
+    genocide_unicorn: {
+        prompt: () => <div>
+            <p>It is from My Little Pony. What do you do?</p>
+        </div>,
+        options: [
+            { text: "Ignore it", to: "" },
+            { text: "Kill it for magic stuff I guess", to: "" },
+            { text: "HELL NO", to: "genocide_unicorn_no" },
+            { text: "Yes. I am a  B R O W N I E", to: "genocide_unicorn_bronie" }
+        ],
+        contributor: "Durvenson"
+    },
+    genocide_unicorn_no: {
+        prompt: () => <div>
+            <p>You post this horrible discovery somewhere. Where do you post it?</p>
+        </div>,
+        options: [
+            { text: "Twitter", to: "" },
+            { text: "Facebook", to: "" },
+            { text: "YouTube", to: "" },
+            { text: "4chan", to: "genocide_unicorn_no_4chan", disabledText: "4chan", if: () => !chan, action: () => chan = true },
+            { text: "Discord", to: "" },
+            { text: "Write It", to: "" },
+            { text: "Snapchat", to: "" },
+            { text: "Instagram", to: "" }
+        ],
+        contributor: "Durvenson"
+    },
+    genocide_unicorn_no_4chan: {
+        prompt: () => <div>
+            <p>Some guy gives you a link to a Super Mario Odyssey sequel trailer leak. Do you click it?</p>
+        </div>,
+        options: [
+            { text: "Yes", to: "genocide_unicorn_no_4chan_yes" },
+            { text: "No", to: "genocide_unicorn_no" }
+        ],
+        contributor: "Durvenson"
+    },
+    genocide_unicorn_no_4chan_yes: {
+        prompt: () => <div>
+            <p>You got rickrolled.</p>
+        </div>,
+        ending: {
+            id: "share-rick",
+            name: "Never Gonna Give You Up",
+            description: "Never gonna let you down..."
+        },
+        contributor: "Durvenson"
+    },
+    genocide_unicorn_bronie: {
+        prompt: () => <div>
+            <p>Some guy hears you say B R O W N I E. You become a brownie, and then he eats you.</p>
+        </div>,
+        ending: {
+            id: "brownie",
+            name: "Is This Cannibalism?",
+            description: "Turn into a brownie then get eaten."
+        },
+        contributor: "Durvenson"
+    }
     //#endregion
 });

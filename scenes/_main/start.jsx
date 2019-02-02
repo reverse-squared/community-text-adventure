@@ -10,8 +10,30 @@ addFlag("startedPancakes", false);
 addFlag("startedOmelette", false);
 addFlag("startedHashbrowns", false);
 
+addFlag("time", "");
+
+function getTime() {
+    var date = new Date();
+    var afternoon = false;
+
+    var hours = date.getHours();
+    var minutes = date.getMinutes();
+
+    if(hours > 12) {
+        hours -= 12;
+        afternoon = true;
+    }
+
+    time = hours + ":" + minutes;
+    if(afternoon) {
+        time += "pm";
+    }else {
+        time += "am";
+    }
+}
+
 addScenes({
-    // Start. Level 1.
+    // #region Wake Up
     wakeup: {
         prompt: () => <div>
             <p>You wake up in a room. <strong>What do you do?</strong></p>
@@ -50,8 +72,9 @@ addScenes({
 
         contributor: "Dave"
     },
+    // #endregion
 
-    // Go outside. Level 2.
+    // #region Outside
     wakeup_outside: {
         prompt: () => <div>
             <p>You walk outside from sleeping. You spot multiple different animals such as lizards, spiders, and humans. <strong>What do you do?</strong></p>
@@ -64,19 +87,54 @@ addScenes({
         ],
         contributor: "Hunter"
     },
-
+    touch_lizard: {
+        prompt: () => <div>
+            <p>
+                You reach for the lizard but it bites you right in the arm. You need to...
+            </p>
+        </div>,
+        options: [
+            { text: "Get it treated", to: "touch_lizard_treat"},
+            { text: "Punch that lizard", to: "jail_start"},
+            { text: "Not care, and don't do anything", to: "touch_lizard_nothing"},
+        ],
+        contributor: "Alchemyking"
+    },
+    touch_lizard_nothing: {
+        prompt: () => <div>
+            <p>
+                You died from the lizard’s venom. Seriously, you could have at least had the decency to flop around on the floor as you died.
+            </p>
+        </div>,
+        ending: {
+            id: "venom-die-sure",
+            name: "Do Nothing",
+            description: "Duuuuuh..... You died because you were duuuumb.",
+        },
+        contributor: "Alchemyking"
+    },
     touch_spider: {
         prompt: () => <div>
             You touch the spider, it's surprisingly soft, <strong>what do you do?</strong>
         </div>,
         options: [
             { text: "Pocket it", to: "pocket_spider" },
-            { text: "Stroke it's back", to: "" },
+            { text: "Stroke it's back", to: "touch_spider_stroke" },
             { text: "Smash it", to: "smash_spider" }
         ],
         contributor: "Adr"
     },
-
+    touch_spider_stroke: {
+        prompt: () => <div>
+            <em>S t r o k e</em>
+        </div>,
+        options: [
+            { text: "Pocket it", to: "pocket_spider" },
+            { text: "Stroke it's back", disabledText: "Stroke it's back", if: () => false, to: "touch_spider_stroke" },
+            { text: "Smash it", to: "smash_spider" }
+        ],
+        contributor: "Hunter"
+    },
     pocket_spider: {
         prompt: () => <div>
             <p>You pocketed the spider, it seems to like being in the pocket.</p>
@@ -89,7 +147,6 @@ addScenes({
         ],
         contributor: "Adr"
     },
-
     smash_spider: {
         prompt: () => <div>
             <p>
@@ -105,7 +162,6 @@ addScenes({
         ],
         contributor: "Adr"
     },
-
     touch_human: {
         prompt: () => <div>
             <p>
@@ -113,35 +169,72 @@ addScenes({
             </p>
         </div>,
         options: [
-            { text: "What's the time", to: "" },
+            { text: "What's the time", to: "touch_human_time" },
             { text: "Why is there a critical production bug", to: "work_pre" },
-            { text: "▖┗▛▄▖▜▚┣", to: "" },
+            { text: "▖┗▛▄▖▜▚┣", to: "missingno" },
         ],
         contributor: "Hunter"
     },
-    
-    touch_lizard: {
+    touch_human_time: {
         prompt: () => <div>
             <p>
-                You reach for the lizard but it bites you right in the arm. You need to...
+                The time is {time}.
             </p>
         </div>,
         options: [
-            { text: "Get it treated", to: "touch_lizard_treat"},
-            { text: "Punch that lizard", to: "jail_start"},
-            { text: "Not care, and don't do anything", to: ""},
+            { text: "What's the time", disabledText: "What's the time", if: () => false, to: "touch_human_time" },
+            { text: "Why is there a critical production bug", to: "work_pre" },
+            { text: "▖┗▛▄▖▜▚┣", to: "missingno" },
         ],
-        contributor: "Alchemyking"
+        action: () => getTime(),
+        contributor: "Hunter"
     },
+    touch_car: {
+        prompt: () => <div>
+            <p>You get in your car and realize you robbed a bank yesterday and the police are here. What do you do now?</p>
+        </div>,
+        options: [
+            { text: "Drive away", to: "hospital_car" },
+            { text: "Surrender", to: "surrender_to_noone" },
+            { text: "Suicide", to: "touch_car_sui" }
+        ],
+        action: () => carFromRobbery = true,
+        contributor: "torinpotato"
+    },
+    surrender_to_noone: {
+        prompt: () => <div>
+            <p>
+                You surrender, but they dont care and send you to jail.
+            </p>
+        </div>,
+        options: [
+            {
+                text: "Go to Jail",
+                to: "jail_start_card",
+                action: () => jailForCard = true,
+            },
+        ],
+        contributor: "Dave",
+    },
+    touch_car_sui: {
+        prompt: () => <div>
+            <p>Good job! You have now suicided yourself.</p>
+        </div>,
+        ending: {
+            id: "touch_car_sui",
+            name: "Sucidal",
+            description: "You have suicided. And now you are in hell."
+        },
+        contributor: "torinpotato and Hunter"
+    },
+    //#endregion
     
-
-    // Eat breakfast. Level 2.
+    // #region Breakfast
     wakeup_breakfast: {
         prompt: () => <div>
             <p>You walk downstairs to make some breakfast.What do you make?</p>
         </div>,
         options: () => {
-
             if (startedWaffles || startedOmelette || startedHashbrowns || startedPancakes) {
                 return [
                     { text: "Pancakes", disabledText: true, if: () => !startedPancakes, to: "make_pancakes" },
@@ -166,6 +259,37 @@ addScenes({
         },
         contributor: "Colyderp"
     },
+    leave_the_level: {
+        prompt: () => <div>
+            <p>
+                You warp out of the level. Turns out to traveled back to before you made breakfast... What do you do?
+            </p>
+        </div>,
+        options: () => {
+            if (startedWaffles || startedOmelette || startedHashbrowns || startedPancakes) {
+                return [
+                    { text: "Pancakes", disabledText: true, if: () => !startedPancakes, to: "make_pancakes" },
+                    { text: "Waffles", disabledText: true, if: () => !startedWaffles, to: "make_waffles" },
+                    { text: "Hashbrowns", disabledText: true, if: () => !startedHashbrowns, to: "make_hashbrowns" },
+                    { text: "Omelette", disabledText: true, if: () => !startedOmelette, to: "make_omelette_fail" },
+                    // "seperator",
+                    {
+                        text: "Give up and Starve...",
+                        to: "breakfast_fail_ending",
+                        if: () => startedWaffles && startedOmelette && startedHashbrowns && startedPancakes ,
+                    },
+                ];
+            } else {
+                return [
+                    { text: "Pancakes", to: "make_pancakes" },
+                    { text: "Waffles", to: "make_waffles" },
+                    { text: "Hashbrowns", to: "make_hashbrowns" },
+                    { text: "Omelette", to: "make_omelette" },
+                ];
+            }
+        },
+        contributor: "Dave"
+    },
     breakfast_fail_ending: {
         prompt: () => <div>
             <p>
@@ -174,13 +298,26 @@ addScenes({
         </div>,
         ending: {
             id: "breakfast-failure",
-            name: "Fail to make breakfast",
+            name: "Fail to Make Breakfast",
             description: "With so many options how did you fail a simple task."
         },
         contributor: "Dave",
     },
+    make_pancakes: {
+        prompt: () => <div>
+            <p>You want to make pancakes, but you have a few types to choose from.</p>
+        </div>,
+        options: [
+            { text: "Regular", to: "make_regular_pancakes" },
+            { text: "McDonalds™ brand", to: "make_mcd_pancakes" },
+            { text: "Chocolate", to: "make_chocolate_pancakes" },
+            { text: "Peanut butter", to: "make_pb_pancakes" }
+        ],
+        contributor: "Dave"
+    },
+    //#endregion
 
-    // Check time. Level 2.
+    //#region Check Time
     wakeup_check_time: {
         prompt: () => <div>
             <p>You look at your clock to check the time and realize...</p>
@@ -192,8 +329,6 @@ addScenes({
         ],
         contributor: "Toshiyuki"
     },
-
-    // Sleep. Level 3.
     sleep: {
         prompt: () => <div>
             <p>You go to bed and get more rest.</p>
@@ -203,6 +338,16 @@ addScenes({
             { text: "Wake up", to: "wakeup" }
         ],
         contributor: "Dave"
+    },
+    sleep_eat: {
+        prompt: () => <div>
+            <p>You go to bed.</p>
+        </div>,
+        options: [
+            { text: "Sleep more", to: "sleepmore" },
+            { text: "Wake up", to: "wakeup" }
+        ],
+        contributor: "Hunter"
     },
     sleepmore: {
         prompt: () => <div>
@@ -226,43 +371,8 @@ addScenes({
             description: "Sleep until a tornado kills you.",
         },
         contributor: "Hunter"
-    },  
-
-    // Pancakes. Level 3.
-    make_pancakes: {
-        prompt: () => <div>
-            <p>You want to make pancakes, but you have a few types to choose from.</p>
-        </div>,
-        options: [
-            { text: "Regular", to: "make_regular_pancakes" },
-            { text: "McDonalds™ brand", to: "make_mcd_pancakes" },
-            { text: "Chocolate", to: "make_chocolate_pancakes" },
-            { text: "Peanut butter", to: "make_pb_pancakes" }
-        ],
-        contributor: "Dave"
     },
-    touch_car: {
-        prompt: () => <div>
-            <p>You get in your car and realize you robbed a bank yesterday and the police are here. What do you do now?</p>,
-        </div>,
-        options: [
-            { text: "Drive away", to: "" },
-            { text: "Surrender", to: "" },
-            { text: "Suicide", to: "touch_car_sui" }
-        ],
-        contributor: "torinpotato"
-    },
-    touch_car_sui: {
-        prompt: () => <div>
-            <p>Good job! You have now suicided yourself.</p>
-        </div>,
-        ending: {
-            id: "touch_car_sui",
-            name: "Sucidal",
-            description: "You have suicided. And now you are in hell."
-        },
-        contributor: "torinpotato and Hunter"
-    },
+    // #endregion
 
     true_ending: {
         prompt: () => <div>
