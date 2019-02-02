@@ -121,6 +121,8 @@ addScenes({
             { text: "Search on Google", to: "missingno_search" },
         ]
     },
+
+    // #region Google Search
     missingno_search: {
         prompt: () => <div>
             <p>
@@ -159,6 +161,21 @@ addScenes({
             { text: "Community Text Adventure", to: "gsearch_cta" },
             { text: "Cary Teaches You How To Time Travel", to: "gsearch_timetravel" },
         ]
+    },
+    gsearch_potato: {
+        prompt: () => <div>
+            <p>
+                The potato thing is very strange. The computer couldn't handle it, so it became a potato, but in the process, you escaped the Pokeball.
+            </p>
+        </div>,
+        options: [
+            { text: "Vape it", to: "hash_smokeit_potato" },
+            { text: "Make potato salad ", to: "" },
+            { text: "Make french fries", to: "" },
+            { text: "Make potato chips", to: "gsearch_potato_chips" },
+            { text: "Make a delicious potato dinner", to: "" }
+        ],
+        contributor: "Durvenson"
     },
     gsearch_cta: {
         prompt: () => <div>
@@ -208,5 +225,7 @@ addScenes({
         ],
         contributor: null,
     }
+    // #endregion
+
     // #endregion
 });

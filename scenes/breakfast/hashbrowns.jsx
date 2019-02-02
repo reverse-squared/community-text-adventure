@@ -124,6 +124,18 @@ addScenes({
         ],
         contributor: "Neema"
     },
+    hash_smokeit_potato: {
+        prompt: () => <div>
+            <p>
+                You shred the potato and shove them into your vaporiser. Time to vape some potatos!
+            </p>
+        </div>,
+        options: [
+            { text: "Inhale", to: "hash_smokeit2" },
+            { text: "Stop Vaping", to: "hash_stop_novape" },
+        ],
+        contributor: "Neema"
+    },
     hash_smokeit2: {
         prompt: () => <div>
             <p>

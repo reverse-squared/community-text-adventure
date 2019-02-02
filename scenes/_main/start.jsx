@@ -131,7 +131,7 @@ addScenes({
     },
     touch_car: {
         prompt: () => <div>
-            <p>You get in your car and realize you robbed a bank yesterday and the police are here. What do you do now?</p>,
+            <p>You get in your car and realize you robbed a bank yesterday and the police are here. What do you do now?</p>
         </div>,
         options: [
             { text: "Drive away", to: "hospital_car" },
