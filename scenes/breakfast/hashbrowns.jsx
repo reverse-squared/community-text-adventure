@@ -40,7 +40,7 @@ addScenes({
         options: [
             { text: "Yes", to: "hash_failtounderstand" },
             { text: "Sure", to: "hash_sure" },
-            { text: "Absolutely", to: "" },
+            { text: "Absolutely", to: "hash_absolutely" },
             { text: "By All Means", to: "hash_byallmeans" },
             { text: "Okey Dokey", to: "hash_okaydokey" },
             { text: "Alright", to: "hash_allright" },
@@ -53,6 +53,17 @@ addScenes({
 
     // #region Instant Endings
     hash_failtounderstand: {
+        prompt: () => <div>
+            <p>
+                You try to understand what it means, but it's too hard to understand... You end up deciding that you should not eat this as it may be dangerous to your health.
+            </p>
+        </div>,
+        options: [
+            { text: "Find something else to eat", to: "wakeup_breakfast", action: () => startedHashbrowns = true }
+        ],
+        contributor: "Dave"
+    },
+    hash_absolutely: {
         prompt: () => <div>
             <p>
                 You try to understand what it means, but it's too hard to understand... You end up deciding that you should not eat this as it may be dangerous to your health.
@@ -401,11 +412,37 @@ addScenes({
             <p>It made the truck slip. You fell, and got injured. You are 100 miles away from home.</p>
         </div>,
         options: [
-            { text: "Call the hospital", to: "" },
-            { text: "Go explore town", to: "" },
-            { text: "Find your way back home", to: "" }
+            { text: "Call the hospital", to: "hash_truck_find_coke_mentos_nuke_CAR" },
+            { text: "Go explore town", to: "town" },
+            { text: "Find your way back home", to: "hash_truck_find_coke_mentos_nuke_back" }
         ],
         contributor: "Durvenson"
+    },
+    hash_truck_find_coke_mentos_nuke_back: {
+        prompt: () => <div>
+            <p>
+                Your car is out of gas, you could maybe find some around here.
+            </p>
+        </div>,
+        options: [
+            { text: "Call the hospital", to: "hash_truck_find_coke_mentos_nuke_CAR" },
+            { text: "Go explore town", to: "town" },
+            { text: "Find your way back home", to: null, if: () => false, disabledText: true },
+        ],
+        contributor: "Dave"
+    },
+    town: {
+        prompt: () => <div>
+            <p>
+                You start exploring the town... but you fall down as you didnt get that injury treated.
+            </p>
+        </div>,
+        ending: {
+            id: "fall-down",
+            name: "Fall Down",
+            description: "Fall down while exploring the town.",
+        },
+        contributor: "Dave",
     },
     hash_truck_find_radio: {
         prompt: () => <div>

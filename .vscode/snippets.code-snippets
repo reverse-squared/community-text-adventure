@@ -58,23 +58,23 @@
 		"prefix": "oia",
 	},
 	"Option Disabled": {
-		"body": "{ text: \"$1\", null, if: () => false, disabledText: true },$0",
+		"body": "{ text: \"$1\", to: null, if: () => false, disabledText: true },$0",
 		"prefix": "od",
 	},
 	"Option + If + DisabledText": {
-		"body": "{ text: \"$1\", null, if: () => $2, disabledText: true },$0",
+		"body": "{ text: \"$1\", to: \"$2\", if: () => $3, disabledText: true },$0",
 		"prefix": "oid",
 	},
 	"Option + If + DisabledText(Custom)": {
-		"body": "{ text: \"$1\", null, if: () => $2, disabledText: \"$3\" },$0",
+		"body": "{ text: \"$1\", to: \"$2\", if: () => $3, disabledText: \"$4\" },$0",
 		"prefix": "oidd",
 	},
 	"Option + If + Action + DisabledText(Custom)": {
-		"body": "{ text: \"$1\", null, if: () => $2, action: () => $3, disabledText: \"$3\" },$0",
+		"body": "{ text: \"$1\", to: \"$2\", if: () => $3, action: () => $4, disabledText: \"$5\" },$0",
 		"prefix": "oiadd",
 	},
 	"Option + Action + If + DisabledText(Custom)": {
-		"body": "{ text: \"$1\", null, if: () => $2, action: () => $3, disabledText: \"$3\" },$0",
+		"body": "{ text: \"$1\", to: \"$2\", if: () => $3, action: () => $4, disabledText: \"$5\" },$0",
 		"prefix": "oaidd",
 	},
 	"Scene": {

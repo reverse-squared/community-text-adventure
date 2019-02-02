@@ -118,6 +118,34 @@ addScenes({
         ],
         contributor: "Alchemyking (idea) and Dave (implementation)"
     },
+    hash_truck_find_coke_mentos_nuke_CAR: {
+        prompt: () => <div>
+            <p>
+                You want to get this injury treated, so you open
+                trusty <span style={{ color: "cornflowerblue" }}>Google Maps</span> so
+                you can find they way. It says the directions once:
+            </p>
+            <ul style={{userSelect: "none"}}>
+                {(() => {
+                    // generate directions if not made yet
+                    if (!directions)
+                        directions = generateDirectionList();
+                })()}
+
+                {
+                    directions.map((dir, i) => {
+                        return <li key={i}>
+                            {mapDirectionKeyToName[dir]}
+                        </li>;
+                    })
+                }
+            </ul>
+        </div>,
+        options: [
+            { text: "Begin", to: "hospital_car_start"}
+        ],
+        contributor: "Alchemyking (idea) and Dave (implementation)"
+    },
     hospital_car_start: {
         prompt: <div>
             <p>
