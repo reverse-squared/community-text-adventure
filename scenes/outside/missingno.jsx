@@ -105,7 +105,7 @@ addScenes({
         </div>,
         options: [
             { text: "Delete your entry in the pokedex", to: "missingno_deletepokedex" },
-            { text: "Search on Google", to: "missingno_google" },
+            { text: "Search on Google", to: "missingno_search" },
         ]
     },
     missingno_search: {
