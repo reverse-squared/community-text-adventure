@@ -2,7 +2,7 @@ import React from "react";
 import { addFlag, setScene } from "web-text-adventure/src/adventure";
 import { addScenes } from "@src/ending";
 
-function randomOf(...list) {
+function randomOf(list) {
     return list[Math.floor((Math.random() * list.length))];
 }
 
@@ -24,7 +24,16 @@ addFlag("morseOptions", [
 
 addFlag("wires", null);
 function generateWires() {
-
+    const wireCount = randomOf([3, 4, 5, 6]);
+    if (wireCount === 3) {
+        //
+    } else if (wireCount === 4) {
+        //
+    } else if (wireCount === 5) {
+        //
+    } else if (wireCount === 6) {
+        //
+    }
 }
 
 addScenes({
@@ -45,5 +54,7 @@ addScenes({
         contributor: "Hunter"
     },
     // #endregion
+    //#region
     
+    //#endregion
 });
