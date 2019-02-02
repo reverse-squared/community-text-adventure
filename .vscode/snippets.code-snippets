@@ -84,5 +84,13 @@
 			"},",
 		],
 		"prefix": "s",
+	},
+	"Region + EndRegion": {
+		"prefix": "reg",
+		"body": [
+			"// #region $1",
+			"$0",
+			"// #endregion",
+		]
 	}
 }
