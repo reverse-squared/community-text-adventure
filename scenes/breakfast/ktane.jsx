@@ -1,5 +1,5 @@
 import React from "react";
-import { addFlag, setScene, getScene } from "web-text-adventure/src/adventure";
+import { addFlag, setScene, getScene, getSceneInfo } from "web-text-adventure/src/adventure";
 import { addScenes } from "@src/ending";
 import SceneLink from "@templates/SceneLink";
 
@@ -59,11 +59,13 @@ function endsInOdd(serial) {
 addFlag("wires", false);
 addFlag("buttom", false);
 addFlag("symbols", false);
+addFlag("symbolsProgress", 1);
 addFlag("complexWires", false);
 addFlag("morse", false);
 
 addFlag("prevScene", "");
 addFlag("ktmaintext", "There are five modules... which do you defuse first?");
+addFlag("defusedOptions", []);
 
 const letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J,", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 const numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
@@ -154,8 +156,14 @@ function IncorrectOption(option) {
 /** Adds some extra things to an option to make it cause a strike */
 function CorrectOption(option) {
     let action = option.action;    
+    option.to = "ktane_correct";
     option.action = () => {
         if (action) action();
+
+        const scene = getSceneInfo(getScene());
+        let options = scene.options;
+        if(options.apply) options = options();
+        defusedOptions = options.map((opt) => ({ text: opt.text, to: null, if: () => false, disabledText: true }));
     };
     return option;
 }
@@ -164,12 +172,15 @@ addFlag("batteries", null);
 addFlag("serial", "");
 addFlag("parallelPort", null);
 addFlag("hasFRK", null);
-const BombHeader = () => <div>
+const BombHeader = (props) => <div>
     <p>
         <b>
             Defuse the Bomb... You have 5:00 left and have 0 strikes.{" "}
         </b>
-        <SceneLink to="bombinfo">View Bomb Information</SceneLink>
+        {
+            !props.hideLink &&
+            <SceneLink to="bombinfo">View Bomb Information</SceneLink>
+        }
     </p>
 </div>;
 
@@ -281,10 +292,10 @@ addScenes({
                 {ktmaintext}
             </p>
         </div>,
-        options: [
+        options: () => [
             { text: "Wires", to: "ktane_wires", disabledText: "Wires (defused)", if: () =>  !wires},
             { text: "The Button", to: "ktane_button", disabledText: "The Button (defused)", if: () =>  !buttom},
-            { text: "Symbols", to: "ktane_symbols", disabledText: "Symbols (defused)", if: () =>  !symbols},
+            { text: "Symbols", to: "ktane_symbols" + symbolsProgress, disabledText: "Symbols (defused)", if: () =>  !symbols},
             { text: "Complex Wires", to: "ktane_complex_wires", disabledText: "Complex Wires (defused)", if: () =>  !complexWires},
             { text: "Morse", to: "ktane_morse", disabledText: "Morse (defused)", if: () =>  !morse}
         ],
@@ -312,6 +323,7 @@ addScenes({
     ktane_correct: BombScene({
         prompt: () => <div>
             <BombHeader hideLink />
+            <SceneLink to='ktane_main'>Go Back</SceneLink>            
             <p>
                 You defused this module!
             </p>
@@ -340,8 +352,9 @@ addScenes({
     // #endregion
 
     // #region Symbols
-    ktane_symbols: {
+    ktane_symbols1: {
         prompt: () => <div>
+            <BombHeader />
             <p>
                 There are four keypads with symbols on them. Press them in the right order.
             </p>
@@ -352,10 +365,12 @@ addScenes({
             IncorrectOption({ text: "Curly Thing" }),
             IncorrectOption({ text: "A Weird Looking Broken Three Thing", to: "ktane_fail" }),
         ],
+        action: () => symbolsProgress = 1,
         contributor: "Hunter"
     },
     ktane_symbols2: {
         prompt: () => <div>
+            <BombHeader />
             <p>
                 There are four keypads with symbols on them. Press them in the right order.
             </p>
@@ -366,10 +381,12 @@ addScenes({
             { text: "Curly Thing", to: "ktane_symbols3" },
             IncorrectOption({ text: "A Weird Looking Broken Three Thing" })
         ],
+        action: () => symbolsProgress = 2,
         contributor: "Hunter"
     },
     ktane_symbols3: {
         prompt: () => <div>
+            <BombHeader />
             <p>
                 There are four keypads with symbols on them. Press them in the right order.
             </p>
@@ -380,10 +397,12 @@ addScenes({
             { text: "Curly Thing", disabledText: "Pressed", if: () => false, to: "ktane_symbols3" },
             { text: "A Weird Looking Broken Three Thing", to: "ktane_symbols4" }
         ],
+        action: () => symbolsProgress = 3,
         contributor: "Hunter"
     },
     ktane_symbols4: {
         prompt: () => <div>
+            <BombHeader />
             <p>
                 There are four keypads with symbols on them. Press them in the right order.
             </p>
@@ -394,6 +413,7 @@ addScenes({
             { text: "Curly Thing", disabledText: "Pressed", if: () => false, to: "ktane_symbols3" },
             { text: "A Weird Looking Broken Three Thing", disabledText: "Pressed", if: () => false, to: "ktane_symbols4" }
         ],
+        action: () => symbolsProgress = 4,
         contributor: "Hunter"
     },
     // #endregion
