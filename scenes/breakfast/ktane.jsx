@@ -283,6 +283,28 @@ function generateButton() {
     // If none of the above apply, hold the button and refer to "Releasing a Held Button".
 }
 
+class TheButton extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {  };
+    }
+    render() { 
+        return <div>
+            <button
+                style={{
+                    width: "150px",
+                    height: "150px",
+                    background: "white",
+                    color: "black",
+                    margin: "auto",
+                }}
+            >
+                DETONATE
+            </button>
+        </div>;
+    }
+}
+ 
 addScenes({
     //#region Main KTANE
     ktane_start: {
@@ -330,11 +352,17 @@ addScenes({
             <p>
                 <b>Bomb Information:</b>
                 <ul>
-                    <li>Strikes: 0</li>
-                    <li>Batteries: {batteries}</li>
-                    <li>Serial Number: {serial}</li>
-                    <li>Parallel Port: {parallelPort}</li>
-                    <li>Has a LIT Indicator of FRK: {hasFRK}</li>
+                    <li>It has {batteries} batter{batteries === 1 ? "y" : "ies"}</li>
+                    <li>It's serial number is <span style={{fontFamily:"monospace", color:"orange"}}>{serial}</span></li>
+                    {
+                        parallelPort
+                            ? <li>It has a Parallel Port</li>
+                            : <li>It doesn't have a Parallel Port</li>
+                    }
+                    {
+                        hasFRK &&
+                        <li>There's a lit indicator with the letters <span style={{ fontFamily: "monospace", color: "orange" }}>FRK</span></li>
+                    }
                 </ul>
             </p>
         </div>,
@@ -464,6 +492,22 @@ addScenes({
     }),
     // #endregion
 
+    // #region The Button
+    ktane_button: BombScene({
+        prompt: () => <div>
+            <BombHeader />
+            <SceneLink to='ktane_main'>Go Back</SceneLink>   
+            <p>
+                You look at the button.
+            </p>
+            <TheButton />
+        </div>,
+        options: [
+
+        ],
+    }),
+    // #endregion
+    
     // #region Endings
     ktane_fail: {
         prompt: () => <div>
