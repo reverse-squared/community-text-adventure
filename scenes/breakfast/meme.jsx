@@ -261,6 +261,20 @@ addScenes({
         },
         contributor: "Hunter"
     },
+    meme_bee_end: {
+        prompt: () => <div>
+            <style>{"::-webkit-scrollbar{display:none}"}</style>
+            <pre
+                style={{ fontFamily: "inherit" }}
+            >{BeeMovie}</pre>
+        </div>,
+        ending: {
+            id: "beeeeeeeeeeeeeeeeeeafousdifdsio",
+            name: "Bee Movie XD",
+            description: "Wait why...",
+        },
+        contributor: "Hunter and Dave"
+    },
     bee_lover: {
         prompt: () => <div>
             <p>You heard <span style={{color:"yellow"}}>The Bee Movie</span> so many times, you decided you spend the rest of your life protecting the life of bees.</p>

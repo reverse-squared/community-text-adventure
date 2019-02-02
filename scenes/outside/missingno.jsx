@@ -1,6 +1,6 @@
 import React from "react";
 import { } from "web-text-adventure/src/adventure";
-import { addScenes } from "@src/ending";
+import { addScenes, achieveEnding } from "@src/ending";
 
 addScenes({
     missingno: {
@@ -121,6 +121,60 @@ addScenes({
             { text: "how to make people not think that you are missingno", to: "google_missingno" },
             { text: "how to watch pornhub without anyone knowing", to: "google_pornhub" },
         ]
+    },
+    google_goolge: {
+        prompt: () => <div>
+            <p>
+                Someone catches you doing that and sends you to Preschool.
+            </p>
+        </div>,
+        ending: {
+            id: "googlprescofadsosdalkdsfafhsd",
+            name: "Failed at Googling shit",
+            description: "How the heck do you not know how to use google?",
+        },
+        contributor: "Durvenson"
+    },
+    google_missingno: {
+        prompt: () => <div>
+            <p>
+                Somehow, the "missingno" made Google break. It sent you some random stuff. What do you click?
+            </p>
+        </div>,
+        options: [
+            { text: "Windows 93", to: "gsearch_windows_93" },
+            { text: "How to Change Your Facebook Color", to: "gsearch_facebook_color" },
+            { text: "Youtube - HowToBasic", to: null, action: () => { location.href = "https://www.youtube.com/channel/UCR4s1DE9J4DHzZYXMltSMAg"; } },
+            { text: "bee movie meme xd", to: "meme_bee_end" },
+            { text: "Potato", to: "gsearch_potato" },
+            { text: "Community Text Adventure", to: "gsearch_cta" },
+            { text: "Cary Teaches You How To Time Travel", to: "gsearch_timetravel" },
+        ]
+    },
+    gsearch_cta: {
+        prompt: () => <div>
+            <p>
+                Your search ends up <a href="#" onClick={() => {
+                    achieveEnding("recursion");
+                    location.reload();
+                }}>Here</a>.
+            </p>
+        </div>,
+        options: [],
+        excludeEmptyOptionsCheck: true,
+        contributor: "Dave",
+    },
+    gsearch_cta_ending: {
+        prompt: () => <div />,
+        options: [],
+        noContributor: true,
+        excludeEmptyOptionsCheck: true,
+
+        ending: {
+            id: "recursion",
+            name: "Recursion",
+            description: "Go to CTA from CTA via a Google Search.",
+        },
     },
     google_pornhub: {
         prompt: () => <div>
