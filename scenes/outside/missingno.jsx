@@ -28,6 +28,7 @@ addScenes({
             name: "It's 2019 Get it Right",
             description: "You can't be saying those words these days.",
         },
+        contributor: "Hunter"
     },
     missingno_getout: {
         prompt: () => <div>
@@ -81,7 +82,8 @@ addScenes({
             id: "missingno-outofballs",
             name: "Ran out of Balls",
             description: "lmao he has no balls.",
-        }
+        },
+        contributor: "Dave"
     },
     missingno_chill: {
         prompt: () => <div>
@@ -136,6 +138,19 @@ addScenes({
         ],
         contributor: "Dave"
     },
+    missingno_pretendvirus: {
+        prompt: () => <div>
+            <p>
+                You pretend it's a virus, but since it actually is, you die.
+            </p>
+        </div>,
+        ending: {
+            id: "virusend",
+            name: "Virus",
+            description: "Don't pretend it's a virus when it actually is.",
+        },
+        contributor: "Dave"
+    },
     missingno_nothing: {
         prompt: () => <div>
             <p>
@@ -183,6 +198,20 @@ addScenes({
         </div>,
         options: [
             { text: "how to escape a pokeball", to: "google_poke" },
+            { text: "how to use google", to: "google_goolge" },
+            { text: "how to make people not think that you are missingno", to: "google_missingno" },
+            { text: "how to watch pornhub without anyone knowing", to: "google_pornhub" },
+        ],
+        contributor: "Durvenson"
+    },
+    google_poke: {
+        prompt: () => <div>
+            <p>
+                It says you press the button to open a pokeball, but that only works when you're on the outside.
+            </p>
+        </div>,
+        options: [
+            { text: "how to escape a pokeball", to: null, if: () => false, disabledText: true },
             { text: "how to use google", to: "google_goolge" },
             { text: "how to make people not think that you are missingno", to: "google_missingno" },
             { text: "how to watch pornhub without anyone knowing", to: "google_pornhub" },
