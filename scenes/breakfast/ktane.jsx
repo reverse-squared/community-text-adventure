@@ -2,6 +2,10 @@ import React from "react";
 import { addFlag, setScene } from "web-text-adventure/src/adventure";
 import { addScenes } from "@src/ending";
 
+function randomOf(...list) {
+    return list[Math.floor((Math.random() * list.length))];
+}
+
 addFlag("wires", false);
 addFlag("buttom", false);
 addFlag("symbols", false);
