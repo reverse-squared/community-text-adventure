@@ -172,17 +172,34 @@ addFlag("batteries", null);
 addFlag("serial", "");
 addFlag("parallelPort", null);
 addFlag("hasFRK", null);
-const BombHeader = (props) => <div>
-    <p>
-        <b>
-            Defuse the Bomb... You have 5:00 left and have 0 strikes.{" "}
-        </b>
-        {
-            !props.hideLink &&
-            <SceneLink to="bombinfo">View Bomb Information</SceneLink>
-        }
-    </p>
-</div>;
+addFlag("timeLeft", 10 * 60);
+
+class BombHeader extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+    componentDidMount() {
+        this.interval = setInterval(() => {
+            timeLeft--;
+        }, 1000);
+    }
+    componentWillUnmount() {
+        clearInterval(this.interval);
+    }
+    render() {
+        return <div>
+            <p>
+                <b>
+                    Defuse the Bomb... You have {(timeLeft - (timeLeft % 60)) / 60}:{(timeLeft % 60).toString().padStart(2, "0")} left and have 0 strikes.{" "}
+                </b>
+                {
+                    !this.props.hideLink &&
+                    <SceneLink to="bombinfo">View Bomb Information</SceneLink>
+                }
+            </p>
+        </div>;
+    }
+}
 
 // Morse
 const morseOptions = [
