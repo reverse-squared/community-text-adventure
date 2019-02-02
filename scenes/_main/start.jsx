@@ -125,7 +125,7 @@ addScenes({
         options: [
             { text: "What's the time", to: "" },
             { text: "Why is there a critical production bug", to: "work_pre" },
-            { text: "▖┗▛▄▖▜▚┣", to: "" },
+            { text: "▖┗▛▄▖▜▚┣", to: "missingno" },
         ],
         contributor: "Hunter"
     },

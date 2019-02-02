@@ -3,6 +3,7 @@ import { } from "web-text-adventure/src/adventure";
 import { addScenes, achieveEnding } from "@src/ending";
 
 addScenes({
+    // #region MissingNo
     missingno: {
         prompt: () => <div>
             <p>
@@ -16,6 +17,18 @@ addScenes({
             { text: "Pretend to have fainted", to: "missingno_faint" },
         ],
         contributor: "Durvenson"
+    },
+    missingno_yell: {
+        prompt: () => <div>
+            <p>
+                He says it's not "Retard", its "Mentally Challenged"... He then proceeeds to yell AT you for using the wrong terminology in 2019.
+            </p>
+        </div>,
+        ending: {
+            id: "wrong-word",
+            name: "It's 2019 Get it Right",
+            description: "You can't be saying those words these days.",
+        }
     },
     missingno_chill: {
         prompt: () => <div>
@@ -179,7 +192,7 @@ addScenes({
     google_pornhub: {
         prompt: () => <div>
             <p>
-                SafeSearch™™™™™™™™™™™™™™™™™™™™™™™™™™™ blocked that search
+                SafeSearch™™™™™™™™™™™™™™™™™™™™™™™™™™™ blocked that search.
             </p>
         </div>,
         ending: {
@@ -188,4 +201,5 @@ addScenes({
             description: "Get blocked™ by™ (Safe™Search™)™.",
         }
     }
+    // #endregion
 });
