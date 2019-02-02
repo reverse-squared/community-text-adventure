@@ -18,6 +18,11 @@ addFlag("morseOptions", [
     "... - .-. --- -... ."
 ]);
 
+addFlag("wires", null);
+function generateWires() {
+
+}
+
 addScenes({
     // #region KTANE
     ktane_start: {
@@ -34,6 +39,7 @@ addScenes({
             { text: "Morse", to: "ktane_wires", disabledText: "Morse (defused)", if: () =>  !morse}
         ],
         contributor: "Hunter"
-    }
+    },
     // #endregion
+    
 });
