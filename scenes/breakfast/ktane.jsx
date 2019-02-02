@@ -297,6 +297,7 @@ class TheButton extends React.Component {
                     background: "white",
                     color: "black",
                     margin: "auto",
+                    border: "none"
                 }}
             >
                 DETONATE
