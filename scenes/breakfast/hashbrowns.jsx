@@ -111,6 +111,19 @@ addScenes({
     },
     // #endregion
 
+    hash_eat: {
+        prompt: () => <div>
+            <p>
+                Om nom nom...
+            </p>
+        </div>,
+        ending: {
+            id: "eat-mario",
+            name: "It Wasn't That Bad",
+            description: "It could use a little more butter...",
+        }
+    },
+
     // #region Vaping
     hash_smokeit: {
         prompt: () => <div>
@@ -309,7 +322,7 @@ addScenes({
             <p>You make it, but then you get really tired when you are done. However, you are tempted to try it.</p>
         </div>,
         options: [
-            { text: "Go to bed", to: "" },
+            { text: "Go to bed", to: "sleep_eat" },
             { text: "Have some coffee", to: "" },
             { text: "Make a tiny potato kart", to: "" },
             { text: "Play on it with friends", to: "hash_fuckingbig_friends" },

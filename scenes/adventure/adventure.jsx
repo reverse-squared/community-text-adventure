@@ -102,6 +102,15 @@ addScenes({
         },
         contributor: "Hunter"
     },
+    adventure_africa_crash_eat: {
+        prompt: () => <div>
+            <p>You carefully take out the uncooked turkey out of your bag and start to eat it. When you eat the turkey, you are satisfied.</p>
+        </div>,
+        options: [
+            { text: "Continue", to: "adventure_island_start", action: () => hasEatenTurkey =  true }
+        ],
+        contributor: "Hunter"
+    },
     adventure_island_start: {
         prompt: () => <div>
             <p>You escape the plane without any harm done. With only you as the survivor that you know of, and with the plane about to explode, what do you do?</p>
@@ -113,14 +122,73 @@ addScenes({
         ],
         contributor: "Hunter"
     },
-    adventure_africa_crash_eat: {
+    adventure_island_food: {
         prompt: () => <div>
-            <p>You carefully take out the uncooked turkey out of your bag and start to eat it. When you eat the turkey, you are satisfied.</p>
+            <p>
+                OwO look at that. There's a whole uncooked turkey on the ground. Do you eat it?
+            </p>
         </div>,
         options: [
-            { text: "Continue", to: "adventure_island_start", action: () => hasEatenTurkey =  true }
+            { text: "Yes", to: "adventure_island_start_after", action: () => hasEatenTurkey = true },
+            { text: "No", to: "adventure_island_start_after" }
         ],
         contributor: "Hunter"
     },
+    adventure_island_start_after: {
+        prompt: () => <div>
+            <p>
+                Now what?
+            </p>
+        </div>,
+        options: [
+            { text: "Punch some trees", to: "minecraft_start" },
+            { text: "Find some food", to: "adventure_island_food", if: () => !hasEatenTurkey },
+            { text: "Break open some suitcases", to: "adventure_island_suitcases" },
+        ],
+        contributor: "Hunter"
+    },
+
+    // #region Suicases
+    adventure_island_suitcases: {
+        prompt: () => <div>
+            <p>
+                There's some good (and bad) shit in the suitcases. What do you take?
+            </p>
+        </div>,
+        options: [
+            { text: "The signed copy of the declaration of independence", to: "adventure_island_suitcases_fbi" },
+            { text: "I don't give a fuckStation", to: "adventure_idgafs" },
+            { text: "Passports", to: "adventure_island_suitcases_fbi" },
+            { text: "Wallets", to: "adventure_island_suitcases_fbi" },
+        ],
+        contributor: "Hunter"
+    },
+    adventure_island_suitcases_fbi: {
+        prompt: () => <div>
+            <p>
+                Your boss as Baskin Robbins finds out that you took the goods. Therefore they fire you and throw you in jail for the rest of your life.
+            </p>
+        </div>,
+        ending: {
+            id: "baskin-watching",
+            name: "Baskin Robbins Always Finds Out",
+            description: "Never steal. That's a crime.",
+        },
+        contributor: "Hunter"
+    },
+    adventure_idgafs: {
+        prompt: () => <div>
+            <p>
+                You take the <b>I don't give a fuckStation</b>, but you die 3 hours later... You should of took something that increases your survival. <small>Maybe something to fuel a fire.</small>
+            </p>
+        </div>,
+        ending: {
+            id: "idgaf-station",
+            name: "No Fire to Keep Warm",
+            description: "Try something else...",
+        }
+    }
+    // #endregion
+
     // #endregion
 });

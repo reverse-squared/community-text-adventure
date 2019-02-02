@@ -10,6 +10,28 @@ addFlag("startedPancakes", false);
 addFlag("startedOmelette", false);
 addFlag("startedHashbrowns", false);
 
+addFlag("time", "");
+
+function getTime() {
+    var date = new Date();
+    var afternoon = false;
+
+    var hours = date.getHours();
+    var minutes = date.getMinutes();
+
+    if(hours > 12) {
+        hours -= 12;
+        afternoon = true;
+    }
+
+    time = hours + ":" + minutes;
+    if(afternoon) {
+        time += "pm";
+    }else {
+        time += "am";
+    }
+}
+
 addScenes({
     // #region Wake Up
     wakeup: {
@@ -74,8 +96,21 @@ addScenes({
         options: [
             { text: "Get it treated", to: "touch_lizard_treat"},
             { text: "Punch that lizard", to: "jail_start"},
-            { text: "Not care, and don't do anything", to: ""},
+            { text: "Not care, and don't do anything", to: "touch_lizard_nothing"},
         ],
+        contributor: "Alchemyking"
+    },
+    touch_lizard_nothing: {
+        prompt: () => <div>
+            <p>
+                You died from the lizard’s venom. Seriously, you could have at least had the decency to flop around on the floor as you died.
+            </p>
+        </div>,
+        ending: {
+            id: "venom-die-sure",
+            name: "Do Nothing",
+            description: "Duuuuuh..... You died because you were duuuumb.",
+        },
         contributor: "Alchemyking"
     },
     touch_spider: {
@@ -84,10 +119,21 @@ addScenes({
         </div>,
         options: [
             { text: "Pocket it", to: "pocket_spider" },
-            { text: "Stroke it's back", to: "" },
+            { text: "Stroke it's back", to: "touch_spider_stroke" },
             { text: "Smash it", to: "smash_spider" }
         ],
         contributor: "Adr"
+    },
+    touch_spider_stroke: {
+        prompt: () => <div>
+            <em>S t r o k e</em>
+        </div>,
+        options: [
+            { text: "Pocket it", to: "pocket_spider" },
+            { text: "Stroke it's back", disabledText: "Stroke it's back", if: () => false, to: "touch_spider_stroke" },
+            { text: "Smash it", to: "smash_spider" }
+        ],
+        contributor: "Hunter"
     },
     pocket_spider: {
         prompt: () => <div>
@@ -123,10 +169,24 @@ addScenes({
             </p>
         </div>,
         options: [
-            { text: "What's the time", to: "" },
+            { text: "What's the time", to: "touch_human_time" },
             { text: "Why is there a critical production bug", to: "work_pre" },
             { text: "▖┗▛▄▖▜▚┣", to: "missingno" },
         ],
+        contributor: "Hunter"
+    },
+    touch_human_time: {
+        prompt: () => <div>
+            <p>
+                The time is {time}.
+            </p>
+        </div>,
+        options: [
+            { text: "What's the time", disabledText: "What's the time", if: () => false, to: "touch_human_time" },
+            { text: "Why is there a critical production bug", to: "work_pre" },
+            { text: "▖┗▛▄▖▜▚┣", to: "missingno" },
+        ],
+        action: () => getTime(),
         contributor: "Hunter"
     },
     touch_car: {
@@ -278,6 +338,16 @@ addScenes({
             { text: "Wake up", to: "wakeup" }
         ],
         contributor: "Dave"
+    },
+    sleep_eat: {
+        prompt: () => <div>
+            <p>You go to bed.</p>
+        </div>,
+        options: [
+            { text: "Sleep more", to: "sleepmore" },
+            { text: "Wake up", to: "wakeup" }
+        ],
+        contributor: "Hunter"
     },
     sleepmore: {
         prompt: () => <div>

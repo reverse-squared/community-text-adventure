@@ -7,7 +7,7 @@ addFlag("graveWaitTime", 0);
 addFlag("wrongPasswords", 0);
 addFlag("triedL1Crook", false);
 addFlag("passwords", [false, false, false, false, false, false]);
-addFlag("mafiaLevel", 1);
+addFlag("mafiaLevel", 2);
 addFlag("mafiaTitle", "Crook");
 
 function increaseGraveWait() {
@@ -231,7 +231,7 @@ addScenes({
             </p>
         </div>,
         options: [
-            { text: "Level Up", to: "level2_crook" },
+            { text: "Level Up", to: "level1_crook_upgraded" },
             { text: "Walk around", to: "level1_crook_walk_around" },
             { text: "Drop out of the mafia", to: "grave_leave", action: () => triedL1Crook = true },
         ],
