@@ -48,11 +48,24 @@ addScenes({
             <p>Now that you are out of the bus, you see everyone else in the bus start jumping too. What do you do?</p>
         </div>,
         options: [
-            { text: "Activate your glider", to: "" },
+            { text: "Activate your glider", to: "adventure_fortnite_leave_glide" },
             { text: "Keep falling", to: "" },
             { text: "Disconnect from the game", to: "adventure_fortnite_leave_game" },
         ],
         contributor: "Hunter"
+    },
+    adventure_fortnite_leave_glide: {
+        prompt: () => <div>
+            <p>
+                You glide down to Tilted Towers. Unfortunately, you got killed by a sniper. He does the Orange Justice on your body.
+            </p>
+        </div>,
+        ending: {
+            id: "death-fortnite-dance",
+            name: "Death By Fortnite Dance",
+            description: "Hey at least it’s better than default dance.",
+        },
+        contributor: "Alchemyking"
     },
     adventure_fortnite_leave_game: {
         prompt: () => <div>
