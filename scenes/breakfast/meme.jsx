@@ -102,7 +102,7 @@ addScenes({
         ending: {
             id: "wake-me-up",
             name: "Trying to Wake Up",
-            description: "Can't Wake Up",
+            description: "Can't wake up.",
         },
         contributor: "Hunter"
     },
