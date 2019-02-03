@@ -343,8 +343,6 @@ function generateButton() {
     // Any other color strip: release when the countdown timer has a 1 in any position.
 }
 
-window.generateButton = generateButton;
-
 class TheButton extends React.Component {
     constructor(props) {
         super(props);
