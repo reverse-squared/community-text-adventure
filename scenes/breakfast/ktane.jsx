@@ -483,13 +483,13 @@ addScenes({
                 You look at the wires modules, you need to cut exactly one wire, which one do you cut.
             </p>
         </div>,
-        options: () => wiresData.map((wire, i) => {
+        options: () => (wiresData && wiresData.map((wire, i) => {
             if (wire.correct) {
                 return CorrectOption({ text: capitalizeFirstLetter(wire.color) + " wire", action: () => { wires = true; } });
             } else {
                 return IncorrectOption({ text: capitalizeFirstLetter(wire.color) + " wire", if: () => !wireCut[i], action: () => wireCut[i] = true, disabledText: true });
             }
-        })
+        })) || [],
     }),
     // #endregion
 
@@ -519,7 +519,7 @@ addScenes({
         ending: {
             id: "bad-bomb-defused",
             name: "Bad Bomb Defuser",
-            description: "You failed at defusing a simple bomb...-",
+            description: "You failed at defusing a simple bomb...",
         },
         contributor: "Hunter"
     }
