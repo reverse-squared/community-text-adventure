@@ -151,20 +151,30 @@ function IncorrectOption(option) {
         if(t2) clearTimeout(t2);
         if(t3) clearTimeout(t3);
 
+        strikes++;
+
         document.body.style.transition = "";
-        document.body.style.background = "red";
+
+        if (strikes >= 3) {
+            document.body.style.background = "black";
+            document.body.style.opacity = "0";
+            setScene("ktane_fail");
+        } else {
+            document.body.style.background = "red";
+        }
+
         t1 = setTimeout(() => {
             t1 = undefined;
             t2 = setTimeout(() => {
                 t2 = undefined;
-                document.body.style.transition = "background 1.5s linear";
+                document.body.style.transition = "background 1.5s linear, opacity 1s linear 0.5s";
                 document.body.style.background = "";
+                document.body.style.opacity = "1";
                 t3 = setTimeout(() => {
                     t3 = undefined;
                     document.body.style.transition = "";
                 }, 1500);
             }, 100);
-            document.body.style.background = "red";
         }, 100);
     };
     return option;
@@ -193,6 +203,7 @@ addFlag("hasFRK", null);
 addFlag("hasCAR", null);
 addFlag("hasTRN", null);
 addFlag("hasFRA", null);
+addFlag("strikes", 0);
 addFlag("timeLeft", 10 * 60);
 
 class BombHeader extends React.Component {
@@ -201,7 +212,10 @@ class BombHeader extends React.Component {
     }
     componentDidMount() {
         this.interval = setInterval(() => {
-            // timeLeft--;
+            timeLeft--;
+            if(timeLeft <= 0) {
+                setScene("ktane_fail");
+            }
         }, 1000);
     }
     componentWillUnmount() {
@@ -211,7 +225,7 @@ class BombHeader extends React.Component {
         return <div>
             <p>
                 <b>
-                    Defuse the Bomb... You have {(timeLeft - (timeLeft % 60)) / 60}:{(timeLeft % 60).toString().padStart(2, "0")} left and have 0 strikes.{" "}
+                    Defuse the Bomb... You have {(timeLeft - (timeLeft % 60)) / 60}:{(timeLeft % 60).toString().padStart(2, "0")} left and have {strikes} strikes.{" "}
                 </b>
                 {
                     !this.props.hideLink &&
@@ -500,7 +514,6 @@ function generateComplexWires() {
         if(wire.star && wire.led && wire.red && wire.blue) letter = "D";
 
         wire.needsClick = false;
-        if(letter==="S")debugger;
         if(letter === "C") wire.needsClick = true;
         if(letter === "D") wire.needsClick = false;
         if(letter === "S" && (!endsInOdd(serial))) wire.needsClick = true;
@@ -550,6 +563,11 @@ addScenes({
             { text: "Complicated Wires", to: "ktane_complex_wires", disabledText: "Complex Wires (defused)", if: () =>  !complexWires},
             { text: "Morse", to: "ktane_morse", disabledText: "Morse (defused)", if: () =>  !morse}
         ],
+        action: () => {
+            if(wires && buttom && symbols && complexWires && morse) {
+                setScene("bombdefuse");
+            }
+        },
         contributor: "Hunter"
     }),
     ktane_info: BombScene({
@@ -777,6 +795,19 @@ addScenes({
             description: "You failed at defusing a simple bomb...",
         },
         contributor: "Hunter"
+    },
+    bombdefuse: {
+        prompt: () => <div>
+            <p>
+                You defused the bomb! With {((600 - timeLeft) - ((600 - timeLeft) % 60)) / 60}:{((600 - timeLeft) % 60).toString().padStart(2, "0")} and {strikes}. Good Job.
+            </p>
+        </div>,
+        ending: {
+            id: "god-bomb-defused",
+            name: "Defuse the Bomb",
+            description: "Boom its done and defused and shit.",
+        },
+        contributor: "Dave"
     }
     // #endregion
 });
