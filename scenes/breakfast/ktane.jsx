@@ -548,6 +548,7 @@ addScenes({
             setScene("ktane_main");
         },
         noContributor: true,
+        excludeEmptyOptionsCheck: true,
     },
     ktane_main: BombScene({
         prompt: () => <div>
@@ -572,6 +573,7 @@ addScenes({
     }),
     ktane_info: BombScene({
         isInfoPage: true,
+        excludeEmptyOptionsCheck: true,
         prompt: () => <div>
             <BombHeader hideLink />
             <SceneLink to={prevScene}>Go Back</SceneLink>            
@@ -613,6 +615,8 @@ addScenes({
                 You defused this module!
             </p>
         </div>,
+        excludeEmptyOptionsCheck: true,
+        contributor: "Dave",
         options: () => defusedOptions
     }),
     //#endregion
@@ -724,6 +728,8 @@ addScenes({
                 return IncorrectOption({ text: capitalizeFirstLetter(wire.color) + " wire", if: () => !wireCut[i], action: () => wireCut[i] = true, disabledText: true });
             }
         })) || [],
+        excludeEmptyOptionsCheck: true,
+        contributor: "Dave",
     }),
     // #endregion
 
@@ -737,9 +743,9 @@ addScenes({
             </p>
             <TheButton />
         </div>,
-        options: [
-
-        ],
+        options: [],
+        contributor: "Dave",
+        excludeEmptyOptionsCheck: true
     }),
     // #endregion
     
@@ -780,6 +786,8 @@ addScenes({
                 return IncorrectOption({ text, if: () => !complexWiresCut[i], action: () => { complexWiresCut[i] = true; __rerender = true;}, disabledText: true });
             }
         })) || [],
+        excludeEmptyOptionsCheck: true,
+        contributor: "Dave"
     }),
     // #endregion
     // #region Endings
