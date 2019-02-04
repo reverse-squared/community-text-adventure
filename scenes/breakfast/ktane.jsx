@@ -201,7 +201,7 @@ class BombHeader extends React.Component {
     }
     componentDidMount() {
         this.interval = setInterval(() => {
-            timeLeft--;
+            // timeLeft--;
         }, 1000);
     }
     componentWillUnmount() {
@@ -469,6 +469,47 @@ class TheButton extends React.Component {
         </div>;
     }
 }
+
+addFlag("complexWireData", []);
+addFlag("complexWiresCut", [false, false, false, false, false, false,]);
+function generateComplexWires() {
+    complexWireData = [0,0,0,0,0,0].map(() => {
+        const wire = {};
+        wire.colors = randomListOf(["white", "blue", "red"],2).sort();
+        wire.led = Math.random() >= 0.5;
+        wire.star = Math.random() >= 0.5;
+
+        wire.blue = wire.colors.includes("blue");
+        wire.red = wire.colors.includes("red");
+        
+        let letter = "C";
+        if(wire.red) letter = "S";
+        if(wire.blue) letter = "S";
+        if(wire.led) letter = "D";
+        if(wire.star) letter = "C";
+        if(wire.star && wire.blue) letter = "P";
+        if(wire.star && wire.red) letter = "C";
+        if(wire.blue && wire.red) letter = "S";
+        if(wire.star && wire.led) letter = "B";
+        if(wire.star && wire.blue) letter = "D";
+        if(wire.led && wire.red) letter = "D";
+        if(wire.led && wire.red && wire.blue) letter = "S";
+        if(wire.star && wire.red && wire.blue) letter = "P";
+        if(wire.star && wire.led && wire.blue) letter = "P";
+        if(wire.star && wire.led && wire.red) letter = "B";
+        if(wire.star && wire.led && wire.red && wire.blue) letter = "D";
+
+        wire.needsClick = false;
+        if(letter==="S")debugger;
+        if(letter === "C") wire.needsClick = true;
+        if(letter === "D") wire.needsClick = false;
+        if(letter === "S" && (!endsInOdd(serial))) wire.needsClick = true;
+        if(letter === "P" && parallelPort) wire.needsClick = true;
+        if(letter === "B" && batteries >= 2) wire.needsClick = true;
+
+        return wire;
+    });
+}
  
 addScenes({
     //#region Main KTANE
@@ -485,6 +526,7 @@ addScenes({
             generateFRK();
             generateButton();
             generateWires();
+            generateComplexWires();
 
             var morse = randomOf(morseOptions);
             theMorse = morse.code;
@@ -505,7 +547,7 @@ addScenes({
             { text: "Wires", to: "ktane_wires", disabledText: "Wires (defused)", if: () =>  !wires},
             { text: "The Button", to: "ktane_button", disabledText: "The Button (defused)", if: () =>  !buttom},
             { text: "Symbols", to: "ktane_symbols" + symbolsProgress, disabledText: "Symbols (defused)", if: () =>  !symbols},
-            { text: "Complex Wires", to: "ktane_complex_wires", disabledText: "Complex Wires (defused)", if: () =>  !complexWires},
+            { text: "Complicated Wires", to: "ktane_complex_wires", disabledText: "Complex Wires (defused)", if: () =>  !complexWires},
             { text: "Morse", to: "ktane_morse", disabledText: "Morse (defused)", if: () =>  !morse}
         ],
         contributor: "Hunter"
@@ -523,9 +565,7 @@ addScenes({
                 <li>It has {batteries} batter{batteries === 1 ? "y" : "ies"}</li>
                 <li>It's serial number is <span style={{fontFamily:"monospace", color:"orange"}}>{serial}</span></li>
                 {
-                    parallelPort
-                        ? <li>It has a Parallel Port</li>
-                        : <li>It doesn't have a Parallel Port</li>
+                    parallelPort && <li>It has a Parallel Port</li>
                 }
                 {
                     hasFRA &&
@@ -685,6 +725,45 @@ addScenes({
     }),
     // #endregion
     
+    // #region complex wires
+    ktane_complex_wires: BombScene({
+        prompt: () => <div>
+            <BombHeader />
+            <SceneLink to='ktane_main'>Go Back</SceneLink>
+            <p>
+                You approach the complecated wires, which do you cut.
+            </p>
+        </div>,
+        options: () => (complexWireData && complexWireData.map((wire, i) => {
+            const star = "★";
+            const circle = () => <span style={{display:"inline-block", width: "12px", height: "12px", background: "white", borderRadius: "6px"}}></span>;
+            const circle_empty = () => <span style={{display:"inline-block", width: "12px", height: "12px", border: "1px solid white", borderRadius: "6px"}}></span>;
+            const text = () => <span>
+                <span style={{color: wire.star ? "white" : "transparent"}} aria-hidden={!wire.star}>{star}</span>
+                {" "}
+                <span>{wire.led ? circle() : circle_empty()}</span>
+                {" "}
+                {
+                    wire.colors[0] === wire.colors[1]
+                        ? capitalizeFirstLetter(wire.colors[0])
+                        : wire.colors.map(capitalizeFirstLetter).join(" and ")
+                }
+                {" "}
+                wire
+            </span>;
+
+            if (wire.needsClick) {
+                if(complexWireData.filter(item => item.needsClick).length === 1) {
+                    return CorrectOption({ text, if: () => !complexWiresCut[i], action: () => {complexWires = true;} });
+                } else {
+                    return ({ text, to: null, if: () => !complexWiresCut[i], action: () => { complexWiresCut[i] = true, complexWireData[i].needsClick = false; __rerender = true;}, disabledText: true });
+                }
+            } else {
+                return IncorrectOption({ text, if: () => !complexWiresCut[i], action: () => { complexWiresCut[i] = true; __rerender = true;}, disabledText: true });
+            }
+        })) || [],
+    }),
+    // #endregion
     // #region Endings
     ktane_fail: {
         prompt: () => <div>
