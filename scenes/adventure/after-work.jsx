@@ -153,7 +153,8 @@ addScenes({
         </div>,
         options: [
             { text: "win", to: "winthecandy" }
-        ]
+        ],
+        contributor: "Dave",
     },
     winthecandy: {
         prompt: () => <div>
@@ -165,7 +166,8 @@ addScenes({
             id: "winnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn",
             name: "Winner Winner Candy Dinner",
             description: "Win a game of candy crush.",
-        }
+        },
+        contributor: "Dave"
     },
     phone_others: {
         prompt: () => <div>

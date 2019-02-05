@@ -194,7 +194,19 @@ addScenes({
             <p>You get in your car and realize you robbed a bank yesterday and the police are here. What do you do now?</p>
         </div>,
         options: [
-            { text: "Drive away", to: "touch_car_drive_away" },
+            { text: "Drive away", to: "touch_car_drive" },
+            { text: "Surrender", to: "surrender_to_noone" },
+            { text: "Suicide", to: "touch_car_sui" }
+        ],
+        action: () => carFromRobbery = true,
+        contributor: "torinpotato"
+    },
+    touch_car_drive: {
+        prompt: () => <div>
+            <p>You get in your car and realize you robbed a bank yesterday and the police are here. What do you do now?</p>
+        </div>,
+        options: [
+            { text: "Drive away", to: null, if: () => false, disabledText: true },
             { text: "Surrender", to: "surrender_to_noone" },
             { text: "Suicide", to: "touch_car_sui" }
         ],

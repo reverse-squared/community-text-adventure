@@ -547,6 +547,7 @@ addScenes({
 
             setScene("ktane_main");
         },
+        excludeEmptyOptionsCheck: true,
         noContributor: true,
         excludeEmptyOptionsCheck: true,
     },
@@ -605,7 +606,8 @@ addScenes({
                 }
             </ul>
         </div>,
-        options: () => []
+        options: () => [],
+        contributor: true,
     }),
     ktane_correct: BombScene({
         prompt: () => <div>

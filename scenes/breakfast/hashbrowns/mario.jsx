@@ -161,7 +161,8 @@ addScenes({
             id: "endracenegativelmao",
             name: "The Race is Already Over",
             description: "Start the race after it ends."
-        }
+        },
+        contributor: "Dave",
     },
     // #endregion
 
@@ -511,10 +512,20 @@ addScenes({
         ],
         contributor: "Durvenson"
     },
+    hash_potatokart_blj_leave_outside_yolo_no: {
+        prompt: () => <div>
+            <p>
+                So you decide NOT to take the one ups... What else should you do instead.
+            </p>
+        </div>,
+        options: [
+            
+        ]
+    },
     i_guess: {
         prompt: () => <div>
             <p>
-                <b>"I GUESS"?1st</b>, <em>YOU GUESS!?</em>, <b><em>Y O U  G U E S S????</em></b>
+                <b>"I GUESS"?</b>, <em>YOU GUESS!?</em>, <b><em>Y O U  G U E S S????</em></b>
             </p>
             <p>
                 what the hell is your guess then?
@@ -647,7 +658,8 @@ addScenes({
         </div>,
         options: [
             { text: "Stand", to: "stand2" },
-        ]
+        ],
+        contributor: "Dave",
     },
     stand2: {
         prompt: () => <div>
@@ -662,7 +674,8 @@ addScenes({
                     setScene("stand_long_timeowo");
                 }
             }},
-        ]
+        ],
+        contributor: "Dave",
     },
     stand_long_timeowo: {
         prompt: () => <div>

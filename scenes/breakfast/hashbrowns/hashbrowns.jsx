@@ -121,7 +121,8 @@ addScenes({
             id: "eat-mario",
             name: "It Wasn't That Bad",
             description: "It could use a little more butter...",
-        }
+        },
+        contributor: "Hunter"
     },
 
     // #region Vaping

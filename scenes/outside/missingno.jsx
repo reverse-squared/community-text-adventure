@@ -280,7 +280,8 @@ addScenes({
             id: "safe-search",
             name: "SafeSearch™",
             description: "Get blocked™ by™ (Safe™Search™)™.",
-        }
+        },
+        contributor: "Dave",
     },
     gsearch_potato: {
         prompt: () => <div>

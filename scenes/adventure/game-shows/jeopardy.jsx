@@ -131,7 +131,8 @@ addScenes({
                     </div>,
                     options: [
                         { text: "Continue", to: "jeopardy_start" },
-                    ]
+                    ],
+                    noContributor: true,
                 },
             };
         }).reduce((obj, next) => ({ ...obj, ...next }), {});
@@ -150,7 +151,8 @@ addScenes({
                 </div>,
                 options: [
                     { text: "Continue", to: "jeopardy_start" },
-                ]
+                ],
+                noContributor: true,
             }
         };
     }).reduce((obj,next) => ({...obj, ...next}), {})
