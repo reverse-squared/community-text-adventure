@@ -104,15 +104,15 @@ export default [
             },
             600: {
                 question: () => <div>
-                    <p>Catagory 600</p>
+                    <p>What Game Is It Impossible To Get Five Fifty One In?</p>
                 </div>,
                 options: [
-                    { text: "What is correct" },
-                    { text: "What is incorrect" },
-                    { text: "What is incorrect" },
-                    { text: "What is incorrect" },
+                    { text: "What is Dragster" },
+                    { text: "What is Tetris" },
+                    { text: "What is Minecraft" },
+                    { text: "What is CTA" },
                 ],
-                contributor: undefined,
+                contributor: "Colyderp",
             },
             800: {
                 question: () => <div>
@@ -145,15 +145,14 @@ export default [
         questions: {
             200: {
                 question: () => <div>
-                    <p>Catagory 200</p>
+                    <p>Which Of The Following Is A Official CTA Pancake Brand</p>
                 </div>,
                 options: [
-                    { text: "What is correct" },
-                    { text: "What is incorrect" },
-                    { text: "What is incorrect" },
-                    { text: "What is incorrect" },
+                    { text: "What is Frosted" },
+                    { text: "What is Oats" },
+                    { text: "What is Honey" },
+                    { text: "What is Cheerios" },
                 ],
-                contributor: undefined,
             },
             400: {
                 question: () => <div>
@@ -206,7 +205,7 @@ export default [
         }
     },
     {
-        catagoryName: "Catagory4",
+        catagoryName: "<Suggestions Open>",
         questions: {
             200: {
                 question: () => <div>
@@ -301,7 +300,7 @@ export default [
             },
             600: {
                 question: () => <div>
-                    <p>Catagory 600</p>
+                    <p></p>
                 </div>,
                 options: [
                     { text: "What is correct" },
