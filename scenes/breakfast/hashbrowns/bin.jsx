@@ -78,12 +78,60 @@ addScenes({
         </div>,
         options: [
             { text: "Coke bottle", to: "hash_truck_find_coke", disabledText: "Already inspected...", if: () => !hasTriedCoke, action: () => hasTriedCoke = true },
-            { text: "\"Food\"", to: "" },
+            { text: "\"Food\"", to: "hash_truck_find_food" },
             { text: "A computer", to: "hash_truck_find_computer" },
-            { text: "Your track", to: "" },
-            { text: "Your potato", to: "" },
+            { text: "Your track", to: "hash_truck_find_track" },
+            { text: "Your potato", to: "hash_truck_find_potato" },
             { text: "Radioactive materials", to: "hash_truck_find_radio", disabledText: true, if: () => !radio },
-            { text: "A trash bin", to: "" }
+            { text: "A trash bin", to: "hash_truck_find_trash" }
+        ],
+        contributor: "Durvenson"
+    },
+    hash_truck_find_food: {
+        prompt: () => <div>
+            <p>
+            You eat it and die, because all of the food in there is years past its expiration date.
+            </p>
+        </div>,
+        ending: {
+            id: "expire-date",
+            name: "Expiration Dates Matter",
+            description: "Always read them.",
+        },
+        contributor: "Durvenson and Hunter"
+    },
+    hash_truck_find_track: {
+        prompt: () => <div>
+            <p>
+                You shred it up into pieces.
+            </p>
+        </div>,
+        options: [
+            { text: "Go back", to: "hash_truck_find" },
+        ],
+        contributor: "Durvenson"
+    },
+    hash_truck_find_trash: {
+        prompt: () => <div>
+            <p>
+                How the fuck do you throw away a trash bin? Anyways, you put it on your head, because you are drunk. You roam around the streets, and the people dislike you. They dislike you so much that you got murdered.
+            </p>
+        </div>,
+        ending: {
+            id: "murdered-irl",
+            name: "Murdered IRL",
+            description: "Get died.",
+        },
+        contributor: "Durvenson"
+    },
+    hash_truck_find_potato: {
+        prompt: () => <div>
+            <p>
+                The potato is fine.
+            </p>
+        </div>,
+        options: [
+            { text: "Go back", to: "hash_truck_find" },
         ],
         contributor: "Durvenson"
     },
