@@ -13,7 +13,7 @@ body {
 }
 
 ::-webkit-scrollbar {
-    background: transparent;
+    background: #161616;
 }
 ::-webkit-scrollbar-thumb {
     background: rgb(255, 255, 255);

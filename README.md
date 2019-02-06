@@ -25,6 +25,11 @@ Basic Development
 
 Production Build
   - `npm run build` builds a production build into `./dist`
+  - `npm run package` packages the bundled `./dist` into an electron program
+  - `npm run package-all` packages the bundled `./dist` into an electron program for all platforms
+  
+  - `npm run build-package` runs `build` and `package`
+  - `npm run build-all` runs `build` and `package-all`
 
 ESLint and Code Style
   - `npm run lint` runs eslint

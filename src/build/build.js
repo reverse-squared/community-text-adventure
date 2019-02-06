@@ -35,6 +35,15 @@ const endingScenes = Object.keys(scenes).filter(x => scenes[x].ending).map(x => 
 const dist_folder = path.join(__dirname, "../../", p_output_directory);
 fs.ensureDirSync(dist_folder);
 
+fs.copyFileSync(path.join(__dirname, "../electron/electron.js"), path.join(dist_folder, "electron.js"));
+const packjson = fs.readJSONSync(path.join(__dirname, "../../package.json"));
+fs.writeJSONSync(path.join(dist_folder, "package.json"), {
+    name: packjson.name,
+    version: packjson.version,
+    description: packjson.description,
+    main: "./electron.js",
+});
+
 // run `webpack --mode production`
 const config = require("../../webpack.config.js")({
     production: true,
