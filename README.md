@@ -1,6 +1,6 @@
 # community-text-adventure
-![status](https://img.shields.io/badge/status-active-brightgreen.svg)
-![maintained](https://img.shields.io/badge/maintained-yes-brightgreen.svg)
+![status](https://img.shields.io/badge/status-complete-brightgreen.svg)
+![maintained](https://img.shields.io/badge/maintained-no%20(as%20of%202019)-red.svg)
 
 [![GitHub issues](https://img.shields.io/github/issues/WeAreDevs/community-text-adventure.svg)](https://github.com/WeAreDevs/community-text-adventure)
 [![GitHub pull requests](https://img.shields.io/github/issues-pr/WeAreDevs/community-text-adventure.svg)](https://github.com/WeAreDevs/community-text-adventure)
