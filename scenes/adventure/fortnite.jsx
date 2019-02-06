@@ -13,7 +13,7 @@ addScenes({
         options: [
             { text: "Try to get off", to: "adventure_fortnite_get_off" },
             { text: "Ask what the hell is going on", to: "adventure_fortnite_question" },
-            { text: "Play some Fortnite™ Mobile", to: "" },
+            { text: "Play some Fortnite™ Mobile", to: "adventure_fortnite_question_mobile" },
             { text: "Play some of this IRL Fortnite or whatever is happening", to: "adventure_fortnite_leave" },
         ],
         contributor: "Dave"
@@ -27,10 +27,24 @@ addScenes({
         options: [
             { text: "Try to get off", to: "adventure_fortnite_get_off" },
             { text: "Ask what the hell is going on", to: "adventure_fortnite_question", disabledText: true, if: () => false },
-            { text: "Play some Fortnite™ Mobile", to: "" },
-            { text: "Play some of this IRL Fortnite or whatever is happening", to: "" },
+            { text: "Play some Fortnite™ Mobile", to: "adventure_fortnite_question_mobile" },
+            { text: "Play some of this IRL Fortnite or whatever is happening", to: "adventure_fortnite_leave" },
         ],
         contributor: "Dave"
+    },
+    adventure_fortnite_question_mobile: {
+        prompt: () => <div>
+            <p>
+                You are stripped of the phone because this is Fortnite.
+            </p>
+        </div>,
+        options: [
+            { text: "Try to get off", to: "adventure_fortnite_get_off" },
+            { text: "Ask what the hell is going on", to: "adventure_fortnite_question", disabledText: true, if: () => false },
+            { text: "Play some Fortnite™ Mobile", to: "adventure_fortnite_question_mobile", disabledText: true, if: () => false },
+            { text: "Play some of this IRL Fortnite or whatever is happening", to: "adventure_fortnite_leave" },
+        ],
+        contributor: "Durvenson"
     },
     adventure_fortnite_get_off: {
         prompt: () => <div>
@@ -49,7 +63,7 @@ addScenes({
         </div>,
         options: [
             { text: "Activate your glider", to: "adventure_fortnite_leave_glide" },
-            { text: "Keep falling", to: "" },
+            { text: "Keep falling", to: "adventure_fortnite_leave_where" },
             { text: "Disconnect from the game", to: "adventure_fortnite_leave_game" },
         ],
         contributor: "Hunter"
@@ -66,6 +80,20 @@ addScenes({
             description: "Hey at least it’s better than default dance.",
         },
         contributor: "Alchemyking"
+    },
+    adventure_fortnite_leave_where: {
+        prompt: () => <div>
+            <p>
+                Where to chief?
+            </p>
+        </div>,
+        options: [
+            { text: "Tilted Towers", to: "adventure_fortnite_leave_glide" },
+            { text: "Tilted Towers", to: "adventure_fortnite_leave_glide" },
+            { text: "Tilted Towers", to: "adventure_fortnite_leave_glide" },
+            { text: "Tilted Towers", to: "adventure_fortnite_leave_glide" },
+            { text: "Tilted Towers", to: "adventure_fortnite_leave_glide" }
+        ]
     },
     adventure_fortnite_leave_game: {
         prompt: () => <div>

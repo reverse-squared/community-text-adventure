@@ -159,13 +159,15 @@ addScenes({
     minecraft_mine: {
         prompt: () => <div>
             <p>
-                TODO: GO MINING
+                You went to go mine for some <Diamonds /> and you mined mine straight down. You fell into a large lava pit and died.
             </p>
-            <InventoryDisplay />
         </div>,
-        options: () => [
-            ...craftingOptionsWithLink("minecraft_mine")
-        ]
+        ending: {
+            id: "mine-down",
+            name: "Don't Mine Straight Down",
+            description: "That's like the first rule you ever learn. How did you even fail?",
+        },
+        contributor: "Hunter"
     },
     minecraft_craft: {
         prompt: () => <div>
