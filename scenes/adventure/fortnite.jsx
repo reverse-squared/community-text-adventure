@@ -68,19 +68,6 @@ addScenes({
         ],
         contributor: "Hunter"
     },
-    adventure_fortnite_leave2: {
-        prompt: () => <div>
-            <p>
-                You fall a little more.
-            </p>
-        </div>,
-        options: [
-            { text: "Activate your glider", to: "adventure_fortnite_leave_glide" },
-            { text: "Keep falling", to: "" },
-            { text: "Disconnect from the game", to: "adventure_fortnite_leave_game" },
-        ],
-        contributor: "Dave"
-    },
     adventure_fortnite_leave_glide: {
         prompt: () => <div>
             <p>
@@ -106,7 +93,8 @@ addScenes({
             { text: "Tilted Towers", to: "adventure_fortnite_leave_glide" },
             { text: "Tilted Towers", to: "adventure_fortnite_leave_glide" },
             { text: "Tilted Towers", to: "adventure_fortnite_leave_glide" }
-        ]
+        ],
+        contributor: "Hunter"
     },
     adventure_fortnite_leave_game: {
         prompt: () => <div>

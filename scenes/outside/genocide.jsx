@@ -75,12 +75,36 @@ addScenes({
             <p>What do you do with it?</p>
         </div>,
         options: [
-            { text: "Throw it in the furnace", to: "", action: () => geno_haschickencorpse = false },
-            { text: "Eat it", to: "", action: () => geno_haschickencorpse = false },
+            { text: "Throw it in the furnace", to: "genocide_chicken_kill_burn", action: () => geno_haschickencorpse = false },
+            { text: "Eat it", to: "genocide_chicken_kill_eat", action: () => geno_haschickencorpse = false },
             { text: "Give it to the dogs", to: "genocide_chicken_kill_dogs", action: () => geno_haschickencorpse = false },
             { text: "Keep it", to: "genocide_main" },
         ],
         action: () => geno_haschickencorpse = true,
+        contributor: "Hunter"
+    },
+    genocide_chicken_kill_burn: {
+        prompt: () => <div>
+            <p>
+                You throw the chicken in the furnace to cook it, but somehow, the furnace is burning. You died, and also, the 5 people around you died.
+            </p>
+        </div>,
+        ending: {
+            id: "overly-burnt",
+            name: "Overly Burnt",
+            description: "Cook chicken for WAY too long (and kill yourself).",
+        },
+        contributor: "Durvenson and Hunter"
+    },
+    genocide_chicken_kill_eat: {
+        prompt: () => <div>
+            <p>You eat the chicken, but it's raw, and you die.</p>
+        </div>,
+        ending: {
+            id: "raw-chicken",
+            name: "Raw Chicken",
+            description: "Always cook chicken to 165° Fahrenheit.",
+        },
         contributor: "Hunter"
     },
     genocide_chicken_act: {
@@ -97,10 +121,13 @@ addScenes({
     },
     genocide_chicken_keep: {
         prompt: () => <div>
-            <p>TODO: Chicken</p>
+            <p>You keep the chicken as a pat and you both live happily ever after/</p>
         </div>,
-        options: [
-        ],
+        ending: {
+            id: "chicken-pat",
+            name: "Unusual Pet",
+            description: "Chickens CAN be pets.",
+        },
         contributor: "Hunter"
     },
     genocide_chicken_kill_dogs: {
@@ -157,11 +184,22 @@ addScenes({
             <p>Oh shit! The FBI is here and they are ready to kick your ass! What do you do?</p>
         </div>,
         options: [
-            { text: "Get arrested", to: "" },
-            { text: "Run away", to: "" },
+            { text: "Get arrested", to: "jail_caught_murder" },
+            { text: "Run away", to: "run_from_hospital" },
             { text: "Kill 'em", to: "genocide_human_stab_killem" }
         ],
         contributor: "Durvenson"
+    },
+    jail_caught_murder: {
+        prompt: () => <div>
+            <p>You decided to turn yourself in. You got arrested in jail and sentanced to 37 more years for muder.</p>
+        </div>,
+        ending: {
+            id: "jail-37-years-3",
+            name: "Arrested for Murder",
+            description: "You didn't even try to run?"
+        },
+        contributor: "Hunter"
     },
     genocide_human_stab_killem: {
         prompt: () => <div>

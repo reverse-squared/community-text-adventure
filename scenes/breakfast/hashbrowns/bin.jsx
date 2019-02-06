@@ -176,15 +176,28 @@ addScenes({
     },
     hash_fuckingbig_friends: {
         prompt: () => <div>
-            <p>Play on it with friends: You are lonely, and you have no friends. You start to feel kind of "depressed".</p>
+            <p>You are lonely, and you have no friends. You start to feel kind of "depressed".</p>
         </div>,
         options: [
-            { text: "Hire robots to play with", to: "" },
-            { text: "Play something else", to: "" },
-            { text: "Don't play anything", to: "" },
-            { text: "Go to the neighborhood and make some friends there", to: "" }
+            { text: "Hire robots to play with", to: "hash_fuckingbig_friends_depression" },
+            { text: "Play something else", to: "hash_fuckingbig_friends_depression" },
+            { text: "Don't play anything", to: "hash_fuckingbig_friends_depression" },
+            { text: "Go to the neighborhood and make some friends there", to: "hash_fuckingbig_friends_depression" }
         ],
         contributor: "Durvenson"
+    },
+    hash_fuckingbig_friends_depression: {
+        prompt: () => <div>
+            <p>
+                No matter how hard you try, you cannot cure your depression.
+            </p>
+        </div>,
+        ending: {
+            id: "depresssss",
+            name: "Depression",
+            description: "Some people have no friends... some people have no food...",
+        },
+        contributor: "Hunter"
     },
     hash_truck_find_coke: {
         prompt: () => <div>
@@ -193,23 +206,12 @@ addScenes({
         options: [
             { text: "Drink it", to: "hash_truck_find_coke_drink" },
             { text: "Throw it into the water", to: "jillion" },
-            { text: "Do nothing", to: "hash_truck_find_coke_nothing" },
+            { text: "Do nothing", to: "hash_truck_find_coke" },
             { text: "M E N T O S", to: "hash_truck_find_coke_mentos" }
         ],
         contributor: "Durvenson"
     },
-    hash_truck_find_coke_mentos: {
-        prompt: () => <div>
-            <p>It has some coke in it, and it is diet.</p>
-        </div>,
-        options: [
-            { text: "Drink it", to: "hash_truck_find_coke_drink" },
-            { text: "Throw it into the water", to: "jillion" },
-            { text: "Do nothing", to: null, if: () => false, disabledText: true },
-            { text: "M E N T O S", to: "hash_truck_find_coke_mentos" }
-        ],
-        contributor: "Durvenson"
-    },
+    
     jillion: {
         prompt: () => <div>
             <p>

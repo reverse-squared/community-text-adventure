@@ -487,10 +487,21 @@ addScenes({
         </div>,
         options: [
             { text: "Go back in the castle", to: "hash_potatokart_blj_leave" },
-            { text: "Try to get in the moat while the water level is still high", to: "" },
+            { text: "Try to get in the moat while the water level is still high", to: "hash_potatokart_blj_leave_outside_moat" },
             { text: "Yolo to get to the roof", to: "hash_potatokart_blj_leave_outside_yolo" }
         ],
         contributor: "Durvenson"
+    },
+    hash_potatokart_blj_leave_outside_moat: {
+        prompt: () => <div>
+            <p>It didn't work.</p>
+        </div>,
+        options: [
+            { text: "Go back in the castle", to: "hash_potatokart_blj_leave" },
+            { text: "Try to get in the moat while the water level is still high", to: "hash_potatokart_blj_leave_outside_moat", disabledText: true, if: () => false },
+            { text: "Yolo to get to the roof", to: "hash_potatokart_blj_leave_outside_yolo" }
+        ],
+        contributor: "Hunter"
     },
     hash_potatokart_blj_leave_outside_yolo: {
         prompt: () => <div>
@@ -660,7 +671,19 @@ addScenes({
         ],
         contributor: "Durvenson"
     },
-
+    smoke_the_one_ups_yes: {
+        prompt: () => <div>
+            <p>
+                You vaped the one-ups and you got 99 lives.
+            </p>
+        </div>,
+        ending: {
+            id: "more-than-cat",
+            name: "More Lives than a Cat",
+            description: "Get 90 more lives than a cat.",
+        },
+        contributor: "Hunter"
+    },
     // #endregion
 
     // #region Standing
