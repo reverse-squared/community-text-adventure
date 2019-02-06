@@ -2,10 +2,8 @@ const createConfig = require("./src/build/webpack-config-types");
 const path = require("path");
 const webpack = require("webpack");
 const packageJson = require("./package.json");
-const TerserPlugin = require("terser-webpack-plugin");
 const HTMLWebpackPlugin = require("html-webpack-plugin");
 const ChunkRenamePlugin = require("./src/build/webpack-emoji-plugin");
-const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 
 module.exports = (env = { production: false, extraDefines: {} }, argv) => createConfig({
     entry: "./src/js/loader.jsx",
@@ -71,51 +69,6 @@ module.exports = (env = { production: false, extraDefines: {} }, argv) => create
     },
     mode: env.production ? "production" : "development",
     devtool: env.production ? "none" : "inline-source-map",
-    optimization: {
-        minimizer: [
-            // new TerserPlugin({
-            //     cache: true,
-            //     parallel: true,
-            //     terserOptions: {
-            //         ecma: 8,
-            //         warnings: false,
-            //         parse: {},
-            //         compress: {
-            //             arguments: true,
-            //             drop_console: env.production,
-            //             drop_debugger: env.production,
-            //             ecma: 8,
-            //             passes: env.production ? 25 : 1,
-            //             toplevel: true,
-            //             unsafe: true,
-            //             unsafe_arrows: true,
-            //             unsafe_comps: true,
-            //             unsafe_Function: true,
-            //             unsafe_math: true,
-            //             unsafe_methods: true,
-            //             unsafe_proto: true,
-            //             unsafe_regexp: true,
-            //             unsafe_undefined: true,
-            //         },
-            //         mangle: {
-            //             eval: true,
-            //             keep_classnames: false,
-            //             keep_fnames: false,
-            //             toplevel: true,
-            //             safari10: false,
-            //         },
-            //         module: false,
-            //         output: null,
-            //         toplevel: true,
-            //         nameCache: null,
-            //         ie8: false,
-            //         keep_classnames: false,
-            //         keep_fnames: false,
-            //         safari10: false,
-            //     },
-            // }),
-        ],
-    },
     resolve: {
         alias: {
             "@templates": __dirname + "/templates/",
