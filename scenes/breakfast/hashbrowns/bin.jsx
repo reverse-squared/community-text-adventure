@@ -192,11 +192,36 @@ addScenes({
         </div>,
         options: [
             { text: "Drink it", to: "hash_truck_find_coke_drink" },
-            { text: "Throw it into the water", to: "" },
-            { text: "Do nothing", to: "" },
+            { text: "Throw it into the water", to: "jillion" },
+            { text: "Do nothing", to: "hash_truck_find_coke_nothing" },
             { text: "M E N T O S", to: "hash_truck_find_coke_mentos" }
         ],
         contributor: "Durvenson"
+    },
+    hash_truck_find_coke_mentos: {
+        prompt: () => <div>
+            <p>It has some coke in it, and it is diet.</p>
+        </div>,
+        options: [
+            { text: "Drink it", to: "hash_truck_find_coke_drink" },
+            { text: "Throw it into the water", to: "jillion" },
+            { text: "Do nothing", to: null, if: () => false, disabledText: true },
+            { text: "M E N T O S", to: "hash_truck_find_coke_mentos" }
+        ],
+        contributor: "Durvenson"
+    },
+    jillion: {
+        prompt: () => <div>
+            <p>
+                You are sentenced to a jillion years in prison for the overly specific crime of "tampering with the national beverage."
+            </p>
+        </div>,
+        ending: {
+            id: "jillion",
+            name: "A Jillion Years",
+            description: "By the time you get out of jail, you’ll be older than the universe.",
+        },
+        contributor: "Alchemyking"
     },
     hash_truck_find_coke_drink: {
         prompt: () => <div>

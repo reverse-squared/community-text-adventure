@@ -501,7 +501,7 @@ addScenes({
             { text: "Maybe", to: "hash_potatokart_blj_leave_outside_yolo_yes" },
             { text: "Some of them", to: "hash_potatokart_blj_leave_outside_yolo_some" },
             { text: "I guess", to: "i_guess" },
-            { text: "A little bit of them", to: "" },
+            { text: "A little bit of them", to: "alittlebitofthem" },
             { text: "No", to: "hash_potatokart_blj_leave_outside_yolo_no" },
             { text: "Nope", to: "hash_potatokart_blj_leave_outside_yolo_no" },
             { text: "Never", to: "nevergonnagiveyoufuckingup" },
@@ -509,6 +509,17 @@ addScenes({
             { text: "It's time to stop", to: "elem_tts" },
             { text: "GET OUT OF MY SWAMP", to: "elem_shrak" },
             { text: "These are supicious", to: "hash_potatokart_blj_leave_outside_yolo_yes" }
+        ],
+        contributor: "Durvenson"
+    },
+    alittlebitofthem: {
+        prompt: () => <div>
+            <p>Actually, you find out that they are cocaine after eating the first one, should you smoke it?4286f4</p>
+        </div>,
+        options: [
+            { text: "Yes", to: "smoke_the_one_ups_yes" },
+            { text: "No", to: "smoke_the_one_ups_fbi" },
+            { text: "I DON'T WANT THE FBI TO BE HERE", to: "smoke_the_one_ups_fbi" },
         ],
         contributor: "Durvenson"
     },
@@ -559,7 +570,7 @@ addScenes({
         </div>,
         options: [
             { text: "Yes", to: "smoke_the_one_ups_yes" },
-            { text: "No", to: "smoke_the_one_ups_nah" },
+            { text: "No", to: "smoke_the_one_ups_fbi" },
             { text: "I DON'T WANT THE FBI TO BE HERE", to: "smoke_the_one_ups_fbi" },
         ],
         contributor: "Durvenson"

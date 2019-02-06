@@ -70,6 +70,11 @@ addScenes({
             { text: "Check the time", to: "wakeup_check_time" }
         ],
 
+        action: () => {
+            resetFlags();
+            collect200 = true;
+        },
+
         contributor: "Dave"
     },
     // #endregion
@@ -362,6 +367,9 @@ addScenes({
             { text: "Chocolate", to: "make_chocolate_pancakes" },
             { text: "Peanut butter", to: "make_pb_pancakes" }
         ],
+        action: () => {
+            startedPancakes = true;
+        },
         contributor: "Dave"
     },
     //#endregion

@@ -212,25 +212,113 @@ addScenes({
         </div>,
         options: [
             { text: "Sue the Baking Chocolate company", to: "baker_chocolate_sue" },
-            { text: "Throw away the pancakes", to: "" },
+            { text: "Throw away the pancakes", to: "throw_pancakes_away" },
             { text: "Top the pancakes with actual chocolate to hide it’s disgustingness", to: "make_chocolate_top_them" },
-            { text: "Yell", to: "" },
-            { text: "Cry because your breakfast was ruined", to: "" },
+            { text: "Yell", to: "baker_chocolate_yell" },
+            { text: "Cry because your breakfast was ruined", to: "cry_cause_breakfast" },
         ],
         contributor: null,
     },
     baker_chocolate_sue: {
         prompt: () => <div>
-            <p>Your lawsuit didn't do anything, because you were stupid and didn't realize that it was expired. Also, you didn't heat the pancakes correctly.The case was dismissed. How will you handle this?</p>
+            <p>Your lawsuit didn't do anything, because you were stupid and didn't realize that it was expired. Also, you didn't heat the pancakes correctly. The case was dismissed. How will you handle this?</p>
         </div>,
         options: [
-            { text: "Protest against the court", to: "" },
+            { text: "Protest against the court", to: "sue_protest" },
             { text: "Question your intelligence", to: "question_existance" },
-            { text: "Try again", to: "" },
-            { text: "Just move on", to: "" },
-            { text: "Lasagna", to: "" }
+            { text: "Try again", to: "sue_protest" },
+            { text: "Just move on", to: "sue_moveon" },
         ],
         contributor: "Durvenson and Neema"
+    },
+    sue_protest: {
+        prompt: () => <div>
+            <p>
+                Again, your protest did nothing, you are stupid and didn't realize that it was expired. Also, you didn't heat the pancakes correctly. The case was dismissed. How will you handle this?
+            </p>
+        </div>,
+        options: [
+            { text: "Question your intelligence", to: "question_existance" },
+            { text: "Just move on", to: "sue_moveon" },
+        ],
+        contributor: "Dave",
+    },
+    sue_moveon: {
+        prompt: () => <div>
+            <p>
+                Okay, now what
+            </p>
+        </div>,
+        options: [
+            { text: "Sue the Baking Chocolate company", to: "baker_chocolate_sue" },
+            { text: "Throw away the pancakes", to: "throw_pancakes_away" },
+            { text: "Top the pancakes with actual chocolate to hide it’s disgustingness", to: "make_chocolate_top_them" },
+            { text: "Yell", to: "baker_chocolate_yell" },
+            { text: "Cry because your breakfast was ruined", to: "cry_cause_breakfast" },
+        ],
+        contributor: "Dave",
+    },
+    baker_chocolate_yell: {
+        prompt: () => <div>
+            <p>
+                You yell so hard you lose your voice, lmao.
+            </p>
+        </div>,
+        contributor:"Dave",
+        ending: {
+            id: "yell-loudly",
+            name: "Lose Your Voice",
+            description: "That was a loud yell.",
+        }
+    },
+    cry_cause_breakfast: {
+        prompt: () => <div>
+            <p>
+                You start crying
+            </p>
+            <p style={{ whiteSpace:"pre-line" }}>{`Dictionary result for cry
+/krī/Submit
+
+verb
+
+1.
+shed tears, typically as an expression of distress, pain, or sorrow.
+"don't cry—it'll be all right"
+synonyms:	weep, shed tears, sob, wail, be in tears, cry one's eyes out, cry one's heart out, cry as if one's heart would break, bawl, howl, snivel, whimper, whine, squall, mewl, bleat; More
+
+2.
+shout or scream, typically to express fear, pain, or grief.
+"the little girl fell down and cried for her mommy"
+synonyms:	call, shout, exclaim, sing out, yell, shriek, scream, screech, bawl, bellow, roar, whoop; More
+
+noun
+
+1.
+a loud inarticulate shout or scream expressing a powerful feeling or emotion.
+"a cry of despair"
+synonyms:	call, shout, exclamation, yell, shriek, scream, screech, bawl, bellow, roar, whoop; More
+
+2.
+the loud characteristic call of a bird or other animal.`}</p>
+            <p>
+    so sad, now what.
+            </p>
+        </div>,
+        options: [
+            { text: "Find something else to eat", to: "wakeup_breakfast" },
+        ],
+        contributor: "Dave"
+    },
+    throw_pancakes_away: {
+        prompt: () => <div>
+            <p>
+                Oh well, not all breakfasts will be successful.
+            </p>
+        </div>,
+        options: [
+            { text: "Find something else to eat", to: "wakeup_breakfast" },
+        ],
+        contributor: "Dave"
     },
     question_existance: {
         prompt: () => <div>

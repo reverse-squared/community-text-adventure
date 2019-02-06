@@ -5,6 +5,7 @@ const packageJson = require("./package.json");
 const TerserPlugin = require("terser-webpack-plugin");
 const HTMLWebpackPlugin = require("html-webpack-plugin");
 const ChunkRenamePlugin = require("./src/build/webpack-emoji-plugin");
+const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 
 module.exports = (env = { production: false, extraDefines: {} }, argv) => createConfig({
     entry: "./src/js/loader.jsx",
@@ -28,6 +29,10 @@ module.exports = (env = { production: false, extraDefines: {} }, argv) => create
         new HTMLWebpackPlugin({ template: "./src/index.html" }),
         new ChunkRenamePlugin({
             chunkFilename: "[emoji:6].js",
+        }),
+        new BundleAnalyzerPlugin({
+            analyzerMode: "static",
+            openAnalyzer: false
         }),
     ],
     module: {

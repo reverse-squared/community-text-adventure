@@ -8,6 +8,8 @@ addFlag("inventoryData", {});
 addFlag("recipeData", []);
 addFlag("fromScene", "none");
 
+const Diamonds = () => <span style={{color: "#55FFFF"}}>Diamonds</span>;
+
 const itemToName = {
     log: "Oak Log",
     stick: "Stick",
