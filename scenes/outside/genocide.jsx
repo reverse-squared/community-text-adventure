@@ -16,6 +16,7 @@ addFlag("facebook", false);
 addFlag("youtube", false);
 addFlag("twitter", false);
 addFlag("chan", false);
+addFlag("writeIt", false);
 
 addScenes({
     genocide_main: {
@@ -301,7 +302,7 @@ addScenes({
             { text: "YouTube", to: "genocide_unicorn_no_youtube", disabledText: "YouTube", if: () => !youtube, action: () => youtube = true },
             { text: "4chan", to: "genocide_unicorn_no_4chan", disabledText: "4chan", if: () => !chan, action: () => chan = true },
             { text: "Discord", to: "genocide_unicorn_no_discord" },
-            { text: "Write It", to: "genocide_unicorn_no_write" },
+            { text: "Write It", to: "genocide_unicorn_no_write", disabledText: true, if: () => writeIt, action: () => writeIt = true, },
             { text: "Snapchat", to: "genocide_unicorn_no_snapchat" },
             { text: "Instagram", to: "genocide_unicorn_no_instagram" }
         ],
@@ -319,7 +320,7 @@ addScenes({
             { text: "YouTube", to: "genocide_unicorn_no_youtube", disabledText: "YouTube", if: () => !youtube, action: () => youtube = true },
             { text: "4chan", to: "genocide_unicorn_no_4chan", disabledText: "4chan", if: () => !chan, action: () => chan = true },
             { text: "Discord", to: "genocide_unicorn_no_discord" },
-            { text: "Write It", to: "genocide_unicorn_no_write" },
+            { text: "Write It", to: "genocide_unicorn_no_write", disabledText: true, if: () => writeIt, action: () => writeIt = true, },
             { text: "Snapchat", to: "genocide_unicorn_no_snapchat" },
             { text: "Instagram", to: "genocide_unicorn_no_instagram" }
         ],
@@ -337,7 +338,7 @@ addScenes({
             { text: "YouTube", to: "genocide_unicorn_no_youtube", disabledText: "YouTube", if: () => !youtube, action: () => youtube = true },
             { text: "4chan", to: "genocide_unicorn_no_4chan", disabledText: "4chan", if: () => !chan, action: () => chan = true },
             { text: "Discord", to: "genocide_unicorn_no_discord" },
-            { text: "Write It", to: "genocide_unicorn_no_write" },
+            { text: "Write It", to: "genocide_unicorn_no_write", disabledText: true, if: () => writeIt, action: () => writeIt = true, },
             { text: "Snapchat", to: "genocide_unicorn_no_snapchat" },
             { text: "Instagram", to: "genocide_unicorn_no_instagram" }
         ],
@@ -355,7 +356,7 @@ addScenes({
             { text: "YouTube", to: "genocide_unicorn_no_youtube", disabledText: "YouTube", if: () => !youtube, action: () => youtube = true },
             { text: "4chan", to: "genocide_unicorn_no_4chan", disabledText: "4chan", if: () => !chan, action: () => chan = true },
             { text: "Discord", to: "genocide_unicorn_no_discord" },
-            { text: "Write It", to: "genocide_unicorn_no_write" },
+            { text: "Write It", to: "genocide_unicorn_no_write", disabledText: true, if: () => writeIt, action: () => writeIt = true, },
             { text: "Snapchat", to: "genocide_unicorn_no_snapchat" },
             { text: "Instagram", to: "genocide_unicorn_no_instagram" }
         ],
@@ -373,7 +374,7 @@ addScenes({
             { text: "YouTube", to: "genocide_unicorn_no_youtube", disabledText: "YouTube", if: () => !youtube, action: () => youtube = true },
             { text: "4chan", to: "genocide_unicorn_no_4chan", disabledText: "4chan", if: () => !chan, action: () => chan = true },
             { text: "Discord", to: "genocide_unicorn_no_discord" },
-            { text: "Write It", to: "genocide_unicorn_no_write" },
+            { text: "Write It", to: "genocide_unicorn_no_write", disabledText: true, if: () => writeIt, action: () => writeIt = true, },
             { text: "Snapchat", to: "genocide_unicorn_no_snapchat" },
             { text: "Instagram", to: "genocide_unicorn_no_instagram" }
         ],

@@ -517,11 +517,38 @@ addScenes({
             <p>I don't know about you, but it looks <i style={{fontWeight: "bold"}}>A LOT</i> like <span style={{color: "green"}}>weed</span> to me.</p>
         </div>,
         options: [
-            { text: "Call the Police", to: "" },
-            { text: "Do Literally Nothing", to: "" },
-            { text: "\"Officer, He's Over Here\"", to: "" } 
+            { text: "Call the Police", to: "meme_weed_police" },
+            { text: "Do Literally Nothing", to: "meme_weed_nothing" },
+            { text: "\"Officer, He's Over Here\"", to: "meme_weed_police" } 
         ],
         contributor: "Hunter"
-    }
+    },
+
+    meme_weed_police: {
+        prompt: () => <div>
+            <p>
+            You call the police on Kris. He’s in jail now. You are now the police’s friend.
+            </p>
+        </div>,
+        ending: {
+            id: "criminals-lmao",
+            name: "Criminals Hate You",
+            description: "Ally yourself with the police.",
+        },
+        contributor: "Alchemyking"
+    },
+    meme_weed_nothing: {
+        prompt: () => <div>
+            <p>
+            Instead of ratting Kris out, you go inside and watch Touhou videos all day. Unfortunately, you stumbled upon Ronald McDonald Insanity, and you go insane, dress yourself up as Ronald McDonald, and pose in front of your mirror while speaking Japanese. You are hauled off to the asylum.
+            </p>
+        </div>,
+        ending: {
+            id: "fucking-love-it",
+            name: "I'm Loving It",
+            description: "Go insane and dress up as Ronald McDonald. At least it beats getting frozen by a stupid ice fairy.",
+        },
+        contributor: "Alchemyking"
+    },
     // #endregion
 });

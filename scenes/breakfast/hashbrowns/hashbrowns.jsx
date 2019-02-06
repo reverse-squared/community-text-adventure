@@ -285,7 +285,7 @@ addScenes({
     },
     hash_sue: {
         prompt: () => <div>
-            <p>You tell him that you are going to sue him. He says, "bet no proof." What now?</p>
+            <p>You tell {suefrompancakes ? "them" : "him"} that you are going to sue {suefrompancakes ? "them" : "him"}. {suefrompancakes ? "They say" : "He says"} "bet no proof." What now?</p>
         </div>,
         options: [
             { text: "Sue", to: "hash_sue2" },
@@ -298,7 +298,7 @@ addScenes({
     },
     hash_sue2: {
         prompt: () => <div>
-            <p>You sue the guy and win.</p>
+            <p>You sue {suefrompancakes ? "the company" : "the guy"} and win.</p>
         </div>,
         ending: {
             id: "hash-sue",

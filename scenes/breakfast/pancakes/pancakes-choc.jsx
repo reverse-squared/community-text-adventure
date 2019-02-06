@@ -33,6 +33,8 @@ function EvaluateEdgyness() {
     }
 }
 
+addFlag("suefrompancakes", false);
+
 addScenes({
     // #region Chocolate Pancakes
     make_chocolate_pancakes: {
@@ -285,13 +287,55 @@ addScenes({
             </p>
         </div>,
         options: [
-            { text: "Chocolate + Butter", to: "" },
+            { text: "Chocolate + Butter", to: "chocolate_butter" },
             { text: "Cocoa + Butter", to: "pancakes_white_chocolate_butter" },
             { text: "Chocolate + Milk", to: "pancakes_white_chocolate_milk" },
             { text: "Chocolate + Cocaine", to: "pancakes_white_chocolate_cocaine" },
             { text: "Fuck it, just use DARK chocolate", to: "edgy_pancakes" },
         ],
         contributor: "Neema"
+    },
+
+    chocolate_butter: {
+        prompt: () => <div>
+            <p>
+                You find out that Chocoalte + Butter makes Nutella, what shall you do with this newly discovered trick.
+            </p>
+        </div>,
+        options: [
+            { text: "Share it with the world", to: "choc_share" },
+            { text: "Keep it a secret", to: "choc_save" },
+        ],
+        contributor: "Dave"
+    },
+    choc_share: {
+        prompt: () => <div>
+            <p>
+                You share it with the world, and they sue you for it.
+            </p>
+        </div>,
+        action: () => {
+            suefrompancakes = true;
+        },
+        options: [
+            { text: "Sue back", to: "hash_sue" },
+            { text: "Get sued", to: "hash_get_sued" },
+            { text: "Throw a No U", to: "sue_nou" },
+        ],
+        contributor: "Dave"
+    },
+    choc_save: {
+        prompt: () => <div>
+            <p>
+                You save the secret recipe, forever.
+            </p>
+        </div>,
+        ending: {
+            id: "secret-formula",
+            name: "The Secret Formula",
+            description: "...to making Nutella!",
+        },
+        contributor: "Dave"
     },
     
     // #region Edgy
