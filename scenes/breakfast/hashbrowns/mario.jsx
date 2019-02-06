@@ -519,8 +519,11 @@ addScenes({
             </p>
         </div>,
         options: [
-            
-        ]
+            { text: "Play the Price is Right", to: "price_pre" },
+            { text: "Play on your phone", to: "phone_start" },
+        ],
+        action: () => phoneFromSafe,
+        contributor: "Dave"
     },
     i_guess: {
         prompt: () => <div>

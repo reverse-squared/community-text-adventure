@@ -123,7 +123,11 @@ addScenes({
                     prompt: () => <div>
                         <JeopardyHeader />
                         <p>
-                            And that would be '{question.options[0].text.replace(/^(What|Who|Where) is /g, "")}'.
+                            And that would be '{
+                                question.options[0].text.apply
+                                    ? question.options[0].text
+                                    : question.options[0].text.replace(/^(What|Who|Where) is /g, "")
+                            }'.
                         </p>
                         <p>
                             <span style={{ color: "red" }}>-{formatMoney(price)}</span>
