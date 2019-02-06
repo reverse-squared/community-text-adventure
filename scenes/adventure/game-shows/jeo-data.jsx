@@ -80,27 +80,27 @@ export default [
         questions: {
             200: {
                 question: () => <div>
-                    <p>Catagory 200</p>
+                    <p>What is the fastest speed of a Ford GT (2017) in Forza Horizon 3</p>
                 </div>,
                 options: [
-                    { text: "What is correct" },
-                    { text: "What is incorrect" },
-                    { text: "What is incorrect" },
-                    { text: "What is incorrect" },
+                    { text: "What is 216 MPH" },
+                    { text: "What is 247 MPH" },
+                    { text: "What is 197 MPH" },
+                    { text: "What is 223 MPH" },
                 ],
-                contributor: undefined,
+                contributor: "Hunter",
             },
             400: {
                 question: () => <div>
-                    <p>Catagory 400</p>
+                    <p>What can't you do in Mario Kart.</p>
                 </div>,
                 options: [
-                    { text: "What is correct" },
-                    { text: "What is incorrect" },
-                    { text: "What is incorrect" },
-                    { text: "What is incorrect" },
+                    { text: "What is die" },
+                    { text: "What is make someone lose because of a banana" },
+                    { text: "What is unlock everything" },
+                    { text: "What is drive" },
                 ],
-                contributor: undefined,
+                contributor: "Hunter",
             },
             600: {
                 question: () => <div>
@@ -116,27 +116,27 @@ export default [
             },
             800: {
                 question: () => <div>
-                    <p>Catagory 800</p>
+                    <p>In Fortnite, where does "Take the L" come from?</p>
                 </div>,
                 options: [
-                    { text: "What is correct" },
-                    { text: "What is incorrect" },
-                    { text: "What is incorrect" },
-                    { text: "What is incorrect" },
+                    { text: "What is Pennywise" },
+                    { text: "What is Donald Trump" },
+                    { text: "What is Ninja" },
+                    { text: "What is Lil' Pump" },
                 ],
-                contributor: undefined,
+                contributor: "Hunter",
             },
             1000: {
                 question: () => <div>
-                    <p>Catagory 1000</p>
+                    <p>Could you select your character in the original Doom?</p>
                 </div>,
                 options: [
-                    { text: "What is correct" },
-                    { text: "What is incorrect" },
-                    { text: "What is incorrect" },
-                    { text: "What is incorrect" },
+                    { text: "What is yes" },
+                    { text: "What is no" },
+                    { text: "What is only on some versions" },
+                    { text: "What is yes, but technically no" },
                 ],
-                contributor: undefined,
+                contributor: "Hunter",
             }
         }
     },
@@ -213,63 +213,63 @@ export default [
         questions: {
             200: {
                 question: () => <div>
-                    <p>Catagory 200</p>
+                    <p>Are 100% of all memes funny.</p>
                 </div>,
                 options: [
-                    { text: "What is correct" },
-                    { text: "What is incorrect" },
-                    { text: "What is incorrect" },
-                    { text: "What is incorrect" },
+                    { text: "What is no" },
+                    { text: "What is yes" },
+                    { text: "What is maybe" },
+                    { text: "What is uhhh" },
                 ],
-                contributor: undefined,
+                contributor: "Hunter",
             },
             400: {
                 question: () => <div>
-                    <p>Catagory 400</p>
+                    <p>What is the definition of "meme".</p>
                 </div>,
                 options: [
-                    { text: "What is correct" },
-                    { text: "What is incorrect" },
-                    { text: "What is incorrect" },
-                    { text: "What is incorrect" },
+                    { text: "What is an element of a culture or system of behavior that may be considered to be passed from one individual to another by nongenetic means, especially imitation" },
+                    { text: "What is causing laughter or amusement; humorous" },
+                    { text: "What is used to represent laughter or amusement" },
+                    { text: "What is a dish of Italian origin consisting of a flat, round base of dough baked with a topping of tomato sauce and cheese, typically with added meat or vegetables" },
                 ],
-                contributor: undefined,
+                contributor: "Hunter",
             },
             600: {
                 question: () => <div>
-                    <p>Catagory 600</p>
+                    <p>How Many Dislikes does the 2018 Rewind have as of 02/06/2019</p>
                 </div>,
                 options: [
-                    { text: "What is correct" },
-                    { text: "What is incorrect" },
-                    { text: "What is incorrect" },
-                    { text: "What is incorrect" },
+                    { text: "What is 15 Million" },
+                    { text: "What is 16 Million" },
+                    { text: "What is 14 Million" },
+                    { text: "What is -123 Million" },
                 ],
-                contributor: undefined,
+                contributor: "Hunter",
             },
             800: {
                 question: () => <div>
-                    <p>Catagory 800</p>
+                    <p>What was voted r/dankmemes meme of the year runner-up?</p>
                 </div>,
                 options: [
-                    { text: "What is correct" },
-                    { text: "What is incorrect" },
-                    { text: "What is incorrect" },
-                    { text: "What is incorrect" },
+                    { text: "What is Infinity War" },
+                    { text: "What is Phil Swift" },
+                    { text: "What is It Aint Much" },
+                    { text: "What is Suprised Pikachu" },
                 ],
-                contributor: undefined,
+                contributor: "Hunter",
             },
             1000: {
                 question: () => <div>
-                    <p>Catagory 1000</p>
+                    <p>What was voted r/dankmemes meme of the year?</p>
                 </div>,
                 options: [
-                    { text: "What is correct" },
-                    { text: "What is incorrect" },
-                    { text: "What is incorrect" },
-                    { text: "What is incorrect" },
+                    { text: "What is Stefán Karl Stefánsson" },
+                    { text: "What is Excuse me what the Fuck" },
+                    { text: "What is Why is the FBI here" },
+                    { text: "What is Google want to Know your Location" },
                 ],
-                contributor: undefined,
+                contributor: "Hunter",
             }
         }
     },
