@@ -3,6 +3,7 @@
   "version": "1.17.0",
   "description": "Text adventure made by the community.",
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
     "classnames": "^2.2.6",
     "grapheme-splitter": "^1.0.4",
     "mobile-detect": "^1.4.3",
@@ -25,8 +26,6 @@
     "chalk": "^2.4.2",
     "css-loader": "^2.1.0",
     "cssnano": "^4.1.8",
-    "electron": "^4.0.4",
-    "electron-zip-packager": "^4.0.2",
     "eslint": "^5.12.0",
     "eslint-plugin-react": "^7.12.3",
     "fs-extra": "^7.0.1",
@@ -47,6 +46,10 @@
     "webpack": "^4.28.3",
     "webpack-cli": "^3.2.0",
     "webpack-dev-server": "^3.1.14"
+  },
+  "optionalDependencies": {
+    "electron": "^4.0.4",
+    "electron-zip-packager": "^4.0.2"
   },
   "scripts": {
     "start": "webpack-dev-server",
