@@ -32,7 +32,7 @@ module.exports = (env = { production: false, extraDefines: {} }, argv) => create
         }),
         new BundleAnalyzerPlugin({
             analyzerMode: "static",
-            
+            openAnalyzer: false
         }),
     ],
     module: {
