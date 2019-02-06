@@ -438,7 +438,8 @@ addScenes({
             id: "time-correct",
             name: "Obidient Student",
             description: "Follow all instructions during your time travel lesson.",
-        }
+        },
+        contributor: "Dave"
     },
     te_btn: {
         prompt: () => <div>
@@ -450,7 +451,8 @@ addScenes({
             id: "time-2",
             name: "Probably on Mobile",
             description: "Enter zero inputs during the time travel lesson.",
-        }
+        },
+        contributor: "Dave"
     },
     te_run: {
         prompt: () => <div>
@@ -462,7 +464,8 @@ addScenes({
             id: "time-3",
             name: "Speedrunner",
             description: "Speedrun the time travel lesson.",
-        }
+        },
+        contributor: "Dave"
     },
     te_end: {
         prompt: () => <div>
@@ -474,7 +477,8 @@ addScenes({
             id: "time-4",
             name: "Messing Around",
             description: "Mess around during the time travel section.",
-        }
+        },
+        contributor: "Dave"
     },
     // #endregion
 });
