@@ -14,8 +14,10 @@
 
 A text adventure game decided by the people.
 
+[Play the game here](https://cta.davecode.me/)
+
 ## Contributors
-[View Here](http://text-adventure.netlify.com/#credits)
+[View Here](https://cta.davecode.me/#credits)
 
 ## NPM Scripts
 Basic Development

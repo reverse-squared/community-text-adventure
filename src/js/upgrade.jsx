@@ -1,8 +1,9 @@
 import { achieveEnding } from "./ending";
 export default function() {
     const upgrades = [
-        ["dev-text-adventure.netlify.com", "dev.cta.davecode.me"],
+        ["dev-text-adventure.netlify.com", "cta.davecode.me"],
         ["text-adventure.netlify.com", "cta.davecode.me"],
+        ["dev.cta.davecode.me", "cta.davecode.me"],
     ];
 
     if (location.hash.startsWith("#upgrade=")) {

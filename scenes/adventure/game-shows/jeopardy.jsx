@@ -7,6 +7,8 @@ import { formatMoney } from "@scenes/after-hospital/loan/loan";
 
 addFlag("jeopardyMoney", 0);
 addFlag("jeopardyQuestionsAnswered", []);
+addFlag("jeopardyQuestionsLeft", 10);
+addFlag("jeopardyCorrect", 0);
 
 function shuffle(a) {
     var j, x, i;
@@ -43,10 +45,10 @@ addScenes({
                 jeopardyQuestionsAnswered.length === 0
                     ? <React.Fragment>
                         <p>You stand behind your podium as Alex Trebek names off the categories...</p>
-                        <p>Which do you go for first?</p>
+                        <p>Since the other contestants called in sick, you are the only one here. You will only be able to answer 10 questions instead of the entire board.</p>
                     </React.Fragment>
                     : <React.Fragment>
-                        <p>Which do you go for next?</p>
+                        <p>You can answer {jeopardyQuestionsLeft} more questions, what do you go for next?</p>
                     </React.Fragment>    
             }
             
@@ -134,7 +136,7 @@ addScenes({
                         </p>
                     </div>,
                     options: [
-                        { text: "Continue", to: "jeopardy_start" },
+                        { text: "Continue", to: "jeopardy_decideend" },
                     ],
                     noContributor: true,
                 },
@@ -153,12 +155,40 @@ addScenes({
                         <span style={{ color: "lime" }}>+{formatMoney(price)}</span>
                     </p>
                 </div>,
+                action: () => {
+                    jeopardyCorrect++;
+                },
                 options: [
-                    { text: "Continue", to: "jeopardy_start" },
+                    { text: "Continue", to: "jeopardy_decideend" },
                 ],
                 noContributor: true,
             }
         };
-    }).reduce((obj,next) => ({...obj, ...next}), {})
+    }).reduce((obj,next) => ({...obj, ...next}), {}),
     // #endregion
+
+    jeopardy_decideend: {
+        prompt: () => <div />,
+        options: [],
+        noContributor: true,
+        excludeEmptyOptionsCheck: true,
+        action: () => {
+            if(jeopardyQuestionsLeft <= 0) {
+                // Ending
+                if(jeopardyMoney >= 9200) {
+                    setScene("je_profit");
+                } else if(jeopardyMoney === 0) {
+                    setScene("je_break_even");
+                } else if(jeopardyCorrect === 0) {
+                    setScene("je_failure");
+                } else if(jeopardyMoney > 0) {
+                    setScene("je_win");
+                } else {
+                    setScene("je_lose");
+                }
+            } else {
+                setScene("jeopardy_start");
+            }
+        },
+    }
 });
