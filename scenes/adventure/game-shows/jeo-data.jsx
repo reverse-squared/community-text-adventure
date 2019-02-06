@@ -104,15 +104,15 @@ export default [
             },
             600: {
                 question: () => <div>
-                    <p>Catagory 600</p>
+                    <p>What Game Is It Impossible To Get Five Fifty One In?</p>
                 </div>,
                 options: [
-                    { text: "What is correct" },
-                    { text: "What is incorrect" },
-                    { text: "What is incorrect" },
-                    { text: "What is incorrect" },
+                    { text: "What is Dragster" },
+                    { text: "What is Tetris" },
+                    { text: "What is Minecraft" },
+                    { text: "What is CTA" },
                 ],
-                contributor: undefined,
+                contributor: "Colyderp",
             },
             800: {
                 question: () => <div>
@@ -145,15 +145,14 @@ export default [
         questions: {
             200: {
                 question: () => <div>
-                    <p>Catagory 200</p>
+                    <p>Which Of The Following Is A Official CTA Pancake Brand</p>
                 </div>,
                 options: [
-                    { text: "What is correct" },
-                    { text: "What is incorrect" },
-                    { text: "What is incorrect" },
-                    { text: "What is incorrect" },
+                    { text: "What is Frosted" },
+                    { text: "What is Oats" },
+                    { text: "What is Honey" },
+                    { text: "What is Cheerios" },
                 ],
-                contributor: undefined,
             },
             400: {
                 question: () => <div>
@@ -206,7 +205,7 @@ export default [
         }
     },
     {
-        catagoryName: "Catagory4",
+        catagoryName: "<Suggestions Open>",
         questions: {
             200: {
                 question: () => <div>
@@ -271,35 +270,37 @@ export default [
         }
     },
     {
-        catagoryName: "Catagory5",
+        catagoryName: "Random",
         questions: {
             200: {
                 question: () => <div>
-                    <p>Catagory 200</p>
+                    <p>
+                        How do you spell supercalifragilisticexpialidocious?
+                    </p>
                 </div>,
                 options: [
-                    { text: "What is correct" },
-                    { text: "What is incorrect" },
-                    { text: "What is incorrect" },
-                    { text: "What is incorrect" },
+                    { text: "What is supercalifragilisticexpialidocious" },
+                    { text: "What is supercalifragilisticexpiaIidocious" },
+                    { text: "What is supercalifragilisticexpiaildocious" },
+                    { text: "What is supercailfragilisticexpialidocious" },
                 ],
-                contributor: undefined,
+                contributor: "Dave",
             },
             400: {
                 question: () => <div>
-                    <p>Catagory 400</p>
+                    <p>This condiment is made from mustard seeds</p>
                 </div>,
                 options: [
-                    { text: "What is correct" },
-                    { text: "What is incorrect" },
-                    { text: "What is incorrect" },
-                    { text: "What is incorrect" },
+                    { text: "What is Mustard" },
+                    { text: "What is Onions" },
+                    { text: "What is Ketchup" },
+                    { text: "What is Catsup" },
                 ],
-                contributor: undefined,
+                contributor: "Dave (Stolen from SNL)",
             },
             600: {
                 question: () => <div>
-                    <p>Catagory 600</p>
+                    <p></p>
                 </div>,
                 options: [
                     { text: "What is correct" },
@@ -311,27 +312,33 @@ export default [
             },
             800: {
                 question: () => <div>
-                    <p>Catagory 800</p>
+                    <p>Which of the following is a Star Wars movie</p>
                 </div>,
                 options: [
-                    { text: "What is correct" },
-                    { text: "What is incorrect" },
-                    { text: "What is incorrect" },
-                    { text: "What is incorrect" },
+                    { text: "What is the Force Awakens" },
+                    { text: "What is Phantom of the Homework Squad" },
+                    { text: "What is Sus" },
+                    { text: "What is the Last Pass" },
                 ],
-                contributor: undefined,
+                contributor: "Hunter",
             },
             1000: {
                 question: () => <div>
-                    <p>Catagory 1000</p>
+                    <p>
+                        <b>THIS IS THE ONLY STATE THAT ENDS IN HAMPSHIRE</b>
+                    </p>
                 </div>,
                 options: [
-                    { text: "What is correct" },
-                    { text: "What is incorrect" },
-                    { text: "What is incorrect" },
-                    { text: "What is incorrect" },
+                    { text: "What is New Hampshire" },
+                    { text: "What is Old Hampshire" },
+                    { text: "What is North Hampshire" },
+                    { text: "What is South Hampshire" },
+                    { text: "What is East Hampshire" },
+                    { text: "What is West Hampshire" },
+                    { text: "What is Hampshire, England" },
+                    { text: "What is New York" },
                 ],
-                contributor: undefined,
+                contributor: "Dave (Stolen from SNL)",
             }
         }
     },

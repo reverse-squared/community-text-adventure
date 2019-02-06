@@ -3,7 +3,7 @@ import { addFlag } from "web-text-adventure/src/adventure";
 import { addScenes } from "@src/ending";
 import { CircleText } from "@templates/FontStyles";
 
-addFlag("hasTriedCoke", false);
+addFlag("hashCoffeeDrank", 0);
 
 addScenes({
     // #region Hashbrowns
@@ -121,7 +121,8 @@ addScenes({
             id: "eat-mario",
             name: "It Wasn't That Bad",
             description: "It could use a little more butter...",
-        }
+        },
+        contributor: "Hunter"
     },
 
     // #region Vaping
@@ -252,9 +253,22 @@ addScenes({
             { text: "Sue back", to: "hash_sue" },
             { text: "Get sued", to: "hash_get_sued" },
             { text: "Murder him", to: "hash_murder" },
-            { text: "Escape", to: "" },
+            { text: "Escape", to: "hash_escape" },
             { text: "Throw a No U", to: "sue_nou" },
         ],
+        contributor: "Hunter"
+    },
+    hash_escape: {
+        prompt: () => <div>
+            <p>
+                You try to escape, he turns out to be the fastest runner in the world, and he catches you and kills you.
+            </p>
+        </div>,
+        ending: {
+            id: "attempt-escape",
+            name: "Attempt to Escape",
+            description: "You cannot out run the fastest runner in the world.",
+        },
         contributor: "Hunter"
     },
     sue_nou: {
@@ -271,7 +285,7 @@ addScenes({
     },
     hash_sue: {
         prompt: () => <div>
-            <p>You tell him that you are going to sue him. He says, "bet no proof." What now?</p>
+            <p>You tell {suefrompancakes ? "them" : "him"} that you are going to sue {suefrompancakes ? "them" : "him"}. {suefrompancakes ? "They say" : "He says"} "bet no proof." What now?</p>
         </div>,
         options: [
             { text: "Sue", to: "hash_sue2" },
@@ -284,7 +298,7 @@ addScenes({
     },
     hash_sue2: {
         prompt: () => <div>
-            <p>You sue the guy and win.</p>
+            <p>You sue {suefrompancakes ? "the company" : "the guy"} and win.</p>
         </div>,
         ending: {
             id: "hash-sue",
@@ -323,174 +337,41 @@ addScenes({
         </div>,
         options: [
             { text: "Go to bed", to: "sleep_eat" },
-            { text: "Have some coffee", to: "" },
-            { text: "Make a tiny potato kart", to: "" },
+            { text: "Have some coffee", to: "hash_coffee" },
+            { text: "Make a tiny potato kart", to: "hash_potatokart" },
             { text: "Play on it with friends", to: "hash_fuckingbig_friends" },
             { text: "Throw it in the Trash Bin", to: "hash_fuckingbig_bin" }
         ],
         contributor: "Durvenson"
     },
 
-    // #region Bin
-    hash_fuckingbig_bin: {
+    // #region Coffee
+    hash_coffee: {
         prompt: () => <div>
-            <p>You throw it in, but you fell in by mistake, and you couldn't get out. You are now being transported in a dump truck.</p>
+            <p>The coffee you drink is great. It's the best you ever had. Now what?</p>
         </div>,
         options: [
-            { text: "Get out", to: "" },
-            { text: "Ask the driver about what the fuck is going on", to: "" },
-            { text: "Chill in there", to: "hash_truck_chill" },
-            { text: "Go on top of the truck", to: "" },
-            { text: "Find something in there", to: "hash_truck_find" }
+            { text: "Go back", to: "work_start" },
+            { text: "Drink more", to: "hash_coffee", action: () => hashCoffeeDrank++ }
         ],
-        contributor: "Durvenson"
+        action: () => {
+            if(hashCoffeeDrank > 100) {
+                setScene("hash_coffee_addict");
+            }
+        },
+        contributor: "Hunter"
     },
-    hash_truck_chill: {
+    hash_coffee_addict: {
         prompt: () => <div>
-            <p>You stayed in, and now you are buried in a landfill.</p>
+            <p>You drank so much coffee, your heart is now going 200000 BPM. I'm pretty sure thats not healthy.</p>
         </div>,
         ending: {
-            id: "landfill",
-            name: "Buried in the Landfill",
-            description: "Never trust trash cans."
+            id: "coffee-addict",
+            name: "Big Coffee Addict",
+            description: "Thats well out of what's normal."
         },
-        contributor: "Durvenson"
+        contributor: "Hunter"
     },
-    hash_truck_find: {
-        prompt: () => <div>
-            <p>There is a lot in here. What do you get?</p>
-        </div>,
-        options: [
-            { text: "Coke bottle", to: "hash_truck_find_coke", disabledText: "Already inspected...", if: () => !hasTriedCoke, action: () => hasTriedCoke = true },
-            { text: "\"Food\"", to: "" },
-            { text: "A computer", to: "hash_truck_find_computer" },
-            { text: "Your track", to: "" },
-            { text: "Your potato", to: "" },
-            { text: "Radioactive materials", to: "hash_truck_find_radio" },
-            { text: "A trash bin", to: "" }
-        ],
-        contributor: "Durvenson"
-    },
-    hash_truck_find_computer: {
-        prompt: () => <div>
-            <p>You have a lot to do and a lot of time. What do you do?</p>
-        </div>,
-        options: [
-            { text: "Play Half Life 3", to: "hl3" },
-            { text: "Play Minecraft", to: "minecraft_start" },
-            { text: "Play LEGO Sid Meier's Tom Clancy SUPER Fortnite V Modern of War Craft FIFA Remastered Metal Fallcry Special Edition", to: "" },
-            { text: "Play Discord", to: "play_discord" },
-            { text: "Play Sonic Team Presents: LEGO Tom Hideo Kojima Game Meier's Rise of the SUPER War for the NEW mini Mega Power Nintendo Dawn of the White Virtual Alpha Omega Sequel Final Smash 2 3 DS i lite Light of the Micro XL DD LL Mix Prequel of the e u Boy the Advance SP Player Master Reboot of the Disney Color Cube and Watch Entertainment System Planet Marvel of the Nomad Apes Game of the Year Edition and Knuckles Jam VS Sega Capcom Plus Version Episode Two Volume Two", if: () => !hasCheckedLong, disabledText: "Play Sonic Team Presents: LEGO Tom Hideo Kojima Game Meier's Rise of the SUPER War for the NEW mini Mega Power Nintendo Dawn of the White Virtual Alpha Omega Sequel Final Smash 2 3 DS i lite Light of the Micro XL DD LL Mix Prequel of the e u Boy the Advance SP Player Master Reboot of the Disney Color Cube and Watch Entertainment System Planet Marvel of the Nomad Apes Game of the Year Edition and Knuckles Jam VS Sega Capcom Plus Version Episode Two Volume Two (Already Checked!)", action: () => hasCheckedLong = true, to: "computer_big_boi" },
-            { text: "Watch YouTube", to: "" },
-            { text: "Watch PornHub", to: "hash_truck_ph" }
-        ],
-        contributor: "Durvenson"
-    },
-    hash_truck_ph: {
-        prompt: () => <div>
-            <p>Your wife finds out, and destroys the computer. Also, you are divorced now.</p>
-        </div>,
-        ending: {
-            id: "ph",
-            name: "You got Divorced",
-            description: "That was the end of a \"good\" relationship..."
-        },
-        contributor: "Durvenson"
-    },
-    hash_fuckingbig_friends: {
-        prompt: () => <div>
-            <p>Play on it with friends: You are lonely, and you have no friends. You start to feel kind of "depressed".</p>
-        </div>,
-        options: [
-            { text: "Hire robots to play with", to: "" },
-            { text: "Play something else", to: "" },
-            { text: "Don't play anything", to: "" },
-            { text: "Go to the neighborhood and make some friends there", to: "" }
-        ],
-        contributor: "Durvenson"
-    },
-    hash_truck_find_coke: {
-        prompt: () => <div>
-            <p>It has some coke in it, and it is diet.</p>
-        </div>,
-        options: [
-            { text: "Drink it", to: "" },
-            { text: "Throw it into the water", to: "" },
-            { text: "Do nothing", to: "" },
-            { text: "M E N T O S", to: "hash_truck_find_coke_mentos" }
-        ],
-        contributor: "Durvenson"
-    },
-    hash_truck_find_coke_mentos: {
-        prompt: () => <div>
-            <p>You get diet coke all over the truck.</p>
-        </div>,
-        options: [
-            { text: "Clean it", to: "" },
-            { text: "Make a fucking nuke out of the diet coke bottles", to: "hash_truck_find_coke_mentos_nuke" },
-            { text: "Find something else", to: "hash_truck_find" }
-        ],
-        contributor: "Durvenson"
-    },
-    hash_truck_find_coke_mentos_nuke: {
-        prompt: () => <div>
-            <p>It made the truck slip. You fell, and got injured. You are 100 miles away from home.</p>
-        </div>,
-        options: [
-            { text: "Call the hospital", to: "hash_truck_find_coke_mentos_nuke_CAR" },
-            { text: "Go explore town", to: "town" },
-            { text: "Find your way back home", to: "hash_truck_find_coke_mentos_nuke_back" }
-        ],
-        contributor: "Durvenson"
-    },
-    hash_truck_find_coke_mentos_nuke_back: {
-        prompt: () => <div>
-            <p>
-                Your car is out of gas, you could maybe find some around here.
-            </p>
-        </div>,
-        options: [
-            { text: "Call the hospital", to: "hash_truck_find_coke_mentos_nuke_CAR" },
-            { text: "Go explore town", to: "town" },
-            { text: "Find your way back home", to: null, if: () => false, disabledText: true },
-        ],
-        contributor: "Dave"
-    },
-    town: {
-        prompt: () => <div>
-            <p>
-                You start exploring the town... but you fall down as you didnt get that injury treated.
-            </p>
-        </div>,
-        ending: {
-            id: "fall-down",
-            name: "Fall Down",
-            description: "Fall down while exploring the town.",
-        },
-        contributor: "Dave",
-    },
-    hash_truck_find_radio: {
-        prompt: () => <div>
-            <p>Radium, along with other stuff, is in here for some reason. Your hands are fucked up.</p>
-        </div>,
-        options: [
-            { text: "Yell at whoever put that in there", to: "" },
-            { text: "Make a fucking nuke", to: "hash_truck_find_radio_nuke" },
-            { text: "Find something else", to: "" }
-        ],
-        contributor: "Durvenson"
-    },
-    hash_truck_find_radio_nuke: {
-        prompt: () => <div>
-            <p>You blew up the world, and you also killed yourself.</p>
-        </div>,
-        ending: {
-            id: "end-of-world",
-            name: "End of the World",
-            description: "Nuke the world."
-        },
-        contributor: "Durvenson"
-    }
     // #endregion
 
     // #endregion

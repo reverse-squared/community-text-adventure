@@ -17,7 +17,8 @@ const contributors = [
     ["Koz",                     "https://steamcommunity.com/id/kozco"],
     ["Durvenson"],
     // People below this still need to say exactly how they want credit.
-    ["torinpotato"]
+    ["torinpotato"],
+    ["CykaBlyat26"]
 ];
 
 export default hot(module)(() => <div>

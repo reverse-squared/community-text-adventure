@@ -194,12 +194,61 @@ addScenes({
             <p>You get in your car and realize you robbed a bank yesterday and the police are here. What do you do now?</p>
         </div>,
         options: [
-            { text: "Drive away", to: "hospital_car" },
+            { text: "Drive away", to: "touch_car_drive" },
             { text: "Surrender", to: "surrender_to_noone" },
             { text: "Suicide", to: "touch_car_sui" }
         ],
         action: () => carFromRobbery = true,
         contributor: "torinpotato"
+    },
+    touch_car_drive: {
+        prompt: () => <div>
+            <p>You get in your car and realize you robbed a bank yesterday and the police are here. What do you do now?</p>
+        </div>,
+        options: [
+            { text: "Drive away", to: null, if: () => false, disabledText: true },
+            { text: "Surrender", to: "surrender_to_noone" },
+            { text: "Suicide", to: "touch_car_sui" }
+        ],
+        action: () => carFromRobbery = true,
+        contributor: "torinpotato"
+    },
+    touch_car_drive_away: {
+        prompt: () => <div>
+            <p>
+                The police stop you and want to arrest you.
+            </p>
+        </div>,
+        options: [
+            { text: "Pull out your gun", to: "touch_car_drive_away_gun" },
+            { text: "Let them arrest you", to: "jail_caught_driving" },
+            { text: "Run away", to: "run_from_hospital" },
+        ],
+        contributor: "CykaBlyat26"
+    },
+    touch_car_drive_away_gun: {
+        prompt: () => <div>
+            <p>
+                You pull out your gun, and as a result, you get shot.
+            </p>
+        </div>,
+        ending: {
+            id: "gun-pull",
+            name: "Pull a Gun on the Coppers",
+            description: "Why would anyone do that?",
+        },
+        contributor: "Hunter"
+    },
+    jail_caught_driving: {
+        prompt: () => <div>
+            <p>You decided to turn yourself in. You got arrested in jail and sentanced to 37 more years for robbery.</p>
+        </div>,
+        ending: {
+            id: "jail-37-years-2",
+            name: "Bank Robber",
+            description: "Why'd you turn yourself in?"
+        },
+        contributor: "Hunter"
     },
     surrender_to_noone: {
         prompt: () => <div>

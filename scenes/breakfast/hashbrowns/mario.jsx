@@ -161,7 +161,8 @@ addScenes({
             id: "endracenegativelmao",
             name: "The Race is Already Over",
             description: "Start the race after it ends."
-        }
+        },
+        contributor: "Dave",
     },
     // #endregion
 
@@ -346,7 +347,7 @@ addScenes({
             <p>No one cares.</p>
         </div>,
         options: [
-            { text: "Say FRICK again", to: null, disabledText: true, if: ()=>false },
+            { text: "Say FRICK again", to: null, disabledText: true, if: () => false },
             { text: "Speak to the bomb dudes", to: "speak_to_bomb_dudes" },
             { text: "Go forward", to: "hash_potatokart_fricc_foward" },
             { text: "Try to do a BLJ", to: "hash_potatokart_blj" },
@@ -363,13 +364,43 @@ addScenes({
         </div>,
         options: [
             { text: "Go forward", to: "hash_potatokart_blj_forward" },
-            { text: "BLJ Again", to: "" },
+            { text: "BLJ Again", to: "hash_potatokart_blj2" },
             { text: "Leave the level", to: "hash_potatokart_blj_leave" },
-            { text: "Stand there", to: "" },
-            { text: "Move forward", to: "" },
+            { text: "Stand there", to: "stand" },
+            { text: "Move forward", to: "hash_potatokart_blj_forward" },
             { text: "Upload your \"discovery\" to Youtube", to: "hash_potatokart_blj_upload" }
         ],
         contributor: "Durvenson"
+    },
+    hash_potatokart_blj2: {
+        prompt: () => <div>
+            <p>No one cares.</p>
+        </div>,
+        options: [
+            { text: "Go forward", to: "hash_potatokart_blj_forward" },
+            { text: "BLJ Again", to: "hash_potatokart_blj2" },
+            { text: "Leave the level", to: "hash_potatokart_blj_leave" },
+            { text: "Stand there", to: "stand" },
+            { text: "Move forward", to: "hash_potatokart_blj_forward" },
+            { text: "Upload your \"discovery\" to Youtube", to: "hash_potatokart_blj_upload" }
+        ],
+        contributor: "Hunter"
+    },
+    hash_potatokart_blj_move: {
+        prompt: () => <div>
+            <p>
+                You walk.
+            </p>
+        </div>,
+        options: [
+            { text: "Go forward", to: "hash_potatokart_blj_forward" },
+            { text: "BLJ Again", to: "hash_potatokart_blj2" },
+            { text: "Leave the level", to: "hash_potatokart_blj_leave" },
+            { text: "Stand there", to: "stand" },
+            { text: "Move forward", to: "hash_potatokart_blj_forward" },
+            { text: "Upload your \"discovery\" to Youtube", to: "hash_potatokart_blj_upload" }
+        ],
+        contributor: "Hunter"
     },
     hash_potatokart_blj_upload: {
         prompt: () => <div>
@@ -384,17 +415,43 @@ addScenes({
     },
     hash_potatokart_blj_forward: {
         prompt: () => <div>
-            <p>You get suddenly a message from TJ Henry Yoshi, which says "A A press is a A press. You can't say it's half" because he thought you were pannenkoek2012.</p>
+            <p>You get suddenly a message from TJ Henry Yoshi, which says "An A press is a A press. You can't say it's half" because he thought you were pannenkoek2012.</p>
         </div>,
         options: [
-            { text: "Ignore it", to: "" },
-            { text: "I am not pannenkoek2012", to: "" },
-            { text: "That is not true", to: "" },
-            { text: "LIAR! GO KYS", to: "" },
-            { text: "Fight him", to: "" },
+            { text: "Ignore it", to: "hash_potatokart_blj" },
+            { text: "I am not pannenkoek2012", to: "hash_potatokart_blj_forward_not" },
+            { text: "That is not true", to: "hash_potatokart_blj_forward_not" },
+            { text: "LIAR! GO KYS", to: "hash_potatokart_blj_forward_not" },
+            { text: "Fight him", to: "hash_potatokart_blj_forward_fight" },
             { text: "Leave the level", to: "hash_potatokart_blj_forward_leave" }
         ],
         contributor: "Durvenson"
+    },
+    hash_potatokart_blj_forward_not: {
+        prompt: () => <div>
+            <p>
+                You tell him that you are not pannenkoek2012. He hated you because you told him the truth... then he killed you.
+            </p>
+        </div>,
+        ending: {
+            id: "they-hated-him",
+            name: "They Hated Him",
+            description: "Because he told them the truth.",
+        },
+        contributor: "Hunter"
+    },
+    hash_potatokart_blj_forward_fight: {
+        prompt: () => <div>
+            <p>
+                You fight TJ Henry Yoshi, but turns out you can't! He's not even near you. That was only a message that you got. Then you ripped up the message and raged!
+            </p>
+        </div>,
+        ending: {
+            id: "paper-rage",
+            name: "Paper Rage",
+            description: "I've never see someone get so mad at a piece of paper.",
+        },
+        contributor: "Hunter"
     },
     hash_potatokart_blj_forward_leave: {
         prompt: () => <div>
@@ -412,24 +469,24 @@ addScenes({
             <p>You are in the castle. Which room do you go to?</p>
         </div>,
         options: [
-            { text: "Bob omb battlefield", to: "" },
-            { text: "Cool, cool mountain", to: "" },
-            { text: "Jolly roger bay", to: "" },
-            { text: "Whomp's fortress", to: "" },
-            { text: "Bowser in the dark world", to: "" },
-            { text: "Secret level", to: "" },
-            { text: "Upper floor", to: "" },
-            { text: "Basement", to: "" },
+            { text: "Bob omb battlefield", to: "hash_potatokart_blj_leave", disabledText: true, if: () => false },
+            { text: "Cool, cool mountain", to: "hash_potatokart_blj_leave", disabledText: true, if: () => false },
+            { text: "Jolly roger bay", to: "hash_potatokart_blj_leave", disabledText: true, if: () => false },
+            { text: "Whomp's fortress", to: "hash_potatokart_blj_leave", disabledText: true, if: () => false },
+            { text: "Bowser in the dark world", to: "hash_potatokart_blj_leave", disabledText: true, if: () => false },
+            { text: "Secret level", to: "hash_potatokart_blj_leave", disabledText: true, if: () => false },
+            { text: "Upper floor", to: "hash_potatokart_blj_leave", disabledText: true, if: () => false },
+            { text: "Basement", to: "hash_potatokart_blj_leave", disabledText: true, if: () => false },
             { text: "Outside", to: "hash_potatokart_blj_leave_outside" }
         ],
-        contributor: "Durvenson"
+        contributor: "Durvenson and Hunter"
     },
     hash_potatokart_blj_leave_outside: {
         prompt: () => <div>
             <p>You are now outside of the castle.</p>
         </div>,
         options: [
-            { text: "Go back in the castle", to: "" },
+            { text: "Go back in the castle", to: "hash_potatokart_blj_leave" },
             { text: "Try to get in the moat while the water level is still high", to: "" },
             { text: "Yolo to get to the roof", to: "hash_potatokart_blj_leave_outside_yolo" }
         ],
@@ -455,10 +512,23 @@ addScenes({
         ],
         contributor: "Durvenson"
     },
+    hash_potatokart_blj_leave_outside_yolo_no: {
+        prompt: () => <div>
+            <p>
+                So you decide NOT to take the one ups... What else should you do instead.
+            </p>
+        </div>,
+        options: [
+            { text: "Play the Price is Right", to: "price_pre" },
+            { text: "Play on your phone", to: "phone_start" },
+        ],
+        action: () => phoneFromSafe,
+        contributor: "Dave"
+    },
     i_guess: {
         prompt: () => <div>
             <p>
-                <b>"I GUESS"?1st</b>, <em>YOU GUESS!?</em>, <b><em>Y O U  G U E S S????</em></b>
+                <b>"I GUESS"?</b>, <em>YOU GUESS!?</em>, <b><em>Y O U  G U E S S????</em></b>
             </p>
             <p>
                 what the hell is your guess then?
@@ -499,14 +569,43 @@ addScenes({
             <p>You decide to split them in half. You still realize that it is cocaine, but it isn't as bad, and you don't eat it. Instead, you try to escape.</p>
         </div>,
         options: [
-            { text: "To the \"hills\"", to: "" },
-            { text: "On a tree", to: "" },
+            { text: "To the \"hills\"", to: "hash_potatokart_blj_leave_outside_yolo_some_hills" },
+            { text: "On a tree", to: "hash_potatokart_blj_leave_outside_yolo_some_wall_try_break" },
             { text: "On a \"wall\" of the castle", to: "hash_potatokart_blj_leave_outside_yolo_some_wall" },
-            { text: "In the castle", to: "" },
-            { text: "Underwater", to: "" },
-            { text: "Do nothing", to: "" }
+            { text: "In the castle", to: "hash_potatokart_blj_leave" },
+            { text: "Underwater", to: "hash_potatokart_blj_leave_outside_yolo_some_wall_try_break" },
+            { text: "Do nothing", to: "hash_potatokart_blj_leave_outside_yolo_some_nothing" }
         ],
         contributor: "Durvenson"
+    },
+    hash_potatokart_blj_leave_outside_yolo_some_nothing: {
+        prompt: () => <div>
+            <p>
+                You did nothing...
+            </p>
+        </div>,
+        options: [
+            { text: "To the \"hills\"", to: "hash_potatokart_blj_leave_outside_yolo_some_hills" },
+            { text: "On a tree", to: "hash_potatokart_blj_leave_outside_yolo_some_wall_try_break" },
+            { text: "On a \"wall\" of the castle", to: "hash_potatokart_blj_leave_outside_yolo_some_wall" },
+            { text: "In the castle", to: "hash_potatokart_blj_leave" },
+            { text: "Underwater", to: "hash_potatokart_blj_leave_outside_yolo_some_wall_try_break" },
+            { text: "Do nothing", to: "hash_potatokart_blj_leave_outside_yolo_some_nothing", disabledText: true, if: () => false }
+        ],
+        contributor: "Durvenson"
+    },
+    hash_potatokart_blj_leave_outside_yolo_some_hills: {
+        prompt: () => <div>
+            <p>
+                You go up the hill, but you fell down and broke your crown.
+            </p>
+        </div>,
+        ending: {
+            id: "jack-and-jill",
+            name: "What is this Jack and Jill",
+            description: "But where's Jill?",
+        },
+        contributor: "Hunter"
     },
     hash_potatokart_blj_leave_outside_yolo_some_wall: {
         prompt: () => <div>
@@ -544,8 +643,7 @@ addScenes({
             <p>You get into another area.</p>
         </div>,
         options: [
-            // TODO: VVV Goes to castle.
-            { text: "Go into a wall", to: "" },
+            { text: "Go into a wall", to: "hash_potatokart_blj_leave" },
             { text: "Go through the door", to: "hash_potatokart_blj_leave_outside_yolo_some_wall" },
             { text: "Wall jump out", to: "hash_potatokart_blj_leave_outside_yolo_some_wall_try_break" }
         ],
@@ -563,7 +661,8 @@ addScenes({
         </div>,
         options: [
             { text: "Stand", to: "stand2" },
-        ]
+        ],
+        contributor: "Dave",
     },
     stand2: {
         prompt: () => <div>
@@ -578,7 +677,8 @@ addScenes({
                     setScene("stand_long_timeowo");
                 }
             }},
-        ]
+        ],
+        contributor: "Dave",
     },
     stand_long_timeowo: {
         prompt: () => <div>

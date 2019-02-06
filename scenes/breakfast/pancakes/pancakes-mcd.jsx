@@ -45,7 +45,20 @@ addScenes({
                 water, turned out to be bleach. Now that you know you are going to die, what do you do?</p>
         </div>,
         options: [
-            { text: "Sue", to: "" },
+            { text: "Sue", to: "pancake_house_sue" },
+            { text: "Accept your death", to: "bleach_drink" },
+            { text: "Tell your friend to try the water and see if it tastes fishy", to: "bleach_friend" },
+        ],
+        contributor: "Hunter"
+    },
+    pancake_house_sue: {
+        prompt: () => <div>
+            <p>
+                It didn't work.
+            </p>
+        </div>,
+        options: [
+            { text: "Sue", to: "pancake_house_sue", disabledText: true, if: () => false },
             { text: "Accept your death", to: "bleach_drink" },
             { text: "Tell your friend to try the water and see if it tastes fishy", to: "bleach_friend" },
         ],

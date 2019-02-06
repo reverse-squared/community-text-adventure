@@ -186,7 +186,8 @@ addScenes({
             id: "idgaf-station",
             name: "No Fire to Keep Warm",
             description: "Try something else...",
-        }
+        },
+        contributor: "Hunter"
     }
     // #endregion
 

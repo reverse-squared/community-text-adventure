@@ -72,7 +72,7 @@ addFlag("prevScene", "");
 addFlag("ktmaintext", "There are five modules... which do you defuse first?");
 addFlag("defusedOptions", []);
 
-const letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+const letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J,", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 const numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
 
 /**
@@ -107,26 +107,13 @@ function generatePort() {
  * Sets the value of hasFRK.
  */
 function generateFRK() {
-    let indicators = 0;
-    hasTRN = false;
-    hasFRK = false;
-    hasCAR = false;
+    var number = Math.floor(Math.random() * 2);
 
-    if (Math.random() > 0.7) {
-        hasFRK = true;
-        indicators++;
-    }
-    if (Math.random() > 0.7) {
-        hasCAR = true;
-        indicators++;
-    }
-    if (indicators < 1 && Math.random() > 0.3) {
-        hasTRN = true;
-        indicators++;
-    }
-    if (indicators < 2 && Math.random() > 0.2) {
-        hasFRA = true;
-        indicators++;
+    // Bad Code
+    if(number === 1) {
+        hasFRK = "true";
+    }else {
+        hasFRK = "false";
     }
 }
 
@@ -151,30 +138,20 @@ function IncorrectOption(option) {
         if(t2) clearTimeout(t2);
         if(t3) clearTimeout(t3);
 
-        strikes++;
-
         document.body.style.transition = "";
-
-        if (strikes >= 3) {
-            document.body.style.background = "black";
-            document.body.style.opacity = "0";
-            setScene("ktane_fail");
-        } else {
-            document.body.style.background = "red";
-        }
-
+        document.body.style.background = "red";
         t1 = setTimeout(() => {
             t1 = undefined;
             t2 = setTimeout(() => {
                 t2 = undefined;
-                document.body.style.transition = "background 1.5s linear, opacity 1s linear 0.5s";
+                document.body.style.transition = "background 1.5s linear";
                 document.body.style.background = "";
-                document.body.style.opacity = "1";
                 t3 = setTimeout(() => {
                     t3 = undefined;
                     document.body.style.transition = "";
                 }, 1500);
             }, 100);
+            document.body.style.background = "red";
         }, 100);
     };
     return option;
@@ -200,10 +177,6 @@ addFlag("batteries", null);
 addFlag("serial", "");
 addFlag("parallelPort", null);
 addFlag("hasFRK", null);
-addFlag("hasCAR", null);
-addFlag("hasTRN", null);
-addFlag("hasFRA", null);
-addFlag("strikes", 0);
 addFlag("timeLeft", 10 * 60);
 
 class BombHeader extends React.Component {
@@ -213,9 +186,6 @@ class BombHeader extends React.Component {
     componentDidMount() {
         this.interval = setInterval(() => {
             timeLeft--;
-            if(timeLeft <= 0) {
-                setScene("ktane_fail");
-            }
         }, 1000);
     }
     componentWillUnmount() {
@@ -225,7 +195,7 @@ class BombHeader extends React.Component {
         return <div>
             <p>
                 <b>
-                    Defuse the Bomb... You have {(timeLeft - (timeLeft % 60)) / 60}:{(timeLeft % 60).toString().padStart(2, "0")} left and have {strikes} strikes.{" "}
+                    Defuse the Bomb... You have {(timeLeft - (timeLeft % 60)) / 60}:{(timeLeft % 60).toString().padStart(2, "0")} left and have 0 strikes.{" "}
                 </b>
                 {
                     !this.props.hideLink &&
@@ -303,225 +273,37 @@ function generateWires() {
         //
     }
 }
-const allButtonColors = ["red", "blue", "yellow", "white"];
-const allButtonStripColors = ["red", "blue", "yellow", "white"];
-const allButtonText = ["press", "hold","abort","detonate"];
-addFlag("buttonColor", null);
-addFlag("buttonStrip", null);
-addFlag("buttonText", null);
-addFlag("buttonSolution", null);
-addFlag("stripSolution", null);
 function generateButton() {
-    buttonColor = randomOf(allButtonColors);
-    buttonStrip = randomOf(allButtonStripColors);
-    buttonText = randomOf(allButtonText);
-
-    buttonSolution = "";
-    stripSolution = "";
-
     // If the button is blue and the button says "Abort", hold the button and refer to "Releasing a Held Button".
-    if(buttonColor === "blue" && buttonText === "abort") {
-        buttonSolution = "hold";
-    }
     // If there is more than 1 battery on the bomb and the button says "Detonate", press and immediately release the button.
-    else if(batteries > 1 && buttonText === "detonate") {
-        buttonSolution = "press";
-    }
     // If the button is white and there is a lit indicator with label CAR, hold the button and refer to "Releasing a Held Button".
-    else if(buttonColor === "white" && hasCAR) {
-        buttonSolution = "hold";
-    }
     // If there are more than 2 batteries on the bomb and there is a lit indicator with label FRK, press and immediately release the button.
-    else if(batteries > 2 && hasFRK) {
-        buttonSolution = "press";
-    }
     // If the button is yellow, hold the button and refer to "Releasing a Held Button".
-    else if(buttonColor === "yellow") {
-        buttonSolution = "hold";
-    }
     // If the button is red and the button says "Hold", press and immediately release the button.
-    else if(buttonColor === "red" && buttonText === "hold") {
-        buttonSolution = "press";
-    }
     // If none of the above apply, hold the button and refer to "Releasing a Held Button".
-    else {
-        buttonSolution = "hold";
-    }
-
-    stripSolution = "1";
-    
-    // Blue strip: release when the countdown timer has a 4 in any position.
-    if(buttonStrip === "blue") stripSolution = "4";
-    // Yellow strip: release when the countdown timer has a 5 in any position.
-    if(buttonStrip === "blue") stripSolution = "5";
-    // Any other color strip: release when the countdown timer has a 1 in any position.
 }
 
 class TheButton extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            isholdingdown: false,
-            shineStrip: false,
-        };
-        let t1;
-        this.handleDown = () => {
-            this.setState({ isholdingdown: true });
-            t1 = setTimeout(() => {
-                t1 = null;
-                this.setState({ shineStrip: true });
-            }, 300);
-        };
-        this.handleUp = () => {
-            if (!this.state.isholdingdown) return;
-            this.setState({ isholdingdown: false });
-            if(t1) {
-                clearTimeout(t1);
-            }
-            if(this.state.shineStrip) {
-                this.setState({ shineStrip: false });
-                if(buttonSolution === "hold") {
-                    if ((timeLeft % 10).toString() === stripSolution) {
-                        buttom = true;
-                        CorrectOption({isButton:true}).action();
-                        setScene(CorrectOption({isButton:true}).to);
-                    } else {
-                        IncorrectOption({}).action();
-                    }
-                } else {
-                    IncorrectOption({}).action();
-                }
-            } else {
-                if (buttonSolution === "press") {
-                    buttom = true;
-                    CorrectOption({isButton:true}).action();
-                    setScene(CorrectOption({isButton:true}).to);
-                } else {
-                    IncorrectOption({}).action();
-                }
-            }
-        };
-        this.componentWillUnmount = () => {
-            this.handleUp();
-        };
+        this.state = {  };
     }
-    render() {
-        const active = true;
+    render() { 
         return <div>
-            <style>{`
-                .thebutton {
-                    width: 150px;
-                    height: 150px;
-                    background: white;
-                    color: black;
-                    border: none;
-                    font-weight: bold;
-                    font-size: 25px;
-                    border-radius: 70px;
-                    position: relative;
-                }
-                .strip {
-                    margin-left: 25px;
-                    height: 150px;
-                    background: black;
-                    width: 35px;
-                    box-shadow: none!important;
-                }
-                .thebutton:active {
-                    box-shadow: none;
-                    top: 10px;
-                }
-                .thebutton:focus, .thebutton:hover {
-                    outline: none;
-                    background: #FAFAFA;
-                }
-                .btncontainer {
-                    display: flex;
-                    justify-content: center;
-                }
-                [data-color="yellow"] {
-                    background: yellow;
-                    box-shadow: 0 10px 0 gold;
-                }
-                :not(.strip)[data-color="yellow"]:hover,:not(.strip)[data-color="yellow"]:focus {
-                    background: #FAFA00;
-                }
-                [data-color="white"] {
-                    background: white;
-                    box-shadow: 0 10px 0 #ddd;
-                }
-                [data-color="red"] {
-                    background: red;
-                    box-shadow: 0 10px 0 maroon;
-                }
-                :not(.strip)[data-color="red"]:hover,:not(.strip)[data-color="red"]:focus {
-                    background: #FA0000;
-                }
-                [data-color="blue"] {
-                    background: blue;
-                    box-shadow: 0 10px 0 #00A;
-                    color: white;
-                }
-                :not(.strip)[data-color="blue"]:hover,:not(.strip)[data-color="blue"]:focus {
-                    background: #0000FA;
-                }
-            `}
-            </style>
-            <div className="btncontainer">
-                <button
-                    className="thebutton"
-                    data-color={buttonColor}
-                    onMouseDown={this.handleDown}
-                    onMouseLeave={this.handleUp}
-                    onMouseUp={this.handleUp}
-                >
-                    {buttonText.toUpperCase()}
-                </button>
-                <div className="strip"
-                    data-color={this.state.shineStrip && buttonStrip}/>
-            </div>
+            <button
+                style={{
+                    width: "150px",
+                    height: "150px",
+                    background: "white",
+                    color: "black",
+                    margin: "auto",
+                    border: "none"
+                }}
+            >
+                DETONATE
+            </button>
         </div>;
     }
-}
-
-addFlag("complexWireData", []);
-addFlag("complexWiresCut", [false, false, false, false, false, false,]);
-function generateComplexWires() {
-    complexWireData = [0,0,0,0,0,0].map(() => {
-        const wire = {};
-        wire.colors = randomListOf(["white", "blue", "red"],2).sort();
-        wire.led = Math.random() >= 0.5;
-        wire.star = Math.random() >= 0.5;
-
-        wire.blue = wire.colors.includes("blue");
-        wire.red = wire.colors.includes("red");
-        
-        let letter = "C";
-        if(wire.red) letter = "S";
-        if(wire.blue) letter = "S";
-        if(wire.led) letter = "D";
-        if(wire.star) letter = "C";
-        if(wire.star && wire.blue) letter = "P";
-        if(wire.star && wire.red) letter = "C";
-        if(wire.blue && wire.red) letter = "S";
-        if(wire.star && wire.led) letter = "B";
-        if(wire.star && wire.blue) letter = "D";
-        if(wire.led && wire.red) letter = "D";
-        if(wire.led && wire.red && wire.blue) letter = "S";
-        if(wire.star && wire.red && wire.blue) letter = "P";
-        if(wire.star && wire.led && wire.blue) letter = "P";
-        if(wire.star && wire.led && wire.red) letter = "B";
-        if(wire.star && wire.led && wire.red && wire.blue) letter = "D";
-
-        wire.needsClick = false;
-        if(letter === "C") wire.needsClick = true;
-        if(letter === "D") wire.needsClick = false;
-        if(letter === "S" && (!endsInOdd(serial))) wire.needsClick = true;
-        if(letter === "P" && parallelPort) wire.needsClick = true;
-        if(letter === "B" && batteries >= 2) wire.needsClick = true;
-
-        return wire;
-    });
 }
  
 addScenes({
@@ -539,7 +321,6 @@ addScenes({
             generateFRK();
             generateButton();
             generateWires();
-            generateComplexWires();
 
             var morse = randomOf(morseOptions);
             theMorse = morse.code;
@@ -547,9 +328,7 @@ addScenes({
 
             setScene("ktane_main");
         },
-        excludeEmptyOptionsCheck: true,
         noContributor: true,
-        excludeEmptyOptionsCheck: true,
     },
     ktane_main: BombScene({
         prompt: () => <div>
@@ -562,52 +341,35 @@ addScenes({
             { text: "Wires", to: "ktane_wires", disabledText: "Wires (defused)", if: () =>  !wires},
             { text: "The Button", to: "ktane_button", disabledText: "The Button (defused)", if: () =>  !buttom},
             { text: "Symbols", to: "ktane_symbols" + symbolsProgress, disabledText: "Symbols (defused)", if: () =>  !symbols},
-            { text: "Complicated Wires", to: "ktane_complex_wires", disabledText: "Complex Wires (defused)", if: () =>  !complexWires},
+            { text: "Complex Wires", to: "ktane_complex_wires", disabledText: "Complex Wires (defused)", if: () =>  !complexWires},
             { text: "Morse", to: "ktane_morse", disabledText: "Morse (defused)", if: () =>  !morse}
         ],
-        action: () => {
-            if(wires && buttom && symbols && complexWires && morse) {
-                setScene("bombdefuse");
-            }
-        },
         contributor: "Hunter"
     }),
     ktane_info: BombScene({
-        isInfoPage: true,
-        excludeEmptyOptionsCheck: true,
         prompt: () => <div>
             <BombHeader hideLink />
             <SceneLink to={prevScene}>Go Back</SceneLink>            
             <p>
                 <b>Bomb Information:</b>
-            </p>
-
-            <ul>
-                <li>It has {batteries} batter{batteries === 1 ? "y" : "ies"}</li>
-                <li>It's serial number is <span style={{fontFamily:"monospace", color:"orange"}}>{serial}</span></li>
-                {
-                    parallelPort && <li>It has a Parallel Port</li>
-                }
-                {
-                    hasFRA &&
-                        <li>There's a lit indicator with the letters <span style={{ fontFamily: "monospace", color: "orange" }}>FRA</span></li>
-                }
-                {
-                    hasTRN &&
-                        <li>There's a lit indicator with the letters <span style={{ fontFamily: "monospace", color: "orange" }}>TRN</span></li>
-                }
-                {
-                    hasFRK &&
+                <ul>
+                    <li>It has {batteries} batter{batteries === 1 ? "y" : "ies"}</li>
+                    <li>It's serial number is <span style={{fontFamily:"monospace", color:"orange"}}>{serial}</span></li>
+                    {
+                        parallelPort
+                            ? <li>It has a Parallel Port</li>
+                            : <li>It doesn't have a Parallel Port</li>
+                    }
+                    {
+                        hasFRK &&
                         <li>There's a lit indicator with the letters <span style={{ fontFamily: "monospace", color: "orange" }}>FRK</span></li>
-                }
-                {
-                    hasCAR &&
-                        <li>There's a lit indicator with the letters <span style={{ fontFamily: "monospace", color: "orange" }}>CAR</span></li>
-                }
-            </ul>
+                    }
+                </ul>
+            </p>
         </div>,
-        options: () => [],
-        contributor: true,
+        options: () => [
+            { text: "Back", to: prevScene },
+        ]
     }),
     ktane_correct: BombScene({
         prompt: () => <div>
@@ -617,8 +379,6 @@ addScenes({
                 You defused this module!
             </p>
         </div>,
-        excludeEmptyOptionsCheck: true,
-        contributor: "Dave",
         options: () => defusedOptions
     }),
     //#endregion
@@ -730,8 +490,6 @@ addScenes({
                 return IncorrectOption({ text: capitalizeFirstLetter(wire.color) + " wire", if: () => !wireCut[i], action: () => wireCut[i] = true, disabledText: true });
             }
         })) || [],
-        excludeEmptyOptionsCheck: true,
-        contributor: "Dave",
     }),
     // #endregion
 
@@ -745,53 +503,12 @@ addScenes({
             </p>
             <TheButton />
         </div>,
-        options: [],
-        contributor: "Dave",
-        excludeEmptyOptionsCheck: true
+        options: [
+
+        ],
     }),
     // #endregion
     
-    // #region complex wires
-    ktane_complex_wires: BombScene({
-        prompt: () => <div>
-            <BombHeader />
-            <SceneLink to='ktane_main'>Go Back</SceneLink>
-            <p>
-                You approach the complecated wires, which do you cut.
-            </p>
-        </div>,
-        options: () => (complexWireData && complexWireData.map((wire, i) => {
-            const star = "★";
-            const circle = () => <span style={{display:"inline-block", width: "12px", height: "12px", background: "white", borderRadius: "6px"}}></span>;
-            const circle_empty = () => <span style={{display:"inline-block", width: "12px", height: "12px", border: "1px solid white", borderRadius: "6px"}}></span>;
-            const text = () => <span>
-                <span style={{color: wire.star ? "white" : "transparent"}} aria-hidden={!wire.star}>{star}</span>
-                {" "}
-                <span>{wire.led ? circle() : circle_empty()}</span>
-                {" "}
-                {
-                    wire.colors[0] === wire.colors[1]
-                        ? capitalizeFirstLetter(wire.colors[0])
-                        : wire.colors.map(capitalizeFirstLetter).join(" and ")
-                }
-                {" "}
-                wire
-            </span>;
-
-            if (wire.needsClick) {
-                if(complexWireData.filter(item => item.needsClick).length === 1) {
-                    return CorrectOption({ text, if: () => !complexWiresCut[i], action: () => {complexWires = true;} });
-                } else {
-                    return ({ text, to: null, if: () => !complexWiresCut[i], action: () => { complexWiresCut[i] = true, complexWireData[i].needsClick = false; __rerender = true;}, disabledText: true });
-                }
-            } else {
-                return IncorrectOption({ text, if: () => !complexWiresCut[i], action: () => { complexWiresCut[i] = true; __rerender = true;}, disabledText: true });
-            }
-        })) || [],
-        excludeEmptyOptionsCheck: true,
-        contributor: "Dave"
-    }),
-    // #endregion
     // #region Endings
     ktane_fail: {
         prompt: () => <div>
@@ -805,19 +522,6 @@ addScenes({
             description: "You failed at defusing a simple bomb...",
         },
         contributor: "Hunter"
-    },
-    bombdefuse: {
-        prompt: () => <div>
-            <p>
-                You defused the bomb! With {((600 - timeLeft) - ((600 - timeLeft) % 60)) / 60}:{((600 - timeLeft) % 60).toString().padStart(2, "0")} and {strikes}. Good Job.
-            </p>
-        </div>,
-        ending: {
-            id: "god-bomb-defused",
-            name: "Defuse the Bomb",
-            description: "Boom its done and defused and shit.",
-        },
-        contributor: "Dave"
     }
     // #endregion
 });
