@@ -34,6 +34,7 @@ function EvaluateEdgyness() {
 }
 
 addFlag("suefrompancakes", false);
+addFlag("didthepurchaseshit", false);
 
 addScenes({
     // #region Chocolate Pancakes
@@ -59,10 +60,23 @@ addScenes({
         </div>,
         options: [
             { text: "Make a chocolate chip pancake", to: "pancakes_milk_chocolate_make" },
-            { text: "Question your intelligence", to: "" },
-            { text: "Go to the store and buy milk chocolate that is not in chip form", to: "" }
+            { text: "Question your intelligence", to: "question_existance" },
+            { if: () => !didthepurchaseshit, text: "Go to the store and buy milk chocolate that is not in chip form", to: "markup_its_100000_dollars", disabledText: true, }
         ],
         contributor: "Durvenson"
+    },
+    markup_its_100000_dollars: {
+        prompt: () => <div>
+            <p>
+                Uh oh, they marked up the price of "milk chocolate that is not in chip form". It now costs $12345678321897. Shall you buy this garbage?
+            </p>
+        </div>,
+        action: () => didthepurchaseshit = true,
+        options: [
+            { text: "Purchase (-$12345678321897)", to: null, if: () => false, disabledText: true },
+            { text: "Don't", to: "pancakes_milk_chocolate" },
+        ],
+        contributor: "Dave"
     },
     pancakes_milk_chocolate_make: {
         prompt: () => <div>
@@ -479,6 +493,19 @@ addScenes({
             description: "You're not even sure if its chocolate-flavored cocaine or cocaine-flavored chocolate anymore."
         },
         contributor: "Neema"
+    },
+    pancakes_white_chocolate_cocaine_make: {
+        prompt: () => <div>
+            <p>
+                You add cocaine to the chocolate, that can't be legal. 
+            </p>
+        </div>,
+        ending: {
+            id: "too-much-cocaine",
+            name: "Healthy Meal? Not too sure 'bout that",
+            description: "Add cocaine to your pancake."
+        },
+        contributor: "Dave"
     },
     pancakes_white_chocolate_butter: {
         prompt: <div>
