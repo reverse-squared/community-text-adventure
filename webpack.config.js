@@ -24,6 +24,9 @@ module.exports = (env = { production: false, extraDefines: {} }, argv) => create
             chunkModules: false,
             chunkOrigins: false,
         },
+        watchOptions: {
+            ignored: /node_modules/g
+        }
     },
     plugins: [
         ...(env.production ? [] : [new webpack.HotModuleReplacementPlugin()]),
