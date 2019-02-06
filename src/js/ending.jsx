@@ -76,7 +76,7 @@ addScenesReal({
                 if (sceneStorage[endingFlag].ending.opensDiscord) {
                     setScene("BLANKSCENE");
                     setTimeout(() => {
-                        location = "https://discordapp.com/channels/@me";
+                        location.href = "https://discordapp.com/channels/@me";
                     }, 100);
                 }
                 endingFlag = null;
