@@ -19,8 +19,6 @@ addScenes({
             if(mcDonaldsWaitTime > 15) {
                 setScene("mcd_death");
             }
-
-            startedPancakes = true;
         },
         contributor: "Hunter",
     },

@@ -133,7 +133,7 @@ addScenes({
         prompt: () => {
             const progress = getGameProgress();
             const endings = getAllEndings();
-            return <div>
+            return <div style={{zoom:"0.8"}}>
                 <div className="stick-ending-status">
                     <SceneLink to="start">Back</SceneLink>
                     <p className="ending-status">

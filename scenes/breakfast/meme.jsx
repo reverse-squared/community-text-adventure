@@ -175,7 +175,7 @@ addScenes({
             <img src="https://media1.tenor.com/images/9bb8f1a9272c2d29f77f442b90a5b111/tenor.gif" />
         </div>,
         options: [
-            { text: "Return to Start", to: "wakeup_no_reset", action: () => collect200 = true }
+            { text: "Return to Start", to: "wakeup_no_reset" }
         ],
         contributor: "Hunter"
     },

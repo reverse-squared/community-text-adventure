@@ -13,7 +13,7 @@ addScenes({
         options: [
             { text: "Try to get off", to: "adventure_fortnite_get_off" },
             { text: "Ask what the hell is going on", to: "adventure_fortnite_question" },
-            { text: "Play some Fortnite™ Mobile", to: "" },
+            { text: "Play some Fortnite™ Mobile", to: "fortnite_mobile" },
             { text: "Play some of this IRL Fortnite or whatever is happening", to: "adventure_fortnite_leave" },
         ],
         contributor: "Dave"
@@ -27,8 +27,8 @@ addScenes({
         options: [
             { text: "Try to get off", to: "adventure_fortnite_get_off" },
             { text: "Ask what the hell is going on", to: "adventure_fortnite_question", disabledText: true, if: () => false },
-            { text: "Play some Fortnite™ Mobile", to: "" },
-            { text: "Play some of this IRL Fortnite or whatever is happening", to: "" },
+            { text: "Play some Fortnite™ Mobile", to: "fortnite_mobile" },
+            { text: "Play some of this IRL Fortnite or whatever is happening", to: "adventure_fortnite_leave" },
         ],
         contributor: "Dave"
     },
@@ -49,10 +49,23 @@ addScenes({
         </div>,
         options: [
             { text: "Activate your glider", to: "adventure_fortnite_leave_glide" },
-            { text: "Keep falling", to: "" },
+            { text: "Keep falling", to: "adventure_fortnite_leave2" },
             { text: "Disconnect from the game", to: "adventure_fortnite_leave_game" },
         ],
         contributor: "Hunter"
+    },
+    adventure_fortnite_leave2: {
+        prompt: () => <div>
+            <p>
+                You fall a little more.
+            </p>
+        </div>,
+        options: [
+            { text: "Activate your glider", to: "adventure_fortnite_leave_glide" },
+            { text: "Keep falling", to: "" },
+            { text: "Disconnect from the game", to: "adventure_fortnite_leave_game" },
+        ],
+        contributor: "Dave"
     },
     adventure_fortnite_leave_glide: {
         prompt: () => <div>
