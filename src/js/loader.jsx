@@ -81,3 +81,6 @@ if (module.hot) {
 if(location.href.endsWith("#credits")) {
     setScene("credits");
 }
+if(location.href.endsWith("#download")) {
+    setScene("desktop");
+}

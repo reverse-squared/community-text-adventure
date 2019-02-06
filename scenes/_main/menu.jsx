@@ -99,10 +99,10 @@ addScenes({
             { text: "Credits", to: "credits", if: ()=> getGameProgress().achievedEndings > 0 },
             "seperator",
             { text: "Download for Desktop", to: "desktop", if: () => !isDesktopVersion },
-            // { text: "Help Contribute", to: "start", action: () => {
-            //     const win = window.open("https://discord.gg/qzH9wsY", "_blank");
-            //     win.opener = null;
-            // }, if: ()=> getGameProgress().achievedEndings > 0 },
+            { text: "Chat on Discord", to: "start", action: () => {
+                const win = window.open("https://discord.gg/qzH9wsY", "_blank");
+                win.opener = null;
+            }},
             // "seperator",
             // { text: "Debug Options", if: () => !$hideDebug, to: "debug" },
             // { text: "Test Game Content", if: () => !$hideDebug, to: "lint_game_content" },
