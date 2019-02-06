@@ -190,5 +190,70 @@ addScenes({
                 setScene("jeopardy_start");
             }
         },
-    }
+    },
+    je_profit: {
+        prompt: () => <div>
+            <p>
+                Wow look! You got all the questions right!
+            </p>
+        </div>,
+        ending: {
+            id: "je-profit",
+            name: "True Genius",
+            description: "Get all the questions right on Jeopardy.",
+        },
+        contributor: "Hunter"
+    },
+    je_break_even: {
+        prompt: () => <div>
+            <p>
+                Well, you didn't make and profit, but you also didn't lose money either!
+            </p>
+        </div>,
+        ending: {
+            id: "break-even",
+            name: "Break Even",
+            description: "Don't make profit on Jeopardy.",
+        },
+        contributor: "Hunter"
+    },
+    je_failure: {
+        prompt: () => <div>
+            <p>
+                You literally got every single question wrong. Failure.
+            </p>
+        </div>,
+        ending: {
+            id: "je-fail",
+            name: "Every One Wrong",
+            description: "Not even get one right.",
+        },
+        contributor: "Hunter"
+    },
+    je_win: {
+        prompt: () => <div>
+            <p>
+                You made profit! But is that the best you can do?
+            </p>
+        </div>,
+        ending: {
+            id: "je-prooofit",
+            name: "Make Money by Question Answering",
+            description: "Easy.a",
+        },
+        contributor: "Hunter"
+    },
+    je_lose : {
+        prompt: () => <div>
+            <p>
+                You lost! That's unfortunate.
+            </p>
+        </div>,
+        ending: {
+            id: "je-lose",
+            name: "Jeopardy Loser",
+            description: "Look! Twitter is making fun of you now.",
+        },
+        contributor: "Hunter"
+    },
 });
