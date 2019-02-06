@@ -239,7 +239,7 @@ addScenes({
         ending: {
             id: "je-prooofit",
             name: "Make Money by Question Answering",
-            description: "Easy.a",
+            description: "Easy.",
         },
         contributor: "Hunter"
     },
