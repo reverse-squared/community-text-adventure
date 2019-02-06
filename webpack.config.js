@@ -16,7 +16,17 @@ module.exports = (env = { production: false, extraDefines: {} }, argv) => create
     },
     devServer: {
         hot: true,
-        contentBase: path.join(__dirname, "src")
+        contentBase: path.join(__dirname, "src"),
+        stats: {
+            chunks: false,
+            maxModules: 0,
+            entrypoints: true,
+            chunkModules: false,
+            chunkOrigins: false,
+        },
+        watchOptions: {
+            ignored: /node_modules/g
+        }
     },
     plugins: [
         ...(env.production ? [] : [new webpack.HotModuleReplacementPlugin()]),
