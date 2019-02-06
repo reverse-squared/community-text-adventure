@@ -602,26 +602,119 @@ the loud characteristic call of a bird or other animal.`}</p>
             </p>
         </div>,
         options: [
-            { text: "Add more butter", to: "" },
+            { text: "Add more butter", to: "pancakes_white_chocolate_butter_butter" },
             { text: "Add more blood", to: "pancakes_white_chocolate_butter_more_blood" },
-            { text: "Add pancake batter", to: "" },
-            { text: "Keep mixing", to: "" }
+            { text: "Add pancake batter", to: "pancakes_white_chocolate_butter_more_batter" },
+            { text: "Keep mixing", to: "pancakes_white_chocolate_butter_mix" }
         ],
         contributor: "Neema"
     },
+    pancakes_white_chocolate_butter_more_batter: {
+        prompt: () => <div>
+            <p>
+                <em>adds batter</em>
+            </p>
+        </div>,
+        options: [
+            { text: "Add more butter", to: "pancakes_white_chocolate_butter_butter" },
+            { text: "Add more blood", to: "pancakes_white_chocolate_butter_more_blood" },
+            { text: "Add pancake batter", to: "pancakes_white_chocolate_butter_more_batter" },
+            { text: "Keep mixing", to: "pancakes_white_chocolate_butter_mix" }
+        ],
+        contributor: "Hunter"
+    },
+    pancakes_white_chocolate_butter_butter: {
+        prompt: <div>
+            <p><em>adds butter</em></p>
+        </div>,
+        options: [
+            { text: "Add more butter", to: "pancakes_white_chocolate_butter_butter" },
+            { text: "Add more blood", to: "pancakes_white_chocolate_butter_more_blood" },
+            { text: "Add pancake batter", to: "pancakes_white_chocolate_butter_more_batter" },
+            { text: "Keep mixing", to: "pancakes_white_chocolate_butter_mix" }
+        ],
+        contributor: "Hunter"
+    },
+    pancakes_white_chocolate_butter_mix: {
+        prompt: <div>
+            <p><em>mix</em></p>
+        </div>,
+        options: [
+            { text: "Add more butter", to: "pancakes_white_chocolate_butter_butter" },
+            { text: "Add more blood", to: "pancakes_white_chocolate_butter_more_blood" },
+            { text: "Add pancake batter", to: "pancakes_white_chocolate_butter_more_batter" },
+            { text: "Keep mixing", to: "pancakes_white_chocolate_butter_mix" }
+        ],
+        contributor: "Hunter"
+    },
+
     pancakes_white_chocolate_butter_more_blood: {
         prompt: () => <div>
             <p>You realize how disgusting it is to have blood in a pancake mix. What do you do?</p>
         </div>,
         options: [
-            { text: "Add more butter so you don't notice as much", to: "" },
-            { text: "Add more blood", to: "" },
-            { text: "Add pancake batter", to: "" },
-            { text: "Throw it away", to: "" },
+            { text: "Add more butter so you don't notice as much", to: "pancakes_white_chocolate_butter_more_blood_butter" },
+            { text: "Add more blood", to: "pancakes_white_chocolate_butter_more_blood_more_blood" },
+            { text: "Add pancake batter", to: "pancakes_white_chocolate_butter_more_batter" },
+            { text: "Throw it away", to: "pancakes_white_chocolate_butter_more_blood_throw" },
             { text: "Puke", to: "pancakes_white_chocolate_butter_more_blood_puke" },
-            { text: "Keep mixing", to: "" }
+            { text: "Keep mixing", to: "pancakes_white_chocolate_butter_more_blood_mix" }
         ],
         contributor: "Durvenson"
+    },
+    pancakes_white_chocolate_butter_more_blood_butter: {
+        prompt: <div>
+            <p><em>adds butter</em></p>
+        </div>,
+        options: [
+            { text: "Add more butter so you don't notice as much", to: "pancakes_white_chocolate_butter_more_blood_butter" },
+            { text: "Add more blood", to: "pancakes_white_chocolate_butter_more_blood_more_blood" },
+            { text: "Add pancake batter", to: "pancakes_white_chocolate_butter_more_batter" },
+            { text: "Throw it away", to: "pancakes_white_chocolate_butter_more_blood_throw" },
+            { text: "Puke", to: "pancakes_white_chocolate_butter_more_blood_puke" },
+            { text: "Keep mixing", to: "pancakes_white_chocolate_butter_more_blood_mix" }
+        ],
+        contributor: "Hunter"
+    },
+    pancakes_white_chocolate_butter_more_blood_more_blood: {
+        prompt: () => <div>
+            <p>
+                You add more blood, but you lost so much blood you die.
+            </p>
+        </div>,
+        ending: {
+            id: "blood-loss",
+            name: "Death by Blood Loss",
+            description: "That's not the secret ingredient.",
+        },
+        contributor: "Hunter"
+    },
+    pancakes_white_chocolate_butter_more_blood_mix: {
+        prompt: () => <div>
+            <p><em>mix</em></p>
+        </div>,
+        options: [
+            { text: "Add more butter so you don't notice as much", to: "pancakes_white_chocolate_butter_more_blood_butter" },
+            { text: "Add more blood", to: "pancakes_white_chocolate_butter_more_blood_more_blood" },
+            { text: "Add pancake batter", to: "pancakes_white_chocolate_butter_more_batter" },
+            { text: "Throw it away", to: "pancakes_white_chocolate_butter_more_blood_throw" },
+            { text: "Puke", to: "pancakes_white_chocolate_butter_more_blood_puke" },
+            { text: "Keep mixing", to: "pancakes_white_chocolate_butter_more_blood_mix" }
+        ],
+        contributor: "Hunter"
+    },
+    pancakes_white_chocolate_butter_more_blood_throw: {
+        prompt: () => <div>
+            <p>
+                You throw it away, and you get depressed 'cause you worked so hard on them, just for nothing.
+            </p>
+        </div>,
+        ending: {
+            id: "batter-depress",
+            name: "All for Nothing",
+            description: "That was a waste of money.",
+        },
+        contributor: "Hunter"
     },
     pancakes_white_chocolate_butter_more_blood_puke: {
         prompt: () => <div>
