@@ -1,5 +1,5 @@
 import React from "react";
-import { setScene } from "web-text-adventure/src/adventure";
+import { setScene, addFlag } from "web-text-adventure/src/adventure";
 import { addScenes } from "@src/ending";
 
 let delayTimer;
@@ -8,14 +8,21 @@ let activationTimer;
 let progressTimer;
 let progress;
 
-function TimeTravelScene({ delay = 3000, timer = 3000, jDest = "nowhere", lDest = "nowhere", dest = "nowhere" }) {
+function TimeTravelScene({ delay = 3000, timer = 3000, jDest = "nowhere", lDest = "nowhere", dest = "nowhere", jAction, lAction, nAction }) {
     if(dest === "nowhere") throw new Error("Nowhere");
     function onKeyPress(ev) {
         if (!delayTimer && !activationTimer) {
             if (ev.key === "j" && jDest !== "nowhere") {
+                jAction && jAction();
+                TT_pressBTN = true;
                 setScene("timetravel" + jDest);
+                if(lDest !== "nowhere") {
+                    TT_speedrunning = false;
+                }
             }
             if (ev.key === "l" && lDest !== "nowhere") {
+                TT_pressBTN = true;
+                lAction && lAction();
                 setScene("timetravel" + lDest);
             }
         }
@@ -29,16 +36,20 @@ function TimeTravelScene({ delay = 3000, timer = 3000, jDest = "nowhere", lDest 
                 activationTimer = setTimeout(() => {
                     activationTimer = undefined;
 
-                    if(jDest === "nowhere" && lDest === "nowhere") {
-                        document.getElementById("outer-progress").classList.add("PROGRESS_BAR_ACTIVATED");
-                    }
+                    // if(jDest === "nowhere" && lDest === "nowhere") {
+                    document.getElementById("outer-progress").classList.add("PROGRESS_BAR_ACTIVATED");
+                    // }
                     
                     const instructions = document.querySelector(".time-instructions");
                     if (instructions) instructions.classList.add("ACTIVATED");
                 }, timer - 500);
                 
                 autoDestTimer = setTimeout(() => {
+                    nAction && nAction();
                     setScene("timetravel" + dest);
+                    if (lDest !== "nowhere") {
+                        TT_speedrunning = false;
+                    }
                 }, timer + (
                     (jDest === "nowhere" && lDest === "nowhere")
                         ? 0
@@ -86,10 +97,10 @@ function TimeTravelScene({ delay = 3000, timer = 3000, jDest = "nowhere", lDest 
 function TimeTravelDom() {
     return <React.Fragment>
         <style>{`
-            .PROGRESS_BAR_ACTIVATED {
+            .PROGRESS_BAR_ACTIVATED:not(.PROGRESS_BAR_WAITONLY) {
                 background: green!important
             }
-            .PROGRESS_BAR_ACTIVATED #inner-progress {
+            .PROGRESS_BAR_ACTIVATED:not(.PROGRESS_BAR_WAITONLY) #inner-progress {
                 background: lime!important
             }
             .PROGRESS_BAR_WAITONLY {
@@ -102,7 +113,7 @@ function TimeTravelDom() {
                 color: #888;
             }
             .time-instructions.ACTIVATED {
-                color: lime;
+                color: lime!important;
             }
         `}</style>
         <div style={{ height: "6px", width: "100%", background: "#2f4570" }} id="outer-progress">
@@ -110,6 +121,11 @@ function TimeTravelDom() {
         </div>
     </React.Fragment>;
 }
+
+addFlag("TT_correct", true);
+addFlag("TT_pressBTN", false);
+addFlag("TT_speedrunning", true);
+addFlag("TT_pressItAgainCount", 0);
 
 addScenes({
     // #region Time Travel
@@ -189,7 +205,7 @@ addScenes({
             </p>
         </div>,
         contributor: "Dave",
-        ...TimeTravelScene({ delay: 4000, timer: 4000, dest: "5", lDest: "6" }),
+        ...TimeTravelScene({ delay: 4000, timer: 4000, dest: "5", lDest: "6", nAction: () => TT_correct = false, }),
     },
     timetravel5: {
         prompt: () => <div>
@@ -197,6 +213,7 @@ addScenes({
                 You never listen to me. Well, inexplicable rift in spacetime
                 happening in 3, 2 1.
             </p>
+            <TimeTravelDom />
         </div>,
         contributor: "Dave",
         ...TimeTravelScene({ delay:0, timer: 3000, dest: "6" }),
@@ -215,7 +232,7 @@ addScenes({
             </p>
         </div>,
         contributor: "Dave",
-        ...TimeTravelScene({ delay: 5000, dest: "7", lDest: "9" }),
+        ...TimeTravelScene({ delay: 5000, dest: "7", lDest: "9", nAction: () => TT_correct = false, }),
     },
     timetravel7: {
         prompt: () => <div>
@@ -240,7 +257,7 @@ addScenes({
                 <span className="time-instructions">Press L</span>
             </p>
         </div>,
-        ...TimeTravelScene({ timer: 3000, lDest: "11", dest: "9" }),
+        ...TimeTravelScene({ timer: 3000, lDest: "11", dest: "9", nAction: () => TT_correct = false, }),
         contributor: "Dave",
     },
     timetravel9: {
@@ -254,7 +271,7 @@ addScenes({
             </p>
         </div>,
         contributor: "Dave",
-        ...TimeTravelScene({ delay: 5000, dest: "10", jDest: "8" }),
+        ...TimeTravelScene({ delay: 5000, dest: "10", jDest: "8", nAction: () => TT_correct = false, }),
     },
     timetravel10: {
         prompt: () => <div>
@@ -300,7 +317,7 @@ addScenes({
                 <span className="time-instructions">Press L</span>
             </p>
         </div>,
-        ...TimeTravelScene({ delay: 2000, timer: 3000, dest: "14", lDest: "15" }),
+        ...TimeTravelScene({ delay: 2000, timer: 3000, dest: "14", lDest: "15", nAction: () => TT_correct = false }),
         contributor: "Dave",
     },
     timetravel14: {
@@ -324,7 +341,31 @@ addScenes({
                 <span className="time-instructions">Press It Again</span>
             </p>
         </div>,
-        ...TimeTravelScene({ delay:0, timer: 2300, jDest: "14", dest: "16", lDest: "18" }),
+        ...TimeTravelScene({
+            delay:0,
+            timer: 2300,
+            jDest: "14",
+            dest: "16",
+            lDest: "18",
+            lAction: () => {
+                TT_pressItAgainCount++;
+                if(TT_pressItAgainCount !== 1) {
+                    TT_correct = false;
+                }
+            },
+            nAction: () => {
+                TT_pressItAgainCount++;
+                if(TT_pressItAgainCount !== 3) {
+                    TT_correct = false;
+                }
+            },
+            jAction: () => {
+                TT_pressItAgainCount++;
+                if(TT_pressItAgainCount !== 2) {
+                    TT_correct = false;
+                }
+            },
+        }),
         contributor: "Dave",
     },
     timetravel16: {
@@ -337,7 +378,7 @@ addScenes({
                 <span className="time-instructions">Press L</span>
             </p>
         </div>,
-        ...TimeTravelScene({ timer: 2500, lDest: "19", dest: "17" }),
+        ...TimeTravelScene({ timer: 2500, lDest: "19", dest: "17", nAction: () => TT_correct = false }),
         contributor: "Dave",
     },
     timetravel17: {
@@ -350,7 +391,7 @@ addScenes({
                 <span className="time-instructions">Press J</span>
             </p>
         </div>,
-        ...TimeTravelScene({ timer: 3000, jDest: "15", dest: "18" }),
+        ...TimeTravelScene({ timer: 3000, jDest: "15", dest: "18", nAction: () => TT_correct = false }),
         contributor: "Dave",
     },
     timetravel18: {
@@ -373,12 +414,67 @@ addScenes({
                 has preformed overlapped timelines as well as you just did, use your newfound powers
                 for good, never use them for evil.
             </p>
+        </div>,
+        options: () => {
+            if(TT_correct) {
+                return [{ text: "Continue", to: "te_correct"}];
+            } else if (TT_pressBTN === false) {
+                return [{ text: "Continue(btn)", to: "te_btn" }];
+            } else if (TT_speedrunning === true) {
+                return [{ text: "Continue(run)", to: "te_run" }];
+            } else {
+                return [{ text: "Continue(generic)", to: "te_end"}];
+            }
+        },
+        contributor: "Dave",
+    },
+    te_correct: {
+        prompt: () => <div>
             <p>
-                TODO: Decide your ending for the Mini Game.
+                Thanks for being a good student and time traveling safely.
             </p>
         </div>,
-        options: [],
-        contributor: "Dave",
-    }
+        ending: {
+            id: "time-correct",
+            name: "Obidient Student",
+            description: "Follow all instructions during your time travel lesson.",
+        }
+    },
+    te_btn: {
+        prompt: () => <div>
+            <p>
+                Were you even at your computer during that? You didn't do any time traveling.
+            </p>
+        </div>,
+        ending: {
+            id: "time-2",
+            name: "Probably on Mobile",
+            description: "Enter zero inputs during the time travel lesson.",
+        }
+    },
+    te_run: {
+        prompt: () => <div>
+            <p>
+                Now thats not a flawless run, but a fast run. Good Job.
+            </p>
+        </div>,
+        ending: {
+            id: "time-3",
+            name: "Speedrunner",
+            description: "Speedrun the time travel lesson.",
+        }
+    },
+    te_end: {
+        prompt: () => <div>
+            <p>
+                I dont even know what to say about what you just did here.
+            </p>
+        </div>,
+        ending: {
+            id: "time-4",
+            name: "Messing Around",
+            description: "Mess around during the time travel section.",
+        }
+    },
     // #endregion
 });
