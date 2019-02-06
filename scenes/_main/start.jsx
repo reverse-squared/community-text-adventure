@@ -19,18 +19,34 @@ function getTime() {
     var hours = date.getHours();
     var minutes = date.getMinutes();
 
-    if(hours > 12) {
+    if (hours > 12) {
         hours -= 12;
         afternoon = true;
     }
 
     time = hours + ":" + minutes;
-    if(afternoon) {
+    if (afternoon) {
         time += "pm";
-    }else {
+    } else {
         time += "am";
     }
 }
+
+const ChunkSplitter = (props) => {
+    return <p {...props}>
+        {(props.children || "").split("").map((char, index) => {
+            return <span style={{ position: "relative" }} key={index.toString()}>
+                <span className="chunk" style={{
+                    "--chunk": index,
+                    position: "absolute"
+                }}>{char}</span>
+                <span className="chunk" style={{
+                    opacity: 0,
+                }}>{char}</span>
+            </span>;
+        })}
+    </p>;
+};
 
 addScenes({
     // #region Wake Up
@@ -38,18 +54,16 @@ addScenes({
         prompt: () => <div>
             <p>You wake up in a room. <strong>What do you do?</strong></p>
         </div>,
-        
+
         options: () => [
             { text: "Go outside", to: "wakeup_outside" },
             { text: "Make some breakfast", to: "wakeup_breakfast" },
             { text: "Check the time", to: "wakeup_check_time" },
-            
-            /*
+
             ...((getGameProgress().percentage >= 1) ? [
                 {is: "seperator"},
                 { text: () => <RainbowText underline string={"Brag about how you got all " + getGameProgress().totalEndings + " endings"}/>, to: "true_ending" }
             ] : [])
-            //*/
         ],
 
         action: () => {
@@ -63,7 +77,7 @@ addScenes({
         prompt: () => <div>
             <p>You wake up in a room, <strong>What do you do?</strong></p>
         </div>,
-        
+
         options: [
             { text: "Go outstide", to: "wakeup_outside" },
             { text: "Make some breakfast", to: "wakeup_breakfast" },
@@ -99,9 +113,9 @@ addScenes({
             </p>
         </div>,
         options: [
-            { text: "Get it treated", to: "touch_lizard_treat"},
-            { text: "Punch that lizard", to: "jail_start"},
-            { text: "Not care, and don't do anything", to: "touch_lizard_nothing"},
+            { text: "Get it treated", to: "touch_lizard_treat" },
+            { text: "Punch that lizard", to: "jail_start" },
+            { text: "Not care, and don't do anything", to: "touch_lizard_nothing" },
         ],
         contributor: "Alchemyking"
     },
@@ -160,10 +174,10 @@ addScenes({
             <p className="inventory-update">
                 + Added Spider Corpse to Inventory.
             </p>
-            <br/>
+            <br />
         </div>,
         options: [
-            { text: "Go back and touch more things", to: "genocide_main"}
+            { text: "Go back and touch more things", to: "genocide_main" }
         ],
         contributor: "Adr"
     },
@@ -282,7 +296,7 @@ addScenes({
         contributor: "torinpotato and Hunter"
     },
     //#endregion
-    
+
     // #region Breakfast
     wakeup_breakfast: {
         prompt: () => <div>
@@ -299,7 +313,7 @@ addScenes({
                     {
                         text: "Give up and Starve...",
                         to: "breakfast_fail_ending",
-                        if: () => startedWaffles && startedOmelette && startedHashbrowns && startedPancakes ,
+                        if: () => startedWaffles && startedOmelette && startedHashbrowns && startedPancakes,
                     },
                 ];
             } else {
@@ -330,7 +344,7 @@ addScenes({
                     {
                         text: "Give up and Starve...",
                         to: "breakfast_fail_ending",
-                        if: () => startedWaffles && startedOmelette && startedHashbrowns && startedPancakes ,
+                        if: () => startedWaffles && startedOmelette && startedHashbrowns && startedPancakes,
                     },
                 ];
             } else {
@@ -413,7 +427,7 @@ addScenes({
         options: [
             { text: "Sleep more", to: "sleepmore", if: () => sleepTime < 26 },
             { text: "Wake up", to: "sleep_ending", if: () => sleepTime >= 26 },
-            { text: "Wake up", to: "wakeup", if: () => sleepTime <= 20,  }
+            { text: "Wake up", to: "wakeup", if: () => sleepTime <= 20, }
         ],
         action: () => sleepTime++,
         contributor: "Dave"
@@ -433,14 +447,90 @@ addScenes({
 
     true_ending: {
         prompt: () => <div>
-            <p>
-                TODO: i want to talk about how theres no real prize for getting here, and how
-                your actions of getting 100% means killing many others and yourself many times,
-                in many ways. to sort of a way 'your are the monster' here.
-            </p>
+            <style>{`
+            body {
+                background: black;
+                animation: bodyanimation 1s linear 2s;
+                animation-fill-mode: both;
+                overflow: hidden;
+                user-select: none;
+            }
+            @keyframes bodyanimation {
+                0% {
+                    background: black;
+                }
+                100% {
+                    background: white;
+                }
+            }
+            [data-euid] .chunk {
+                opacity: 0;
+                color: black;
+                transition: all 0.9s ease-out calc(var(--chunk) * 60ms);
+                transform: translateY(-10px);
+            }
+            [data-euid].show .chunk {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            `}
+            </style>
+            <br/><br/><br/>
+            <ChunkSplitter data-euid="0">
+                {"So you got all the endings? What a monster you are! You killed so many people, you killed yourself so many times. So much pain for everyone."}
+            </ChunkSplitter>
+            <ChunkSplitter data-euid="1">
+                {"You jumped out an airplane and died."}
+            </ChunkSplitter>
+            <ChunkSplitter data-euid="2">
+                {"You accepted a lawsuit and lost all your money."}
+            </ChunkSplitter>
+            <ChunkSplitter data-euid="3">
+                {"You set the entire world on fire"}
+            </ChunkSplitter>
+            <ChunkSplitter data-euid="4">
+                {"You even went $500,000 into debt."}
+            </ChunkSplitter>
+            <ChunkSplitter data-euid="5">
+                {"All for what? Some game's true ending."}
+            </ChunkSplitter>
+            <ChunkSplitter data-euid="6">
+                {"WELL THEN, this is it. The end of community text adventure, was that worth it?"}
+            </ChunkSplitter>
+            <br/><br/>
+            <ChunkSplitter data-euid="7">
+                {"Thank you for playing."}
+            </ChunkSplitter>
         </div>,
+        action: async() => {
+            localStorage.setItem("finished", "yes");
+            const qs = (i) => document.querySelector("[data-euid=\"" + i + "\"");
+            const fi = (i) => {
+                qs(i).classList.add("show");
+            };
+            const d = (ms) => new Promise((d) => setTimeout(d, ms));
+            
+            await d(3500);
+            fi(0);
+            await d(10000);
+            fi(1);
+            await d(3000);
+            fi(2);
+            await d(3000);
+            fi(3);
+            await d(3000);
+            fi(5);
+            await d(3000);
+            fi(6);
+            await d(7000);
+            fi(7);
+
+            document.body.style.transition = "opacity 2s linear";
+            document.body.style.opacity = "0.55";
+        },
         options: [],
         excludeEmptyOptionsCheck: true,
         noContributor: true,
+        isFinale: true,
     }
 });

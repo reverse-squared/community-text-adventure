@@ -1,5 +1,6 @@
 // This file handles hot-reloading and starting up 
 // startup file, loads all other files
+import "babel-polyfill";
 import upgrade from "./upgrade";
 import "@templates/CustomHTML";
 import { setScene } from "web-text-adventure/src/adventure";
@@ -39,6 +40,9 @@ if (module.hot) {
         });
     });
 
+    if (localStorage.finished) {
+        setScene("BLANKSCENE2");
+    }
 
     // lmao if you want to get all endings run in devtools:
     //  ((e)=>Object.keys(e).forEach((f)=>$js.Ending.achieveEnding(f)))($js.Ending.getAllEndings())
@@ -59,7 +63,11 @@ if (module.hot) {
             /* webpackExclude: /(_main\/menu)\.jsx$/ */
             /* webpackChunkName: "scenes" */
             `@scenes/${branch}`
-        );
+        ).then((a => {
+            if (localStorage.finished) {
+                setScene("BLANKSCENE");
+            }
+        }));
     }
     require("@scenes/_main/menu.jsx");
     if (typeof $dynamicFiles !== "undefined") {

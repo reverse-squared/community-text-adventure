@@ -1,5 +1,6 @@
 // builds the game
 
+require("babel-polyfill"); 
 require("module-alias/register");
 require("@babel/register");
 
@@ -71,11 +72,15 @@ webpack(config, (err, stats) => {
     // errors
     if (stats.hasErrors()) {
         // eslint-disable-next-line no-console
+        console.log("errors:");
+        // eslint-disable-next-line no-console
         console.error(info.errors.join("\n\n"));
     }
-
+    
     // warnings
     if (stats.hasWarnings()) {
+        // eslint-disable-next-line no-console
+        console.log("warnings:");
         // eslint-disable-next-line no-console
         console.warn(info.warnings.join("\n"));
     }

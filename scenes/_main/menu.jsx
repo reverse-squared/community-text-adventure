@@ -5,6 +5,8 @@ import Credits from "@templates/Credits";
 import SceneLink from "@templates/SceneLink";
 import EndingCard from "@templates/EndingCard";
 
+const isDesktopVersion = eval("typeof require === \"function\"") === true;
+
 function formatDate(date) {
     const year = date.getFullYear();
     const month = (date.getMonth() + 1).toString().padStart(2, "0");
@@ -96,13 +98,14 @@ addScenes({
             { text: "Ending List", to: "endings", if: () => getGameProgress().achievedEndings > 0 },
             { text: "Credits", to: "credits", if: ()=> getGameProgress().achievedEndings > 0 },
             "seperator",
-            { text: "Help Contribute", to: "start", action: () => {
-                const win = window.open("https://discord.gg/qzH9wsY", "_blank");
-                win.opener = null;
-            }, if: ()=> getGameProgress().achievedEndings > 0 },
-            "seperator",
-            { text: "Debug Options", if: () => !$hideDebug, to: "debug" },
-            { text: "Test Game Content", if: () => !$hideDebug, to: "lint_game_content" },
+            { text: "Download for Desktop", to: "desktop", if: () => !isDesktopVersion },
+            // { text: "Help Contribute", to: "start", action: () => {
+            //     const win = window.open("https://discord.gg/qzH9wsY", "_blank");
+            //     win.opener = null;
+            // }, if: ()=> getGameProgress().achievedEndings > 0 },
+            // "seperator",
+            // { text: "Debug Options", if: () => !$hideDebug, to: "debug" },
+            // { text: "Test Game Content", if: () => !$hideDebug, to: "lint_game_content" },
         ],
         noContributor: true,
     },

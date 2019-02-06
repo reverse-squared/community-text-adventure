@@ -130,6 +130,13 @@ addScenes({
         isBlank: true,
         excludeEmptyOptionsCheck: true,
         noContributor: true,
+    },
+    BLANKSCENE2: {
+        prompt: "<blank>",
+        options: [],
+        isWhite: true,
+        excludeEmptyOptionsCheck: true,
+        noContributor: true,
     }
 });
 

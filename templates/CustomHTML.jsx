@@ -4,6 +4,13 @@ import { Prompt, Options, DebugPanel, setCustomHTML } from "web-text-adventure/s
 setCustomHTML((scene) => {
     if (scene.isBlank) return null;
     
+    if(scene.isFinale) {
+        return <Prompt />;
+    }
+    if (scene.isWhite) {
+        return <style>{"body{background:white;overflow:none;}"}</style>;
+    }
+
     return <div>
         <h1>Community Text Adventure</h1>
 
