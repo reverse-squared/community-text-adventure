@@ -3,6 +3,7 @@ import { addScenes } from "@src/ending";
 import { addFlag, setScene } from "web-text-adventure/src/adventure";
 
 addFlag("carFromRobbery", false);
+addFlag("carIsInjury", false);
 
 function randomOf(...list) {
     return list[Math.floor((Math.random() * list.length))];
@@ -141,6 +142,7 @@ addScenes({
                 }
             </ul>
         </div>,
+        action: () => carIsInjury = true,
         options: [
             { text: "Begin", to: "hospital_car_start"}
         ],
@@ -173,9 +175,9 @@ addScenes({
                                 setScene("hospital_car_fail_almost");
                             } else {
                                 if (carFromRobbery) {
-                                    setScene("hospital_car_success");
-                                } else {
                                     setScene("hospital_car_success_other");
+                                } else {
+                                    setScene("hospital_car_success");
                                 }
                             }
                         }
@@ -215,7 +217,7 @@ addScenes({
     hospital_car_success: {
         prompt: () => <div>
             <p>
-                You navigated to the hospital successfully and got your bite treated quickly. They don't charge you anything because it was a simple action. You 
+                You navigated to the hospital successfully and got your {carIsInjury ? "injury" : "bite"} treated quickly. They don't charge you anything because it was a simple action. You 
                 leave the hospital. What do you decide to do?
             </p>
         </div>,

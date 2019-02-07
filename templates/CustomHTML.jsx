@@ -1,5 +1,5 @@
 import React from "react";
-import { Prompt, Options, DebugPanel, setCustomHTML } from "web-text-adventure/src/adventure";
+import { Prompt, Options, DebugPanel, setCustomHTML, getScene } from "web-text-adventure/src/adventure";
 
 setCustomHTML((scene) => {
     if (scene.isBlank) return null;
@@ -13,6 +13,11 @@ setCustomHTML((scene) => {
 
     return <div>
         <h1>Community Text Adventure</h1>
+        {
+            getScene() === "start" && <p style={{ marginTop:"-20px", color: "#aAA"}}>
+                Version {$version}
+            </p>
+        }
 
         <br></br>
 

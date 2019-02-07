@@ -119,6 +119,7 @@ addScenes({
                     contributor: question.contributor,
                     action: () => {
                         jeopardyQuestionsAnswered.push(`jeopardy_c${cata}_${price}`);
+                        jeopardyQuestionsLeft--;
                     }
                 },
                 [`jeopardy_incorrect_c${cata}_${price}`]: {
