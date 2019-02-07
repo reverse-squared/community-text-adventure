@@ -59,10 +59,10 @@
     "gource": "run-script-os",
     "gource:win32": "make-gource-mp4.bat",
     "gource:linux": "./make-gource-mp4.sh",
-    "package": "electron-zip-packager dist",
+    "package": "electron-zip-packager dist --out=build --electronVersion=4.0.4",
     "package-all": "run-script-os",
-    "package-all:darwin": "npm run package -- --out=build --platform=linux,win32,darwin --arch=ia32,x64",
-    "package-all:win32:linux": "npm run package -- --out=build --platform=linux,win32 --arch=ia32,x64",
+    "package-all:darwin": "npm run package -- --platform=linux,win32,darwin --arch=ia32,x64",
+    "package-all:win32:linux": "npm run package -- --arch=ia32,x64 --platform=linux,win32",
     "build-package": "npm run build && npm run electron",
     "build-all": "npm run build && npm run package-all"
   },
