@@ -1,6 +1,6 @@
 {
   "name": "community-text-adventure",
-  "version": "1.17.1",
+  "version": "1.17.2",
   "description": "Text adventure made by the community.",
   "dependencies": {
     "babel-polyfill": "^6.26.0",

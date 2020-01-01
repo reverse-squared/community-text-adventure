@@ -98,9 +98,11 @@ addScenes({
             { text: "Ending List", to: "endings", if: () => getGameProgress().achievedEndings > 0 },
             { text: "Credits", to: "credits", if: ()=> getGameProgress().achievedEndings > 0 },
             "seperator",
-            { text: "Download for Desktop", to: "desktop", if: () => !isDesktopVersion },
+            { text: () => <span style={{color: "#64ed98" }}><strong>[NEW]</strong> Play CTA: Season 2</span>, to: "start", action: () => {
+                window.location = "https://cta2.davecode.me";
+            }},
             { text: "Chat on Discord", to: "start", action: () => {
-                const win = window.open("https://discord.gg/qzH9wsY", "_blank");
+                const win = window.open("https://discord.gg/ABwjpk4", "_blank");
                 win.opener = null;
             }},
             // "seperator",
