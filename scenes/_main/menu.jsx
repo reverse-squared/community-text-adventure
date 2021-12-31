@@ -102,12 +102,17 @@ addScenes({
             //     window.location = "https://cta2.davecode.me";
             // }},
             { text: "Chat on Discord", to: "start", action: () => {
-                const win = window.open("https://discord.gg/ABwjpk4", "_blank");
+                const win = window.open("https://discord.gg/4AbvSXV", "_blank");
+                win.opener = null;
+            }},
+            { text: "More by Dave Caruso", to: "start", action: () => {
+                const win = window.open("https://davecode.net", "_blank");
                 win.opener = null;
             }},
             "seperator",
             { text: "Debug Options", if: () => getGameProgress().achievedEndings > 0, to: "debug" },
-            { text: "Debug Tests", if: () => getGameProgress().achievedEndings > 0, to: "lint_game_content" },
+            // i dont think this is important since the linting currently passes
+            //{ text: "Debug Tests", if: () => getGameProgress().achievedEndings > 0, to: "lint_game_content" },
         ],
         noContributor: true,
     },
